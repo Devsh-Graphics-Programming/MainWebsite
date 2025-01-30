@@ -15,12 +15,12 @@ type Post = {
 async function getPostInfo(slug: string) {
     const infoFilePath = path.join(process.cwd(), 'blog', slug, 'info.json')
     const jsonPostInfo = JSON.parse(fs.readFileSync(infoFilePath, 'utf-8'))
-    const ghApiResponse = await (await fetch(`https://api.github.com/users/${jsonPostInfo.author}`)).json()
+    const ghApiResponse = await (await fetch(`https://api.github.com/users/${jsonPostInfo.author_github_login}`)).json()
 
     return { 
         title: jsonPostInfo.title,
         author: {
-            login: ghApiResponse.login,
+            login: jsonPostInfo.author_github_login,
             name: ghApiResponse.name,
             avatarUrl: ghApiResponse.avatar_url,
             company: ghApiResponse.company,

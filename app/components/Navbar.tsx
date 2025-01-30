@@ -19,11 +19,10 @@ export default function Navbar() {
 
     return (
         <nav className="sticky top-0 z-20">
-            <div className="bg-black flex flex-row justify-between sm:justify-center items-center p-4">
+            <div className="bg-black flex flex-row justify-between items-center p-4">
                 <Link className="grow-0" href="/">
                     <Image src={DevshLogo} alt="Company Logo" className="w-[48px] sm:w-[72px]"></Image>
                 </Link>
-                <span className="grow text-center text-3xl max-sm:hidden">DevSH Graphics Programming</span>
                 <ul className="hidden sm:flex grow-0 flex-row gap-2">
                     <NavbarLink href="/nabla">Nabla</NavbarLink>
                     <NavbarLink href="/blog">Blog</NavbarLink>

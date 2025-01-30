@@ -1,21 +1,15 @@
 import path from 'path';
 import fs from 'fs';
 import PostThumbnail from './PostThumbnail';
+import type { PostInfo } from './PostInfo';
 
-// {
-//     "title": "Test Entry",
-//     "author": "YasInvolved",
-//     "coauthors": [],
-//     "tags": [],
-//     "date": 1738092566
-// }
+type SearchParams = {
+    [key: string]: string | undefined
+}
 
-export type JsonPostInfo = {
-    title: string,
-    author: string,
-    coauthors?: string[],
-    tags: string[],
-    date: number
+type Post = {
+    slug: string,
+    info: PostInfo
 }
 
 async function getPostInfo(slug: string) {
@@ -38,7 +32,11 @@ async function getPostInfo(slug: string) {
     }
 }
 
-export default async function Page() {
+function filterPostsByTag(posts: Post[], tag: string) {
+    return posts.filter((post) => post.info.tags.includes(tag))
+}
+
+export default async function Page({searchParams}: {searchParams?: Promise<SearchParams> }) {
     const postDir = path.join(process.cwd(), 'blog')
     const slugs = fs.readdirSync(postDir);
 
@@ -46,6 +44,22 @@ export default async function Page() {
         slug: slug,
         info: await getPostInfo(slug)
     })))
+
+    const params: SearchParams | undefined = await searchParams;
+
+    if (params && params["tag"])
+    {
+        const filteredPosts = filterPostsByTag(posts, params["tag"])
+
+        return (
+            <main className="flex flex-col container mx-auto items-center p-4 gap-12 space-y-4">
+                <h1>Filtering posts with tag: {params["tag"]}</h1>
+                {filteredPosts.map((post, index) => (
+                    <PostThumbnail post={post} key={index}></PostThumbnail>
+                ))}
+            </main>
+        )
+    }
 
     return (
         <>

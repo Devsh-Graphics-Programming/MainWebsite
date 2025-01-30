@@ -5,7 +5,8 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --swiper-pagination-color: #ffffff
+  --swiper-pagination-color: #ffffff;
+  --swiper-navigation-color: #ffffff;
 }
 
 body {

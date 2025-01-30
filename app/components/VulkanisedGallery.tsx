@@ -3,11 +3,12 @@
 import vulkanised from "@/app/data/vulkanised.json";
 import YouTube from "react-youtube";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { Pagination, Mousewheel, Autoplay, Scrollbar, EffectCoverflow } from "swiper/modules";
+import { Pagination, Mousewheel, Navigation, EffectCoverflow } from "swiper/modules";
 import { useState, useEffect } from "react";
 
 import 'swiper/css';
 import 'swiper/css/bundle'
+import { AutoplayOptions } from "swiper/types";
 
 type Size = {
     width: number | undefined,
@@ -47,18 +48,17 @@ function Gallery({ videos }: { videos: string[] }) {
     }, [size])
 
     return (
+        <>
+        <button></button>
         <Swiper
-            modules={[Pagination, Mousewheel, Autoplay, EffectCoverflow]}
+            modules={[Pagination, Mousewheel, EffectCoverflow, Navigation]}
             spaceBetween={50}
             slidesPerView={1}
             loop={true}
-            autoplay={{
-                delay: 5000,
-                pauseOnMouseEnter: true,
-            }}
             pagination={{
                 type: "progressbar",
             }}
+            navigation
             effect="coverflow"
             coverflowEffect={{
             }}
@@ -67,14 +67,13 @@ function Gallery({ videos }: { videos: string[] }) {
             {videos.map((video, index) => (
                 <SwiperSlide key={index}>
                     <YouTube
-                        videoId={video} 
-                        onPlay={() => useSwiper().autoplay.stop()}
-                        onEnd={() => useSwiper().autoplay.start()}
+                        videoId={video}
                         opts={{width: playerSize.width, height: playerSize.height}}
                     />
                 </SwiperSlide>
             ))}
         </Swiper>
+        </>
     )
 }
 

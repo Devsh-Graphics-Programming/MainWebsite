@@ -8,7 +8,6 @@ import { useState, useEffect } from "react";
 
 import 'swiper/css';
 import 'swiper/css/bundle'
-import { AutoplayOptions } from "swiper/types";
 
 type Size = {
     width: number | undefined,
@@ -40,7 +39,7 @@ function Gallery({ videos }: { videos: string[] }) {
 
     // things just couldn't be ez since js yt player iframe is unresponsive so we have to force it
     useEffect(() => {
-        if (typeof window !== 'undefined' && size.width && size.height) {
+        if (size.width && size.height) {
             setPlayerSize({width: 280, height: (280*9)/16})
             if (size.width >= 768) setPlayerSize({width: 480, height: 270})
             if (size.width >= 1024) setPlayerSize({width: 720, height: 405})

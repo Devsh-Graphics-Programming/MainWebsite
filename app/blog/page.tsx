@@ -32,9 +32,9 @@ export default async function Page() {
     })))
 
     return (
-        <main className="container mx-auto flex flex-col items-center gap-12 px-4 py-8">
+        <main className="container mx-auto flex flex-col items-center gap-12 px-4">
             {posts.map((post, index) => (
-               <PostThumbnail post={post} key={index}/> 
+                <PostThumbnail post={post} key={index}/>
             ))}
         </main>
     )

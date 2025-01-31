@@ -2,7 +2,7 @@
 
 import vulkanised from "@/app/data/vulkanised.json";
 import YouTube from "react-youtube";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel, Navigation, EffectCoverflow } from "swiper/modules";
 import { useState, useEffect } from "react";
 
@@ -40,45 +40,31 @@ function Gallery({ videos }: { videos: string[] }) {
     // things just couldn't be ez since js yt player iframe is unresponsive so we have to force it
     useEffect(() => {
         if (size.width && size.height) {
-            setPlayerSize({width: 280, height: (280*9)/16})
-            if (size.width >= 768) setPlayerSize({width: 480, height: 270})
-            if (size.width >= 1024) setPlayerSize({width: 720, height: 405})
+            setPlayerSize({width: 320, height: 180})
+            if (size.width >= 768) setPlayerSize({width: 640, height: 360})
+            if (size.width >= 1024) setPlayerSize({width: 854, height: 480})
         }
     }, [size])
 
     return (
-        <>
-        <button></button>
-        <Swiper
-            modules={[Pagination, Mousewheel, EffectCoverflow, Navigation]}
-            spaceBetween={50}
-            slidesPerView={1}
-            loop={true}
-            pagination={{
-                type: "progressbar",
-            }}
-            navigation
-            effect="coverflow"
-            coverflowEffect={{
-            }}
-            className={`aspect-video w-[280px] md:w-[480px] lg:w-[720px] text-black`}
-        >
+        <div className="flex flex-col w-full gap-4">
             {videos.map((video, index) => (
-                <SwiperSlide key={index}>
-                    <YouTube
-                        videoId={video}
-                        opts={{width: playerSize.width, height: playerSize.height}}
-                    />
-                </SwiperSlide>
+                <YouTube
+                    key={index}
+                    videoId={video}
+                    opts={{
+                        width: playerSize.width,
+                        height: playerSize.height
+                    }}
+                />
             ))}
-        </Swiper>
-        </>
+        </div>
     )
 }
 
 export default function VulkanisedGallery() {
     return (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col justify-center gap-16">
             {vulkanised.map((year, index) => (
                 <div key={index}>
                     <h3 className="my-2">{`Vulkanised ${year.year}`}</h3>

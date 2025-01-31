@@ -1,16 +1,6 @@
-import path from 'path';
-import fs from 'fs';
-import PostThumbnail from './PostThumbnail';
-import type { PostInfo } from './PostInfo';
-
-type SearchParams = {
-    [key: string]: string | undefined
-}
-
-type Post = {
-    slug: string,
-    info: PostInfo
-}
+import path from "path";
+import fs from "fs";
+import PostThumbnail from "./PostThumbnail";
 
 async function getPostInfo(slug: string) {
     const infoFilePath = path.join(process.cwd(), 'blog', slug, 'info.json')
@@ -32,42 +22,20 @@ async function getPostInfo(slug: string) {
     }
 }
 
-function filterPostsByTag(posts: Post[], tag: string) {
-    return posts.filter((post) => post.info.tags.includes(tag))
-}
-
-export default async function Page({searchParams}: {searchParams?: Promise<SearchParams> }) {
-    const postDir = path.join(process.cwd(), 'blog')
-    const slugs = fs.readdirSync(postDir);
+export default async function Page() {
+    const blogDataDir = path.join(process.cwd(), 'blog');
+    const slugs = fs.readdirSync(blogDataDir)
 
     const posts = await Promise.all(slugs.map(async (slug) => ({
         slug: slug,
         info: await getPostInfo(slug)
     })))
 
-    const params: SearchParams | undefined = await searchParams;
-
-    if (params && params["tag"])
-    {
-        const filteredPosts = filterPostsByTag(posts, params["tag"])
-
-        return (
-            <main className="flex flex-col container mx-auto items-center p-4 gap-12 space-y-4">
-                <h1>Filtering posts with tag: {params["tag"]}</h1>
-                {filteredPosts.map((post, index) => (
-                    <PostThumbnail post={post} key={index}></PostThumbnail>
-                ))}
-            </main>
-        )
-    }
-
     return (
-        <>
-            <main className="flex flex-col container mx-auto items-center p-4 gap-12 space-y-4">
-                {posts.map((post, index) => (
-                    <PostThumbnail post={post} key={index}></PostThumbnail>
-                ))}
-            </main>
-        </>
+        <main className="container mx-auto flex flex-col items-center gap-12 px-4 py-8">
+            {posts.map((post, index) => (
+               <PostThumbnail post={post} key={index}/> 
+            ))}
+        </main>
     )
 }

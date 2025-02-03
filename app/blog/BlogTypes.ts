@@ -1,14 +1,6 @@
-export type AuthorInfo = {
-    login: string,
-    name: string,
-    avatarUrl: string,
-    company?: string,
-    location?: string
-}
-
 export type PostInfo = {
     title: string,
-    author: AuthorInfo,
+    author_github_login: string,
     coauthors?: string[],
     date: number,
     tags: string[]

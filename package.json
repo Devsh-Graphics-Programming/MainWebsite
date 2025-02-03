@@ -15,15 +15,14 @@
     "@next/third-parties": "^15.1.6",
     "@tailwindcss/typography": "^0.5.16",
     "@types/mdx": "^2.0.13",
-    "lodash": "^4.17.21",
+    "framer-motion": "^12.0.6",
     "next": "^15.1.6",
-    "prismjs": "^1.29.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-swipeable": "^7.0.2",
     "react-youtube": "^10.1.0",
     "rehype-starry-night": "^2.2.0",
-    "remark-gfm": "^4.0.0",
-    "swiper": "^11.2.1"
+    "remark-gfm": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -48,9 +48,9 @@ export default function RootLayout({
         className={`${futuraPT.className} antialiased flex flex-col h-dvh`}
       >
         <Navbar/>
-        <div className="overflow-y-auto h-full">
+        <main className="h-full overflow-y-auto overflow-x-hidden">
           {children}
-        </div>
+        </main>
       </body>
     </html>
   );

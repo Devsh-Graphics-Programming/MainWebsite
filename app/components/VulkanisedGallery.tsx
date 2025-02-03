@@ -2,39 +2,14 @@
 
 import vulkanised from "@/app/data/vulkanised.json";
 import YouTube from "react-youtube";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Mousewheel, Navigation, EffectCoverflow } from "swiper/modules";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; 
+import useWindowSize, { WindowSize } from "../hooks/useWindowSize";
 
 import 'swiper/css';
 import 'swiper/css/bundle'
 
-type Size = {
-    width: number | undefined,
-    height: number | undefined
-}
-
-function useWindowSize() {
-    const [windowSize, setWindowSize] = useState<Size>({width: undefined, height: undefined})
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-                width: window.innerWidth, 
-                height: window.innerHeight 
-            })
-        }
-
-        window.addEventListener("resize", handleResize);
-        handleResize()
-        return () => window.removeEventListener("resize", handleResize)
-    }, [])
-
-    return windowSize
-}
-
 function Gallery({ videos }: { videos: string[] }) {
-    const [playerSize, setPlayerSize] = useState<Size>({width: 280, height: 160})
+    const [playerSize, setPlayerSize] = useState<WindowSize>({width: 280, height: 160})
     const size = useWindowSize()
 
     // things just couldn't be ez since js yt player iframe is unresponsive so we have to force it

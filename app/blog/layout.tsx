@@ -21,9 +21,11 @@ export default function Layout({children}: {children: ReactNode}) {
 
     return (
         <BlogContextProvider serverData={{activeSlug: null, posts: simplifiedPostInfos}}>
-            <div className="flex flex-row h-full">
+            <div className="flex flex-row w-full relative h-full">
                 <BlogExplorer/>
-                {children}
+                <div className='overflow-y-auto grow'>
+                    {children}
+                </div>
             </div>
         </BlogContextProvider>
     )

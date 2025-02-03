@@ -3,10 +3,12 @@ import Link from "next/link";
 import { useBlogContext } from "./BlogContext"
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import useWindowSize from "../hooks/useWindowSize";
 
 export default function BlogExplorer() {
     const { data } = useBlogContext();
     const [isOpen, setIsOpen] = useState(false)
+    const windowSize = useWindowSize();
     const startXRef = useRef<number | null>(null)
 
     function handleTouchStart(e: TouchEvent) {
@@ -22,14 +24,20 @@ export default function BlogExplorer() {
     }
 
     useEffect(() => {
-        document.addEventListener("touchstart", handleTouchStart)
-        document.addEventListener("touchend", handleTouchEnd)
+        if (windowSize.width && windowSize.width < 768) {
+            setIsOpen(false)
+            document.addEventListener("touchstart", handleTouchStart)
+            document.addEventListener("touchend", handleTouchEnd)
 
-        return () => {
-            document.removeEventListener("touchstart", handleTouchStart)
-            document.removeEventListener("touchend", handleTouchEnd)
+            return () => {
+                document.removeEventListener("touchstart", handleTouchStart)
+                document.removeEventListener("touchend", handleTouchEnd)
+            }
+        } else if (windowSize.width && windowSize.width >= 768) {
+            console.log("Computer")
+            setIsOpen(true)
         }
-    }, [])
+    }, [windowSize.width])
 
     return (
         <>

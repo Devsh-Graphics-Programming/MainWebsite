@@ -5,9 +5,6 @@ import YouTube from "react-youtube";
 import { useState, useEffect } from "react"; 
 import useWindowSize, { WindowSize } from "../hooks/useWindowSize";
 
-import 'swiper/css';
-import 'swiper/css/bundle'
-
 function Gallery({ videos }: { videos: string[] }) {
     const [playerSize, setPlayerSize] = useState<WindowSize>({width: 280, height: 160})
     const size = useWindowSize()

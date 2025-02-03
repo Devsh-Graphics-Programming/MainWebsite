@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import PostView from './PostView';
 import AuthorInfo from '../AuthorInfo';
+import TextBlock from '@/app/components/TextBlock';
 
 const postsDir = path.join(process.cwd(), 'blog')
 
@@ -13,9 +14,9 @@ export default async function Page({params}: {params: Promise<{slug: string}>}) 
     return (
         <main className="flex flex-col items-center container mx-auto p-4 gap-8">
             <AuthorInfo login={info.author_github_login}/>
-            <div className="prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-invert font-thin">
+            <TextBlock>
                 <PostView slug={slug}/>
-            </div>
+            </TextBlock>
         </main>
     )
 }

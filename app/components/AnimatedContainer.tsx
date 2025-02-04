@@ -13,4 +13,6 @@ const AnimatedContainer = React.forwardRef<HTMLDivElement, AnimatedContainerProp
     </motion.div>
 ))
 
+AnimatedContainer.displayName = "AnimatedContainer"
+
 export default AnimatedContainer;

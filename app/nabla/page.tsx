@@ -1,6 +1,5 @@
 import devshLogo from "@/public/devsh_transparent_1920.png"
 import nablaScreenshot1 from "@/public/nabla/screenshot1.jpg"
-import check from "@/public/list/check.svg"
 
 import Image from "next/image"
 import AnimatedContainer from "../components/AnimatedContainer"

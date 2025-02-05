@@ -9,17 +9,17 @@ import Navbar from "./components/Navbar";
 const futuraPT = localFont({
   src: [
     {
-      path: './fonts/futuraPT/FuturaCyrillicMedium.woff2',
+      path: './fonts/FuturaPT/FuturaCyrillicMedium.woff2',
       weight: '400',
       style: 'normal'
     },
     {
-      path: './fonts/futuraPT/FuturaCyrillicLight.woff2',
+      path: './fonts/FuturaPT/FuturaCyrillicLight.woff2',
       weight: '100',
       style: 'thin'
     },
     {
-      path: './fonts/futuraPT/FuturaCyrillicBook.woff2',
+      path: './fonts/FuturaPT/FuturaCyrillicBook.woff2',
       weight: '300',
       style: 'normal'
     }

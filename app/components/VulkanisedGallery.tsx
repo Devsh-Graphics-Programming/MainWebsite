@@ -5,7 +5,7 @@ function Gallery({ videos }: { videos: string[] }) {
     return (
         <div className="flex flex-col w-full h-full gap-4">
             {videos.map((video, index) => (
-                <div className="w-[720px] h-[480px]" key={index}>
+                <div className="aspect-video w-full" key={index}>
                     <YouTubeEmbed videoid={video}/>
                 </div>
             ))}
@@ -15,9 +15,9 @@ function Gallery({ videos }: { videos: string[] }) {
 
 export default function VulkanisedGallery() {
     return (
-        <div className="flex flex-col justify-center gap-16">
+        <div className="flex flex-col justify-center gap-16 w-full max-w-[720px]">
             {vulkanised.map((year, index) => (
-                <div key={index}>
+                <div className="w-full max-w-[]" key={index}>
                     <h3 className="my-2">{`Vulkanised ${year.year}`}</h3>
                     <Gallery videos={year.videos}/>
                 </div>

@@ -3,7 +3,7 @@
 import React from "react"
 import { HTMLMotionProps, motion } from "framer-motion"
 
-interface AnimatedContainerProps extends HTMLMotionProps<"div"> {
+export interface AnimatedContainerProps extends HTMLMotionProps<"div"> {
     children?: React.ReactNode
 }
 

@@ -5,7 +5,6 @@ import Link from "next/link"
 import DevshLogo from "@/public/devsh_transparent_1920.png"
 import { ReactNode, useState } from "react"
 import { motion } from "framer-motion"
-import Bars from "@/app/icons/bars"
 
 function NavbarLink({children, href, onClick}: {children: ReactNode, href: string, onClick?: () => void}) {
     return (
@@ -26,12 +25,14 @@ export default function Navbar() {
                     <span className="text-md sm:text-2xl">DevSH Graphics Programming</span>
                 </Link>
                 <ul className="hidden sm:flex grow-0 flex-row gap-2">
+                    <NavbarLink href="/">Home</NavbarLink>
                     <NavbarLink href="/nabla">Nabla</NavbarLink>
                     <NavbarLink href="/blog">Blog</NavbarLink>
-                    <NavbarLink href="/projects">Projects</NavbarLink>
                 </ul>
                 <button className={`transition-transform duration-300 sm:hidden ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`} onClick={() => setIsDropdownEnabled(!isDropdownEnabled)}>
-                    <Bars/>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                    </svg>
                 </button>
             </div>
             {isDropdownEnabled && (
@@ -40,11 +41,11 @@ export default function Navbar() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0  }}
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col w-full py-4 text-center sm:hidden bg-black border-b border-[#181818]"
+                    className="flex flex-col w-full py-4 text-center sm:hidden bg-black border-b border-[#181818] gap-1"
                 >
+                    <NavbarLink href="/" onClick={() => setIsDropdownEnabled(false)}>Home</NavbarLink>
                     <NavbarLink href="/nabla" onClick={() => setIsDropdownEnabled(false)}>Nabla</NavbarLink>
                     <NavbarLink href="/blog" onClick={() => setIsDropdownEnabled(false)}>Blog</NavbarLink>
-                    <NavbarLink href="/projects" onClick={() => setIsDropdownEnabled(false)}>Projects</NavbarLink>
                 </motion.ul>
             )}
         </nav>

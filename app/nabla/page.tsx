@@ -1,37 +1,36 @@
 import devshLogo from "@/public/devsh_transparent_1920.png"
-import nablaScreenshot1 from "@/public/nabla/screenshot1.jpg"
+import nablaScreenshot1 from "@/public/nabla/nabla_screenshot1.jpg"
+// import nablaScreenshot2 from "@/public/nabla/nabla_screenshot2.gif"
 
 import Image from "next/image"
-import AnimatedContainer from "../components/AnimatedContainer"
+import Slide from "./slide"
 import TextBlock from "../components/TextBlock"
 import Link from "next/link"
 
 export default function Page() {
     return (
-        <div id="scroll-override" className="w-full h-full max-h-full overflow-y-auto snap-y snap-mandatory overflow-x-clip">
-            <div className="container mx-auto p-4 gap-4 sm:gap-8 sm:items-center h-full">
-                <AnimatedContainer
-                    initial={{ y: 50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    exit={{ y: 50, opacity: 0 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="flex flex-col xl:flex-row items-center w-full h-full snap-center snap-always my-8"
-                >
-                    <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-[240px] xl:w-[480px]"/> 
-                    <TextBlock>
-                        <Link href="https://github.com/Devsh-Graphics-Programming/Nabla">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
-                    </TextBlock>
-                </AnimatedContainer>
-                <AnimatedContainer
-                    initial={{ y: 50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    exit={{ y: 50, opacity: 0 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="flex flex-row items-center w-full h-full snap-center snap-always gap-12 max-w-full"
-                >
-                    <div className="grow min-w-fit flex flex-col gap-8">
-                        <h1>Features</h1>
-                        <ul className="grow flex flex-col list-none xl:gap-2 text-md xl:text-xl list-image-[url(/list/check.svg)] list-inside">
+        <div id="scroll-override" className="w-full h-full max-h-full max-w-full overflow-y-auto snap-y snap-mandatory">
+            <Slide
+                visible={{ opacity: 1 }}
+                invisible={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-center"
+            >
+                <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-[240px] xl:w-[480px]"/> 
+                <TextBlock>
+                    <Link href="https://github.com/Devsh-Graphics-Programming/Nabla">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
+                </TextBlock>
+            </Slide>
+            <Slide
+                visible={{ opacity: 1 }}
+                invisible={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-row items-center justify-center"
+            >
+                <div className="container mx-auto flex justify-center w-full max-w-full max-h-full py-4 px-4 lg:px-8">
+                    <div>
+                        <h1>Main Features</h1>
+                        <ul className="px-2 py-4 flex flex-col flex-wrap gap-1 list-disc list-inside font-thin text-sm sm:text-md lg:text-lg">
                             <li>Frontend API with Vulkan as First Class Citizen</li>
                             <li>Thread safe and context pollution safe OpenGL</li>
                             <li>Asset management pipeline</li>
@@ -48,13 +47,16 @@ export default function Page() {
                             <li>Material Compiler for Path Tracing UberShaders</li>
                         </ul>
                     </div>
-                    <Image
-                        src={nablaScreenshot1} 
-                        alt="Showcase Image"
-                        className="shrink object-cover object-center max-xl:hidden max-h-full"
-                    />
-                </AnimatedContainer>
-            </div>
+                </div>
+                <Image src={nablaScreenshot1} alt="Nabla Screenshot 1" className="aspect-[9/16] w-full max-h-full object-cover max-lg:hidden"/>
+            </Slide>
+            {/* WIP <Slide
+                visible={{ opacity: 1 }}
+                invisible={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <Image src={nablaScreenshot2} alt="Nabla Screenshot 2"/>
+            </Slide> */}
         </div>
     )
 }

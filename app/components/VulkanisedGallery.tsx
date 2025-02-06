@@ -15,7 +15,7 @@ function Gallery({ videos }: { videos: string[] }) {
 
 export default function VulkanisedGallery() {
     return (
-        <div className="flex flex-col justify-center gap-16 w-full max-w-[720px]">
+        <div className="flex flex-col lg:flex-row justify-center gap-8 w-full">
             {vulkanised.map((year, index) => (
                 <div className="w-full max-w-[]" key={index}>
                     <h3 className="my-2">{`Vulkanised ${year.year}`}</h3>

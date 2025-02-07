@@ -29,7 +29,7 @@ const futuraPT = localFont({
 export const metadata: Metadata = {
   title: "DevSH Graphics Programming",
   description: "The website of DevSH Graphics Programming",
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://www.devsh.eu"),
   openGraph: {
     type: "website",
     title: "DevSH Graphics Programming",

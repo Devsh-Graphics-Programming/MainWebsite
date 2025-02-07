@@ -9,10 +9,6 @@ export const size = {
 }
 
 export default async function OgImage() {
-    const futurapt = await readFile(
-        join(process.cwd(), 'app', 'fonts', 'FuturaPT', 'FuturaCyrillicMedium.ttf')
-    );
-
     const logoData = await readFile(
         join(process.cwd(), 'public', 'logo.png')
     );
@@ -35,15 +31,7 @@ export default async function OgImage() {
             </div>
         ),
         {
-            ...size,
-            fonts: [
-                {
-                    name: 'FuturaPT',
-                    data: futurapt,
-                    style: 'normal',
-                    weight: 400
-                }
-            ]
+            ...size
         }
     )
 }

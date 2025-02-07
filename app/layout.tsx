@@ -4,8 +4,6 @@ import "./globals.css";
 import "@/app/components/Navbar"
 import Navbar from "./components/Navbar";
 
-// src: './fonts/futuraPT/FuturaCyrillicMedium.woff2'
-
 const futuraPT = localFont({
   src: [
     {

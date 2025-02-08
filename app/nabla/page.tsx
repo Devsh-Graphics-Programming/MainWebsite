@@ -27,24 +27,32 @@ export default function Page() {
                 transition={{ duration: 0.5 }}
                 className="flex flex-row items-center justify-center"
             >
-                <div className="container mx-auto flex justify-center w-full max-w-full max-h-full py-4 px-4 lg:px-8">
+                <div className="container mx-auto flex justify-center w-full max-w-full max-h-full py-4 px-4 lg:px-8 overflow-y-scroll">
                     <div>
                         <h1>Main Features</h1>
                         <ul className="px-2 py-4 flex flex-col flex-wrap gap-1 list-disc list-inside font-thin text-sm sm:text-md lg:text-lg">
-                            <li>Frontend API with Vulkan as First Class Citizen</li>
-                            <li>Thread safe and context pollution safe OpenGL</li>
-                            <li>Asset management pipeline</li>
-                            <li>Automatic pipeline layout creation</li>
-                            <li>Shader introspection</li>
-                            <li>Using SPIR-V shaders in OpenGL and ES</li>
-                            <li>Libraries of GLSL shader functions</li>
-                            <li>Compute shaders</li>
-                            <li>Virtual Texturing</li>
-                            <li>Virtual Geometry (programmable and non programmble fetching) with triangle batching</li>
-                            <li>CUDA and Vulkan interop</li>
-                            <li>CPU asset manipulation (image filtering, image format transcoding, mesh optimization and manipulation)</li>
-                            <li>GPU driven Scene Graph</li>
-                            <li>Material Compiler for Path Tracing UberShaders</li>
+                            <li>Curated List of Vulkan Features and Extensions the Nabla Core Profile</li>
+                            <li>Easy filtering of Vulkan Physical Devices by capabilities</li>
+                            <li>SPIR-V and Vulkan as first class citizens</li>
+                            <li>First class integration of Renderdoc</li>
+                            <li>Extensive use of Timeline Semaphores (event handlers, cpu callbacks on gpu conditions)</li>
+                            <li>GPU Object life cycle tracking (descriptor sets and commandbuffers)</li>
+                            <li>Reusability: HLSL2021 Standard Template Library</li>
+                            <li>Testability: HLSL subset compiling as both C++ Host and SPIR-V Device code</li>
+                            <li>Future Proof: C++20 Concepts in HLSL for safe and documented Static Polymorphism</li>
+                            <li>Insane: Boost PreProcessor and Template Metaprogramming in HLSL!</li>
+                            <li>Embraces Buffer Device Address and Descriptor Indexing to the full</li>
+                            <li>Minimally Invasive (vulkan handle acquisition, multiple windows, content playing second fiddle)</li>
+                            <li>Designed for Interoperation (memory export, import and Coming Soon: CUDA Interop)</li>
+                            <li>Cancellable Future based Async I/O</li>
+                            <li>Virtual File System (archive mounting, our alternative to #embed, everything is referenced by absolute path)</li>
+                            <li>Asset Managment: Directed Acyclic Graphs</li>
+                            <li>Asset Converter: Merkle Trees de-duplicating GPU Object Instances</li>
+                            <li>Unit tested BxDFs in a Statically Polymorhic framework</li>
+                            <li>In Progress: GPU ECS (Property Pools)</li>
+                            <li>SPIR-V Introspection and Layout creation</li>
+                            <li>Extensions (ImGUI, FFT, Workgroup Prefix Sum, Blur, Counting Sort In Progress: Autoexposure, Tonemap, GPU MPMC Queue, OptiX Interop, Global Scan)</li>
+                            <li>Coming Soon: Scene Loaders, GPU Driven Scene Graph, Material Compiler v2 for efficient scheduling of BxDF graph evaluation</li>
                         </ul>
                     </div>
                 </div>

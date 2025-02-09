@@ -1,13 +1,17 @@
 import devshLogo from "@/public/devsh_transparent_1920.png"
-import nablaScreenshot1 from "@/public/nabla/nabla_screenshot1.jpg"
-// import nablaScreenshot2 from "@/public/nabla/nabla_screenshot2.gif"
+import nablaScreenshot1 from "@/public/nabla_screenshot1.jpg"
 
 import Image from "next/image"
 import Slide from "./slide"
 import TextBlock from "../components/TextBlock"
 import Link from "next/link"
+import fs from 'node:fs/promises'
+import { join } from 'node:path'
 
-export default function Page() {
+export default async function Page() {
+    const publicDir = join(process.cwd(), "public", "nabla");
+    const files = await fs.readdir(publicDir)
+
     return (
         <div id="scroll-override" className="w-full h-full max-h-full max-w-full overflow-y-auto snap-y snap-mandatory">
             <Slide
@@ -18,7 +22,7 @@ export default function Page() {
             >
                 <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-[240px] xl:w-[480px]"/> 
                 <TextBlock>
-                    <Link href="https://github.com/Devsh-Graphics-Programming/Nabla">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
+                    <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" className="hover:text-teal-200 transition-colors duration-300">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW" className="hover:text-teal-200 transition-colors duration-300">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
                 </TextBlock>
             </Slide>
             <Slide
@@ -58,13 +62,37 @@ export default function Page() {
                 </div>
                 <Image src={nablaScreenshot1} alt="Nabla Screenshot 1" className="aspect-[9/16] w-full max-h-full object-cover max-lg:hidden"/>
             </Slide>
-            {/* WIP <Slide
+            <Slide
                 visible={{ opacity: 1 }}
                 invisible={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
+                className="container mx-auto flex flex-col items-center justify-center gap-4 px-4 lg:px-8 py-2"
             >
-                <Image src={nablaScreenshot2} alt="Nabla Screenshot 2"/>
-            </Slide> */}
+                <h1>Showcase</h1>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-full overflow-y-scroll">
+                    {files.map((file, index) => (
+                        <div key={index} className="relative w-full h-full aspect-video">
+                            <Image 
+                                src={`/nabla/${file}`} 
+                                width={1280} 
+                                height={720} 
+                                alt="Showcase screenshot" 
+                                className="object-contain"
+                            />
+                        </div>
+                    ))}
+                </div>
+            </Slide>
+            {/* <Slide
+                visible={{ opacity: 1 }}
+                invisible={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="container mx-auto flex flex-col items-center justify-center gap-4 px-4 lg:px-8 py-2"
+            >
+                <div className="max-w-xl">
+                    <LatestCommits repo="Nabla"/>
+                </div>
+            </Slide> WIP*/}
         </div>
     )
 }

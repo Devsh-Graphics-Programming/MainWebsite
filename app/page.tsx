@@ -1,4 +1,4 @@
-import Link from "next/link";
+import DevshLink from "./components/DevshLink";
 import VulkanisedGallery from "./components/VulkanisedGallery";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
       <h1>Website Under Construction</h1>
       <h3>Check out our Vulkanised videos below</h3>
       <VulkanisedGallery/>
-      <h3>And <Link href="https://youtube.com/watch?v=L0i_cO1iSEM&t=9343" className="text-teal-300 hover:underline" target="_blank" rel="noopener noreferer">MINE GameDev video</Link></h3>
+      <h3>and <DevshLink href="https://youtube.com/watch?v=L0i_cO1iSEM&t=9343" className="text-teal-300 hover:underline" target="_blank" rel="noopener noreferer">MINE GameDev video</DevshLink></h3>
     </div>
   );
 }

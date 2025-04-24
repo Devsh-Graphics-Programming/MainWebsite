@@ -15,8 +15,8 @@ export default function ContactEmail() {
         <motion.div
             onHoverStart={() => setIsShown(true)}
             onHoverEnd={() => setIsShown(false)}
-            className="bg-neutral-950 px-4 py-2">
-                {isShown ? email : "Hover on this text to show"}
+            className="px-2 border border-[#181818] rounded-md">
+                {isShown ? email : "Hover your cursor on this text to show"}
         </motion.div>
     )
 }

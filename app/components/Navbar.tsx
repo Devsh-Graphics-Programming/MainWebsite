@@ -13,11 +13,10 @@ type Link = {
 
 const links: Link[] = [
     { name: "Home", url: "/" },
-    { name: "Nabla", url: "/nabla" },
-    { name: "Blog", url: "/blog" },
     { name: "About", url: "/about" },
+    { name: "Nabla", url: "/nabla" },
     { name: "Services", url: "/services" },
-    { name: "Contact", url: "/contact" }
+    { name: "Blog", url: "/blog" },
 ]
 
 function DropdownIcon() {

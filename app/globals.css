@@ -42,4 +42,7 @@ body {
   p {
     @apply text-base sm:text-lg leading-relaxed
   }
+  .devsh-link {
+    @apply no-underline text-teal-600 hover:text-teal-300 transition-colors duration-300
+  }
 }

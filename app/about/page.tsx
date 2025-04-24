@@ -1,10 +1,12 @@
 import Link from "next/link"
+import TextBlock from "../components/TextBlock"
+import ContactEmail from "./ContactEmail"
 
 export default function Page() {
     return (
         <div className="container mx-auto p-4 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
             <h1>About Us</h1>
-            <div className="prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-invert font-thin">
+            <TextBlock>
                 DevSH Graphics Programming (DevSH) sp. z o.o. ( devsh.eu ) is a company specializing in High
                 Performance Computing with a particular focus on Computer Graphics and GPU Programming.
                 Currently boasting a team of 10 Consultants and 3 separate concurrent projects.
@@ -18,7 +20,11 @@ export default function Page() {
                 We’ve honed the culture of remote work, since the company’s inception before 2019. Subject to
                 availability of consultants and specific expertise required their regular working hours overlap the
                 normal working hours from San Francisco to Sydney.
-            </div>
+            </TextBlock>
+            <h1>Contact</h1>
+            <TextBlock>
+                You can contact us at e-mail address <ContactEmail/>
+            </TextBlock>
         </div>
     )
 }

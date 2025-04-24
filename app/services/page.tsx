@@ -1,4 +1,5 @@
 import Link from "next/link"
+import TextBlock from "../components/TextBlock"
 
 type PastProjectProps =
 {
@@ -21,10 +22,6 @@ function PastProject({company, companyWebsite, projects}: PastProjectProps) {
             </ul>
         </div>
     )
-}
-
-function TextBlock({children}: { children?: React.ReactNode }) {
-    return <div className="prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-invert font-thin px-2">{children}</div>
 }
 
 function Chapter({title, children}: {title: string, children?: React.ReactNode}) {

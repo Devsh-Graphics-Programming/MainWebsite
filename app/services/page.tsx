@@ -1,5 +1,5 @@
 import Link from "next/link"
-import TextBlock from "../components/TextBlock"
+import { TextBlock } from "../components/TextUtils"
 
 type PastProjectProps =
 {

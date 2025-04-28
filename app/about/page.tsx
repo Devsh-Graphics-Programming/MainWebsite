@@ -4,7 +4,7 @@ import ContactEmail from "./ContactEmail"
 
 export default function Page() {
     return (
-        <div className="container mx-auto p-4 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
+        <div className="container mx-auto max-sm:px-8 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
             <h1>About Us</h1>
             <TextBlock>
                 DevSH Graphics Programming (DevSH) sp. z o.o. ( devsh.eu ) is a company specializing in High
@@ -23,7 +23,7 @@ export default function Page() {
             </TextBlock>
             <h1>Contact</h1>
             <TextBlock>
-                You can contact us at e-mail address <ContactEmail/>
+                If you're interested in our offer, you can reach us at this e-mail address: <ContactEmail/>
             </TextBlock>
         </div>
     )

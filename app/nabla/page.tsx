@@ -3,7 +3,7 @@ import nablaScreenshot1 from "@/public/nabla_screenshot1.jpg"
 
 import Image from "next/image"
 import Slide from "./slide"
-import TextBlock from "../components/TextBlock"
+import { TextBlock } from "../components/TextUtils"
 import Link from "next/link"
 import fs from 'node:fs/promises'
 import { join } from 'node:path'

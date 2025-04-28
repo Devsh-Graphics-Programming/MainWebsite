@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { TextBlock } from "../components/TextUtils"
+import { Paragraph, TextBlock } from "../components/TextUtils"
 
 type PastProjectProps =
 {
@@ -41,16 +41,20 @@ export default function Page() {
             <div className="flex flex-col gap-4 md:gap-8">
                 <Chapter title="Experience and Offer">
                     <TextBlock>
-                        We have worked on several long-term projects for companies such as Build A World Aps., Imverse
-                        S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
-                        outsourced R&D for RELEX Solutions and Synera GmbH. Most of our work is in the CAD space,
-                        with occasional gamedev in between.
-                        We have also been active in the Khronos adjacent ecosystem, with contributions to Validation
-                        Layers, SPIR-V Cross, and over 100 bug reports and test cases for the DirectX Shader Compiler.
-                        We are 6 time Vulkanised conference speakers in the 2023 and 2024 years.
-                        Collectively we’re experienced in Vulkan, OpenGL (ES and WebGL included), DirectX12 and 11,
-                        CUDA, OpenCL, WebGPU, and NVN for GPU APIs as well as CMake, Docker, Jenkins, Python, SWIG,
-                        .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
+                        <Paragraph>
+                            We have worked on several long-term projects for companies such as Build A World Aps., Imverse
+                            S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
+                            outsourced R&D for RELEX Solutions and Synera GmbH. Most of our work is in the CAD space,
+                            with occasional gamedev in between.
+                        </Paragraph>
+                        <Paragraph>
+                            We have also been active in the Khronos adjacent ecosystem, with contributions to Validation
+                            Layers, SPIR-V Cross, and over 100 bug reports and test cases for the DirectX Shader Compiler.
+                            We are 6 time Vulkanised conference speakers in the 2023 and 2024 years.
+                            Collectively we’re experienced in Vulkan, OpenGL (ES and WebGL included), DirectX12 and 11,
+                            CUDA, OpenCL, WebGPU, and NVN for GPU APIs as well as CMake, Docker, Jenkins, Python, SWIG,
+                            .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
+                        </Paragraph>
                     </TextBlock>
                 </Chapter>
                 <Chapter title="Past Projects">

@@ -5,18 +5,23 @@ import { motion } from "framer-motion";
 
 export default function ContactEmail() {
     const [isShown, setIsShown] = useState<boolean>(false);
-    const [email, setEmail] = useState<string>()
+    const [email, setEmail] = useState<string>("");
 
     useEffect(() => {
         setEmail(isShown ? "newclients@devsh.eu" : "");
     }, [isShown])
 
+    function toggleVisibility(visible: boolean) {
+        if (visible) {
+            setIsShown(true);
+        }
+    }
+
     return (
-        <motion.div
-            onHoverStart={() => setIsShown(true)}
-            onHoverEnd={() => setIsShown(false)}
-            className="px-2 border border-[#181818] rounded-md">
-                {isShown ? email : "Hover your cursor on this text to show"}
-        </motion.div>
+        <div
+            onClick={() => setIsShown(true)}
+            className={`inline-block px-2 border ${isShown ? "border-teal-900" : "border-[#181818]"} rounded-md hover:border-teal-900 transition-colors duration-300`}>
+                {isShown ? email : "Click to show"}
+        </div>
     )
 }

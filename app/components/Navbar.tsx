@@ -13,7 +13,7 @@ type Link = {
 
 const links: Link[] = [
     { name: "Home", url: "/" },
-    { name: "About", url: "/about" },
+    { name: "About|Contact", url: "/about" },
     { name: "Nabla", url: "/nabla" },
     { name: "Services", url: "/services" },
     { name: "Blog", url: "/blog" },

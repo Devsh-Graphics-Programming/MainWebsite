@@ -5,13 +5,24 @@ import Image from "next/image"
 import Slide from "./slide"
 import { TextBlock } from "../components/TextUtils"
 import Link from "next/link"
-import fs from 'node:fs/promises'
-import { join } from 'node:path'
+
+import fluidGif from "@/public/nabla/fluid.gif"
+import imguiPng from "@/public/nabla/imgui.png"
+import rt_screenshotJpg from "@/public/nabla/rt_screenshot.jpg"
+import rt_screenshot1Jpg from "@/public/nabla/rt_screenshot1.jpg"
+import sdf_function_manipGif from "@/public/nabla/sdf_func_manip.gif"
+import volume_reconstructPng from "@/public/nabla/volume_reconstruct.png"
+
+const images = [
+    { path: fluidGif, optimized: false },
+    { path: imguiPng, optimized: true },
+    { path: rt_screenshotJpg, optimized: true },
+    { path: rt_screenshot1Jpg, optimized: true },
+    { path: sdf_function_manipGif, optimized: false },
+    { path: volume_reconstructPng, optimized: true }
+]
 
 export default async function Page() {
-    const publicDir = join(process.cwd(), "public", "nabla");
-    const files = await fs.readdir(publicDir)
-
     return (
         <div id="scroll-override" className="w-full h-full max-h-full max-w-full overflow-y-auto snap-y snap-mandatory">
             <Slide
@@ -70,29 +81,20 @@ export default async function Page() {
             >
                 <h1>Showcase</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-full overflow-y-scroll">
-                    {files.map((file, index) => (
+                    {images.map((image, index) => (
                         <div key={index} className="relative w-full h-full aspect-video">
                             <Image 
-                                src={`/nabla/${file}`} 
+                                src={image.path} 
                                 width={1280} 
                                 height={720} 
                                 alt="Showcase screenshot" 
                                 className="object-contain"
+                                unoptimized={image.optimized ? false : true}
                             />
                         </div>
                     ))}
                 </div>
             </Slide>
-            {/* <Slide
-                visible={{ opacity: 1 }}
-                invisible={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="container mx-auto flex flex-col items-center justify-center gap-4 px-4 lg:px-8 py-2"
-            >
-                <div className="max-w-xl">
-                    <LatestCommits repo="Nabla"/>
-                </div>
-            </Slide> WIP*/}
         </div>
     )
 }

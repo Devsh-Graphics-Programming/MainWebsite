@@ -1,0 +1,19 @@
+name: Deploy
+on: [workflow_dispatch]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Pull
+              uses: appleboy/ssh-actions@v0.1.10
+              with:
+                host: ${{ secrets.HOSTNAME }}
+                username: ${{ secrets.USERNAME }}
+                key: ${{ secrets.KEY }}
+                port: ${{ secrets.PORT }}
+                script: |
+                    git checkout ${{ github.sha }}
+                    npm i
+                    npm run build
+                    npm run start
+

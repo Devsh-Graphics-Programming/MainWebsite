@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
         hostname: 'api.dicebear.com',
         port: '',
         pathname: '/9.x/initials/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'graphics-programming.org',
+        port: '',
+        pathname: '/img/**'
       }
     ]
   }

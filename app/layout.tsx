@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "@/app/components/Navbar"
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const futuraPT = localFont({
   src: [
@@ -54,9 +55,10 @@ export default function RootLayout({
         className={`${futuraPT.className} antialiased flex flex-col h-dvh`}
       >
         <Navbar/>
-        <main className="h-full overflow-x-hidden overflow-y-auto my-8">
+        <main className="h-full overflow-x-hidden overflow-y-auto my-2">
           {children}
         </main>
+        <Footer/>
       </body>
     </html>
   );

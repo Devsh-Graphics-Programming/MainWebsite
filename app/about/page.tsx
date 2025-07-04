@@ -24,14 +24,14 @@ export default function Page() {
                 </Paragraph>
 
                 <Paragraph>
-                    We’ve honed the culture of remote work, since the company’s inception before 2019. Subject to
+                    We&apos;ve honed the culture of remote work, since the company&apos;s inception before 2019. Subject to
                     availability of consultants and specific expertise required their regular working hours overlap the
                     normal working hours from San Francisco to Sydney.
                 </Paragraph>
             </TextBlock>
             <h1>Contact</h1>
             <TextBlock>
-                If you're interested in our offer, you can reach us at this e-mail address: <ContactEmail/>
+                If you&apos;re interested in our offer, you can reach us at this e-mail address: <ContactEmail/>
             </TextBlock>
         </div>
     )

@@ -55,7 +55,9 @@ export default function RootLayout({
         className={`${futuraPT.className} antialiased h-dvh`}
       >
         <Navbar/>
-        {children}
+        <div className="p-4">
+          {children}
+        </div>
         <Footer/>
       </body>
     </html>

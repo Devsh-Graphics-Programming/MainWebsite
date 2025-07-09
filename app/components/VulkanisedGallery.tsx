@@ -19,7 +19,7 @@ export default function VulkanisedGallery() {
             {vulkanisedData.map((yearData, index) => (
                 <div key={index}>
                     <h2>{yearData.year}</h2>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 pt-4">
                         <Videos ytIdList={yearData.videos}/>
                     </div>
                 </div>

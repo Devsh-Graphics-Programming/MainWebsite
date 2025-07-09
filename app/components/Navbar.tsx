@@ -39,7 +39,7 @@ export default function Navbar() {
     const [isDropdownEnabled, setIsDropdownEnabled] = useState(false);
 
     return (
-        <nav className="sticky top-0 border-b border-[#181818] bg-black mb-4">
+        <nav className="sticky top-0 border-b border-[#181818] bg-black">
             <div className="bg-black container mx-auto flex flex-row justify-between items-center px-8 py-8 z-50">
                 <Link className="flex flex-row items-center gap-2 grow-0" href="/">
                     <Image src={DevshLogo} alt="Company Logo" className="w-[32px]"/>

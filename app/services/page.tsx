@@ -37,7 +37,7 @@ function Chapter({title, children}: {title: string, children?: React.ReactNode})
 
 export default function Page() {
     return (
-        <main className="container mx-auto p-4 flex flex-col gap-4 sm:gap-8 h-full items-center">
+        <main className="container mx-auto flex flex-col gap-4 sm:gap-8 h-full items-center">
             <div className="flex flex-col gap-4 md:gap-8">
                 <Chapter title="Experience and Offer">
                     <TextBlock>

@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${futuraPT.className} antialiased flex flex-col h-dvh`}
+        className={`${futuraPT.className} antialiased h-dvh`}
       >
         <Navbar/>
         {children}

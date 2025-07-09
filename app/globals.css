@@ -46,3 +46,8 @@ body {
     @apply no-underline text-teal-600 hover:text-teal-300 transition-colors duration-300
   }
 }
+
+.youtube-container {
+  isolation: isolate;
+  z-index: 1;
+}

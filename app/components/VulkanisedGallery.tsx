@@ -5,8 +5,8 @@ function Videos({ ytIdList }: { ytIdList: string[] }) {
     return (
         <>
             {ytIdList.map((ytId, index) => (
-                <div className="w-full aspect-video overflow-auto" key={index}>
-                    <YouTubeEmbed videoid={ytId}/>
+                <div className="w-full aspect-video overflow-hidden" key={index}>
+                    <YouTubeEmbed videoid={ytId} params="wmode=transparent"/>
                 </div>
             ))}
         </>
@@ -15,7 +15,7 @@ function Videos({ ytIdList }: { ytIdList: string[] }) {
 
 export default function VulkanisedGallery() {
     return (
-        <div className="grid grid-cols-2 gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full -z-20">
             {vulkanisedData.map((yearData, index) => (
                 <div key={index}>
                     <h2>{yearData.year}</h2>

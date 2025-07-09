@@ -24,7 +24,7 @@ const images = [
 
 export default async function Page() {
     return (
-        <div id="scroll-override" className="w-full h-full max-h-full max-w-full overflow-y-auto snap-y snap-mandatory">
+        <main className="w-full h-full max-h-full max-w-full overflow-y-auto snap-y snap-mandatory">
             <Slide
                 visible={{ opacity: 1 }}
                 invisible={{ opacity: 0 }}
@@ -95,6 +95,6 @@ export default async function Page() {
                     ))}
                 </div>
             </Slide>
-        </div>
+        </main>
     )
 }

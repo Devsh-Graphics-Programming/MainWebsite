@@ -4,7 +4,7 @@ import ContactEmail from "./ContactEmail"
 
 export default function Page() {
     return (
-        <div className="container mx-auto max-sm:px-8 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
+        <main className="container mx-auto max-sm:px-8 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
             <h1>About Us</h1>
             <TextBlock>
                 <Paragraph>
@@ -33,6 +33,6 @@ export default function Page() {
             <TextBlock>
                 If you&apos;re interested in our offer, you can reach us at this e-mail address: <ContactEmail/>
             </TextBlock>
-        </div>
+        </main>
     )
 }

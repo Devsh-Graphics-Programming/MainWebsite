@@ -22,7 +22,7 @@ const images = [
     { path: volume_reconstructPng, optimized: true }
 ]
 
-export default async function Page() {
+export default function Page() {
     return (
         <main className="container mx-auto flex flex-col p-4 overflow-y-auto snap-mandatory scroll-smooth">
             <Slide className="h-dvh">
@@ -67,7 +67,7 @@ export default async function Page() {
             </Slide>
             <Slide>
                 <h1>Showcase</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-full overflow-y-scroll">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-full overflow-y-scroll my-2">
                     {images.map((image, index) => (
                         <div key={index} className="relative w-full h-full aspect-video">
                             <Image 

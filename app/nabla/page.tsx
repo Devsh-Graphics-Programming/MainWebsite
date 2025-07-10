@@ -31,8 +31,8 @@ export default function Page() {
                     <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" className="hover:text-teal-200 transition-colors duration-300">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW" className="hover:text-teal-200 transition-colors duration-300">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
                 </TextBlock>
             </Slide>
-            <Slide className="h-dvh">
-                <div className="grid grid-cols-2 gap-4">
+            <Slide className="max-g-dvh">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div>
                         <h1>Main Features</h1>
                         <ul className="px-2 py-4 flex flex-col flex-wrap gap-1 list-disc list-inside font-thin text-sm sm:text-md lg:text-lg">

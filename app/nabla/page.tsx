@@ -3,7 +3,7 @@ import nablaScreenshot1 from "@/public/nabla_screenshot1.jpg"
 
 import Image from "next/image"
 import Slide from "./slide"
-import { TextBlock } from "../components/TextUtils"
+import { Paragraph } from "../components/TextUtils"
 import Link from "next/link"
 
 import fluidGif from "@/public/nabla/fluid.gif"
@@ -27,9 +27,9 @@ export default function Page() {
         <main className="container mx-auto flex flex-col p-4 overflow-y-auto snap-mandatory scroll-smooth">
             <Slide className="h-dvh">
                 <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-[240px] xl:w-[480px]"/> 
-                <TextBlock>
+                <Paragraph>
                     <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" className="hover:text-teal-200 transition-colors duration-300">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW" className="hover:text-teal-200 transition-colors duration-300">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
-                </TextBlock>
+                </Paragraph>
             </Slide>
             <Slide className="max-g-dvh">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

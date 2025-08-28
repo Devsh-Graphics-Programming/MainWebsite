@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Paragraph, TextBlock } from "../components/TextUtils"
+import { Paragraph, Chapter } from "../components/TextUtils"
 
 type PastProjectProps =
 {
@@ -24,38 +24,25 @@ function PastProject({company, companyWebsite, projects}: PastProjectProps) {
     )
 }
 
-function Chapter({title, children}: {title: string, children?: React.ReactNode}) {
-    return (
-        <div className="flex flex-col gap-4">
-            <h1>{title}</h1>
-            <div className="pl-2">
-                {children}
-            </div>
-        </div>
-    )
-}
-
 export default function Page() {
     return (
         <main className="container mx-auto flex flex-col gap-4 sm:gap-8 h-full items-center">
             <div className="flex flex-col gap-4 md:gap-8">
                 <Chapter title="Experience and Offer">
-                    <TextBlock>
-                        <Paragraph>
-                            We have worked on several long-term projects for companies such as Build A World Aps., Imverse
-                            S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
-                            outsourced R&D for RELEX Solutions and Synera GmbH. Most of our work is in the CAD space,
-                            with occasional gamedev in between.
-                        </Paragraph>
-                        <Paragraph>
-                            We have also been active in the Khronos adjacent ecosystem, with contributions to Validation
-                            Layers, SPIR-V Cross, and over 100 bug reports and test cases for the DirectX Shader Compiler.
-                            We are 6 time Vulkanised conference speakers in the 2023 and 2024 years.
-                            Collectively we’re experienced in Vulkan, OpenGL (ES and WebGL included), DirectX12 and 11,
-                            CUDA, OpenCL, WebGPU, and NVN for GPU APIs as well as CMake, Docker, Jenkins, Python, SWIG,
-                            .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
-                        </Paragraph>
-                    </TextBlock>
+                    <Paragraph>
+                        We have worked on several long-term projects for companies such as Build A World Aps., Imverse
+                        S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
+                        outsourced R&D for RELEX Solutions and Synera GmbH. Most of our work is in the CAD space,
+                        with occasional gamedev in between.
+                    </Paragraph>
+                    <Paragraph>
+                        We have also been active in the Khronos adjacent ecosystem, with contributions to Validation
+                        Layers, SPIR-V Cross, and over 100 bug reports and test cases for the DirectX Shader Compiler.
+                        We are 6 time Vulkanised conference speakers in the 2023 and 2024 years.
+                        Collectively we’re experienced in Vulkan, OpenGL (ES and WebGL included), DirectX12 and 11,
+                        CUDA, OpenCL, WebGPU, and NVN for GPU APIs as well as CMake, Docker, Jenkins, Python, SWIG,
+                        .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
+                    </Paragraph>
                 </Chapter>
                 <Chapter title="Past Projects">
                     <div className="flex flex-col gap-8">
@@ -108,13 +95,13 @@ export default function Page() {
                     </div>
                 </Chapter>
                 <Chapter title="Conclusion">
-                    <TextBlock>
+                    <Paragraph>
                         We provide an unbeatable offering with consultants dedicated to your project while also benefit-
                         ting from heavy 50%+ discounts on co-development and maintenance of Vulkan Utilities used in
                         your project similar to those present in the CUDA space such as CUB.
                         Finally our Consultants constantly benefit from each other’s experience and insights delivering
                         solutions a step above those devisable in solitude, even if a project has a singular Consultant.
-                    </TextBlock>
+                    </Paragraph>
                 </Chapter>
             </div>
         </main>

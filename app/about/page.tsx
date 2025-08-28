@@ -1,12 +1,11 @@
 import Link from "next/link"
-import { TextBlock, Paragraph } from "../components/TextUtils"
+import { Paragraph, Chapter } from "../components/TextUtils"
 import ContactEmail from "./ContactEmail"
 
 export default function Page() {
     return (
         <main className="container mx-auto max-sm:px-8 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
-            <h1>About Us</h1>
-            <TextBlock>
+            <Chapter title="About Us">
                 <Paragraph>
                     DevSH Graphics Programming (DevSH) sp. z o.o. ( devsh.eu ) is a company specializing in High
                     Performance Computing with a particular focus on Computer Graphics and GPU Programming.
@@ -28,11 +27,12 @@ export default function Page() {
                     availability of consultants and specific expertise required their regular working hours overlap the
                     normal working hours from San Francisco to Sydney.
                 </Paragraph>
-            </TextBlock>
-            <h1>Contact</h1>
-            <TextBlock>
-                If you&apos;re interested in our offer, you can reach us at this e-mail address: <ContactEmail/>
-            </TextBlock>
+            </Chapter>
+            <Chapter title="Contact">
+                <Paragraph>
+                    If you&apos;re interested in our offer, you can reach us at this e-mail address: <ContactEmail/>
+                </Paragraph>
+            </Chapter>
         </main>
     )
 }

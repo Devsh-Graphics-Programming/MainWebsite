@@ -8,7 +8,7 @@ export default function Home() {
       <div>
         <Chapter title="Briefly About Us">
           <DimmedParagraph>
-            Company X operates as an organization dedicated to High-Performance Computing (HPC), with a 
+            DevSH Graphics Programming sp. z o.o. operates as an organization dedicated to High-Performance Computing (HPC), with a 
             specific concentration in Computer Graphics and GPU Programming. We currently maintain a 
             team of ten consultants who are executing three concurrent projects, encompassing both 
             third-party consulting and development services for their products, as well as our own internal 

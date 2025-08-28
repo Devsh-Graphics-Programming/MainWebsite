@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+/*eslint-disable @typescript-eslint/no-require-imports*/
 export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,3 +19,4 @@ export default {
     require('@tailwindcss/typography')
   ],
 } satisfies Config;
+/*eslint-enable @typescript-eslint/no-require-imports*/

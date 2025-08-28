@@ -15,7 +15,7 @@ function Videos({ ytIdList }: { ytIdList: string[] }) {
 
 export default function VulkanisedGallery() {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full -z-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full z-0">
             {vulkanisedData.map((yearData, index) => (
                 <div key={index}>
                     <h2>{yearData.year}</h2>

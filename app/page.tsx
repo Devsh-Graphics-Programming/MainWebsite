@@ -1,10 +1,25 @@
 import VulkanisedGallery from "./components/VulkanisedGallery";
+import { TextBlock } from "./components/TextUtils";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="container mx-auto flex flex-col gap-4 sm:gap-8 sm:items-center z-0">
-      <h1>Website Under Construction</h1>
+      {/*<h1>Website Under Construction</h1>*/}
+      <div>
+        <h1>Briefly about us</h1>
+        <div className="relative">
+          <TextBlock>
+            DevSH Graphics Programming (DevSH) sp. z o.o. operates as an organization dedicated to High-Performance Computing (HPC), with 
+            a specific concentration in Computer Graphics and GPU Programming. We currently maintain a 
+            team of ten consultants who are executing three concurrent projects, encompassing both third-party 
+            consulting and development services for their products, as well as our own internal 
+            Research and Development initiatives focused on producing Open-Source Middleware and Libraries.
+          </TextBlock>
+          <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-b from-transparent to-black z-10"></div>
+        </div>
+        <Link href="/about" className="devsh-link">Learn more here &rarr;</Link>
+      </div>
       <h3>Check out our Vulkanised videos below</h3>
       <VulkanisedGallery/>
       <h3>and <Link href="https://youtube.com/watch?v=L0i_cO1iSEM&t=9343" className="devsh-link" target="_blank" rel="noopener noreferer">MINE GameDev video</Link></h3>

@@ -12,19 +12,24 @@ import rt_screenshotJpg from "@/public/nabla/rt_screenshot.jpg"
 import rt_screenshot1Jpg from "@/public/nabla/rt_screenshot1.jpg"
 import sdf_function_manipGif from "@/public/nabla/sdf_func_manip.gif"
 import volume_reconstructPng from "@/public/nabla/volume_reconstruct.png"
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
-const images = [
-    { path: fluidGif, optimized: false },
-    { path: imguiPng, optimized: true },
-    { path: rt_screenshotJpg, optimized: true },
-    { path: rt_screenshot1Jpg, optimized: true },
-    { path: sdf_function_manipGif, optimized: false },
-    { path: volume_reconstructPng, optimized: true }
-]
+function GridImage({ src, unoptimized }: { src: string | StaticImport, unoptimized?: boolean }) {
+    return (
+        <Image
+            src={src}
+            width={1280} 
+            height={720} 
+            alt="Showcase screenshot"
+            className="relative w-full h-full aspect-video"
+            unoptimized={unoptimized}
+        />
+    )
+}
 
 export default function Page() {
     return (
-        <main className="container mx-auto flex flex-col p-4 overflow-y-auto snap-mandatory scroll-smooth">
+        <main className="container mx-auto flex flex-col px-12 overflow-y-auto snap-mandatory scroll-smooth">
             <Slide className="h-dvh">
                 <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-[240px] xl:w-[480px]"/> 
                 <Paragraph>
@@ -68,18 +73,12 @@ export default function Page() {
             <Slide>
                 <h1>Showcase</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-full overflow-y-scroll my-2">
-                    {images.map((image, index) => (
-                        <div key={index} className="relative w-full h-full aspect-video">
-                            <Image 
-                                src={image.path} 
-                                width={1280} 
-                                height={720} 
-                                alt="Showcase screenshot" 
-                                className="object-contain"
-                                unoptimized={image.optimized ? false : true}
-                            />
-                        </div>
-                    ))}
+                    <GridImage src={fluidGif} unoptimized />
+                    <GridImage src={imguiPng} />
+                    <GridImage src={rt_screenshotJpg} />
+                    <GridImage src={rt_screenshot1Jpg} />
+                    <GridImage src={sdf_function_manipGif} unoptimized />
+                    <GridImage src={volume_reconstructPng} />
                 </div>
             </Slide>
         </main>

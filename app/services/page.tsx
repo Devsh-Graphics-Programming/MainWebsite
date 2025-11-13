@@ -1,10 +1,12 @@
 import Link from "next/link"
 import { Paragraph, Chapter } from "../components/TextUtils"
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 type PastProjectProps =
 {
     company: string,
     companyWebsite?: string,
+    images?: StaticImport[] | string[],
     projects: React.ReactNode[]
 }
 
@@ -17,17 +19,19 @@ function PastProject({company, companyWebsite, projects}: PastProjectProps) {
                     : <>{company}</>
                 }
             </h3>
-            <ul className="list-disc list-inside pl-4 font-thin text-[#d1d5db] sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl">
-                {projects.map((project, index) => <li key={index}>{project}</li>)}
-            </ul>
+            <div>
+                <ul className="list-disc list-inside pl-4 font-thin text-[#d1d5db] sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl">
+                    {projects.map((project, index) => <li key={index}>{project}</li>)}
+                </ul>
+            </div>
         </div>
     )
 }
 
 export default function Page() {
     return (
-        <main className="container mx-auto flex flex-col gap-4 sm:gap-8 h-full items-center">
-            <div className="flex flex-col gap-4 md:gap-8">
+        <main className="container mx-auto flex flex-col items-center">
+            <div className="max-w-full">
                 <Chapter title="Experience and Offer">
                     <Paragraph>
                         We have worked on several long-term projects for companies such as Build A World Aps., Imverse
@@ -75,7 +79,8 @@ export default function Page() {
                             ]}
                         />
                         <PastProject
-                            company="Imverse S.A."
+                            company="Imverse"
+                            companyWebsite="https://www.imverse.ch/"
                             projects={[
                                 <>GPGPU Consulting and Contracting to solve Computer Vision problems</>,
                                 <>GPU Accelerated Silhouette Carving from RGB+D real-time video inputs</>
@@ -91,6 +96,11 @@ export default function Page() {
                                 <>Distributed Networked Fluid Simulation</>,
                                 <>Physics Engine Development (high performance voxel connectivity for destruction)</>
                             ]}
+                        />
+                        <PastProject
+                            company="Applications in CADD"
+                            companyWebsite="https://appsincadd.co.uk/"
+                            projects={[ /* waiting for erfan and francisco to supply some bulletpoints*/ ]}
                         />
                     </div>
                 </Chapter>

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export function Paragraph({children}: {children?: ReactNode}) {
-    return <p className="block prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-invert font-thin">{children}</p>
+    return <p className="block prose sm:prose-sm md:prose-md lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-invert font-thin w-auto">{children}</p>
 }
 
 export function DimmedParagraph({children}: {children?: ReactNode}) {
@@ -15,9 +15,9 @@ export function DimmedParagraph({children}: {children?: ReactNode}) {
     )
 }
 
-export function Chapter({title, children}: {title: string, children?: React.ReactNode}) {
+export function Chapter({title, children, className}: {title: string, children?: React.ReactNode, className?: string}) {
     return (
-        <div>
+        <div className={className}>
             <h1>{title}</h1>
             <div className="pl-2">
                 {children}

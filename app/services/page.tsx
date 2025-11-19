@@ -1,14 +1,21 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Paragraph, Chapter } from "../components/TextUtils"
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
+
+import volumeReconstructPng from "@/public/clients/baw/volume_reconstruct.png";
+import n4ce_1 from "@/public/clients/apps_in_cadd/n4ce_1.jpg";
 
 type PastProjectProps =
 {
     company: string,
     companyWebsite?: string,
+    images?: StaticImport[] | string[],
+    videos?: string[],
     projects: React.ReactNode[]
 }
 
-function PastProject({company, companyWebsite, projects}: PastProjectProps) {
+function PastProject({company, companyWebsite, images, videos, projects}: PastProjectProps) {
     return (
         <div>
             <h3>
@@ -20,15 +27,38 @@ function PastProject({company, companyWebsite, projects}: PastProjectProps) {
             <ul className="list-disc list-inside pl-4 font-thin text-[#d1d5db] sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl">
                 {projects.map((project, index) => <li key={index}>{project}</li>)}
             </ul>
+            {(images || videos) && 
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-4">
+                    {images && images.map((image, index) => 
+                        <Image
+                            key={index}
+                            src={image}
+                            alt={`${company} showcase ${index+1}`}
+                            className="w-[600px]"
+                        />
+                    )}
+                    {videos && videos.map((video, index) => 
+                        <video
+                            key={index} 
+                            src={video}
+                            autoPlay
+                            muted
+                            playsInline
+                            loop
+                            className="aspect-video w-[600px]"
+                        />
+                    )}
+                </div>
+            }
         </div>
     )
 }
 
 export default function Page() {
     return (
-        <main className="container mx-auto flex flex-col gap-4 sm:gap-8 h-full items-center">
-            <div className="flex flex-col gap-4 md:gap-8">
-                <Chapter title="Experience and Offer">
+        <main className="container mx-auto flex flex-col items-center">
+            <div>
+                <Chapter title="Experience and Offer" className="w-full">
                     <Paragraph>
                         We have worked on several long-term projects for companies such as Build A World Aps., Imverse
                         S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
@@ -44,7 +74,7 @@ export default function Page() {
                         .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
                     </Paragraph>
                 </Chapter>
-                <Chapter title="Past Projects">
+                <Chapter title="Past Projects" className="w-full">
                     <div className="flex flex-col gap-8">
                         <PastProject 
                             company="Ditt"
@@ -61,6 +91,8 @@ export default function Page() {
                         <PastProject
                             company="Applications in CADD"
                             companyWebsite="https://appsincadd.co.uk"
+                            images={[n4ce_1]}
+                            videos={["/clients/apps_in_cadd/n4ce_showcase.mp4"]}
                             projects={[
                                 <>Development of a tailor-made, GPU-driven graphics engine for n4ce v5.0 using the Nabla platform</>,
                                 <>Engineered for extremely large point cloud datasets and modern large-scale civil engineering projects</>,
@@ -87,7 +119,8 @@ export default function Page() {
                             ]}
                         />
                         <PastProject
-                            company="Imverse S.A."
+                            company="Imverse"
+                            companyWebsite="https://www.imverse.ch/"
                             projects={[
                                 <>GPGPU Consulting and Contracting to solve Computer Vision problems</>,
                                 <>GPU Accelerated Silhouette Carving from RGB+D real-time video inputs</>
@@ -95,6 +128,7 @@ export default function Page() {
                         />
                         <PastProject
                             company="Build A World Aps."
+                            images={[volumeReconstructPng]}
                             projects={[
                                 <>Photogrammetry (generating point clouds from drone flythroughs)</>,
                                 <>LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)</>,
@@ -106,10 +140,10 @@ export default function Page() {
                         />
                     </div>
                 </Chapter>
-                <Chapter title="Conclusion">
+                <Chapter title="Conclusion" className="w-full">
                     <Paragraph>
-                        We provide an unbeatable offering with consultants dedicated to your project while also benefit-
-                        ting from heavy 50%+ discounts on co-development and maintenance of Vulkan Utilities used in
+                        We provide an unbeatable offering with consultants dedicated to your project while also benefitting 
+                        from heavy 50%+ discounts on co-development and maintenance of Vulkan Utilities used in
                         your project similar to those present in the CUDA space such as CUB.
                         Finally our Consultants constantly benefit from each other’s experience and insights delivering
                         solutions a step above those devisable in solitude, even if a project has a singular Consultant.

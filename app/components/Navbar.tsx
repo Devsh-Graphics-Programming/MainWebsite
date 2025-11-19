@@ -2,8 +2,9 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import DevshLogo from "@/public/devsh_transparent_1920.png"
-import { ReactNode, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
 type Link = {
@@ -37,6 +38,11 @@ function NavbarLink({children, href, onClick}: {children: ReactNode, href: strin
 
 export default function Navbar() {
     const [isDropdownEnabled, setIsDropdownEnabled] = useState(false);
+    const pathname = usePathname()
+
+    useEffect(() => {
+        setIsDropdownEnabled(!isDropdownEnabled)
+    }, [pathname])
 
     return (
         <nav className="sticky top-0 border-b border-[#181818] bg-black z-40">

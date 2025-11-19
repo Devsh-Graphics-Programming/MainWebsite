@@ -59,6 +59,18 @@ export default function Page() {
                             ]}
                         />
                         <PastProject
+                            company="Applications in CADD"
+                            companyWebsite="https://appsincadd.co.uk"
+                            projects={[
+                                <>Development of a tailor-made, GPU-driven graphics engine for n4ce v5.0 using the Nabla platform</>,
+                                <>Engineered for extremely large point cloud datasets and modern large-scale civil engineering projects</>,
+                                <>Significant performance improvements over the legacy n4ce renderer, designed to remain scalable for the next years</>,
+                                <>Close collaboration to integrate the new renderer seamlessly into the n4ce v5.0 product</>,
+                                <>Design and implementation of a modern build system, including shader preprocessing & embedded SPIR-V tooling</>,
+                                <>Ongoing optimisation and support during the lead-up to the public BETA release</>
+                            ]}
+                        />
+                        <PastProject
                             company="RELEX Solutions"
                             companyWebsite="http://relexsolutions.com"
                             projects={[

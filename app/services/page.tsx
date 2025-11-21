@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Paragraph, Chapter } from "../components/TextUtils"
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
+import OptimizedLoopVideo from "../components/OptimizedLoopVideo"
 
 import volumeReconstructPng from "@/public/clients/baw/volume_reconstruct.png";
 import n4ce_1 from "@/public/clients/apps_in_cadd/n4ce_1.jpg";
@@ -28,7 +29,7 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
                 {projects.map((project, index) => <li key={index}>{project}</li>)}
             </ul>
             {(images || videos) && 
-                <div className="grid grid-cols-1 md:grid-cols-2 p-4 justify-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 p-4 justify-center">
                     {images && images.map((image, index) => 
                         <Image
                             key={index}
@@ -38,13 +39,9 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
                         />
                     )}
                     {videos && videos.map((video, index) => 
-                        <video
+                        <OptimizedLoopVideo
                             key={index} 
                             src={video}
-                            autoPlay
-                            muted
-                            playsInline
-                            loop
                             className="aspect-video w-[500px]"
                         />
                     )}

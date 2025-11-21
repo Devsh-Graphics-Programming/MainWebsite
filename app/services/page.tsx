@@ -28,13 +28,13 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
                 {projects.map((project, index) => <li key={index}>{project}</li>)}
             </ul>
             {(images || videos) && 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 p-4 justify-center">
                     {images && images.map((image, index) => 
                         <Image
                             key={index}
                             src={image}
                             alt={`${company} showcase ${index+1}`}
-                            className="w-[600px]"
+                            className="w-[500px]"
                         />
                     )}
                     {videos && videos.map((video, index) => 
@@ -45,7 +45,7 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
                             muted
                             playsInline
                             loop
-                            className="aspect-video w-[600px]"
+                            className="aspect-video w-[500px]"
                         />
                     )}
                 </div>
@@ -58,7 +58,7 @@ export default function Page() {
     return (
         <main className="container mx-auto flex flex-col items-center">
             <div>
-                <Chapter title="Experience and Offer" className="w-full">
+                <Chapter title="Experience and Offer">
                     <Paragraph>
                         We have worked on several long-term projects for companies such as Build A World Aps., Imverse
                         S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
@@ -74,7 +74,7 @@ export default function Page() {
                         .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
                     </Paragraph>
                 </Chapter>
-                <Chapter title="Past Projects" className="w-full">
+                <Chapter title="Past Projects">
                     <div className="flex flex-col gap-8">
                         <PastProject 
                             company="Ditt"
@@ -140,7 +140,7 @@ export default function Page() {
                         />
                     </div>
                 </Chapter>
-                <Chapter title="Conclusion" className="w-full">
+                <Chapter title="Conclusion">
                     <Paragraph>
                         We provide an unbeatable offering with consultants dedicated to your project while also benefitting 
                         from heavy 50%+ discounts on co-development and maintenance of Vulkan Utilities used in

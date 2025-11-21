@@ -16,11 +16,11 @@ export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttribut
         videoRef.current.onload = () => console.log("Video Loaded")
         videoRef.current.onplay = () => console.log("Video is playing");
 
-        const intersectionObserver = new IntersectionObserver((entries, observer) => {
+        const intersectionObserver = new IntersectionObserver((entries, _) => {
             entries.forEach(video => {
                 if (video.isIntersecting) {
-                    for (var source in video.target.children) {
-                        var videoSource = video.target.children[source] as HTMLVideoElement;
+                    for (const source in video.target.children) {
+                        const videoSource = video.target.children[source] as HTMLVideoElement;
                         if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
                             videoSource.src = videoSource.dataset.src as string;
                         }

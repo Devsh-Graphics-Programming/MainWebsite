@@ -41,7 +41,7 @@ export default function Navbar() {
     const pathname = usePathname()
 
     useEffect(() => {
-        setIsDropdownEnabled(!isDropdownEnabled)
+        setIsDropdownEnabled(false)
     }, [pathname])
 
     return (

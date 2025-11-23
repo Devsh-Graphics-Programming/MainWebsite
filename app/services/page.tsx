@@ -4,8 +4,19 @@ import { Paragraph, Chapter } from "../components/TextUtils"
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import OptimizedLoopVideo from "../components/OptimizedLoopVideo"
 
-import volumeReconstructPng from "@/public/clients/baw/volume_reconstruct.png";
+// baw
+import volumeReconstruct from "@/public/clients/baw/volume_reconstruct.png";
+
+// n4ce
 import n4ce_1 from "@/public/clients/apps_in_cadd/n4ce_1.jpg";
+
+// ditt
+import nablaScreenshot1 from "@/public/nabla_screenshot1.jpg";
+import ditt1 from "@/public/clients/ditt/ditt1.jpg";
+import ditt2 from "@/public/clients/ditt/ditt2.jpg";
+import ditt3 from "@/public/clients/ditt/ditt3.jpg";
+import ditt4 from "@/public/clients/ditt/ditt4.png";
+import ditt5 from "@/public/clients/ditt/ditt5.jpg";
 
 type PastProjectProps =
 {
@@ -29,7 +40,7 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
                 {projects.map((project, index) => <li key={index}>{project}</li>)}
             </ul>
             {(images || videos) && 
-                <div className="grid grid-cols-1 lg:grid-cols-2 p-4 justify-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 justify-center">
                     {images && images.map((image, index) => 
                         <Image
                             key={index}
@@ -76,6 +87,7 @@ export default function Page() {
                         <PastProject 
                             company="Ditt"
                             companyWebsite="https://ditt.nl"
+                            images={[nablaScreenshot1, ditt1, ditt2, ditt3, ditt4, ditt5]}
                             projects={[
                                 <>Interactive GPU Path Tracer (OpenCL and OptiX) ingesting existing Mitsuba scenes</>,
                                 <>Maintenance of in-house interior design tool</>,
@@ -125,7 +137,7 @@ export default function Page() {
                         />
                         <PastProject
                             company="Build A World Aps."
-                            images={[volumeReconstructPng]}
+                            images={[volumeReconstruct]}
                             projects={[
                                 <>Photogrammetry (generating point clouds from drone flythroughs)</>,
                                 <>LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)</>,

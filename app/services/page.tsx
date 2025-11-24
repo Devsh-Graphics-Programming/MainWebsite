@@ -6,6 +6,13 @@ import OptimizedLoopVideo from "../components/OptimizedLoopVideo"
 
 // baw
 import volumeReconstruct from "@/public/clients/baw/volume_reconstruct.png";
+import baw1 from "@/public/clients/baw/baw1.jpg";
+import baw2 from "@/public/clients/baw/baw2.jpg";
+import baw3 from "@/public/clients/baw/baw3.jpg";
+import baw4 from "@/public/clients/baw/baw4.jpg";
+import baw5 from "@/public/clients/baw/baw5.jpg";
+import baw6 from "@/public/clients/baw/baw6.jpg";
+import baw7 from "@/public/clients/baw/baw7.jpg";
 
 // n4ce
 import n4ce_1 from "@/public/clients/apps_in_cadd/n4ce_1.jpg";
@@ -46,14 +53,14 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
                             key={index}
                             src={image}
                             alt={`${company} showcase ${index+1}`}
-                            className="w-[500px]"
+                            className="w-[500px] object-cover"
                         />
                     )}
                     {videos && videos.map((video, index) => 
                         <OptimizedLoopVideo
                             key={index} 
                             src={video}
-                            className="aspect-video w-[500px]"
+                            className="aspect-video w-[500px] object-cover"
                         />
                     )}
                 </div>
@@ -98,6 +105,18 @@ export default function Page() {
                             ]}
                         />
                         <PastProject
+                            company="Build A World Aps."
+                            images={[volumeReconstruct, baw1, baw2, baw3, baw4, baw5, baw6, baw7]}
+                            projects={[
+                                <>Photogrammetry (generating point clouds from drone flythroughs)</>,
+                                <>LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)</>,
+                                <>Maintaining and Extending the existing OpenGL engine</>,
+                                <>GLSL Shader Development (ocean simulation, particle simulation)</>,
+                                <>Distributed Networked Fluid Simulation</>,
+                                <>Physics Engine Development (high performance voxel connectivity for destruction)</>
+                            ]}
+                        />
+                        <PastProject
                             company="Applications in CADD"
                             companyWebsite="https://appsincadd.co.uk"
                             images={[n4ce_1]}
@@ -133,18 +152,6 @@ export default function Page() {
                             projects={[
                                 <>GPGPU Consulting and Contracting to solve Computer Vision problems</>,
                                 <>GPU Accelerated Silhouette Carving from RGB+D real-time video inputs</>
-                            ]}
-                        />
-                        <PastProject
-                            company="Build A World Aps."
-                            images={[volumeReconstruct]}
-                            projects={[
-                                <>Photogrammetry (generating point clouds from drone flythroughs)</>,
-                                <>LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)</>,
-                                <>Maintaining and Extending the existing OpenGL engine</>,
-                                <>GLSL Shader Development (ocean simulation, particle simulation)</>,
-                                <>Distributed Networked Fluid Simulation</>,
-                                <>Physics Engine Development (high performance voxel connectivity for destruction)</>
                             ]}
                         />
                     </div>

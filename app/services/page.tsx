@@ -25,6 +25,9 @@ import ditt3 from "@/public/clients/ditt/ditt3.jpg";
 import ditt4 from "@/public/clients/ditt/ditt4.png";
 import ditt5 from "@/public/clients/ditt/ditt5.jpg";
 
+// imverse
+import imverse1 from "@/public/clients/imverse/imverse1.webp";
+
 type PastProjectProps =
 {
     company: string,
@@ -131,6 +134,15 @@ export default function Page() {
                             ]}
                         />
                         <PastProject
+                            company="Imverse"
+                            companyWebsite="https://www.imverse.ch/"
+                            images={[imverse1]}
+                            projects={[
+                                <>GPGPU Consulting and Contracting to solve Computer Vision problems</>,
+                                <>GPU Accelerated Silhouette Carving from RGB+D real-time video inputs</>
+                            ]}
+                        />
+                        <PastProject
                             company="RELEX Solutions"
                             companyWebsite="http://relexsolutions.com"
                             projects={[
@@ -144,14 +156,6 @@ export default function Page() {
                             projects={[
                                 <>Deep performance analysis identifying Rendering bottlenecks on complex scenes</>,
                                 <>Plan of action and initial design for a new Renderer</>
-                            ]}
-                        />
-                        <PastProject
-                            company="Imverse"
-                            companyWebsite="https://www.imverse.ch/"
-                            projects={[
-                                <>GPGPU Consulting and Contracting to solve Computer Vision problems</>,
-                                <>GPU Accelerated Silhouette Carving from RGB+D real-time video inputs</>
                             ]}
                         />
                     </div>

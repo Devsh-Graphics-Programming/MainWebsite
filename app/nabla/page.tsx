@@ -13,6 +13,7 @@ import rt_screenshot1Jpg from "@/public/nabla/rt_screenshot1.jpg"
 import sdf_function_manipGif from "@/public/nabla/sdf_func_manip.gif"
 import path_traced_1Png from "@/public/nabla/path_traced_1.png"
 import path_traced_2Png from "@/public/nabla/path_traced_2.png"
+import ditt6 from "@/public/clients/ditt/ditt6.png";
 import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 function GridImage({ src, unoptimized }: { src: string | StaticImport, unoptimized?: boolean }) {
@@ -45,6 +46,7 @@ export default function Page() {
                     <GridImage src={sdf_function_manipGif} unoptimized />
                     <GridImage src={path_traced_1Png} />
                     <GridImage src={path_traced_2Png} />
+                    <GridImage src={ditt6} />
                 </div>
             </Slide>
             <Slide>

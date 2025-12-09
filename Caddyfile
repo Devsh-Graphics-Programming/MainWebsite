@@ -1,0 +1,9 @@
+:3000 {
+    respond /healthz 200
+    handle_path /blog* {
+        reverse_proxy blog:3000
+    }
+    handle {
+        reverse_proxy site:3000
+    }
+}

@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  site:
+    build: .
+    image: devsh-website
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    restart: unless-stopped
+
+  blog:
+    build:
+      context: ../blog
+      dockerfile: Dockerfile
+      args:
+        BLOG_BASEURL: /blog/
+    image: devsh-blog
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /config
+      - /data
+    restart: unless-stopped
+
+  proxy:
+    image: caddy:2.9-alpine
+    depends_on:
+      - site
+      - blog
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    restart: unless-stopped

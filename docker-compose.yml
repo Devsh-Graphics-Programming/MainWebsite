@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   site:
     build: .
@@ -12,12 +10,7 @@ services:
     restart: unless-stopped
 
   blog:
-    build:
-      context: ../blog
-      dockerfile: Dockerfile
-      args:
-        BLOG_BASEURL: /blog/
-    image: devsh-blog
+    image: ${BLOG_IMAGE:-ghcr.io/devsh-graphics-programming/blog:latest}
     read_only: true
     tmpfs:
       - /tmp

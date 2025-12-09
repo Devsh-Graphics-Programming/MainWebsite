@@ -67,7 +67,12 @@ jobs:
           set -euo pipefail
           cid=$(docker run -d -p 0:3000 "$IMAGE_UNDER_TEST")
           trap "docker rm -f $cid >/dev/null 2>&1" EXIT
-          port=$(docker port "$cid" 3000/tcp | sed -E 's/.*:([0-9]+)$/\1/')
+          port=$(docker inspect -f '{{ (index (index .NetworkSettings.Ports "3000/tcp") 0).HostPort }}' "$cid")
+          if [ -z "$port" ]; then
+            echo "Failed to resolve mapped port for container $cid" >&2
+            docker logs "$cid" || true
+            exit 1
+          fi
           for i in {1..20}; do
             if curl -fsS "http://127.0.0.1:${port}/" > /dev/null; then
               exit 0
@@ -75,6 +80,7 @@ jobs:
             sleep 1
           done
           echo "Service did not respond on / after 20s" >&2
+          docker logs "$cid" || true
           exit 1
 
       - name: Log in to GHCR

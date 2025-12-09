@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
 
   blog:
-    image: ${BLOG_IMAGE:-ghcr.io/devsh-graphics-programming/blog:latest}
+    image: ${BLOG_IMAGE:-ghcr.io/devsh-graphics-programming/www-blog:latest}
     read_only: true
     tmpfs:
       - /tmp

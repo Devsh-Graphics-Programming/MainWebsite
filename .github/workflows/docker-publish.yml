@@ -1,5 +1,9 @@
 name: Build and Publish Container Image
 
+concurrency:
+  group: website-build-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches: [master]
@@ -39,8 +43,8 @@ jobs:
           tags: |
             type=sha
             type=ref,event=tag
-            type=ref,event=branch,enable=${{ github.ref == 'refs/heads/main' }}
-            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=ref,event=branch,enable=${{ github.ref == 'refs/heads/master' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
@@ -74,7 +78,7 @@ jobs:
           exit 1
 
       - name: Log in to GHCR
-        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/tags/'))
+        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/tags/'))
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
@@ -83,7 +87,7 @@ jobs:
           password: ${{ secrets.CR_PAT != '' && secrets.CR_PAT || secrets.GITHUB_TOKEN }}
 
       - name: Build and push
-        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/tags/'))
+        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/heads/master') || startsWith(github.ref, 'refs/tags/'))
         uses: docker/build-push-action@v6
         with:
           context: .

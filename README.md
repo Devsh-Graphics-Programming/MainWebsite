@@ -18,3 +18,5 @@ This repo is a Next.js app used to generate a static site. The final production 
 ## Deployment notes
 - Published image: `ghcr.io/devsh-graphics-programming/www-website` (tags: `latest`, `master`, `sha-*`).
 - Blog content is proxied separately; the main image does not include Node/npm or blog runtime.
+- Security
+- Enable GitHub's push protection/secret scanning (see https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection) so that any accidental secret leaks are flagged before a push finishes.

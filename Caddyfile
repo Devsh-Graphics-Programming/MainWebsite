@@ -1,6 +1,7 @@
 :3000 {
     respond /healthz 200
-    handle_path /blog* {
+    redir /blog /blog/ 308
+    handle /blog* {
         reverse_proxy blog:3000
     }
     handle {

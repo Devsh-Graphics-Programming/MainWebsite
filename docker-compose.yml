@@ -4,18 +4,20 @@ services:
     image: devsh-website
     read_only: true
     tmpfs:
-      - /tmp
-      - /config
-      - /data
+      - /tmp:size=32m
+      - /config:size=32m
+      - /data:size=32m
     restart: unless-stopped
 
   blog:
     image: ${BLOG_IMAGE:-ghcr.io/devsh-graphics-programming/www-blog:latest}
+    ports:
+      - "3001:3000"
     read_only: true
     tmpfs:
-      - /tmp
-      - /config
-      - /data
+      - /tmp:size=32m
+      - /config:size=16m
+      - /data:size=16m
     restart: unless-stopped
 
   proxy:

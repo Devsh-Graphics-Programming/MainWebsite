@@ -37,7 +37,7 @@ export default function Page() {
             </Slide>
             <Slide className="h-full sm:p-12">
                 <h1>Showcase</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-full overflow-y-scroll my-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-2">
                     <GridImage src={nablaScreenshot1} />
                     <GridImage src={fluidGif} unoptimized />
                     <GridImage src={imguiPng} />
@@ -52,7 +52,13 @@ export default function Page() {
             <Slide>
                 <h1>About</h1>
                 <Paragraph>
-                    <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" className="hover:text-teal-200 transition-colors duration-300">Nabla</Link> (previously called <Link href="https://github.com/buildaworldnet/IrrlichtBAW" className="hover:text-teal-200 transition-colors duration-300">IrrlichtBaW</Link>) is a new renovated version of older Irrlicht engine. The name change to Nabla allows for using Nabla side by side with the legacy Irrlicht and IrrlichtBaW engines. The project currently aims for a thread-able and Vulkan-centered API, the Vulkan backend is almost complete, and OpenGL and ES backends are currently in maintenance mode.
+                    <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" className="hover:text-teal-200 transition-colors duration-300">Nabla</Link> (previously <Link href="https://github.com/buildaworldnet/IrrlichtBAW" className="hover:text-teal-200 transition-colors duration-300">IrrlichtBaW</Link>) started as a fork and renovation of the Irrlicht engine, it has since become the Ship of Theseus. Nabla is Vulkan-only thread agnostic, free of singletons and was redesigned with interoperability and headless rendering, allowing you to use it un-intrusively within other engines and share resources from them.
+                    <br />
+                    <br />
+                    Most importantly it bridges C++ and HLSL allowing Single Source Programming and compiling most HLSL both for the CPU Host and GPU Device, giving you a CUDA-like experience with Vulkan. Furthermore it provides header only libraries for HLSL such as; unit tested BxDFs, FFTs, parts of C++ STL and much more!
+                    <br />
+                    <br />
+                    It&apos;s the perfect choice for building Vulkan middlewares.
                 </Paragraph>
             </Slide>
             <Slide className="max-h-full flex flex-col">

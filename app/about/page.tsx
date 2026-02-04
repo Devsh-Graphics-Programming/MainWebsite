@@ -9,7 +9,25 @@ import vulkanised2024_1 from "@/public/vulkanised_photos/2024/2024_1.jpg";
 import vulkanised2024_2 from "@/public/vulkanised_photos/2024/2024_2.jpg";
 
 function VulkanisedPhoto({ src, alt }: { src: StaticImageData | string, alt: string }) {
-    return <Image src={src} alt={alt} className="aspect-video w-[400px]"/>
+    return (
+        <div className="relative w-[400px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
+            <Image
+                src={src}
+                alt=""
+                aria-hidden="true"
+                fill
+                sizes="400px"
+                className="object-cover blur-lg scale-105 opacity-60"
+            />
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                sizes="400px"
+                className="object-contain"
+            />
+        </div>
+    )
 }
 
 export default function Page() {
@@ -17,25 +35,18 @@ export default function Page() {
         <main className="container mx-auto max-sm:px-8 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
             <Chapter title="About Us">
                 <Paragraph>
-                    DevSH Graphics Programming (DevSH) sp. z o.o. ( devsh.eu ) is a company specializing in High
-                    Performance Computing with a particular focus on Computer Graphics and GPU Programming.
-                    Currently boasting a team of 10 Consultants and 3 separate concurrent projects.
-                    We offer consulting and co-development to Third Parties with their own products, as well as con-
-                    duct our own Research and Development, developing Open-Source Middleware and Libraries.
-                </Paragraph>
-
-                <Paragraph>
-                    The primary mission for all of our self-funded developments is to advance open source ecosys-
-                    tems with innovative tooling, with a particular focus on Vulkan and SPIR-V.
-                    We maintain a single source HLSL202x/C++20 Standard Template Header Only Library and our
-                    Utility and Rapid Prototyping Framework <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" target="_blank" rel="noopener noreferer" className="no-underline text-teal-600 devsh-link">Nabla</Link> designed {/*this prevents visual bug, "designed must stay here"*/}
-                    to give a CUDA-like programming experience in the Vulkan ecosystem.
-                </Paragraph>
-
-                <Paragraph>
-                    We&apos;ve honed the culture of remote work, since the company&apos;s inception before 2019. Subject to
-                    availability of consultants and specific expertise required their regular working hours overlap the
-                    normal working hours from San Francisco to Sydney.
+                    DevSH Graphics Programming Sp. z O.O is a company focused on Graphics, GPU and High Performance Computing. Our consultants develop and maintain Renderers, Simulations and Compilers for our Clients, integrated into or working alongside their teams. We are not a Software House, we work very closely and synergize with our Clients&apos; engineers.
+                    We also conduct our own R&amp;D developing our own Open Source Middleware and Libraries, the most prominent being Nabla, as well as contributing to existing ones.
+                    <br />
+                    <br />
+                    The primary mission for all of our self-funded developments is to advance Open Source ecosystems with innovative tooling with a particular focus on Khronos Standards. We maintain a single source HLSL202x/C++20 Standard Template Header Only Library and our Utility and Rapid Prototyping Framework <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" target="_blank" rel="noopener noreferer" className="no-underline text-teal-600 devsh-link">Nabla</Link> designed {/*this prevents visual bug, "designed must stay here"*/}
+                    to give a CUDA-like programming experience within the Vulkan ecosystem.
+                    <br />
+                    <br />
+                    We have honed the culture of remote work, since the company&apos;s inception, and way before the 2019 paradigm shift. Subject to availability and specific expertise required, our consultants&apos; regular working hours overlap the normal working hours from San Francisco to Sydney.
+                    <br />
+                    <br />
+                    Our alumni have since worked at Intel, Huawei, ARM and Apple as driver and devtech developers and on AAA games.
                 </Paragraph>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 my-4 gap-4">

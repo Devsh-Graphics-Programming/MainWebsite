@@ -28,6 +28,14 @@ import ditt5 from "@/public/clients/ditt/ditt5.jpg";
 // imverse
 import imverse1 from "@/public/clients/imverse/imverse1.webp";
 
+// wild
+import wild1 from "@/public/clients/wild/wild1.jpg";
+import wild2 from "@/public/clients/wild/wild2.jpg";
+import wild3 from "@/public/clients/wild/wild3.jpg";
+import wild4 from "@/public/clients/wild/wild4.jpg";
+import wildGif1 from "@/public/clients/wild/wild_gif1.gif";
+import wildGif2 from "@/public/clients/wild/wild_gif2.gif";
+
 type PastProjectProps =
 {
     company: string,
@@ -52,19 +60,31 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
             {(images || videos) && 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 justify-center">
                     {images && images.map((image, index) => 
-                        <Image
-                            key={index}
-                            src={image}
-                            alt={`${company} showcase ${index+1}`}
-                            className="w-[500px] object-cover"
-                        />
+                        <div key={index} className="relative w-[500px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
+                            <Image
+                                src={image}
+                                alt=""
+                                aria-hidden="true"
+                                fill
+                                sizes="500px"
+                                className="object-cover blur-lg scale-105 opacity-60"
+                            />
+                            <Image
+                                src={image}
+                                alt={`${company} showcase ${index+1}`}
+                                fill
+                                sizes="500px"
+                                className="object-contain"
+                            />
+                        </div>
                     )}
                     {videos && videos.map((video, index) => 
-                        <OptimizedLoopVideo
-                            key={index} 
-                            src={video}
-                            className="aspect-video w-[500px] object-cover"
-                        />
+                        <div key={index} className="relative w-[500px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
+                            <OptimizedLoopVideo
+                                src={video}
+                                className="w-full h-full object-contain"
+                            />
+                        </div>
                     )}
                 </div>
             }
@@ -78,18 +98,24 @@ export default function Page() {
             <div>
                 <Chapter title="Experience and Offer">
                     <Paragraph>
-                        We have worked on several long-term projects for companies such as Build A World Aps., Imverse
-                        S.A., Ditt B.V., and Applications In CADD. We have also done Graphics Performance Appraisals and
-                        outsourced R&D for RELEX Solutions and Synera GmbH. Most of our work is in the CAD space,
-                        with occasional gamedev in between.
-                    </Paragraph>
-                    <Paragraph>
-                        We have also been active in the Khronos adjacent ecosystem, with contributions to Validation
-                        Layers, SPIR-V Cross, and over 100 bug reports and test cases for the DirectX Shader Compiler.
-                        We are 6 time Vulkanised conference speakers in the 2023 and 2024 years.
-                        Collectively we’re experienced in Vulkan, OpenGL (ES and WebGL included), DirectX12 and 11,
-                        CUDA, OpenCL, WebGPU, and NVN for GPU APIs as well as CMake, Docker, Jenkins, Python, SWIG,
-                        .Net7 and WASM, Emscripten, Typescript for build systems, CI/CD and language bindings.
+                        We have worked on several long-term projects for companies such as Build A World Aps., Imverse S.A., S Ditt B.V., and Applications In CADD.
+                        <br />
+                        <br />
+                        Also we have conducted Graphics Performance Appraisals and outsourced R&amp;D for RELEX Solutions and Synera GmbH. Most of our work is in the CAD space, with occasional game development in between.
+                        <br />
+                        <br />
+                        You may find our GitHub profiles within the Khronos adjacent ecosystem, with contributions to Validation Layers, SPIR-V Cross, and over 100 bug reports and test cases for the DirectX Shader Compiler.
+                        <br />
+                        <br />
+                        We are 8 time Vulkanised and 2 time Shading Language Symposium conference speakers in the 2023, 2024 and 2026 years.
+                        <br />
+                        For the 2026 edition we were the Platinum Sponsors.
+                        <br />
+                        <br />
+                        Collectively we’re experienced in Vulkan, SPIR-V, OpenGL (ES and WebGL included), DirectX12 and 11, CUDA, OpenCL, WebGPU, and NVN for GPU APIs as well as CMake, Docker, Jenkins, Python, SWIG, .Net7 and WASM, Emscripten, Typescript, CI/CD, Kubernetes, Terraform, AWS, Proxmox and Language Engineering.
+                        <br />
+                        <br />
+                        Finally, many of us have Mathematics Degrees.
                     </Paragraph>
                 </Chapter>
                 <Chapter title="Past Projects">
@@ -131,6 +157,18 @@ export default function Page() {
                                 <>Close collaboration to integrate the new renderer seamlessly into the n4ce v5.0 product</>,
                                 <>Design and implementation of a modern build system, including shader preprocessing & embedded SPIR-V tooling</>,
                                 <>Ongoing optimisation and support during the lead-up to the public BETA release</>
+                            ]}
+                        />
+                        <PastProject
+                            company="Wild Inc. / Factions"
+                            images={[wildGif1, wildGif2, wild1, wild2, wild3, wild4]}
+                            projects={[
+                                <>Solving Vulkan synchronization issues</>,
+                                <>Implementing bindless rendering</>,
+                                <>Work around DXC and Adreno 600 limitations to allow the usage of Buffer Device Address</>,
+                                <>Implementation gpu driven rendering</>,
+                                <>Occlusion culling with a novel algorithm specifically designed for mobile TBDR GPUs (see our Vulkanised 2026 talk)</>,
+                                <>And much more</>
                             ]}
                         />
                         <PastProject

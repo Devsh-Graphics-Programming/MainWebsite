@@ -1,7 +1,6 @@
 import Link from "next/link"
-import Image from "next/image"
+import Image, { type StaticImageData } from "next/image"
 import { Paragraph, Chapter } from "../components/TextUtils"
-import { StaticImport } from "next/dist/shared/lib/get-img-props"
 import OptimizedLoopVideo from "../components/OptimizedLoopVideo"
 
 // baw
@@ -40,7 +39,7 @@ type PastProjectProps =
 {
     company: string,
     companyWebsite?: string,
-    images?: StaticImport[] | string[],
+    images?: StaticImageData[] | string[],
     videos?: string[],
     projects: React.ReactNode[]
 }
@@ -60,8 +59,7 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
             {(images || videos) && 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 justify-center">
                     {images && images.map((image, index) => {
-                        const isStatic = typeof image !== "string";
-                        const blur = isStatic && (image as StaticImport).blurDataURL ? "blur" : "empty";
+                        const blur = typeof image !== "string" && image.blurDataURL ? "blur" : "empty";
                         return (
                             <div key={index} className="relative w-[500px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
                                 <Image

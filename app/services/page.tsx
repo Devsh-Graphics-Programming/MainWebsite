@@ -31,7 +31,7 @@ import imverse1 from "@/public/clients/imverse/imverse1.webp";
 // wild
 import wild1 from "@/public/clients/wild/wild1.jpg";
 import wild2 from "@/public/clients/wild/wild2.jpg";
-import wild3 from "@/public/clients/wild/wild3.jpg";
+import wild3 from "@/public/clients/wild/wild3_v2.jpg";
 import wild4 from "@/public/clients/wild/wild4.jpg";
 import wildGif1 from "@/public/clients/wild/wild_gif1.gif";
 import wildGif2 from "@/public/clients/wild/wild_gif2.gif";
@@ -59,25 +59,31 @@ function PastProject({company, companyWebsite, images, videos, projects}: PastPr
             </ul>
             {(images || videos) && 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 justify-center">
-                    {images && images.map((image, index) => 
-                        <div key={index} className="relative w-[500px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
-                            <Image
-                                src={image}
-                                alt=""
-                                aria-hidden="true"
-                                fill
-                                sizes="500px"
-                                className="object-cover blur-lg scale-105 opacity-60"
-                            />
-                            <Image
-                                src={image}
-                                alt={`${company} showcase ${index+1}`}
-                                fill
-                                sizes="500px"
-                                className="object-contain"
-                            />
-                        </div>
-                    )}
+                    {images && images.map((image, index) => {
+                        const isStatic = typeof image !== "string";
+                        const blur = isStatic && (image as StaticImport).blurDataURL ? "blur" : "empty";
+                        return (
+                            <div key={index} className="relative w-[500px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
+                                <Image
+                                    src={image}
+                                    alt=""
+                                    aria-hidden="true"
+                                    fill
+                                    sizes="500px"
+                                    placeholder={blur}
+                                    className="object-cover blur-lg scale-105 opacity-60"
+                                />
+                                <Image
+                                    src={image}
+                                    alt={`${company} showcase ${index+1}`}
+                                    fill
+                                    sizes="500px"
+                                    placeholder={blur}
+                                    className="object-contain"
+                                />
+                            </div>
+                        );
+                    })}
                     {videos && videos.map((video, index) => 
                         <div key={index} className="relative w-[500px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
                             <OptimizedLoopVideo

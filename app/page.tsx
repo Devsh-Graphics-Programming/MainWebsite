@@ -12,7 +12,7 @@ export default function Home() {
             We also conduct our own R&amp;D developing our own Open Source Middleware and Libraries, the most prominent being Nabla, as well as contributing to existing ones.
           </DimmedParagraph>
         </Chapter>
-        <Link href="/about/" className="devsh-link">Learn more here &rarr;</Link>
+        <Link href="/about" className="devsh-link">Learn more here &rarr;</Link>
       </div>
       <h3>Check out our Vulkanised videos below</h3>
       <VulkanisedGallery/>

@@ -8,7 +8,7 @@ import vulkanised2023_2 from "@/public/vulkanised_photos/2023/2023_2.jpg";
 import vulkanised2024_1 from "@/public/vulkanised_photos/2024/2024_1.jpg";
 import vulkanised2024_2 from "@/public/vulkanised_photos/2024/2024_2.jpg";
 
-function VulkanisedPhoto({ src, alt }: { src: StaticImageData | string, alt: string }) {
+function VulkanisedPhoto({ src, alt, priority = false }: { src: StaticImageData | string, alt: string, priority?: boolean }) {
     return (
         <div className="relative w-[400px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
             <Image
@@ -17,6 +17,7 @@ function VulkanisedPhoto({ src, alt }: { src: StaticImageData | string, alt: str
                 aria-hidden="true"
                 fill
                 sizes="400px"
+                placeholder="blur"
                 className="object-cover blur-lg scale-105 opacity-60"
             />
             <Image
@@ -24,6 +25,8 @@ function VulkanisedPhoto({ src, alt }: { src: StaticImageData | string, alt: str
                 alt={alt}
                 fill
                 sizes="400px"
+                placeholder="blur"
+                priority={priority}
                 className="object-contain"
             />
         </div>
@@ -53,18 +56,22 @@ export default function Page() {
                     <VulkanisedPhoto 
                         src={vulkanised2023_1} 
                         alt="Vulkanised photo 1"
+                        priority
                     />
                     <VulkanisedPhoto 
                         src={vulkanised2023_2} 
                         alt="Vulkanised photo 2"
+                        priority
                     />
                     <VulkanisedPhoto 
                         src={vulkanised2024_1} 
                         alt="Vulkanised photo 3"
+                        priority
                     />
                     <VulkanisedPhoto 
                         src={vulkanised2024_2} 
                         alt="Vulkanised photo 4"
+                        priority
                     />
                 </div>
             </Chapter>

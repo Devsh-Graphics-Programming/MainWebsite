@@ -8,7 +8,7 @@ function Card({
   visual: ReactNode;
 }) {
   return (
-    <div className="group relative flex flex-col rounded-lg border border-[#181818] bg-[#0a0a0a] overflow-hidden transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] w-full sm:w-[260px] lg:w-[280px]">
+    <div className="group relative flex flex-col rounded-lg border border-[#181818] bg-[#0a0a0a] overflow-hidden transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] w-full sm:w-[180px] md:w-[200px]">
       <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
         {visual}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent pointer-events-none" />
@@ -255,7 +255,7 @@ const items: { title: string; visual: ReactNode }[] = [
 
 export default function ExpertiseGrid() {
   return (
-    <section className="w-full pb-4 sm:pb-6">
+    <section className="w-full md:w-[60%] mx-auto pb-4 sm:pb-6">
       <h2 className="text-center !mt-0 !mb-4 text-2xl sm:text-3xl">Our Expertise</h2>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
         {items.map((it) => (

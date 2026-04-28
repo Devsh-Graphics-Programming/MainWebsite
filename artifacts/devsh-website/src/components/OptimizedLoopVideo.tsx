@@ -4,7 +4,7 @@ export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttribut
     const videoRef = useRef<HTMLVideoElement>(null)
 
     useEffect(() => {
-        if (window["IntersectionObserver"] === undefined && window["IntersectionObserver"] === null)
+        if (window["IntersectionObserver"] === undefined || window["IntersectionObserver"] === null)
             return;
 
         if (!videoRef.current)

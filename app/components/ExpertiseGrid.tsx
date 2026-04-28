@@ -8,13 +8,13 @@ function Card({
   visual: ReactNode;
 }) {
   return (
-    <div className="group relative flex flex-col rounded-lg border border-[#181818] bg-[#0a0a0a] overflow-hidden transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)]">
-      <div className="relative w-full aspect-[16/10] overflow-hidden bg-black">
+    <div className="group relative flex flex-col rounded-lg border border-[#181818] bg-[#0a0a0a] overflow-hidden transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] w-full sm:w-[260px] lg:w-[280px]">
+      <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
         {visual}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent pointer-events-none" />
       </div>
-      <div className="p-5 sm:p-6">
-        <h4 className="!my-0 text-lg sm:text-xl font-medium leading-snug transition-colors duration-150 group-hover:text-[var(--brand-accent-bright)]">
+      <div className="p-3 sm:p-4">
+        <h4 className="!my-0 text-sm sm:text-base font-medium leading-snug transition-colors duration-150 group-hover:text-[var(--brand-accent-bright)]">
           {title}
         </h4>
       </div>
@@ -255,9 +255,9 @@ const items: { title: string; visual: ReactNode }[] = [
 
 export default function ExpertiseGrid() {
   return (
-    <section className="w-full pb-8 sm:pb-16">
-      <h2 className="text-center !mt-0">Our Expertise</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
+    <section className="w-full pb-4 sm:pb-6">
+      <h2 className="text-center !mt-0 !mb-4 text-2xl sm:text-3xl">Our Expertise</h2>
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
         {items.map((it) => (
           <Card key={it.title} title={it.title} visual={it.visual} />
         ))}

@@ -1,10 +1,14 @@
 import VulkanisedGallery from "./components/VulkanisedGallery";
 import { Chapter, DimmedParagraph } from "./components/TextUtils";
+import HeroHeader from "./components/HeroHeader";
+import ExpertiseGrid from "./components/ExpertiseGrid";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="container mx-auto flex flex-col gap-4 sm:gap-8 sm:items-center z-0">
+      <HeroHeader />
+      <ExpertiseGrid />
       <div>
         <Chapter title="Briefly About Us">
           <DimmedParagraph>

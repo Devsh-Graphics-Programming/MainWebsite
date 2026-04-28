@@ -42,3 +42,6 @@ next-env.d.ts
 
 # updating user ssh dir
 .ssh
+
+# Transient cleanup
+.old_nm_trash*

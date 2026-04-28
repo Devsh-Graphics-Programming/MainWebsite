@@ -1,0 +1,32 @@
+### 1. Hero Header (Top)
+- **Headline:** "Elite Graphics Programming & Performance Optimization." (Make this large, bold, and visually striking).
+- **Sub-headline:** (Optional, keep it very brief to support the main headline).
+- **CTA Button:** A large, highly prominent primary button that says "Talk With Our Experts". The button should logically point to a contact action (e.g., href="mailto:newclients@devsh.eu").
+
+### 2. Our Expertise (The Grid)
+Below the header, create a responsive CSS Grid (1 column on mobile, 2 or 3 columns on desktop) displaying 5 expertise cards. Do NOT use any technology logos. Instead, build a sleek layout where each card has a title and a visually engaging placeholder area representing the following concepts. 
+
+Use Tailwind gradients, abstract SVG patterns, or structural CSS designs for these visual placeholders to represent the concepts:
+
+1. **Title:** High-Performance Compute & Optimization
+   **Visual Concept to represent:** A stylized "flame graph" showing a massive reduction in execution time, or an abstract visualization of parallel data streams glowing brightly.
+
+2. **Title:** Advanced Rendering & Path Tracing
+   **Visual Concept to represent:** A split-screen effect: one half representing a noisy, grainy ray-traced image, and the other half resolving into a crisp, perfectly denoised final frame.
+
+3. **Title:** CAD Visualization & Geometry Processing
+   **Visual Concept to represent:** A complex wireframe of a mechanical structure smoothly transitioning into a fully shaded, solid model.
+
+4. **Title:** Real-Time Graphics & Engine Optimization
+   **Visual Concept to represent:** A frame rate graph showing a massive spike in FPS, or an overlay of a glowing GPU usage metric dropping down.
+
+5. **Title:** VR/AR Optimization
+   **Visual Concept to represent:** A glowing stereoscopic lens setup or a wireframe headset with an overlay highlighting extremely low latency metrics (e.g., "1ms frame time").
+
+### Technical & Styling Requirements:
+- **Brand Colors:** Ensure the color palette perfectly complements the DevSH logo. Use a primary brand accent color for the main CTA button, hover states, and subtle gradient highlights. (Please set this up using a customizable Tailwind class or hex code variable so the exact DevSH logo colors can be easily pasted in).
+- Use Tailwind CSS for all styling.
+- Ensure the layout is fully responsive.
+- **Zero load-in animations:** All content MUST be immediately visible the millisecond the component mounts. Do not use any fading, sliding, or delayed entrance animations.
+- Limit motion strictly to crisp, instantaneous hover effects on cards and buttons to reinforce a feeling of high performance and responsiveness.
+- Do not use any external image links that will break; use CSS, standard Lucide-react icons if necessary, or code-generated SVGs to represent the visual concepts.

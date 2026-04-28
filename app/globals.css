@@ -5,7 +5,14 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --list-check: url(/list/check.svg)
+  --list-check: url(/list/check.svg);
+  /* DevSH brand accent — paste exact logo color here to retheme the site.
+     --brand-accent:        primary button + borders + base gradient stop
+     --brand-accent-bright: hover text + glow highlights + lighter gradient stop
+     --brand-accent-glow:   translucent version used for box-shadow glows      */
+  --brand-accent: #14b8a6;
+  --brand-accent-bright: #5eead4;
+  --brand-accent-glow: rgba(20, 184, 166, 0.35);
 }
 
 body {

@@ -1,55 +1,62 @@
-# Workspace
+# DevSH Graphics Programming Website
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+Company website for DevSH Graphics Programming, a GPU/graphics consulting firm.
 
-## Project: DevSH Graphics Programming Website
-
-A company website for DevSH Graphics Programming, a GPU/graphics consulting firm. Ported from Next.js to Vite + React (wouter routing).
-
-### Pages / Routes
-
-- `/` — Home: brief company intro + Vulkanised YouTube video gallery
-- `/about` — About Us: company description, photo gallery, contact email
-- `/nabla` — Nabla: animated showcase of the Nabla open-source framework
-- `/services` — Services: past client projects with images and videos
-
-### Key Components
-
-- `src/components/Navbar.tsx` — Sticky nav with mobile dropdown (wouter + framer-motion)
-- `src/components/Footer.tsx` + `GP_Links.tsx` — Footer with graphics-programming.org webring
-- `src/components/VulkanisedGallery.tsx` — YouTube embed grid for Vulkanised talks
-- `src/components/Slide.tsx` — Animated section for the Nabla page (framer-motion)
-- `src/components/TextUtils.tsx` — Chapter, Paragraph, DimmedParagraph helpers
-- `src/components/ContactEmail.tsx` — Click-to-reveal email component
-- `src/components/OptimizedLoopVideo.tsx` — Lazy-loaded looping video via IntersectionObserver
-- `src/data/vulkanised.json` — YouTube IDs for Vulkanised conference talks
-
-### Fonts
-
-Custom FuturaPT font loaded via @font-face in index.html (files in `public/fonts/FuturaPT/`).
+This is the **original Next.js** project structure (App Router, static export). It was originally imported from Vercel, briefly auto-converted to Vite + React, then restored to its original Next.js form per the user's preference.
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **Frontend**: React 19 + Vite + Tailwind CSS v4 + wouter routing + framer-motion
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+- **Next.js 15** (App Router) with `output: 'export'` — produces a static site
+- **React 19**
+- **TypeScript 5**
+- **Tailwind CSS 3** (PostCSS-based, with `@tailwindcss/typography`)
+- **motion** (Framer Motion successor) for animations
+- **@next/third-parties** for the YouTube embed component
 
-## Key Commands
+## Project structure
 
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
-- `pnpm --filter @workspace/devsh-website run dev` — run frontend locally
+```
+app/                  Next.js App Router root
+  layout.tsx          Root layout (fonts, navbar, footer)
+  page.tsx            Home page
+  about/page.tsx      About Us
+  services/page.tsx   Services
+  nabla/page.tsx      Nabla framework showcase
+  components/         Shared components (Navbar, Footer, gallery, etc.)
+  data/               Static JSON data (vulkanised.json)
+  fonts/FuturaPT/     Custom font woff2 files
+  globals.css         Tailwind + custom CSS
+public/               Static assets (images, videos, logos)
+next.config.ts        Next.js config (static export, allowedDevOrigins for Replit)
+tailwind.config.ts    Tailwind config
+postcss.config.mjs    PostCSS config (loads tailwind)
+tsconfig.json         TypeScript config
+package.json          npm-managed dependencies (NOT pnpm workspace)
+```
 
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+## Running locally
+
+The "Start application" workflow runs:
+
+```bash
+npm run dev    # next dev -p 3000 -H 0.0.0.0
+```
+
+The dev server listens on port 3000, which `.replit` maps to external port 80 for Replit's preview pane.
+
+`next.config.ts` includes `allowedDevOrigins` so Next.js accepts requests from Replit's preview proxy domains (`*.replit.dev` etc.).
+
+## Building for production
+
+```bash
+npm run build   # produces ./out static site
+```
+
+Since `output: 'export'` is set, the build produces a fully static site in `./out` that can be hosted anywhere (Vercel, GitHub Pages, S3, etc.).
+
+## Notes
+
+- **Replit deployment is NOT configured.** The `.replit` file only maps the dev port for preview. Publishing through Replit is intentionally not set up — work here is meant to be pushed back to the user's main repo / Vercel for deployment.
+- The `Caddyfile`, `Dockerfile`, `docker-compose.yml`, and `.github/` directory are from the user's original repo and are untouched. They reflect the user's preferred deployment setup outside of Replit.

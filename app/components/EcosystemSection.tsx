@@ -60,12 +60,48 @@ export default function EcosystemSection() {
           <h2 className="!mt-0 !mb-4 text-3xl sm:text-4xl lg:text-5xl">
             Advancing the Ecosystem
           </h2>
-          <p className="!m-0 text-neutral-300 text-base sm:text-lg leading-relaxed">
+          <p className="!m-0 mb-7 text-neutral-300 text-base sm:text-lg leading-relaxed">
             We actively contribute to the graphics programming community through
             presentations at major conferences like Vulkanised, SIGGRAPH, GDC,
             and Khronos workshops, sharing our research and innovations with the
             industry.
           </p>
+          <a
+            href="/presentations"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-md border text-sm sm:text-base font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_var(--brand-accent-glow)]"
+            style={{
+              borderColor: "var(--brand-accent)",
+              color: "var(--brand-accent-bright)",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-4 h-4 flex-shrink-0"
+              aria-hidden="true"
+            >
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+            </svg>
+            Watch our Presentations
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-0.5 transition-transform duration-300"
+              aria-hidden="true"
+            >
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">

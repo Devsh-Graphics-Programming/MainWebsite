@@ -1,15 +1,23 @@
 [
     {
-        "year": 2026,
+        "title": "Shading Languages Symposium 2026",
+        "url": "https://www.khronos.org/events/shading-languages-symposium-2026",
         "videos": [
             "L-oRcQ1NU58",
-            "u-6HDxKRgiI",
+            "u-6HDxKRgiI"
+        ]
+    },
+    {
+        "title": "Vulkanised 2026",
+        "url": null,
+        "videos": [
             "H39hUNiweYg",
             "0hvLRsPFAbQ"
         ]
     },
     {
-        "year": 2024,
+        "title": "Vulkanised 2024",
+        "url": null,
         "videos": [
             "Ol_sHFVXvC0",
             "M-IMQT7yKVI",
@@ -17,7 +25,8 @@
         ]
     },
     {
-        "year": 2023,
+        "title": "Vulkanised 2023",
+        "url": null,
         "videos": [
             "JGiKTy_Csv8",
             "x8v656d3pc4",

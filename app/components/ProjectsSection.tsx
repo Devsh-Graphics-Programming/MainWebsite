@@ -23,6 +23,7 @@ type Project = {
   title: string;
   bullets: string[];
   images: (string | null)[];
+  naturalAspect?: boolean; // if true, images render at their natural ratio instead of 1:1
 };
 
 const projects: Project[] = [
@@ -38,7 +39,13 @@ const projects: Project[] = [
       "Consulting w.r.t. existing Mitsuba render farm",
       "Ongoing Vulkan Real-Time Path Tracer development",
     ],
-    images: [null, null, null, null],
+    images: [
+      "/nabla_screenshot1.jpg",
+      "/clients/ditt/ditt1.jpg",
+      "/clients/ditt/ditt2.jpg",
+      "/clients/ditt/ditt4.png",
+    ],
+    naturalAspect: true,
   },
   {
     slug: "buildaworld",
@@ -182,17 +189,20 @@ function PlaceholderTile({ label }: { label: string }) {
   );
 }
 
-function ImageGrid({ images, title }: { images: (string | null)[]; title: string }) {
+function ImageGrid({ images, title, naturalAspect }: { images: (string | null)[]; title: string; naturalAspect?: boolean }) {
   const slots = [0, 1, 2, 3].map((i) => images[i] ?? null);
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full items-start">
       {slots.map((src, i) =>
         src ? (
           <img
             key={i}
             src={src}
             alt={`${title} preview ${i + 1}`}
-            className="w-full aspect-square object-cover rounded-md border border-[#1d1d1d]"
+            className={[
+              "w-full rounded-md border border-[#1d1d1d] bg-[#0a0a0a]",
+              naturalAspect ? "h-auto object-contain" : "aspect-square object-cover",
+            ].join(" ")}
           />
         ) : (
           <PlaceholderTile key={i} label={`${title} ${i + 1}`} />
@@ -237,7 +247,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       </div>
 
       <div className={reverse ? "lg:order-1" : ""}>
-        <ImageGrid images={project.images} title={project.title} />
+        <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} />
       </div>
     </article>
   );

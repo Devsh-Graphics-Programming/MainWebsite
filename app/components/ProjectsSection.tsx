@@ -73,13 +73,18 @@ const projects: Project[] = [
     title: "GPU-Driven Graphics Engine for n4ce v5.0",
     bullets: [
       "Development of a tailor-made, GPU-driven graphics engine for n4ce v5.0 using the Nabla platform",
+      "Delivered a 100x performance improvement over the legacy system, transforming rendering times from multi-second bottlenecks into fluid, real-time visualization",
       "Engineered for extremely large point cloud datasets and modern large-scale civil engineering projects",
       "Significant performance improvements over the legacy n4ce renderer, designed to remain scalable for the next years",
       "Close collaboration to integrate the new renderer seamlessly into the n4ce v5.0 product",
       "Design and implementation of a modern build system, including shader preprocessing & embedded SPIR-V tooling",
       "Ongoing optimisation and support during the lead-up to the public BETA release",
     ],
-    images: [null, null, null, null],
+    images: [
+      "/clients/apps_in_cadd/scene1.png",
+      "/clients/apps_in_cadd/scene2.png",
+    ],
+    naturalAspect: true,
   },
   {
     slug: "wild",
@@ -196,7 +201,10 @@ function PlaceholderTile({ label }: { label: string }) {
 }
 
 function ImageGrid({ images, title, naturalAspect }: { images: (string | null)[]; title: string; naturalAspect?: boolean }) {
-  const slots = [0, 1, 2, 3].map((i) => images[i] ?? null);
+  // When using natural aspect ratios, only render real images (skip null slots)
+  const slots = naturalAspect
+    ? images.filter((src): src is string => src !== null)
+    : [0, 1, 2, 3].map((i) => images[i] ?? null);
   return (
     <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full items-start">
       {slots.map((src, i) =>

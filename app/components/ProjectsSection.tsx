@@ -207,7 +207,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   return (
     <article
       id={`project-${project.slug}`}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start scroll-mt-24"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start"
     >
       <div className={reverse ? "lg:order-2" : ""}>
         <h3 className="!mt-0 !mb-1 text-2xl sm:text-3xl font-semibold leading-snug">

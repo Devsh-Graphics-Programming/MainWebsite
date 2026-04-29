@@ -212,13 +212,13 @@ export default function NablaSection() {
 
         {/* Section header + centred N glyph */}
         <div className="flex flex-col items-center gap-6 mb-12 sm:mb-16 text-center">
-          <NablaGlyph />
           <div>
             <h2 className="!mt-0 !mb-2 text-3xl sm:text-4xl lg:text-5xl">Nabla</h2>
             <p className="!m-0 text-neutral-400 text-base sm:text-lg">
               Our Open Source Rendering Framework
             </p>
           </div>
+          <NablaGlyph />
         </div>
 
         {/* Two-column body */}

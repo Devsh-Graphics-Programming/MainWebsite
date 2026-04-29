@@ -149,7 +149,7 @@ function Slideshow() {
         </div>
         {/* Caption bar */}
         <div
-          className="absolute bottom-0 left-0 right-0 px-4 py-3 text-sm sm:text-base font-medium text-white transition-opacity"
+          className="absolute bottom-0 left-0 right-0 px-6 py-5 text-xl sm:text-2xl font-medium text-white transition-opacity"
           style={{
             opacity,
             transitionDuration: `${FADE_MS}ms`,

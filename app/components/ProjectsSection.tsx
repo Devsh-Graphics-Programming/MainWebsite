@@ -119,7 +119,10 @@ const projects: Project[] = [
       "GPGPU Consulting and Contracting to solve Computer Vision problems",
       "GPU Accelerated Silhouette Carving from RGB+D real-time video inputs",
     ],
-    images: [null, null, null, null],
+    images: ["/clients/imverse/imverse1.webp"],
+    naturalAspect: true,
+    imageColumns: 1,
+    imageMaxWidth: "70%",
   },
   {
     slug: "relex",
@@ -129,7 +132,7 @@ const projects: Project[] = [
       "Investigation of the new .Net 6 WASM and Blazor SDKs (example issues reported to Microsoft)",
       "Feasibility studies of TypeScript and C# interoperation and Unified Web & Native Renderer",
     ],
-    images: [null, null, null, null],
+    images: [],
   },
   {
     slug: "synera",
@@ -138,8 +141,9 @@ const projects: Project[] = [
     bullets: [
       "Deep performance analysis identifying Rendering bottlenecks on complex scenes",
       "Plan of action and initial design for a new Renderer",
+      "Conclusion",
     ],
-    images: [null, null, null, null],
+    images: [],
   },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
@@ -262,44 +266,51 @@ function ImageGrid({ images, title, naturalAspect, imageColumns = 2, triLayout }
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const reverse = index % 2 === 1;
+  const hasImages = project.images.length > 0;
+
+  const textBlock = (
+    <div className={hasImages && reverse ? "lg:order-2" : ""}>
+      <h3 className="!mt-0 !mb-1 text-2xl sm:text-3xl font-semibold leading-snug">
+        {project.company}
+      </h3>
+      <p
+        className="!m-0 mb-5 text-sm sm:text-base font-medium"
+        style={{ color: "var(--brand-accent)" }}
+      >
+        {project.title}
+      </p>
+      <ul className="flex flex-col gap-3 list-none p-0 !m-0">
+        {project.bullets.map((b, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-3 text-sm sm:text-base text-neutral-300 leading-relaxed"
+          >
+            <span
+              className="mt-[0.45rem] inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+              style={{ backgroundColor: "var(--brand-accent)" }}
+              aria-hidden="true"
+            />
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
   return (
     <article
       id={`project-${project.slug}`}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start"
+      className={hasImages ? "grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start" : "max-w-2xl"}
     >
-      <div className={reverse ? "lg:order-2" : ""}>
-        <h3 className="!mt-0 !mb-1 text-2xl sm:text-3xl font-semibold leading-snug">
-          {project.company}
-        </h3>
-        <p
-          className="!m-0 mb-5 text-sm sm:text-base font-medium"
-          style={{ color: "var(--brand-accent)" }}
+      {textBlock}
+      {hasImages && (
+        <div
+          className={reverse ? "lg:order-1" : ""}
+          style={project.imageMaxWidth ? { maxWidth: project.imageMaxWidth, marginLeft: "auto", marginRight: "auto" } : undefined}
         >
-          {project.title}
-        </p>
-        <ul className="flex flex-col gap-3 list-none p-0 !m-0">
-          {project.bullets.map((b, i) => (
-            <li
-              key={i}
-              className="flex items-start gap-3 text-sm sm:text-base text-neutral-300 leading-relaxed"
-            >
-              <span
-                className="mt-[0.45rem] inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{ backgroundColor: "var(--brand-accent)" }}
-                aria-hidden="true"
-              />
-              <span>{b}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div
-        className={reverse ? "lg:order-1" : ""}
-        style={project.imageMaxWidth ? { maxWidth: project.imageMaxWidth, marginLeft: "auto", marginRight: "auto" } : undefined}
-      >
-        <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} imageColumns={project.imageColumns} triLayout={project.triLayout} />
-      </div>
+          <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} imageColumns={project.imageColumns} triLayout={project.triLayout} />
+        </div>
+      )}
     </article>
   );
 }

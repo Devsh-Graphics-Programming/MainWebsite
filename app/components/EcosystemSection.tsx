@@ -65,25 +65,25 @@ export default function EcosystemSection() {
             our technical blog and presentations at major conferences like
             Vulkanised and the Shading Languages Symposium.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-5 mt-10">
             <a
               href="/presentations"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-md border text-sm sm:text-base font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_var(--brand-accent-glow)]"
+              className="group inline-flex items-center gap-2.5 px-8 py-3.5 rounded-md border text-base sm:text-lg font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_var(--brand-accent-glow)]"
               style={{ borderColor: "var(--brand-accent)", color: "var(--brand-accent-bright)" }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 flex-shrink-0" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 flex-shrink-0" aria-hidden="true">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
               </svg>
               Watch our Presentations
             </a>
             <a
               href="/blog"
-              className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-md border text-sm sm:text-base font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_var(--brand-accent-glow)]"
+              className="group inline-flex items-center gap-2.5 px-8 py-3.5 rounded-md border text-base sm:text-lg font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_4px_20px_var(--brand-accent-glow)]"
               style={{ borderColor: "var(--brand-accent)", color: "var(--brand-accent-bright)" }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 flex-shrink-0" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 flex-shrink-0" aria-hidden="true">
                 <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
                 <line x1="8" y1="7" x2="16" y2="7" />

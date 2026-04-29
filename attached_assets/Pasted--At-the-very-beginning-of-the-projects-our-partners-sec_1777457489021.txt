@@ -1,0 +1,49 @@
+
+-----
+At the very beginning of the projects/our_partners section, add a list of LOGOS that will be hyperlinked and replaced with actual partner logos. (grab the logos for the linked ones if you can)
+
+Here are the list of projects with their bullet points:
+
+1. Ditt [https://www.ditt.nl/]
+Interactive GPU Path Tracer (OpenCL and OptiX) ingesting existing Mitsuba scenes
+Maintenance of in-house interior design tool
+Integration of new Real-Time rendering techniques for rapid previews in the design tool
+Denoisers (AI, RWMC, etc.) and Image Processing (e.g. FFT Convolution Bloom)
+Consulting w.r.t. existing Mitsuba render farm
+Ongoing Vulkan Real-Time Path Tracer development
+
+2. Build A World Aps.
+Photogrammetry (generating point clouds from drone flythroughs)
+LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)
+Maintaining and Extending the existing OpenGL engine
+GLSL Shader Development (ocean simulation, particle simulation)
+Distributed Networked Fluid Simulation
+Physics Engine Development (high performance voxel connectivity for destruction)
+
+3. Applications in CADD [https://appsincadd.co.uk/]
+Development of a tailor-made, GPU-driven graphics engine for n4ce v5.0 using the Nabla platform
+Engineered for extremely large point cloud datasets and modern large-scale civil engineering projects
+Significant performance improvements over the legacy n4ce renderer, designed to remain scalable for the next years
+Close collaboration to integrate the new renderer seamlessly into the n4ce v5.0 product
+Design and implementation of a modern build system, including shader preprocessing & embedded SPIR-V tooling
+Ongoing optimisation and support during the lead-up to the public BETA release
+
+4. Wild Inc.
+Solving Vulkan synchronization issues
+Implementing bindless rendering
+Work around DXC and Adreno 600 limitations to allow the usage of Buffer Device Address
+Implementation gpu driven rendering
+Occlusion culling with a novel algorithm specifically designed for mobile TBDR GPUs (see our Vulkanised 2026 talk)
+And much more
+
+5. Imverse [https://www.imverse.ch/]
+GPGPU Consulting and Contracting to solve Computer Vision problems
+GPU Accelerated Silhouette Carving from RGB+D real-time video inputs
+
+6. RELEX Solutions[http://relexsolutions.com/]
+Investigation of the new .Net 6 WASM and Blazor SDKs (example issues reported to Microsoft)
+Feasibility studies of TypeScript and C# interoperation and Unified Web & Native Renderer
+
+7. Synera [http://synera.io/]
+Deep performance analysis identifying Rendering bottlenecks on complex scenes
+Plan of action and initial design for a new Renderer

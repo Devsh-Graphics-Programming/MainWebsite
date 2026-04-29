@@ -4,13 +4,13 @@
 // `slug`:  must match the matching project's id in ProjectsSection so clicking
 //          the card scrolls down to the corresponding project.
 const items: { title: string; image: string | null; slug: string }[] = [
-  { title: "High-Performance Compute & Optimization",      image: null, slug: "compute" },
-  { title: "Path Tracing and Physically-Based Rendering",  image: null, slug: "pathtracing" },
-  { title: "CAD & Scientific Visualization",               image: null, slug: "cad" },
-  { title: "Computational Geometry",                       image: null, slug: "geometry" },
-  { title: "Real-Time Graphics & Engine Optimization",     image: null, slug: "realtime" },
-  { title: "VR & Mobile GPU",                              image: null, slug: "vrmobile" },
-  { title: "Photogrammetry and Differentiable Rendering",  image: null, slug: "photogrammetry" },
+  { title: "High-Performance Compute & Optimization",      image: null, slug: "relex" },
+  { title: "Path Tracing and Physically-Based Rendering",  image: null, slug: "ditt" },
+  { title: "CAD & Scientific Visualization",               image: null, slug: "appscadd" },
+  { title: "Computational Geometry",                       image: null, slug: "synera" },
+  { title: "Real-Time Graphics & Engine Optimization",     image: null, slug: "wild" },
+  { title: "VR & Mobile GPU",                              image: null, slug: "imverse" },
+  { title: "Photogrammetry and Differentiable Rendering",  image: null, slug: "buildaworld" },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 

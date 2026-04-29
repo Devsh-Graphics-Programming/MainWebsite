@@ -5,7 +5,6 @@ type Partner = { name: string; initials: string; logo: string | null; url: strin
 
 const partners: Partner[] = [
   { name: "Ditt",                    initials: "DT",  logo: "/partners/ditt.png",     url: "https://www.ditt.nl/" },
-  { name: "Build A World",           initials: "BAW", logo: null,                     url: null },
   { name: "Applications in CADD",    initials: "AC",  logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
   { name: "Wild Inc.",               initials: "WI",  logo: null,                     url: null },
   { name: "Imverse",                 initials: "IM",  logo: "/partners/imverse.png",  url: "https://www.imverse.ch/" },
@@ -47,26 +46,6 @@ const projects: Project[] = [
       "/clients/ditt/ditt1.jpg",
       "/clients/ditt/ditt2.jpg",
       "/clients/ditt/ditt4.png",
-    ],
-    naturalAspect: true,
-  },
-  {
-    slug: "buildaworld",
-    company: "Build A World Aps.",
-    title: "Photogrammetry & Point Cloud Pipeline",
-    bullets: [
-      "Photogrammetry (generating point clouds from drone flythroughs)",
-      "LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)",
-      "Maintaining and Extending the existing OpenGL engine",
-      "GLSL Shader Development (ocean simulation, particle simulation)",
-      "Distributed Networked Fluid Simulation",
-      "Physics Engine Development (high performance voxel connectivity for destruction)",
-    ],
-    images: [
-      "/clients/baw/volume_reconstruct.png",
-      "/clients/baw/baw3.jpg",
-      "/clients/baw/baw2.jpg",
-      "/clients/baw/baw7.jpg",
     ],
     naturalAspect: true,
   },
@@ -144,6 +123,26 @@ const projects: Project[] = [
       "Conclusion",
     ],
     images: [],
+  },
+  {
+    slug: "buildaworld",
+    company: "Build A World Aps.",
+    title: "Photogrammetry & Point Cloud Pipeline",
+    bullets: [
+      "Photogrammetry (generating point clouds from drone flythroughs)",
+      "LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)",
+      "Maintaining and Extending the existing OpenGL engine",
+      "GLSL Shader Development (ocean simulation, particle simulation)",
+      "Distributed Networked Fluid Simulation",
+      "Physics Engine Development (high performance voxel connectivity for destruction)",
+    ],
+    images: [
+      "/clients/baw/volume_reconstruct.png",
+      "/clients/baw/baw3.jpg",
+      "/clients/baw/baw2.jpg",
+      "/clients/baw/baw7.jpg",
+    ],
+    naturalAspect: true,
   },
 ];
 // ─────────────────────────────────────────────────────────────────────────────

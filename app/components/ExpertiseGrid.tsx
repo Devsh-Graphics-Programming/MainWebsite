@@ -77,7 +77,7 @@ export default function ExpertiseGrid() {
       <h2 className="text-center !mt-0 !mb-6 text-2xl sm:text-3xl">Our Expertise</h2>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
         {items.map((it) => (
-          <Card key={it.href} title={it.title} image={it.image} href={it.href} />
+          <Card key={it.title} title={it.title} image={it.image} href={it.href} />
         ))}
       </div>
     </section>

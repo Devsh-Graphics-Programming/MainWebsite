@@ -1,14 +1,16 @@
 // ─── Edit this list to update the expertise cards ───────────────────────────
-// Set `image` to a path under /public (e.g. "/expertise/compute.jpg") or a
-// full URL.  Leave as null to keep the placeholder until the image is ready.
-const items: { title: string; image: string | null }[] = [
-  { title: "High-Performance Compute & Optimization",      image: null },
-  { title: "Path Tracing and Physically-Based Rendering",  image: null },
-  { title: "CAD Visualization & Scientific Visualization", image: null },
-  { title: "Computational Geometry",                       image: null },
-  { title: "Real-Time Graphics & Engine Optimization",     image: null },
-  { title: "VR & Mobile GPU Optimizations",                image: null },
-  { title: "Photogrammetry and Differentiable Rendering",  image: null },
+// `image`: path under /public (e.g. "/expertise/compute.jpg") or full URL.
+//          Leave as null to keep the placeholder until the image is ready.
+// `slug`:  must match the matching project's id in ProjectsSection so clicking
+//          the card scrolls down to the corresponding project.
+const items: { title: string; image: string | null; slug: string }[] = [
+  { title: "High-Performance Compute & Optimization",      image: null, slug: "compute" },
+  { title: "Path Tracing and Physically-Based Rendering",  image: null, slug: "pathtracing" },
+  { title: "CAD & Scientific Visualization",               image: null, slug: "cad" },
+  { title: "Computational Geometry",                       image: null, slug: "geometry" },
+  { title: "Real-Time Graphics & Engine Optimization",     image: null, slug: "realtime" },
+  { title: "VR & Mobile GPU",                              image: null, slug: "vrmobile" },
+  { title: "Photogrammetry and Differentiable Rendering",  image: null, slug: "photogrammetry" },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -32,9 +34,13 @@ function PlaceholderIcon() {
   );
 }
 
-function Card({ title, image }: { title: string; image: string | null }) {
+function Card({ title, image, slug }: { title: string; image: string | null; slug: string }) {
   return (
-    <div className="group relative w-full sm:w-[210px] aspect-[16/9] rounded-lg overflow-hidden border border-[#222] transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] cursor-default flex-shrink-0">
+    <a
+      href={`#project-${slug}`}
+      aria-label={`Jump to ${title} project`}
+      className="group relative block w-full sm:w-[210px] aspect-[16/9] rounded-lg overflow-hidden border border-[#222] transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] flex-shrink-0"
+    >
       {image ? (
         <img
           src={image}
@@ -59,17 +65,17 @@ function Card({ title, image }: { title: string; image: string | null }) {
           {title}
         </p>
       </div>
-    </div>
+    </a>
   );
 }
 
 export default function ExpertiseGrid() {
   return (
-    <section className="w-full md:w-[60%] mx-auto pb-4 sm:pb-6">
-      <h2 className="text-center !mt-0 !mb-4 text-2xl sm:text-3xl">Our Expertise</h2>
+    <section className="w-full md:w-[60%] mx-auto pb-10 sm:pb-16">
+      <h2 className="text-center !mt-0 !mb-6 text-2xl sm:text-3xl">Our Expertise</h2>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
         {items.map((it) => (
-          <Card key={it.title} title={it.title} image={it.image} />
+          <Card key={it.slug} title={it.title} image={it.image} slug={it.slug} />
         ))}
       </div>
     </section>

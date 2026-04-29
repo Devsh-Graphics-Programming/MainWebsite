@@ -1,0 +1,83 @@
+This is a landing page for DevSH Graphics Programming, a highly expert consultancy firm.
+ 
+Here is the about us:
+
+DevSH Graphics Programming Sp. z O.O is a company focused on Graphics, GPU and High Performance Computing. Our consultants develop and maintain Renderers, Simulations and Compilers for our Clients, integrated into or working alongside their teams. We are not a Software House, we work very closely and synergize with our Clients' engineers. We also conduct our own R&D developing our own Open Source Middleware and Libraries, the most prominent being Nabla, as well as contributing to existing ones.
+
+The primary mission for all of our self-funded developments is to advance Open Source ecosystems with innovative tooling with a particular focus on Khronos Standards. We maintain a single source HLSL202x/C++20 Standard Template Header Only Library and our Utility and Rapid Prototyping Framework Nabla designed to give a CUDA-like programming experience within the Vulkan ecosystem.
+
+We have honed the culture of remote work, since the company's inception, and way before the 2019 paradigm shift. Subject to availability and specific expertise required, our consultants' regular working hours overlap the normal working hours from San Francisco to Sydney.
+
+Our alumni have since worked at Intel, Huawei, ARM and Apple as driver and devtech developers and on AAA games.
+
+----
+
+background is black 
+texts are mostly white with FuturaPT font
+Colors are Main: rgb(28, 58, 59) Secondary: rgb(85, 181, 166) (I'm no color expert btw but these are values extracted from our logo)
+
+------
+High level overview of the page layout
+the website consists of:
+1. Hero Section
+2. Projects section (Title: Engineered solutions)
+3. Testimonials
+4. Nabla (Our open source framework)
+5. Advancing the Ecosystem (Pictures at conferences we attended and presented at)
+6. About Us & Final CTA
+
+-----
+More details
+
+1. Hero Section
+
+From top to bottom:
+1. Big title: Elite Graphics & Performance
+2. A relatively big centered CTA Button: Talk with Our Experts
+3. "Our Expertise"
+4. Cards or grids or whatever containing our expertise items with images as background (Faded to black on the bottom, with white text on the bottom):
+- High-Performance Compute & Optimization
+- Path Tracing and Physically-Based Rendering
+- CAD & Scientific Visualization
+- Computational Geometry
+- Real-Time Graphics & Engine Optimization
+- VR & Mobile GPU
+- Photogrammetry and Differentiable Rendering
+
+Note: click on each expertise item will jump to a corresponding project
+
+---------
+
+2. Projects Section:
+
+From top to bottom:
+1. Title: Engineered Solutions for Our Partners
+2. Zig Zag Pattern of Bulletpoints and bunch of images (at least 3)
+	- do 7 with placeholder images and todo placeholder bullet points
+	- the image mockups are a 4x4 grid of images as a start, will be modified in the future
+	
+-------
+3. Testimonial Section: 
+- Cards with a picture, a title, a quote like other testimonials
+	- do 3 that fit on the page
+
+------
+4. Nabla
+
+- Title: "Our Open Source Rendering Framework" or "Nabla" or both
+- on the left: A cool svg gif (1:1 aspect ratio) on the left.
+- on the right: a card thing with number of closed and open Pull Requests, number of commits, with a github icon that brings to the repo
+- some bullet points on the right describing what Nabla is 
+
+------
+5. Advancing the Ecosystem Section
+- Big title with "Advancing the Ecosystem Section"
+- 3-4 Pictures presented in anyway possible, but I'd rather all images to visible at once instead of a scrolly thing
+- some cool description of presenting at vulkanised and shit
+
+Note: small subtle zoom when hovering over the images
+
+-----
+6. About Us section
+basically a long text
+and finally the same CTA button at the bottom

@@ -1,16 +1,15 @@
 // ─── Edit this list to update the expertise cards ───────────────────────────
-// `image`: path under /public (e.g. "/expertise/compute.jpg") or full URL.
-//          Leave as null to keep the placeholder until the image is ready.
-// `slug`:  must match the matching project's id in ProjectsSection so clicking
-//          the card scrolls down to the corresponding project.
-const items: { title: string; image: string | null; slug: string }[] = [
-  { title: "High-Performance Compute & Optimization",      image: null, slug: "relex" },
-  { title: "Path Tracing and Physically-Based Rendering",  image: null, slug: "ditt" },
-  { title: "CAD & Scientific Visualization",               image: null, slug: "appscadd" },
-  { title: "Computational Geometry",                       image: null, slug: "synera" },
-  { title: "Real-Time Graphics & Engine Optimization",     image: null, slug: "wild" },
-  { title: "VR & Mobile GPU",                              image: null, slug: "imverse" },
-  { title: "Photogrammetry and Differentiable Rendering",  image: null, slug: "buildaworld" },
+// `image`: path under /public (e.g. "/expertise/compute.jpg") or null.
+// `href`:  anchor target — use "#projects" for the section top or
+//          "#project-{slug}" to jump to a specific project.
+const items: { title: string; image: string | null; href: string }[] = [
+  { title: "High-Performance Compute & Optimization",      image: null, href: "#projects"        },
+  { title: "Path Tracing and Physically-Based Rendering",  image: null, href: "#project-ditt"    },
+  { title: "CAD & Scientific Visualization",               image: null, href: "#project-appscadd" },
+  { title: "Computational Geometry",                       image: null, href: "#project-appscadd" },
+  { title: "Real-Time Graphics & Engine Optimization",     image: null, href: "#projects"        },
+  { title: "VR & Mobile GPU",                              image: null, href: "#project-wild"    },
+  { title: "Photogrammetry and Differentiable Rendering",  image: null, href: "#project-buildaworld" },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -34,11 +33,11 @@ function PlaceholderIcon() {
   );
 }
 
-function Card({ title, image, slug }: { title: string; image: string | null; slug: string }) {
+function Card({ title, image, href }: { title: string; image: string | null; href: string }) {
   return (
     <a
-      href={`#project-${slug}`}
-      aria-label={`Jump to ${title} project`}
+      href={href}
+      aria-label={`Jump to ${title}`}
       className="group relative block w-[160px] sm:w-[200px] md:w-[240px] aspect-square rounded-lg overflow-hidden border border-[#333] transition-all duration-[750ms] hover:shadow-[0_0_24px_var(--brand-accent-glow)] flex-shrink-0"
     >
       {image ? (
@@ -78,7 +77,7 @@ export default function ExpertiseGrid() {
       <h2 className="text-center !mt-0 !mb-6 text-2xl sm:text-3xl">Our Expertise</h2>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
         {items.map((it) => (
-          <Card key={it.slug} title={it.title} image={it.image} slug={it.slug} />
+          <Card key={it.href} title={it.title} image={it.image} href={it.href} />
         ))}
       </div>
     </section>

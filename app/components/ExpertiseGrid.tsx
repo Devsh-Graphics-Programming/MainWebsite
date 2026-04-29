@@ -62,8 +62,8 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
       <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-[750ms] group-hover:ring-[var(--brand-accent)]/60" />
 
       {/* Title overlaid at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-3 py-3">
-        <p className="text-white text-xs sm:text-sm font-medium leading-snug drop-shadow-sm transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
+      <div className="absolute bottom-0 left-0 right-0 px-3 py-4">
+        <p className="text-white text-sm sm:text-base font-medium leading-snug text-center drop-shadow-sm transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
           {title}
         </p>
       </div>

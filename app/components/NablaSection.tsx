@@ -19,13 +19,11 @@ const NABLA = {
     "Advancing Open Source ecosystems with innovative tooling",
     "Focus on Khronos Standards compliance and compatibility",
   ],
-  // Replace null with a path under /public to show a real image
-  // nsc.png not yet uploaded — swap null for "/nabla/nsc.png" when ready
   slides: [
-    { src: "/nabla/rt_screenshot.jpg" as string | null, caption: "Raytracing"                                       },
-    { src: "/nabla/fluid.gif"         as string | null, caption: "Fluid Simulation"                                 },
-    { src: null                       as string | null, caption: "Nabla Shader Compiler & Godbolt docker integration" },
-    { src: "/nabla/imgui.png"         as string | null, caption: "ImGui Integration"                                },
+    { src: "/nabla/rt_screenshot_both.jpg", caption: "Raytracing"                                        },
+    { src: "/nabla/fluid.gif",              caption: "Fluid Simulation"                                  },
+    { src: "/nabla/nsc.png",               caption: "Nabla Shader Compiler & Godbolt docker integration" },
+    { src: "/nabla/imgui.png",             caption: "ImGui Integration"                                 },
   ],
 };
 // ────────────────────────────────────────────────────────────────────────────

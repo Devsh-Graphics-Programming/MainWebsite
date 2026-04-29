@@ -56,14 +56,14 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
       )}
 
       {/* Gradient fade so text is readable over any image */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
 
       {/* Accent border overlay — appears on hover without causing layout shift */}
       <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-[750ms] group-hover:ring-[var(--brand-accent)]/60" />
 
       {/* Title overlaid at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-3 py-4">
-        <p className="text-white text-sm sm:text-base font-medium leading-snug text-center drop-shadow-sm transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
+      <div className="absolute bottom-0 left-0 right-0 px-3 py-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)" }}>
+        <p className="text-white text-sm sm:text-base font-semibold leading-snug text-center drop-shadow transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
           {title}
         </p>
       </div>

@@ -3,13 +3,13 @@
 // `href`:  anchor target — use "#projects" for the section top or
 //          "#project-{slug}" to jump to a specific project.
 const items: { title: string; image: string | null; href: string }[] = [
-  { title: "High-Performance Compute & Optimization",      image: null, href: "#projects"        },
-  { title: "Path Tracing and Physically-Based Rendering",  image: null, href: "#project-ditt"    },
-  { title: "CAD & Scientific Visualization",               image: null, href: "#project-appscadd" },
-  { title: "Computational Geometry",                       image: null, href: "#project-appscadd" },
-  { title: "Real-Time Graphics & Engine Optimization",     image: null, href: "#projects"        },
-  { title: "VR & Mobile GPU",                              image: null, href: "#project-wild"    },
-  { title: "Photogrammetry and Differentiable Rendering",  image: null, href: "#project-buildaworld" },
+  { title: "High-Performance Compute & Optimization",      image: "/nabla/nsc.png",                      href: "#projects"             },
+  { title: "Path Tracing and Physically-Based Rendering",  image: "/nabla/rt_screenshot_both.jpg",       href: "#project-ditt"         },
+  { title: "CAD & Scientific Visualization",               image: "/clients/apps_in_cadd/scene1.png",    href: "#project-appscadd"     },
+  { title: "Computational Geometry",                       image: "/nabla/sdf_func_manip.gif",           href: "#project-appscadd"     },
+  { title: "Real-Time Graphics & Engine Optimization",     image: "/clients/wild/wild_gif2.gif",         href: "#projects"             },
+  { title: "VR & Mobile GPU",                              image: "/clients/imverse/imverse1.webp",      href: "#project-wild"         },
+  { title: "Photogrammetry and Differentiable Rendering",  image: "/clients/baw/volume_reconstruct.png", href: "#project-buildaworld"  },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 

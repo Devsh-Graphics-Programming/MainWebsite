@@ -25,6 +25,7 @@ type Project = {
   images: (string | null)[];
   naturalAspect?: boolean; // if true, images render at their natural ratio instead of 1:1
   imageColumns?: 1 | 2;   // grid columns for the image area (default 2)
+  imageMaxWidth?: string;  // optional max-width for the image column, e.g. "70%"
 };
 
 const projects: Project[] = [
@@ -87,6 +88,7 @@ const projects: Project[] = [
     ],
     naturalAspect: true,
     imageColumns: 1,
+    imageMaxWidth: "70%",
   },
   {
     slug: "wild",
@@ -263,7 +265,10 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         </ul>
       </div>
 
-      <div className={reverse ? "lg:order-1" : ""}>
+      <div
+        className={reverse ? "lg:order-1" : ""}
+        style={project.imageMaxWidth ? { maxWidth: project.imageMaxWidth, marginLeft: "auto", marginRight: "auto" } : undefined}
+      >
         <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} imageColumns={project.imageColumns} />
       </div>
     </article>

@@ -39,7 +39,7 @@ function Card({ title, image, slug }: { title: string; image: string | null; slu
     <a
       href={`#project-${slug}`}
       aria-label={`Jump to ${title} project`}
-      className="group relative block w-[160px] sm:w-[200px] md:w-[240px] aspect-square rounded-lg overflow-hidden border border-[#333] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_48px_var(--brand-accent-glow)] flex-shrink-0"
+      className="group relative block w-[160px] sm:w-[200px] md:w-[240px] aspect-square rounded-lg overflow-hidden border border-[#333] transition-all duration-[750ms] hover:shadow-[0_0_24px_var(--brand-accent-glow)] flex-shrink-0"
     >
       {image ? (
         <img
@@ -60,11 +60,11 @@ function Card({ title, image, slug }: { title: string; image: string | null; slu
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
       {/* Accent border overlay — appears on hover without causing layout shift */}
-      <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-500 group-hover:ring-[var(--brand-accent)]" />
+      <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-[750ms] group-hover:ring-[var(--brand-accent)]/60" />
 
       {/* Title overlaid at bottom */}
       <div className="absolute bottom-0 left-0 right-0 px-3 py-3">
-        <p className="text-white text-xs sm:text-sm font-medium leading-snug drop-shadow-sm transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)]">
+        <p className="text-white text-xs sm:text-sm font-medium leading-snug drop-shadow-sm transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
           {title}
         </p>
       </div>

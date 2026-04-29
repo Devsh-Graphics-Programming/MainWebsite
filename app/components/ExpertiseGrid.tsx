@@ -39,13 +39,13 @@ function Card({ title, image, slug }: { title: string; image: string | null; slu
     <a
       href={`#project-${slug}`}
       aria-label={`Jump to ${title} project`}
-      className="group relative block w-full sm:w-[210px] aspect-[16/9] rounded-lg overflow-hidden border border-[#222] transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] flex-shrink-0"
+      className="group relative block w-[160px] sm:w-[200px] md:w-[240px] aspect-square rounded-lg overflow-hidden border border-[#333] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_12px_48px_var(--brand-accent-glow)] flex-shrink-0"
     >
       {image ? (
         <img
           src={image}
           alt={title}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
         <>
@@ -59,9 +59,12 @@ function Card({ title, image, slug }: { title: string; image: string | null; slu
       {/* Gradient fade so text is readable over any image */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
+      {/* Accent border overlay — appears on hover without causing layout shift */}
+      <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-500 group-hover:ring-[var(--brand-accent)]" />
+
       {/* Title overlaid at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-3 py-2.5">
-        <p className="text-white text-xs sm:text-[0.8rem] font-medium leading-snug drop-shadow-sm transition-colors duration-150 group-hover:text-[var(--brand-accent-bright)]">
+      <div className="absolute bottom-0 left-0 right-0 px-3 py-3">
+        <p className="text-white text-xs sm:text-sm font-medium leading-snug drop-shadow-sm transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)]">
           {title}
         </p>
       </div>

@@ -26,6 +26,7 @@ type Project = {
   naturalAspect?: boolean; // if true, images render at their natural ratio instead of 1:1
   imageColumns?: 1 | 2;   // grid columns for the image area (default 2)
   imageMaxWidth?: string;  // optional max-width for the image column, e.g. "70%"
+  triLayout?: boolean;     // 3-image layout: two side-by-side on top, third centered below
 };
 
 const projects: Project[] = [
@@ -98,10 +99,17 @@ const projects: Project[] = [
       "Solving Vulkan synchronization issues",
       "Implementing bindless rendering",
       "Work around DXC and Adreno 600 limitations to allow the usage of Buffer Device Address",
-      "Implementation of GPU-driven rendering",
+      "Implementation gpu driven rendering",
       "Occlusion culling with a novel algorithm specifically designed for mobile TBDR GPUs (see our Vulkanised 2026 talk)",
+      "And much more",
     ],
-    images: [null, null, null, null],
+    images: [
+      "/clients/wild/wild_gif2.gif",
+      "/clients/wild/wild3.jpg",
+      "/clients/wild/wild4.jpg",
+    ],
+    naturalAspect: true,
+    triLayout: true,
   },
   {
     slug: "imverse",
@@ -204,8 +212,37 @@ function PlaceholderTile({ label }: { label: string }) {
   );
 }
 
-function ImageGrid({ images, title, naturalAspect, imageColumns = 2 }: { images: (string | null)[]; title: string; naturalAspect?: boolean; imageColumns?: 1 | 2 }) {
-  // When using natural aspect ratios, only render real images (skip null slots)
+function ImageGrid({ images, title, naturalAspect, imageColumns = 2, triLayout }: { images: (string | null)[]; title: string; naturalAspect?: boolean; imageColumns?: 1 | 2; triLayout?: boolean }) {
+  const imgClass = [
+    "w-full rounded-md border border-[#1d1d1d] bg-[#0a0a0a]",
+    naturalAspect ? "h-auto object-contain" : "aspect-square object-cover",
+  ].join(" ");
+
+  // 3-image layout: two side-by-side on top, third centered below
+  if (triLayout) {
+    const real = images.filter((src): src is string => src !== null);
+    return (
+      <div className="flex flex-col gap-4 sm:gap-6 w-full">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6">
+          {real.slice(0, 2).map((src, i) => (
+            <img key={i} src={src} alt={`${title} preview ${i + 1}`} className={imgClass} />
+          ))}
+        </div>
+        {real[2] && (
+          <div className="flex justify-center">
+            <img
+              src={real[2]}
+              alt={`${title} preview 3`}
+              className={imgClass}
+              style={{ width: "55%" }}
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Default grid layout
   const slots = naturalAspect
     ? images.filter((src): src is string => src !== null)
     : [0, 1, 2, 3].map((i) => images[i] ?? null);
@@ -214,15 +251,7 @@ function ImageGrid({ images, title, naturalAspect, imageColumns = 2 }: { images:
     <div className={`grid ${colClass} gap-4 sm:gap-6 w-full items-start`}>
       {slots.map((src, i) =>
         src ? (
-          <img
-            key={i}
-            src={src}
-            alt={`${title} preview ${i + 1}`}
-            className={[
-              "w-full rounded-md border border-[#1d1d1d] bg-[#0a0a0a]",
-              naturalAspect ? "h-auto object-contain" : "aspect-square object-cover",
-            ].join(" ")}
-          />
+          <img key={i} src={src} alt={`${title} preview ${i + 1}`} className={imgClass} />
         ) : (
           <PlaceholderTile key={i} label={`${title} ${i + 1}`} />
         )
@@ -269,7 +298,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         className={reverse ? "lg:order-1" : ""}
         style={project.imageMaxWidth ? { maxWidth: project.imageMaxWidth, marginLeft: "auto", marginRight: "auto" } : undefined}
       >
-        <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} imageColumns={project.imageColumns} />
+        <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} imageColumns={project.imageColumns} triLayout={project.triLayout} />
       </div>
     </article>
   );

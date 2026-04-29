@@ -63,7 +63,7 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
 
       {/* Title overlaid at bottom */}
       <div className="absolute bottom-0 left-0 right-0 px-3 py-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)" }}>
-        <p className="text-white text-sm sm:text-base font-semibold leading-snug text-center drop-shadow transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
+        <p className="text-white text-sm sm:text-base font-normal leading-snug text-center drop-shadow transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
           {title}
         </p>
       </div>

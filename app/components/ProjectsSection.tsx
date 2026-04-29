@@ -24,6 +24,7 @@ type Project = {
   bullets: string[];
   images: (string | null)[];
   naturalAspect?: boolean; // if true, images render at their natural ratio instead of 1:1
+  imageColumns?: 1 | 2;   // grid columns for the image area (default 2)
 };
 
 const projects: Project[] = [
@@ -85,6 +86,7 @@ const projects: Project[] = [
       "/clients/apps_in_cadd/scene2.png",
     ],
     naturalAspect: true,
+    imageColumns: 1,
   },
   {
     slug: "wild",
@@ -200,13 +202,14 @@ function PlaceholderTile({ label }: { label: string }) {
   );
 }
 
-function ImageGrid({ images, title, naturalAspect }: { images: (string | null)[]; title: string; naturalAspect?: boolean }) {
+function ImageGrid({ images, title, naturalAspect, imageColumns = 2 }: { images: (string | null)[]; title: string; naturalAspect?: boolean; imageColumns?: 1 | 2 }) {
   // When using natural aspect ratios, only render real images (skip null slots)
   const slots = naturalAspect
     ? images.filter((src): src is string => src !== null)
     : [0, 1, 2, 3].map((i) => images[i] ?? null);
+  const colClass = imageColumns === 1 ? "grid-cols-1" : "grid-cols-2";
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full items-start">
+    <div className={`grid ${colClass} gap-4 sm:gap-6 w-full items-start`}>
       {slots.map((src, i) =>
         src ? (
           <img
@@ -261,7 +264,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       </div>
 
       <div className={reverse ? "lg:order-1" : ""}>
-        <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} />
+        <ImageGrid images={project.images} title={project.title} naturalAspect={project.naturalAspect} imageColumns={project.imageColumns} />
       </div>
     </article>
   );

@@ -3,10 +3,10 @@
 type Photo = { caption: string; image: string | null };
 
 const photos: Photo[] = [
-  { caption: "Presenting at Vulkanised 2025", image: null },
-  { caption: "SIGGRAPH 2025 Technical Talk", image: null },
-  { caption: "GDC 2026 Panel Discussion", image: null },
-  { caption: "Khronos DevU Workshop", image: null },
+  { caption: "Presenting at Shading Language Symposium 2026", image: "/vulkanised_photos/2026/2026_02.jpg" },
+  { caption: "Our booth at Vulkanised 2026",                  image: "/vulkanised_photos/2026/2026_10.jpg" },
+  { caption: "Presenting at Vulkanised 2023",                 image: "/vulkanised_photos/2023/2023_1.jpg"  },
+  { caption: "Presenting at Vulkanised 2026",                 image: "/vulkanised_photos/2026/2026_05.jpg" },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 

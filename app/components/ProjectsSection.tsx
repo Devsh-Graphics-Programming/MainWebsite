@@ -59,7 +59,13 @@ const projects: Project[] = [
       "Distributed Networked Fluid Simulation",
       "Physics Engine Development (high performance voxel connectivity for destruction)",
     ],
-    images: [null, null, null, null],
+    images: [
+      "/clients/baw/volume_reconstruct.png",
+      "/clients/baw/baw3.jpg",
+      "/clients/baw/baw2.jpg",
+      "/clients/baw/baw7.jpg",
+    ],
+    naturalAspect: true,
   },
   {
     slug: "appscadd",

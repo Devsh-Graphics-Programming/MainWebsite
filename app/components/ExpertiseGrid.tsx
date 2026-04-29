@@ -1,12 +1,16 @@
-const items = [
-  "High-Performance Compute & Optimization",
-  "Path Tracing and Physically-Based Rendering",
-  "CAD Visualization & Scientific Visualization",
-  "Computational Geometry",
-  "Real-Time Graphics & Engine Optimization",
-  "VR & Mobile GPU Optimizations",
-  "Photogrammetry and Differentiable Rendering",
+// ─── Edit this list to update the expertise cards ───────────────────────────
+// Set `image` to a path under /public (e.g. "/expertise/compute.jpg") or a
+// full URL.  Leave as null to keep the placeholder until the image is ready.
+const items: { title: string; image: string | null }[] = [
+  { title: "High-Performance Compute & Optimization",      image: null },
+  { title: "Path Tracing and Physically-Based Rendering",  image: null },
+  { title: "CAD Visualization & Scientific Visualization", image: null },
+  { title: "Computational Geometry",                       image: null },
+  { title: "Real-Time Graphics & Engine Optimization",     image: null },
+  { title: "VR & Mobile GPU Optimizations",                image: null },
+  { title: "Photogrammetry and Differentiable Rendering",  image: null },
 ];
+// ─────────────────────────────────────────────────────────────────────────────
 
 function PlaceholderIcon() {
   return (
@@ -28,16 +32,25 @@ function PlaceholderIcon() {
   );
 }
 
-function Card({ title }: { title: string }) {
+function Card({ title, image }: { title: string; image: string | null }) {
   return (
     <div className="group relative w-full sm:w-[210px] aspect-[16/9] rounded-lg overflow-hidden border border-[#222] transition-all duration-150 hover:border-[var(--brand-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_var(--brand-accent-glow)] cursor-default flex-shrink-0">
-      {/* TODO: Replace this div with <img src="..." alt={title} className="absolute inset-0 w-full h-full object-cover" /> */}
-      <div className="absolute inset-0 bg-[#111]" />
-      <div className="absolute inset-0 flex items-center justify-center text-white/10">
-        <PlaceholderIcon />
-      </div>
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-[#111]" />
+          <div className="absolute inset-0 flex items-center justify-center text-white/10">
+            <PlaceholderIcon />
+          </div>
+        </>
+      )}
 
-      {/* Gradient fade so text is readable */}
+      {/* Gradient fade so text is readable over any image */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
 
       {/* Title overlaid at bottom */}
@@ -55,8 +68,8 @@ export default function ExpertiseGrid() {
     <section className="w-full md:w-[60%] mx-auto pb-4 sm:pb-6">
       <h2 className="text-center !mt-0 !mb-4 text-2xl sm:text-3xl">Our Expertise</h2>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
-        {items.map((title) => (
-          <Card key={title} title={title} />
+        {items.map((it) => (
+          <Card key={it.title} title={it.title} image={it.image} />
         ))}
       </div>
     </section>

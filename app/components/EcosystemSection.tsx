@@ -6,7 +6,7 @@ const photos: Photo[] = [
   { caption: "Presenting at Shading Language Symposium 2026", image: "/vulkanised_photos/2026/2026_02.jpg" },
   { caption: "Our booth at Vulkanised 2026",                  image: "/vulkanised_photos/2026/2026_10.jpg" },
   { caption: "Presenting at Vulkanised 2023",                 image: "/vulkanised_photos/2023/2023_1.jpg"  },
-  { caption: "Presenting at Vulkanised 2026",                 image: "/vulkanised_photos/2026/2026_05.jpg" },
+  { caption: "Presenting at Vulkanised 2026",                 image: "/vulkanised_photos/2026/2026_09.jpg" },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 

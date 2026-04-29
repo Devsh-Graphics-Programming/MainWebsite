@@ -119,10 +119,10 @@ function LogoTile({ partner }: { partner: Partner }) {
     <img
       src={partner.logo}
       alt={partner.name}
-      className="h-10 w-auto object-contain transition-all duration-300 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-90"
+      className="h-10 w-auto object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:brightness-110"
     />
   ) : (
-    <div className="flex items-center justify-center h-10 px-4 rounded border border-white/10 bg-white/5 transition-all duration-300 opacity-40 group-hover:opacity-80 group-hover:border-[var(--brand-accent)]/40">
+    <div className="flex items-center justify-center h-10 px-4 rounded border border-white/20 bg-white/5 transition-all duration-300 opacity-80 group-hover:opacity-100 group-hover:border-[var(--brand-accent)]/60">
       <span className="text-white text-xs font-semibold tracking-widest">{partner.name}</span>
     </div>
   );
@@ -210,15 +210,15 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start scroll-mt-24"
     >
       <div className={reverse ? "lg:order-2" : ""}>
+        <h3 className="!mt-0 !mb-1 text-2xl sm:text-3xl font-semibold leading-snug">
+          {project.company}
+        </h3>
         <p
-          className="!m-0 mb-1 text-xs sm:text-sm font-semibold uppercase tracking-widest"
+          className="!m-0 mb-5 text-sm sm:text-base font-medium"
           style={{ color: "var(--brand-accent)" }}
         >
-          {project.company}
-        </p>
-        <h3 className="!mt-0 !mb-5 text-xl sm:text-2xl font-semibold leading-snug">
           {project.title}
-        </h3>
+        </p>
         <ul className="flex flex-col gap-3 list-none p-0 !m-0">
           {project.bullets.map((b, i) => (
             <li

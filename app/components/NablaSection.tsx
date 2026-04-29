@@ -149,11 +149,11 @@ function Slideshow() {
         </div>
         {/* Caption bar */}
         <div
-          className="absolute bottom-0 left-0 right-0 px-4 py-2 text-xs sm:text-sm text-neutral-300 transition-opacity"
+          className="absolute bottom-0 left-0 right-0 px-4 py-3 text-sm sm:text-base font-medium text-white transition-opacity"
           style={{
             opacity,
             transitionDuration: `${FADE_MS}ms`,
-            background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)",
+            background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 60%, transparent 100%)",
           }}
         >
           {slide.caption}

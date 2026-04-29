@@ -1,11 +1,25 @@
-// ─── Edit this list to update each project ─────────────────────────────────
-// `slug`   — must match the matching expertise item's slug
-// `title`  — project name
-// `bullets`— bullet points shown next to the image grid
-// `images` — array of paths/URLs for the 4-image mockup grid (2x2).
-//            Leave entries as null to keep the placeholder.
+// ─── Partner logos strip ─────────────────────────────────────────────────────
+// `logo`: path under /public. Set to null to show initials placeholder.
+// `url`:  company website. Set to null if no link.
+type Partner = { name: string; initials: string; logo: string | null; url: string | null };
+
+const partners: Partner[] = [
+  { name: "Ditt",                    initials: "DT",  logo: "/partners/ditt.png",     url: "https://www.ditt.nl/" },
+  { name: "Build A World",           initials: "BAW", logo: null,                     url: null },
+  { name: "Applications in CADD",    initials: "AC",  logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
+  { name: "Wild Inc.",               initials: "WI",  logo: null,                     url: null },
+  { name: "Imverse",                 initials: "IM",  logo: "/partners/imverse.png",  url: "https://www.imverse.ch/" },
+  { name: "RELEX Solutions",         initials: "RX",  logo: "/partners/relex.png",    url: "http://relexsolutions.com/" },
+  { name: "Synera",                  initials: "SY",  logo: "/partners/synera.png",   url: "http://synera.io/" },
+];
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── Projects ────────────────────────────────────────────────────────────────
+// `slug`   — must match the expertise item slug in ExpertiseGrid
+// `images` — 4-slot array for the 2×2 image grid; null = placeholder
 type Project = {
   slug: string;
+  company: string;
   title: string;
   bullets: string[];
   images: (string | null)[];
@@ -13,79 +27,142 @@ type Project = {
 
 const projects: Project[] = [
   {
-    slug: "compute",
-    title: "High-Performance Compute Pipeline",
+    slug: "ditt",
+    company: "Ditt",
+    title: "Interactive GPU Path Tracer",
     bullets: [
-      "TODO: Headline result, e.g. 4× throughput gain",
-      "TODO: Key technique, e.g. GPU kernel fusion",
-      "TODO: Outcome / measurable impact",
+      "Interactive GPU Path Tracer (OpenCL and OptiX) ingesting existing Mitsuba scenes",
+      "Maintenance of in-house interior design tool",
+      "Integration of new Real-Time rendering techniques for rapid previews in the design tool",
+      "Denoisers (AI, RWMC, etc.) and Image Processing (e.g. FFT Convolution Bloom)",
+      "Consulting w.r.t. existing Mitsuba render farm",
+      "Ongoing Vulkan Real-Time Path Tracer development",
     ],
     images: [null, null, null, null],
   },
   {
-    slug: "pathtracing",
-    title: "Advanced Ray Tracing Pipeline",
+    slug: "buildaworld",
+    company: "Build A World Aps.",
+    title: "Photogrammetry & Point Cloud Pipeline",
     bullets: [
-      "Implemented custom BVH acceleration structures",
-      "Optimized sampling algorithms for real-time performance",
-      "Reduced render times by 65% through GPU kernel optimization",
+      "Photogrammetry (generating point clouds from drone flythroughs)",
+      "LiDAR Point Cloud Processing and Volume Reconstruction (3D game worlds from aerial scans)",
+      "Maintaining and Extending the existing OpenGL engine",
+      "GLSL Shader Development (ocean simulation, particle simulation)",
+      "Distributed Networked Fluid Simulation",
+      "Physics Engine Development (high performance voxel connectivity for destruction)",
     ],
     images: [null, null, null, null],
   },
   {
-    slug: "cad",
-    title: "CAD & Scientific Visualization Platform",
+    slug: "appscadd",
+    company: "Applications in CADD",
+    title: "GPU-Driven Graphics Engine for n4ce v5.0",
     bullets: [
-      "TODO: Dataset scale handled (e.g. multi-billion triangles)",
-      "TODO: Interactive feature, e.g. cross-sections / clipping",
-      "TODO: Performance metric, e.g. 120 FPS at 4K",
+      "Development of a tailor-made, GPU-driven graphics engine for n4ce v5.0 using the Nabla platform",
+      "Engineered for extremely large point cloud datasets and modern large-scale civil engineering projects",
+      "Significant performance improvements over the legacy n4ce renderer, designed to remain scalable for the next years",
+      "Close collaboration to integrate the new renderer seamlessly into the n4ce v5.0 product",
+      "Design and implementation of a modern build system, including shader preprocessing & embedded SPIR-V tooling",
+      "Ongoing optimisation and support during the lead-up to the public BETA release",
     ],
     images: [null, null, null, null],
   },
   {
-    slug: "geometry",
-    title: "Computational Geometry Toolkit",
+    slug: "wild",
+    company: "Wild Inc.",
+    title: "Vulkan Mobile GPU Rendering",
     bullets: [
-      "TODO: Algorithm class, e.g. robust mesh booleans",
-      "TODO: Numerical stability technique",
-      "TODO: Integration target / production usage",
+      "Solving Vulkan synchronization issues",
+      "Implementing bindless rendering",
+      "Work around DXC and Adreno 600 limitations to allow the usage of Buffer Device Address",
+      "Implementation of GPU-driven rendering",
+      "Occlusion culling with a novel algorithm specifically designed for mobile TBDR GPUs (see our Vulkanised 2026 talk)",
     ],
     images: [null, null, null, null],
   },
   {
-    slug: "realtime",
-    title: "Real-Time Engine Optimization",
+    slug: "imverse",
+    company: "Imverse",
+    title: "GPGPU Computer Vision",
     bullets: [
-      "TODO: Engine / target platform",
-      "TODO: Frame-time reduction achieved",
-      "TODO: Bottleneck eliminated (CPU / GPU / memory)",
+      "GPGPU Consulting and Contracting to solve Computer Vision problems",
+      "GPU Accelerated Silhouette Carving from RGB+D real-time video inputs",
     ],
     images: [null, null, null, null],
   },
   {
-    slug: "vrmobile",
-    title: "VR & Mobile GPU Rendering",
+    slug: "relex",
+    company: "RELEX Solutions",
+    title: "Web & Native Renderer Feasibility",
     bullets: [
-      "TODO: Headset / SoC targeted",
-      "TODO: Bandwidth or thermal win",
-      "TODO: Visual quality preserved or improved",
+      "Investigation of the new .Net 6 WASM and Blazor SDKs (example issues reported to Microsoft)",
+      "Feasibility studies of TypeScript and C# interoperation and Unified Web & Native Renderer",
     ],
     images: [null, null, null, null],
   },
   {
-    slug: "photogrammetry",
-    title: "Photogrammetry & Differentiable Rendering",
+    slug: "synera",
+    company: "Synera",
+    title: "Renderer Performance Analysis & Design",
     bullets: [
-      "TODO: Reconstruction pipeline (e.g. Gaussian splatting)",
-      "TODO: Capture-to-asset turnaround time",
-      "TODO: Differentiable component / loss",
+      "Deep performance analysis identifying Rendering bottlenecks on complex scenes",
+      "Plan of action and initial design for a new Renderer",
     ],
     images: [null, null, null, null],
   },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 
-function PlaceholderTile() {
+function LogoTile({ partner }: { partner: Partner }) {
+  const inner = partner.logo ? (
+    <img
+      src={partner.logo}
+      alt={partner.name}
+      className="h-10 w-auto object-contain transition-all duration-300 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-90"
+    />
+  ) : (
+    <div className="flex items-center justify-center h-10 px-4 rounded border border-white/10 bg-white/5 transition-all duration-300 opacity-40 group-hover:opacity-80 group-hover:border-[var(--brand-accent)]/40">
+      <span className="text-white text-xs font-semibold tracking-widest">{partner.name}</span>
+    </div>
+  );
+
+  if (partner.url) {
+    return (
+      <a
+        href={partner.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={partner.name}
+        className="group flex items-center"
+      >
+        {inner}
+      </a>
+    );
+  }
+  return (
+    <div title={partner.name} className="group flex items-center">
+      {inner}
+    </div>
+  );
+}
+
+function PartnerLogos() {
+  return (
+    <div className="mb-14 sm:mb-20">
+      <p className="text-center text-sm sm:text-base text-neutral-500 uppercase tracking-widest mb-6 sm:mb-8">
+        Trusted by
+      </p>
+      <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+        {partners.map((p) => (
+          <LogoTile key={p.name} partner={p} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PlaceholderTile({ label }: { label: string }) {
   return (
     <div className="relative w-full aspect-square rounded-md overflow-hidden bg-[#111] border border-[#1d1d1d] flex items-center justify-center text-white/10">
       <svg
@@ -106,7 +183,6 @@ function PlaceholderTile() {
 }
 
 function ImageGrid({ images, title }: { images: (string | null)[]; title: string }) {
-  // Always render 4 slots in a 2x2 grid.
   const slots = [0, 1, 2, 3].map((i) => images[i] ?? null);
   return (
     <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full">
@@ -119,7 +195,7 @@ function ImageGrid({ images, title }: { images: (string | null)[]; title: string
             className="w-full aspect-square object-cover rounded-md border border-[#1d1d1d]"
           />
         ) : (
-          <PlaceholderTile key={i} />
+          <PlaceholderTile key={i} label={`${title} ${i + 1}`} />
         )
       )}
     </div>
@@ -131,20 +207,26 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   return (
     <article
       id={`project-${project.slug}`}
-      className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center scroll-mt-24"
+      className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start scroll-mt-24"
     >
       <div className={reverse ? "lg:order-2" : ""}>
-        <h3 className="!mt-0 !mb-5 text-2xl sm:text-3xl font-semibold">
+        <p
+          className="!m-0 mb-1 text-xs sm:text-sm font-semibold uppercase tracking-widest"
+          style={{ color: "var(--brand-accent)" }}
+        >
+          {project.company}
+        </p>
+        <h3 className="!mt-0 !mb-5 text-xl sm:text-2xl font-semibold leading-snug">
           {project.title}
         </h3>
-        <ul className="flex flex-col gap-3 list-none p-0">
+        <ul className="flex flex-col gap-3 list-none p-0 !m-0">
           {project.bullets.map((b, i) => (
             <li
               key={i}
-              className="flex items-start gap-3 text-base sm:text-lg text-neutral-300 leading-relaxed"
+              className="flex items-start gap-3 text-sm sm:text-base text-neutral-300 leading-relaxed"
             >
               <span
-                className="mt-2 inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+                className="mt-[0.45rem] inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
                 style={{ backgroundColor: "var(--brand-accent)" }}
                 aria-hidden="true"
               />
@@ -168,6 +250,8 @@ export default function ProjectsSection() {
         <h2 className="text-center !mt-0 !mb-12 sm:!mb-16 text-3xl sm:text-4xl lg:text-5xl">
           Engineered Solutions for Our Partners
         </h2>
+
+        <PartnerLogos />
 
         <div className="flex flex-col gap-16 sm:gap-24">
           {projects.map((p, i) => (

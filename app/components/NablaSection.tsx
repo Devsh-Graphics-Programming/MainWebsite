@@ -20,11 +20,12 @@ const NABLA = {
     "Focus on Khronos Standards compliance and compatibility",
   ],
   // Replace null with a path under /public to show a real image
+  // nsc.png not yet uploaded — swap null for "/nabla/nsc.png" when ready
   slides: [
-    { src: null as string | null, caption: "Real-time ray tracing showcase" },
-    { src: null as string | null, caption: "Vulkan compute pipeline"         },
-    { src: null as string | null, caption: "Cross-platform rendering"        },
-    { src: null as string | null, caption: "Shader development tools"        },
+    { src: "/nabla/rt_screenshot.jpg" as string | null, caption: "Raytracing"                                       },
+    { src: "/nabla/fluid.gif"         as string | null, caption: "Fluid Simulation"                                 },
+    { src: null                       as string | null, caption: "Nabla Shader Compiler & Godbolt docker integration" },
+    { src: "/nabla/imgui.png"         as string | null, caption: "ImGui Integration"                                },
   ],
 };
 // ────────────────────────────────────────────────────────────────────────────
@@ -183,24 +184,16 @@ function Slideshow() {
   );
 }
 
-// ── N glyph (centered top decoration) ────────────────────────────────────────
+// ── Nabla glyph (centered top decoration) ────────────────────────────────────
 function NablaGlyph() {
   return (
-    <div
-      className="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-2xl flex items-center justify-center flex-shrink-0"
-      style={{
-        background:
-          "radial-gradient(circle at 35% 35%, var(--brand-accent) 0%, var(--brand-deep) 75%)",
-        boxShadow: "0 0 40px rgba(85,181,166,0.25)",
-      }}
-    >
-      <span
-        className="text-white font-bold select-none leading-none"
-        style={{ fontSize: "56px" }}
-      >
-        N
-      </span>
-    </div>
+    <img
+      src="/nabla-glow.svg"
+      alt="Nabla"
+      className="w-24 h-24 sm:w-28 sm:h-28 mx-auto select-none"
+      style={{ filter: "drop-shadow(0 0 18px rgba(85,181,166,0.35))" }}
+      draggable={false}
+    />
   );
 }
 

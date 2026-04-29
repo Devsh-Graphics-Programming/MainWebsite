@@ -6,20 +6,27 @@
   --background: #000000;
   --foreground: #ffffff;
   --list-check: url(/list/check.svg);
-  /* DevSH brand accent — paste exact logo color here to retheme the site.
-     --brand-accent:        primary button + borders + base gradient stop
-     --brand-accent-bright: hover text + glow highlights + lighter gradient stop
-     --brand-accent-glow:   translucent version used for box-shadow glows      */
-  --brand-accent: #14b8a6;
-  --brand-accent-bright: #5eead4;
-  --brand-accent-glow: rgba(20, 184, 166, 0.35);
+  /* DevSH brand — values from the logo.
+     --brand-deep:          rgb(28, 58, 59)  — dark teal panel background
+     --brand-accent:        rgb(85, 181, 166) — primary button, accent text, borders
+     --brand-accent-bright: lighter accent for hover/highlight
+     --brand-accent-glow:   translucent accent for box-shadow glows           */
+  --brand-deep: #1c3a3b;
+  --brand-deep-soft: #20484a;
+  --brand-accent: #55b5a6;
+  --brand-accent-bright: #7dcdb9;
+  --brand-accent-glow: rgba(85, 181, 166, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  max-height: 100dvh;
 }
 
 ::marker {
@@ -50,7 +57,7 @@ body {
     @apply text-base sm:text-lg leading-relaxed
   }
   .devsh-link {
-    @apply no-underline text-teal-600 hover:text-teal-300 transition-colors duration-300
+    @apply no-underline text-[var(--brand-accent)] hover:text-[var(--brand-accent-bright)] transition-colors duration-300
   }
 }
 

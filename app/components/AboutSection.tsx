@@ -2,13 +2,14 @@ import CTAButton from "./CTAButton";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="w-full py-16 sm:py-24 scroll-mt-24">
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="text-center !mt-0 !mb-10 sm:!mb-12 text-3xl sm:text-4xl lg:text-5xl">
-          About Us
-        </h2>
+    <section id="about" className="scroll-mt-24 pb-14 pt-6 sm:pb-20 sm:pt-6 lg:pb-24 lg:pt-6">
+      <div className="site-container-narrow">
+        <div className="section-head mb-10">
+          <p className="section-kicker">About DevSH</p>
+          <h2 className="section-heading">Graphics programming specialists</h2>
+        </div>
 
-        <div className="flex flex-col gap-5 text-base sm:text-lg leading-relaxed text-neutral-300">
+        <div className="flex flex-col gap-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
           <p className="!m-0">
             DevSH Graphics Programming Sp. z O.O is a company focused on
             Graphics, GPU and High Performance Computing. Our consultants
@@ -40,7 +41,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <div className="flex justify-center mt-12 sm:mt-16">
+        <div className="mt-10 flex justify-center sm:mt-12">
           <CTAButton />
         </div>
       </div>

@@ -14,7 +14,7 @@ type Link = {
 
 const links: Link[] = [
     { name: "Home", url: "/" },
-    { name: "About|Contact", url: "/about" },
+    { name: "About / Contact", url: "/about" },
     { name: "Nabla", url: "/nabla" },
     { name: "Services", url: "/services" },
     { name: "Blog", url: "/blog" },
@@ -30,8 +30,8 @@ function DropdownIcon() {
 
 function NavbarLink({children, href, onClick}: {children: ReactNode, href: string, onClick?: () => void}) {
     return (
-        <li className="transition-colors duration-300 text-md text-neutral-400 hover:text-neutral-300">
-            <Link href={href} onClick={onClick}>{children}</Link>
+        <li className="text-sm text-neutral-400 transition-colors duration-200 hover:text-white">
+            <Link className="block rounded px-2 py-1" href={href} onClick={onClick}>{children}</Link>
         </li>
     )
 }
@@ -45,16 +45,24 @@ export default function Navbar() {
     }, [pathname])
 
     return (
-        <nav className="sticky top-0 border-b border-[#181818] bg-black z-40">
-            <div className="bg-black container mx-auto flex flex-row justify-between items-center px-8 py-8">
-                <Link className="flex flex-row items-center gap-2 grow-0" href="/">
-                    <Image src={DevshLogo} alt="Company Logo" className="w-[32px]"/>
-                    <span className="text-md sm:text-2xl">DevSH Graphics Programming</span>
+        <nav className="sticky top-0 z-40 border-b border-white/10 bg-black/90 backdrop-blur">
+            <div className="site-container flex min-h-16 flex-row items-center justify-between gap-4 py-3">
+                <Link className="flex min-w-0 flex-row items-center gap-2.5" href="/">
+                    <Image src={DevshLogo} alt="Company Logo" className="h-8 w-8 flex-shrink-0"/>
+                    <span className="min-w-0 truncate text-base font-semibold leading-none sm:text-xl">
+                        <span className="sm:hidden">DevSH Graphics</span>
+                        <span className="hidden sm:inline">DevSH Graphics Programming</span>
+                    </span>
                 </Link>
-                <ul className="hidden sm:flex grow-0 flex-row gap-2">
+                <ul className="hidden shrink-0 flex-row items-center gap-1 md:flex">
                     {links.map((link, index) => <NavbarLink href={link.url} key={index}>{link.name}</NavbarLink>)}
                 </ul>
-                <button className={`transition-transform duration-300 sm:hidden ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`} onClick={() => setIsDropdownEnabled(!isDropdownEnabled)}>
+                <button
+                    className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded border border-white/10 text-neutral-200 transition-transform duration-300 md:hidden ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`}
+                    aria-label="Toggle navigation"
+                    aria-expanded={isDropdownEnabled}
+                    onClick={() => setIsDropdownEnabled(!isDropdownEnabled)}
+                >
                     <DropdownIcon/>
                 </button>
             </div>
@@ -64,7 +72,7 @@ export default function Navbar() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0  }}
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col w-full py-4 text-center sm:hidden bg-black border-b border-[#181818] gap-1"
+                    className="flex w-full flex-col gap-1 border-b border-white/10 bg-black px-5 py-4 text-center md:hidden"
                 >
                     {links.map((link, index) => <NavbarLink href={link.url} key={index}>{link.name}</NavbarLink>)}
                 </motion.ul>

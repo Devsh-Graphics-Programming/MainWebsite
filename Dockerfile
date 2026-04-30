@@ -3,8 +3,7 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 
-ENV NODE_ENV=production \
-    NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN apk add --no-cache libc6-compat
 

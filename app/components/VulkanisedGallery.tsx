@@ -5,8 +5,10 @@ function Videos({ ytIdList }: { ytIdList: string[] }) {
     return (
         <>
             {ytIdList.map((ytId, index) => (
-                <div className="w-full aspect-video overflow-hidden" key={index}>
-                    <YouTubeEmbed videoid={ytId} params="wmode=transparent"/>
+                <div className="media-hover group aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black" key={index}>
+                    <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.02]">
+                        <YouTubeEmbed videoid={ytId} params="wmode=transparent"/>
+                    </div>
                 </div>
             ))}
         </>

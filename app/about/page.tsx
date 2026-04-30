@@ -33,23 +33,25 @@ const vulkanisedPhotos: { src: StaticImageData; alt: string }[] = [
 
 function VulkanisedPhoto({ src, alt, priority = false }: { src: StaticImageData | string, alt: string, priority?: boolean }) {
     return (
-        <div className="relative w-[400px] aspect-video overflow-hidden rounded-md bg-neutral-900/70 ring-1 ring-white/5">
+        <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-neutral-900/70 ring-1 ring-white/10">
             <Image
                 src={src}
                 alt=""
                 aria-hidden="true"
                 fill
-                sizes="400px"
+                sizes="(min-width: 64rem) 50vw, 100vw"
                 placeholder="blur"
+                loading="eager"
                 className="object-cover blur-lg scale-105 opacity-60"
             />
             <Image
                 src={src}
                 alt={alt}
                 fill
-                sizes="400px"
+                sizes="(min-width: 64rem) 50vw, 100vw"
                 placeholder="blur"
                 priority={priority}
+                loading={priority ? undefined : "eager"}
                 className="object-contain"
             />
         </div>
@@ -58,14 +60,14 @@ function VulkanisedPhoto({ src, alt, priority = false }: { src: StaticImageData 
 
 export default function Page() {
     return (
-        <main className="container mx-auto max-sm:px-8 flex flex-col gap-4 sm:gap-8 sm:items-center h-full justify-center">
+        <main className="site-container-narrow section-pad flex flex-col gap-10 sm:gap-14">
             <Chapter title="About Us">
                 <Paragraph>
                     DevSH Graphics Programming Sp. z O.O is a company focused on Graphics, GPU and High Performance Computing. Our consultants develop and maintain Renderers, Simulations and Compilers for our Clients, integrated into or working alongside their teams. We are not a Software House, we work very closely and synergize with our Clients&apos; engineers.
                     We also conduct our own R&amp;D developing our own Open Source Middleware and Libraries, the most prominent being Nabla, as well as contributing to existing ones.
                     <br />
                     <br />
-                    The primary mission for all of our self-funded developments is to advance Open Source ecosystems with innovative tooling with a particular focus on Khronos Standards. We maintain a single source HLSL202x/C++20 Standard Template Header Only Library and our Utility and Rapid Prototyping Framework <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" target="_blank" rel="noopener noreferer" className="no-underline text-teal-600 devsh-link">Nabla</Link> designed {/*this prevents visual bug, "designed must stay here"*/}
+                    The primary mission for all of our self-funded developments is to advance Open Source ecosystems with innovative tooling with a particular focus on Khronos Standards. We maintain a single source HLSL202x/C++20 Standard Template Header Only Library and our Utility and Rapid Prototyping Framework <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" target="_blank" rel="noopener noreferrer" className="devsh-link">Nabla</Link> designed
                     to give a CUDA-like programming experience within the Vulkan ecosystem.
                     <br />
                     <br />
@@ -75,7 +77,7 @@ export default function Page() {
                     Our alumni have since worked at Intel, Huawei, ARM and Apple as driver and devtech developers and on AAA games.
                 </Paragraph>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 my-4 gap-4">
+                <div className="my-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
                     {vulkanisedPhotos.map((photo, index) => (
                         <VulkanisedPhoto
                             key={photo.alt}

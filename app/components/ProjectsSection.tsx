@@ -166,7 +166,7 @@ const projects: Project[] = [
 function LogoMark({ partner }: { partner: Partner }) {
   if (partner.logo) {
     return (
-      <span className="relative block h-10 w-full max-w-28">
+      <span className="relative block h-8 w-20 sm:w-24">
         <Image
           src={partner.logo}
           alt={partner.name}
@@ -182,9 +182,9 @@ function LogoMark({ partner }: { partner: Partner }) {
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center justify-center gap-3">
       <span
-        className="flex h-10 w-10 items-center justify-center rounded border border-white/10 text-xs font-semibold text-[var(--brand-accent-bright)]"
+        className="flex h-9 w-9 items-center justify-center rounded border border-white/10 text-xs font-semibold text-[var(--brand-accent-bright)] sm:h-10 sm:w-10"
         aria-hidden="true"
       >
         {partner.initials}
@@ -196,7 +196,9 @@ function LogoMark({ partner }: { partner: Partner }) {
 
 function LogoTile({ partner }: { partner: Partner }) {
   const className =
-    "group flex min-h-20 items-center justify-center rounded-md border border-white/10 bg-white/[0.035] px-5 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--brand-accent)]/50 hover:bg-white/[0.07] hover:shadow-[0_0_1.5rem_rgba(85,181,166,0.16)]";
+    `group flex h-14 items-center justify-center rounded-md border border-white/10 bg-white/[0.035] px-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--brand-accent)]/50 hover:bg-white/[0.07] hover:shadow-[0_0_1.5rem_rgba(85,181,166,0.16)] ${
+      partner.logo ? "min-w-[6.75rem]" : "min-w-[8.75rem]"
+    }`;
 
   if (partner.url) {
     return (
@@ -215,26 +217,16 @@ function LogoTile({ partner }: { partner: Partner }) {
 
 function PartnerLogos() {
   return (
-    <div className="mb-5 border-t border-white/10 py-6 sm:mb-6 sm:py-7 lg:mb-7 lg:pb-6 lg:pt-8">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] lg:items-center lg:gap-10">
-        <div className="max-w-2xl">
+    <div className="mb-6 py-3 sm:mb-7 sm:py-4 lg:mb-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center sm:gap-6">
+        <div className="max-w-3xl">
           <p className="section-kicker">Trusted by product teams</p>
-          <h3 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight sm:text-3xl">
+          <h3 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl">
             Trusted where graphics work has to ship.
           </h3>
-          <p className="!mb-0 !mt-3 text-base leading-relaxed text-neutral-300 sm:text-lg">
-            These teams bring us into renderer, GPU pipeline, compiler and visualization work where performance, architecture and delivery are tied together.
-          </p>
-          <a
-            href="mailto:newclients@devsh.eu?subject=Rendering%20or%20GPU%20consulting%20conversation"
-            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--brand-accent-bright)] transition hover:text-white"
-          >
-            Start a technical conversation
-            <ExternalArrow />
-          </a>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="flex max-w-5xl flex-wrap justify-center gap-2.5 sm:gap-3">
           {partners.map((p) => (
             <LogoTile key={p.name} partner={p} />
           ))}
@@ -246,7 +238,7 @@ function PartnerLogos() {
 
 function ProjectImageCard({ image, priority }: { image: ProjectImage; priority?: boolean }) {
   return (
-    <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black">
+    <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg bg-black ring-1 ring-inset ring-white/10">
       <Image
         src={image.src}
         alt={image.alt}
@@ -255,7 +247,7 @@ function ProjectImageCard({ image, priority }: { image: ProjectImage; priority?:
         priority={priority}
         loading={priority ? undefined : "eager"}
         unoptimized={image.src.endsWith(".gif")}
-        className={`${image.fit === "contain" ? "object-contain p-2" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.035]`}
+        className={`${image.fit === "contain" ? "object-contain" : "object-cover"} rounded-lg transition-transform duration-500 group-hover:scale-[1.035]`}
       />
     </div>
   );
@@ -265,11 +257,11 @@ function ConsultingScope({ project }: { project: Project }) {
   const scope = project.scope ?? ["Analysis", "Design", "Review"];
 
   return (
-    <div className="surface-panel brand-hover flex h-full flex-col justify-center p-6 sm:p-7 lg:p-8">
+    <div className="surface-panel brand-hover flex h-full flex-col justify-center p-5 sm:p-7 lg:p-8">
       <p className="section-kicker">{project.accent ?? "Consulting scope"}</p>
-      <h3 className="!mb-3 !mt-4 text-2xl font-semibold leading-tight sm:text-3xl">{project.title}</h3>
+      <h3 className="!mb-3 !mt-3 text-2xl font-semibold leading-tight sm:!mt-4 sm:text-3xl">{project.title}</h3>
       <p className="!m-0 text-base leading-relaxed text-neutral-300">{project.summary}</p>
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
         {scope.map((item) => (
           <span key={item} className="rounded border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-neutral-300">
             {item}
@@ -344,14 +336,15 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
   if (!hasImages) {
     return (
-      <article id={`project-${project.slug}`} className="scroll-mt-24 border-t border-white/10 pt-9 lg:pt-10">
-        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-10">
-          <div className={reverse ? "" : "lg:order-2"}>
+      <article id={`project-${project.slug}`} className="scroll-mt-24 border-t border-white/10 pt-8 sm:pt-9 lg:pt-10">
+        <div className="grid grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-2 lg:gap-10">
+          <div className={`order-2 ${reverse ? "lg:order-1" : "lg:order-2"}`}>
             <ConsultingScope project={project} />
           </div>
-          <div className={`flex flex-col justify-center py-2 ${reverse ? "" : "lg:order-1"}`}>
+          <div className={`order-1 flex flex-col justify-center py-1 lg:py-2 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
+            <p className="section-kicker mb-3">{project.accent ?? project.title}</p>
             <h3 className="!mb-3 !mt-0 text-2xl font-semibold leading-tight sm:text-3xl">{heading}</h3>
-            <ul className="!m-0 flex list-none flex-col gap-3.5 p-0">
+            <ul className="!m-0 flex list-none flex-col gap-3 p-0 sm:gap-3.5">
               {project.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
                   <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-accent)]" aria-hidden="true" />
@@ -368,7 +361,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   return (
     <article
       id={`project-${project.slug}`}
-      className="grid scroll-mt-24 grid-cols-1 gap-7 border-t border-white/10 pt-9 lg:grid-cols-2 lg:gap-10 lg:pt-10"
+      className="grid scroll-mt-24 grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:gap-7 sm:pt-9 lg:grid-cols-2 lg:gap-10 lg:pt-10"
     >
       <div className={`flex flex-col justify-center ${reverse ? "lg:order-2" : ""}`}>
         <div className="mb-4 flex flex-col gap-3">
@@ -377,7 +370,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           <p className="!m-0 text-base leading-relaxed text-neutral-300 sm:text-lg">{project.summary}</p>
         </div>
 
-        <ul className="!m-0 flex list-none flex-col gap-3.5 p-0">
+        <ul className="!m-0 flex list-none flex-col gap-3 p-0 sm:gap-3.5">
           {project.bullets.map((bullet) => (
             <li key={bullet} className="flex items-start gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
               <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-accent)]" aria-hidden="true" />
@@ -398,7 +391,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="scroll-mt-24 pb-12 pt-0 sm:pb-16 lg:pb-20">
       <div className="site-container">
-        <div className="section-head mb-8 sm:mb-10">
+        <div className="section-head mb-7 sm:mb-9">
           <p className="section-kicker">Commercial work</p>
           <h2 className="section-heading">Engineered Solutions for Our Partners</h2>
           <p className="section-lede text-neutral-400">
@@ -408,7 +401,7 @@ export default function ProjectsSection() {
 
         <PartnerLogos />
 
-        <div className="flex flex-col gap-9 sm:gap-10">
+        <div className="flex flex-col gap-8 sm:gap-9">
           {projects.map((project, index) => (
             <ProjectRow key={project.slug} project={project} index={index} />
           ))}

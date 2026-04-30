@@ -1,105 +1,52 @@
-// ─── Edit testimonials here ─────────────────────────────────────────────────
-// `avatar`: path under /public or full URL. Leave null for a placeholder
-//           initials avatar.
-type Testimonial = {
-  name: string;
-  role: string;
-  quote: string;
-  avatar: string | null;
+type ProofPoint = {
+  label: string;
+  title: string;
+  copy: string;
 };
 
-const testimonials: Testimonial[] = [
+const proofPoints: ProofPoint[] = [
   {
-    name: "Dr. Sarah Chen",
-    role: "CTO, RenderTech Systems",
-    quote:
-      "DevSH transformed our rendering pipeline. Their expertise in GPU optimization and Vulkan brought our real-time ray tracing from concept to production in record time.",
-    avatar: null,
+    label: "Embedded delivery",
+    title: "Close to your engineering team",
+    copy: "We work alongside client engineers, keeping renderer design, profiling and implementation connected to real product constraints.",
   },
   {
-    name: "Marcus Weber",
-    role: "Lead Graphics Engineer, SimViz Corp",
-    quote:
-      "Working with DevSH was a game-changer. Their deep understanding of compute shaders and performance optimization helped us achieve what we thought was impossible on mobile GPUs.",
-    avatar: null,
+    label: "Specialized scope",
+    title: "Renderer, compiler and GPU work",
+    copy: "Our work spans Vulkan, SPIR-V, HLSL, OpenCL, OptiX, WebGPU, CAD visualization, mobile GPUs and real-time pipelines.",
   },
   {
-    name: "Dr. Elena Rodriguez",
-    role: "Director of Engineering, VizLab",
-    quote:
-      "The team at DevSH integrated seamlessly with our developers. Their contributions to our scientific visualization platform exceeded all expectations in both quality and performance.",
-    avatar: null,
+    label: "Ecosystem work",
+    title: "Open source and standards involvement",
+    copy: "We maintain Nabla, contribute around Khronos ecosystems and present graphics work at Vulkanised and Shading Language Symposium.",
   },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
 
-function initialsOf(name: string) {
-  return name
-    .replace(/^Dr\.\s*/, "")
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((s) => s[0]?.toUpperCase() ?? "")
-    .join("");
-}
-
-function Avatar({ avatar, name }: { avatar: string | null; name: string }) {
-  if (avatar) {
-    return (
-      <img
-        src={avatar}
-        alt={name}
-        className="w-12 h-12 rounded-full object-cover flex-shrink-0"
-      />
-    );
-  }
+function Card({ point }: { point: ProofPoint }) {
   return (
-    <div
-      className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-semibold text-white/80 flex-shrink-0"
-      style={{ backgroundColor: "var(--brand-deep-soft)" }}
-      aria-hidden="true"
-    >
-      {initialsOf(name)}
-    </div>
-  );
-}
-
-function Card({ t }: { t: Testimonial }) {
-  return (
-    <div
-      className="rounded-xl p-6 sm:p-7 border border-white/5 transition-all duration-150 hover:border-[var(--brand-accent)]/40"
-      style={{ backgroundColor: "var(--brand-deep-soft)" }}
-    >
-      <div className="flex items-center gap-3 mb-4">
-        <Avatar avatar={t.avatar} name={t.name} />
-        <div className="min-w-0">
-          <p className="text-white font-semibold text-base sm:text-lg leading-tight !m-0">
-            {t.name}
-          </p>
-          <p className="text-neutral-400 text-xs sm:text-sm leading-tight !m-0 mt-0.5">
-            {t.role}
-          </p>
-        </div>
-      </div>
-      <p className="text-neutral-200 italic text-sm sm:text-[0.95rem] leading-relaxed !m-0">
-        &ldquo;{t.quote}&rdquo;
-      </p>
+    <div className="surface-panel brand-hover h-full p-6 sm:p-7 lg:p-8">
+      <p className="section-kicker">{point.label}</p>
+      <h3 className="!mb-3 !mt-4 text-xl font-semibold leading-tight sm:text-2xl">{point.title}</h3>
+      <p className="!m-0 text-sm leading-relaxed text-neutral-300 sm:text-base">{point.copy}</p>
     </div>
   );
 }
 
 export default function TestimonialsSection() {
   return (
-    <section
-      className="-mx-4 px-4 py-16 sm:py-24"
-      style={{ backgroundColor: "var(--brand-deep)" }}
-    >
-      <div className="container mx-auto">
-        <h2 className="text-center !mt-0 !mb-12 text-3xl sm:text-4xl lg:text-5xl">
-          What Our Partners Say
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {testimonials.map((t) => (
-            <Card key={t.name} t={t} />
+    <section className="section-band py-14 sm:py-[4.5rem] lg:py-20">
+      <div className="site-container">
+        <div className="section-head mb-8 sm:mb-10">
+          <p className="section-kicker">How we work</p>
+          <h2 className="section-heading">Specialist engineering for demanding graphics systems</h2>
+          <p className="section-lede">
+            Direct implementation, careful profiling and renderer architecture work for teams that need senior GPU experience.
+          </p>
+        </div>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 lg:gap-5">
+          {proofPoints.map((point) => (
+            <Card key={point.label} point={point} />
           ))}
         </div>
       </div>

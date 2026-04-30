@@ -26,16 +26,9 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  // Allow Replit's dev preview proxy origin (mTLS proxy with a different domain)
   allowedDevOrigins: [
-    '*.replit.dev',
-    '*.repl.co',
-    '*.kirk.replit.dev',
-    '*.picard.replit.dev',
-    '*.janeway.replit.dev',
-    '*.spock.replit.dev',
-    '*.sisko.replit.dev',
-    '*.riker.replit.dev'
+    'localhost',
+    '127.0.0.1'
   ],
 };
 

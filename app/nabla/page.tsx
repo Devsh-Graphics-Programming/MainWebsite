@@ -7,7 +7,7 @@ import { Paragraph } from "../components/TextUtils"
 import Link from "next/link"
 
 import fluidGif from "@/public/nabla/fluid.gif"
-import imguiPng from "@/public/nabla/imgui.png"
+import imguiIntegrationJpg from "@/public/nabla/imguiintegration.jpg"
 import rt_screenshotJpg from "@/public/nabla/rt_screenshot.jpg"
 import rt_screenshot1Jpg from "@/public/nabla/rt_screenshot1.jpg"
 import sdf_function_manipGif from "@/public/nabla/sdf_func_manip.gif"
@@ -18,29 +18,31 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props"
 
 function GridImage({ src, unoptimized }: { src: string | StaticImport, unoptimized?: boolean }) {
     return (
-        <Image
-            src={src}
-            width={1280} 
-            height={720} 
-            alt="Showcase screenshot"
-            className="relative w-full h-full aspect-video"
-            unoptimized={unoptimized}
-        />
+        <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black">
+            <Image
+                src={src}
+                fill
+                sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
+                alt="Showcase screenshot"
+                className="object-cover"
+                unoptimized={unoptimized}
+            />
+        </div>
     )
 }
 
 export default function Page() {
     return (
-        <main className="container mx-auto flex flex-col px-12 overflow-y-auto snap-mandatory scroll-smooth">
+        <main className="site-container section-pad flex flex-col gap-16 overflow-y-auto scroll-smooth">
             <Slide>
-                <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-[240px] xl:w-[480px]"/>
+                <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-40 sm:w-56 lg:w-80"/>
             </Slide>
-            <Slide className="h-full sm:p-12">
-                <h1>Showcase</h1>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-2">
+            <Slide className="w-full">
+                <h1 className="section-heading">Showcase</h1>
+                <div className="my-2 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                     <GridImage src={nablaScreenshot1} />
                     <GridImage src={fluidGif} unoptimized />
-                    <GridImage src={imguiPng} />
+                    <GridImage src={imguiIntegrationJpg} />
                     <GridImage src={rt_screenshotJpg} />
                     <GridImage src={rt_screenshot1Jpg} />
                     <GridImage src={sdf_function_manipGif} unoptimized />
@@ -49,8 +51,8 @@ export default function Page() {
                     <GridImage src={ditt6} />
                 </div>
             </Slide>
-            <Slide>
-                <h1>About</h1>
+            <Slide className="mx-auto max-w-4xl">
+                <h1 className="section-heading">About</h1>
                 <Paragraph>
                     <Link href="https://github.com/Devsh-Graphics-Programming/Nabla" className="hover:text-teal-200 transition-colors duration-300">Nabla</Link> (previously <Link href="https://github.com/buildaworldnet/IrrlichtBAW" className="hover:text-teal-200 transition-colors duration-300">IrrlichtBaW</Link>) started as a fork and renovation of the Irrlicht engine, it has since become the Ship of Theseus. Nabla is Vulkan-only thread agnostic, free of singletons and was redesigned with interoperability and headless rendering, allowing you to use it un-intrusively within other engines and share resources from them.
                     <br />
@@ -61,9 +63,9 @@ export default function Page() {
                     It&apos;s the perfect choice for building Vulkan middlewares.
                 </Paragraph>
             </Slide>
-            <Slide className="max-h-full flex flex-col">
-                <h1>Main Features</h1>
-                <ul className="px-2 py-4 gap-1 list-disc list-inside font-thin text-sm sm:text-md lg:text-lg">
+            <Slide className="mx-auto max-w-5xl">
+                <h1 className="section-heading">Main Features</h1>
+                <ul className="grid list-disc gap-2 pl-5 text-sm font-light leading-relaxed text-neutral-300 sm:grid-cols-2 sm:text-base">
                     <li>Curated List of Vulkan Features and Extensions the Nabla Core Profile</li>
                     <li>Easy filtering of Vulkan Physical Devices by capabilities</li>
                     <li>SPIR-V and Vulkan as first class citizens</li>

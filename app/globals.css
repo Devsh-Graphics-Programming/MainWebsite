@@ -6,43 +6,47 @@
   --background: #000000;
   --foreground: #ffffff;
   --list-check: url(/list/check.svg);
-  /* DevSH brand — values from the logo.
-     --brand-deep:          rgb(28, 58, 59)  — dark teal panel background
-     --brand-accent:        rgb(85, 181, 166) — primary button, accent text, borders
-     --brand-accent-bright: lighter accent for hover/highlight
-     --brand-accent-glow:   translucent accent for box-shadow glows           */
   --brand-deep: #1c3a3b;
   --brand-deep-soft: #20484a;
   --brand-accent: #55b5a6;
   --brand-accent-bright: #7dcdb9;
   --brand-accent-glow: rgba(85, 181, 166, 0.35);
+  --surface: #071111;
+  --surface-soft: #0b1919;
+  --line-soft: rgba(255, 255, 255, 0.09);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 72px;
+  scroll-padding-top: 4.5rem;
+  overflow-x: clip;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  min-width: 0;
+  overflow-x: clip;
 }
 
 ::marker {
   color: #ffffff;
-  width: 16px;
 }
 
 @layer base {
   h1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight my-6
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight my-6 tracking-normal
   }
   h2 {
-    @apply text-3xl sm:text-4xl lg:text-5xl font-semibold leading-snug my-6
+    @apply text-3xl sm:text-4xl lg:text-5xl font-semibold leading-snug my-6 tracking-normal
   }
   h3 {
-    @apply text-2xl sm:text-3xl lg:text-4xl font-medium leading-normal my-4
+    @apply text-2xl sm:text-3xl lg:text-4xl font-medium leading-normal my-4 tracking-normal
   }
   h4 {
     @apply text-xl sm:text-2xl font-medium leading-relaxed my-4
@@ -58,6 +62,103 @@ body {
   }
   .devsh-link {
     @apply no-underline text-[var(--brand-accent)] hover:text-[var(--brand-accent-bright)] transition-colors duration-300
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  .site-container-narrow {
+    @apply w-full max-w-4xl mx-auto px-5 sm:px-6 lg:px-8;
+  }
+
+  .section-pad {
+    @apply py-14 sm:py-20 lg:py-24;
+  }
+
+  .section-head {
+    @apply mx-auto flex max-w-4xl flex-col items-center gap-3 text-center;
+  }
+
+  .section-heading {
+    @apply !m-0 text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-balance;
+  }
+
+  .section-kicker {
+    @apply !m-0 text-xs sm:text-sm font-semibold uppercase tracking-widest text-[var(--brand-accent-bright)];
+  }
+
+  .section-lede {
+    @apply !m-0 max-w-3xl text-base leading-relaxed text-neutral-300 sm:text-lg;
+  }
+
+  .muted-copy {
+    @apply text-neutral-300 leading-relaxed;
+  }
+
+  .surface-panel {
+    @apply rounded-lg border border-[var(--line-soft)] bg-[var(--surface-soft)];
+    background:
+      linear-gradient(180deg, rgba(13, 31, 31, 0.96), rgba(5, 14, 14, 0.98));
+  }
+
+  .section-band {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    background:
+      linear-gradient(180deg, #000 0%, #041010 18%, #0b2424 52%, #020707 100%);
+  }
+
+  .section-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(125, 205, 185, 0.08), transparent 24%, transparent 76%, rgba(125, 205, 185, 0.06)),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.024) 0 1px, transparent 1px 5.5rem);
+    opacity: 0.45;
+  }
+
+  .section-band > * {
+    position: relative;
+  }
+
+  .brand-hover {
+    transition:
+      border-color 300ms ease,
+      box-shadow 300ms ease,
+      transform 300ms ease;
+    will-change: transform;
+  }
+
+  .brand-hover:hover {
+    border-color: rgba(125, 205, 185, 0.55);
+    box-shadow: 0 0 2rem var(--brand-accent-glow);
+    transform: translateY(-0.25rem);
+  }
+
+  .brand-button {
+    box-shadow: 0 0 1.1rem rgba(85, 181, 166, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  }
+
+  .brand-button:hover {
+    box-shadow: 0 0 1.8rem rgba(85, 181, 166, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .media-hover {
+    @apply transition duration-300;
+    will-change: transform;
+  }
+
+  .media-hover:hover {
+    border-color: rgba(125, 205, 185, 0.5);
+    box-shadow: 0 0 1.75rem rgba(85, 181, 166, 0.22);
+    transform: translateY(-0.15rem);
   }
 }
 

@@ -45,3 +45,4 @@ next-env.d.ts
 
 # Transient cleanup
 .old_nm_trash*
+tmp/

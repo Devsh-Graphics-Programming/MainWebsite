@@ -2,7 +2,7 @@ type Size = "md" | "lg";
 
 export default function CTAButton({
   href = "mailto:newclients@devsh.eu",
-  label = "Talk With Our Experts",
+  label = "Contact Us",
   size = "lg",
 }: {
   href?: string;
@@ -11,29 +11,31 @@ export default function CTAButton({
 }) {
   const sizing =
     size === "lg"
-      ? "min-w-[280px] sm:min-w-[340px] px-10 sm:px-14 py-4 sm:py-5 text-base sm:text-lg"
-      : "px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base";
+      ? "w-full max-w-56 sm:w-auto sm:min-w-44 px-4 py-2.5 text-sm sm:px-5 sm:text-base"
+      : "px-4 py-2.5 text-sm sm:px-5 sm:text-base";
 
   return (
     <a
       href={href}
-      className={`group relative inline-flex items-center justify-center gap-3 ${sizing} font-semibold text-black rounded-md transition-all duration-150 hover:scale-[1.03] hover:shadow-[0_0_40px_var(--brand-accent-glow)] active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black`}
-      style={{ backgroundColor: "var(--brand-accent)" }}
+      className={`brand-button group relative inline-flex items-center justify-center gap-3 ${sizing} rounded-md border border-[var(--brand-accent)]/70 bg-black/45 font-semibold text-[var(--brand-accent-bright)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand-accent-bright)] active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-[var(--brand-accent-bright)] focus:ring-offset-2 focus:ring-offset-black`}
+      style={{ background: "linear-gradient(180deg, rgba(125, 205, 185, 0.16), rgba(85, 181, 166, 0.08))" }}
     >
       <span>{label}</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="w-5 h-5 transition-transform duration-150 group-hover:translate-x-1"
-        aria-hidden="true"
-      >
-        <path d="M5 12h14M13 5l7 7-7 7" />
-      </svg>
+      <span className="flex h-7 w-7 items-center justify-center rounded border border-[var(--brand-accent)]/70 bg-[var(--brand-accent)] text-[#031111] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:bg-[var(--brand-accent-bright)]">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-4 w-4"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M13 5l7 7-7 7" />
+        </svg>
+      </span>
     </a>
   );
 }

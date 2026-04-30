@@ -5,8 +5,10 @@ function VideoGrid({ videos }: { videos: string[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {videos.map((ytId) => (
-        <div key={ytId} className="w-full aspect-video overflow-hidden rounded-lg">
-          <YouTubeEmbed videoid={ytId} params="wmode=transparent" />
+        <div key={ytId} className="media-hover group aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black">
+          <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.02]">
+            <YouTubeEmbed videoid={ytId} params="wmode=transparent" />
+          </div>
         </div>
       ))}
     </div>
@@ -15,10 +17,10 @@ function VideoGrid({ videos }: { videos: string[] }) {
 
 export default function PresentationsPage() {
   return (
-    <main className="container mx-auto py-10 sm:py-16 flex flex-col gap-14 sm:gap-20">
-      <div className="text-center">
-        <h1 className="!mt-0 !mb-3">Our Presentations</h1>
-        <p className="!m-0 text-neutral-400 text-base sm:text-lg max-w-2xl mx-auto">
+    <main className="site-container section-pad flex flex-col gap-14 sm:gap-20">
+      <div className="section-head">
+        <h1 className="section-heading">Our Presentations</h1>
+        <p className="section-lede text-neutral-400">
           Talks and presentations by DevSH at Vulkanised, SIGGRAPH, GDC, and
           Khronos workshops — sharing our research with the graphics community.
         </p>

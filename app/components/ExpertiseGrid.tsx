@@ -1,7 +1,5 @@
-// ─── Edit this list to update the expertise cards ───────────────────────────
-// `image`: path under /public (e.g. "/expertise/compute.jpg") or null.
-// `href`:  anchor target — use "#projects" for the section top or
-//          "#project-{slug}" to jump to a specific project.
+import Image from "next/image";
+
 const items: { title: string; image: string | null; href: string }[] = [
   { title: "High-Performance Compute & Optimization",      image: "/nabla/nsc.png",                      href: "#projects"             },
   { title: "Path Tracing and Physically-Based Rendering",  image: "/nabla/rt_screenshot_both.jpg",       href: "#project-ditt"         },
@@ -11,8 +9,6 @@ const items: { title: string; image: string | null; href: string }[] = [
   { title: "VR & Mobile GPU",                              image: "/clients/imverse/imverse1.webp",      href: "#project-wild"         },
   { title: "Photogrammetry and Differentiable Rendering",  image: "/clients/baw/volume_reconstruct.png", href: "#project-buildaworld"  },
 ];
-// ─────────────────────────────────────────────────────────────────────────────
-
 function PlaceholderIcon() {
   return (
     <svg
@@ -38,13 +34,16 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
     <a
       href={href}
       aria-label={`Jump to ${title}`}
-      className="group relative block w-[160px] sm:w-[200px] md:w-[240px] aspect-square rounded-lg overflow-hidden border border-[#333] transition-all duration-[750ms] hover:shadow-[0_0_24px_var(--brand-accent-glow)] flex-shrink-0"
+      className="media-hover group relative block aspect-[4/3] max-w-[22rem] flex-[1_1_18rem] overflow-hidden rounded-lg border border-white/10 bg-[var(--surface-soft)] sm:max-w-[19rem]"
     >
       {image ? (
-        <img
+        <Image
           src={image}
           alt={title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          fill
+          sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
+          loading="eager"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       ) : (
         <>
@@ -55,15 +54,12 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
         </>
       )}
 
-      {/* Gradient fade so text is readable over any image */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
 
-      {/* Accent border overlay — appears on hover without causing layout shift */}
-      <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-[750ms] group-hover:ring-[var(--brand-accent)]/60" />
+      <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70" />
 
-      {/* Title overlaid at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 px-3 py-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)" }}>
-        <p className="text-white text-sm sm:text-base font-normal leading-snug text-center drop-shadow transition-colors duration-[750ms] group-hover:text-[var(--brand-accent-bright)]">
+      <div className="absolute bottom-0 left-0 right-0 px-4 py-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)" }}>
+        <p className="!m-0 text-center text-sm font-medium leading-snug text-white drop-shadow transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)] sm:text-base">
           {title}
         </p>
       </div>
@@ -73,12 +69,17 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
 
 export default function ExpertiseGrid() {
   return (
-    <section className="w-full md:w-[60%] mx-auto pb-10 sm:pb-16">
-      <h2 className="text-center !mt-0 !mb-6 text-2xl sm:text-3xl">Our Expertise</h2>
-      <div className="flex flex-wrap justify-center gap-3 sm:gap-4 w-full">
-        {items.map((it) => (
-          <Card key={it.title} title={it.title} image={it.image} href={it.href} />
-        ))}
+    <section className="w-full pb-9 pt-3 sm:pb-11 sm:pt-4 lg:pb-12">
+      <div className="site-container">
+        <div className="section-head mb-7 sm:mb-8">
+          <h2 className="section-heading">Our Expertise</h2>
+          <p className="section-lede text-neutral-400">Focused senior engineering for the hard parts of real-time graphics.</p>
+        </div>
+        <div className="flex w-full flex-wrap justify-center gap-4">
+          {items.map((it) => (
+            <Card key={it.title} title={it.title} image={it.image} href={it.href} />
+          ))}
+        </div>
       </div>
     </section>
   );

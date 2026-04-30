@@ -4,9 +4,8 @@ export default function AboutSection() {
   return (
     <section id="about" className="scroll-mt-24 pb-14 pt-6 sm:pb-20 sm:pt-6 lg:pb-24 lg:pt-6">
       <div className="site-container-narrow">
-        <div className="section-head mb-10">
-          <p className="section-kicker">About DevSH</p>
-          <h2 className="section-heading">Graphics programming specialists</h2>
+        <div className="section-head mb-9 sm:mb-10">
+          <h2 className="section-heading">About DevSH</h2>
         </div>
 
         <div className="flex flex-col gap-5 text-base leading-relaxed text-neutral-300 sm:text-lg">

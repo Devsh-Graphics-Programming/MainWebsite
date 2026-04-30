@@ -2,7 +2,7 @@ type Size = "md" | "lg";
 
 export default function CTAButton({
   href = "mailto:newclients@devsh.eu",
-  label = "Contact Us",
+  label = "Talk to our experts",
   size = "lg",
 }: {
   href?: string;
@@ -11,7 +11,7 @@ export default function CTAButton({
 }) {
   const sizing =
     size === "lg"
-      ? "w-full max-w-56 sm:w-auto sm:min-w-44 px-4 py-2.5 text-sm sm:px-5 sm:text-base"
+      ? "w-full max-w-64 sm:w-auto sm:min-w-56 px-4 py-2.5 text-sm sm:px-5 sm:text-base"
       : "px-4 py-2.5 text-sm sm:px-5 sm:text-base";
 
   return (

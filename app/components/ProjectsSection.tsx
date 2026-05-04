@@ -28,12 +28,12 @@ type Project = {
 };
 
 const partners: Partner[] = [
-  { name: "Ditt", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
   { name: "Applications in CADD", initials: "AC", logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
-  { name: "Wild Inc.", initials: "WI", logo: null, url: null },
-  { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.ch/" },
-  { name: "RELEX Solutions", initials: "RX", logo: "/partners/relex.png", url: "https://relexsolutions.com/" },
   { name: "Synera", initials: "SY", logo: "/partners/synera.png", url: "https://www.synera.io/", logoTone: "invert" },
+  { name: "Ditt", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
+  { name: "RELEX Solutions", initials: "RX", logo: "/partners/relex.png", url: "https://relexsolutions.com/" },
+  { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.ch/" },
+  { name: "Wild Inc.", initials: "WI", logo: null, url: null },
 ];
 
 const projects: Project[] = [
@@ -166,14 +166,14 @@ const projects: Project[] = [
 function LogoMark({ partner }: { partner: Partner }) {
   if (partner.logo) {
     return (
-      <span className="relative block h-8 w-20 sm:w-24">
+      <span className="relative block h-8 w-8">
         <Image
           src={partner.logo}
           alt={partner.name}
           fill
-          sizes="7rem"
+          sizes="2rem"
           loading="eager"
-          className={`object-contain opacity-90 transition duration-200 group-hover:opacity-100 ${
+          className={`object-contain opacity-100 transition duration-200 group-hover:opacity-100 ${
             partner.logoTone === "invert" ? "invert" : ""
           }`}
         />
@@ -182,9 +182,9 @@ function LogoMark({ partner }: { partner: Partner }) {
   }
 
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-2">
       <span
-        className="flex h-9 w-9 items-center justify-center rounded border border-white/10 text-xs font-semibold text-[var(--brand-accent-bright)] sm:h-10 sm:w-10"
+        className="flex h-8 w-8 items-center justify-center rounded border border-white/10 text-xs font-semibold text-[var(--brand-accent-bright)]"
         aria-hidden="true"
       >
         {partner.initials}
@@ -196,8 +196,8 @@ function LogoMark({ partner }: { partner: Partner }) {
 
 function LogoTile({ partner }: { partner: Partner }) {
   const className =
-    `group flex h-14 items-center justify-center rounded-md border border-white/10 bg-white/[0.035] px-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--brand-accent)]/50 hover:bg-white/[0.07] hover:shadow-[0_0_1.5rem_rgba(85,181,166,0.16)] ${
-      partner.logo ? "min-w-[6.75rem]" : "min-w-[8.75rem]"
+    `group flex h-17 items-center justify-center rounded-md px-2 ${
+      partner.logo ? "min-w-[5.5rem]" : "min-w-[4rem]"
     }`;
 
   if (partner.url) {
@@ -220,13 +220,10 @@ function PartnerLogos() {
     <div className="mb-6 py-3 sm:mb-7 sm:py-4 lg:mb-8">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center sm:gap-6">
         <div className="max-w-3xl">
-          <p className="section-kicker">Trusted by product teams</p>
-          <h3 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl">
-            Trusted where graphics work has to ship.
-          </h3>
+          <p className="section-kicker">Trusted by</p>
         </div>
 
-        <div className="flex max-w-5xl flex-wrap justify-center gap-2.5 sm:gap-3">
+        <div className="flex max-w-5xl flex-wrap justify-center gap-1.5 sm:gap-2">
           {partners.map((p) => (
             <LogoTile key={p.name} partner={p} />
           ))}

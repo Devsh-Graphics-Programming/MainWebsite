@@ -73,7 +73,6 @@ export default function ExpertiseGrid() {
       <div className="site-container">
         <div className="section-head mb-7 sm:mb-8">
           <h2 className="section-heading">Our Expertise</h2>
-          <p className="section-lede text-neutral-400">Focused senior engineering for the hard parts of real-time graphics.</p>
         </div>
         <div className="flex w-full flex-wrap justify-center gap-4">
           {items.map((it) => (

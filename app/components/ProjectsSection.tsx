@@ -1,13 +1,5 @@
 import Image from "next/image";
 
-type Partner = {
-  name: string;
-  initials: string;
-  logo: string | null;
-  url: string | null;
-  logoTone?: "normal" | "invert";
-};
-
 type ProjectImage = {
   src: string;
   alt: string;
@@ -26,15 +18,6 @@ type Project = {
   scope?: string[];
   visualLayout?: "grid" | "stacked";
 };
-
-const partners: Partner[] = [
-  { name: "Applications in CADD", initials: "AC", logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
-  { name: "Synera", initials: "SY", logo: "/partners/synera.png", url: "https://www.synera.io/", logoTone: "invert" },
-  { name: "Ditt", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
-  { name: "RELEX Solutions", initials: "RX", logo: "/partners/relex.png", url: "https://relexsolutions.com/" },
-  { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.ch/" },
-  { name: "Wild Inc.", initials: "WI", logo: null, url: null },
-];
 
 const projects: Project[] = [
   {
@@ -162,76 +145,6 @@ const projects: Project[] = [
     ],
   },
 ];
-
-function LogoMark({ partner }: { partner: Partner }) {
-  if (partner.logo) {
-    return (
-      <span className="relative block h-8 w-8">
-        <Image
-          src={partner.logo}
-          alt={partner.name}
-          fill
-          sizes="2rem"
-          loading="eager"
-          className={`object-contain opacity-100 transition duration-200 group-hover:opacity-100 ${
-            partner.logoTone === "invert" ? "invert" : ""
-          }`}
-        />
-      </span>
-    );
-  }
-
-  return (
-    <div className="flex items-center justify-center gap-2">
-      <span
-        className="flex h-8 w-8 items-center justify-center rounded border border-white/10 text-xs font-semibold text-[var(--brand-accent-bright)]"
-        aria-hidden="true"
-      >
-        {partner.initials}
-      </span>
-      <span className="text-sm font-medium text-neutral-200">{partner.name}</span>
-    </div>
-  );
-}
-
-function LogoTile({ partner }: { partner: Partner }) {
-  const className =
-    `group flex h-17 items-center justify-center rounded-md px-2 ${
-      partner.logo ? "min-w-[5.5rem]" : "min-w-[4rem]"
-    }`;
-
-  if (partner.url) {
-    return (
-      <a href={partner.url} target="_blank" rel="noopener noreferrer" title={partner.name} className={className}>
-        <LogoMark partner={partner} />
-      </a>
-    );
-  }
-
-  return (
-    <div title={partner.name} className={className}>
-      <LogoMark partner={partner} />
-    </div>
-  );
-}
-
-function PartnerLogos() {
-  return (
-    <div className="mb-6 py-3 sm:mb-7 sm:py-4 lg:mb-8">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center sm:gap-6">
-        <div className="max-w-3xl">
-          <p className="section-kicker">Trusted by</p>
-        </div>
-
-        <div className="flex max-w-5xl flex-wrap justify-center gap-1.5 sm:gap-2">
-          {partners.map((p) => (
-            <LogoTile key={p.name} partner={p} />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function ProjectImageCard({ image, priority }: { image: ProjectImage; priority?: boolean }) {
   return (
@@ -388,15 +301,13 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="scroll-mt-24 pb-12 pt-0 sm:pb-16 lg:pb-20">
       <div className="site-container">
-        <div className="section-head mb-7 sm:mb-9">
+        <div className="section-head mt-7 mb-7 sm:mb-9">
           <p className="section-kicker">Commercial work</p>
           <h2 className="section-heading">Engineered Solutions for Our Partners</h2>
           <p className="section-lede text-neutral-400">
             Long-term rendering, GPU, compiler and visualization work delivered close to client engineering teams.
           </p>
         </div>
-
-        <PartnerLogos />
 
         <div className="flex flex-col gap-8 sm:gap-9">
           {projects.map((project, index) => (

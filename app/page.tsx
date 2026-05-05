@@ -1,5 +1,6 @@
 import HeroHeader from "./components/HeroHeader";
 import ExpertiseGrid from "./components/ExpertiseGrid";
+import PartnerLogos from "./components/Partners";
 import ProjectsSection from "./components/ProjectsSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import NablaSection from "./components/NablaSection";
@@ -11,8 +12,9 @@ export default function Home() {
     <main className="flex flex-col">
       <HeroHeader />
       <ExpertiseGrid />
-      <ProjectsSection />
+      <PartnerLogos />
       <TestimonialsSection />
+      <ProjectsSection />
       <NablaSection />
       <EcosystemSection />
       <AboutSection />

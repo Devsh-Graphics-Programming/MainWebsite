@@ -96,11 +96,8 @@ export default function PartnerLogos() {
 
       <div className="mx-auto flex flex-col items-center gap-8 text-center sm:gap-10">
         <div className="max-w-3xl px-4">
-          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--brand-accent-bright)]">
-            Trusted by product teams
-          </p>
           <h3 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight sm:text-3xl lg:text-4xl">
-            Trusted where graphics work has to ship.
+            Trusted By
           </h3>
         </div>
 

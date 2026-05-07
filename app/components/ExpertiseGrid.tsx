@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 const items: { title: string; image: string | null; href: string }[] = [
-  { title: "High-Performance Compute & Optimization",      image: "/nabla/nsc.png",                      href: "#projects"             },
+  { title: "Real-Time Graphics & Engine Optimization",     image: "/clients/baw/baw4.jpg",         href: "#projects"             },
   { title: "Path Tracing and Physically-Based Rendering",  image: "/nabla/rt_screenshot_both.jpg",       href: "#project-ditt"         },
   { title: "CAD & Scientific Visualization",               image: "/clients/apps_in_cadd/scene1_cropped.png", href: "#project-appscadd" },
+  { title: "VR & Mobile GPU",                              image: "/clients/wild/wild3.jpg",      href: "#project-wild"         },
   { title: "Computational Geometry",                       image: "/clients/apps_in_cadd/drawing3.jpg",      href: "#project-appscadd" },
-  { title: "Real-Time Graphics & Engine Optimization",     image: "/clients/wild/wild_gif2.gif",         href: "#projects"             },
-  { title: "VR & Mobile GPU",                              image: "/clients/imverse/imverse1.webp",      href: "#project-wild"         },
+  { title: "High-Performance Compute & Optimization",      image: "/nabla/nsc.png",                      href: "#projects"             },
   { title: "Photogrammetry and Differentiable Rendering",  image: "/clients/baw/volume_reconstruct.png", href: "#project-buildaworld"  },
 ];
 function PlaceholderIcon() {
@@ -34,7 +34,7 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
     <a
       href={href}
       aria-label={`Jump to ${title}`}
-      className="media-hover group relative block aspect-[4/3] max-w-[22rem] flex-[1_1_18rem] overflow-hidden rounded-lg border border-white/10 bg-[var(--surface-soft)] sm:max-w-[19rem]"
+      className="media-hover group relative block aspect-[4/3] max-w-[22rem] flex-[1_1_15rem] overflow-hidden rounded-lg border border-white/10 bg-[var(--surface-soft)] sm:max-w-[19rem]"
     >
       {image ? (
         <Image
@@ -54,11 +54,10 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
         </>
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10" />
+      <div className="absolute inset-0 pointer-events-none rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70" />
 
-      <div className="absolute inset-0 rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70" />
-
-      <div className="absolute bottom-0 left-0 right-0 px-4 py-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 100%)" }}>
+      {/* The Glass Text Container - Fixed Height */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 flex items-center justify-center px-4 bg-black/40 backdrop-blur-md border-t border-white/10">
         <p className="!m-0 text-center text-sm font-medium leading-snug text-white drop-shadow transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)] sm:text-base">
           {title}
         </p>

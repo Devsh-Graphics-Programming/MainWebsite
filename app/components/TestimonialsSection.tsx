@@ -7,6 +7,7 @@ type Testimonial = {
   name: string;
   role: string;
   profilePicture: string;
+  companyIcon: string;
   testimonial: string;
 };
 
@@ -15,6 +16,7 @@ const testimonials: Testimonial[] = [
     name: "Phil Langrishe",
     role: "Managing Director at Applications in Cadd",
     profilePicture: "/testimonials/phil.jpg",
+    companyIcon: "/partners/appscadd.png", // <-- Add this line
     testimonial:
       "Matt, Erfan and the rest of the Devsh team have been amazing to work with.  We presented them with a very difficult challenge which was to take a large and very old, plus some what outdated C++ codebase written for a different time, and bring it up to date so that we could make use of their Vulkan based Nabla graphics engine. They broke the challenge down into manageable chunks and then over the past few years have proceeded to inject lightening fast graphics into our application.  All agreed targets have been met on time, and on budget.  I can not thank them enough for the hard work and dedication they have shown towards achieving our goals.  Their knowledge and professionalism has been second to none!",
   },
@@ -22,6 +24,7 @@ const testimonials: Testimonial[] = [
     name: "John Doe",
     role: "Technical Director",
     profilePicture: "/testimonials/profile-2.jpg",
+    companyIcon: "/partners/ditt.png", // <-- Add this line
     testimonial:
       "They are a pretty cool team.",
   },
@@ -29,6 +32,7 @@ const testimonials: Testimonial[] = [
     name: "Alice Johnson",
     role: "Product Lead",
     profilePicture: "/testimonials/profile-3.jpg",
+    companyIcon: "/partners/synera.png", // <-- Add this line
     testimonial:
       "Great work on the project!",
   },
@@ -94,37 +98,52 @@ export default function TestimonialsSection() {
                 className="flex flex-col bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 md:p-8 shrink-0 md:snap-center w-full md:w-[500px] lg:w-[600px] h-auto md:h-[500px]"
               >
                 
-                {/* 
-                  DEAD SIMPLE PROFILE HEADER
-                  - items-center keeps it vertically aligned.
-                  - No forced heights on the text box. 
+                {/* UPDATED PROFILE HEADER
+                  - justify-between pushes the left-side info and right-side logo apart
+                  - items-center keeps everything vertically aligned
                 */}
-                <div className="flex items-center gap-4 mb-6 shrink-0">
-                  {/* Image: Bumped to h-16 w-16 (64px) to match the two lines of text better */}
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full shrink-0 bg-zinc-100 dark:bg-zinc-800">
-                    <Image
-                      src={t.profilePicture}
-                      alt={t.name}
-                      fill
-                      className="object-cover"
-                      sizes="64px"
-                    />
-                  </div>
+                <div className="flex items-center justify-between gap-4 mb-6 shrink-0">
                   
-                  {/* Text: Standard flex column, natural stacking */}
-                  <div className="flex flex-col">
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-1 leading-none">
-                      {t.name}
-                    </h3>
-                    <p className="text-base text-zinc-600 dark:text-zinc-400 leading-tight">
-                      {t.role}
-                    </p>
+                  {/* LEFT SIDE: Profile Pic & Text */}
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-16 w-16 overflow-hidden rounded-full shrink-0 bg-zinc-100 dark:bg-zinc-800">
+                      <Image
+                        src={t.profilePicture}
+                        alt={t.name}
+                        fill
+                        className="object-cover"
+                        sizes="64px"
+                      />
+                    </div>
+                    
+                    <div className="flex flex-col">
+                      <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100 mb-1 leading-none">
+                        {t.name}
+                      </h3>
+                      <p className="text-base text-zinc-600 dark:text-zinc-400 leading-tight">
+                        {t.role}
+                      </p>
+                    </div>
                   </div>
+
+                  {/* RIGHT SIDE: Company Icon (Only renders if you provided one in the data) */}
+                  {t.companyIcon && (
+                    <div className="relative h-12 w-12 shrink-0">
+                      <Image
+                        src={t.companyIcon}
+                        alt="Company Logo"
+                        fill
+                        className="object-contain opacity-70 dark:opacity-80" // object-contain ensures the logo isn't cropped
+                        sizes="48px"
+                      />
+                    </div>
+                  )}
+
                 </div>
 
                 {/* Testimonial Body */}
                 <div className="flex-1 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-300 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-600 [&::-webkit-scrollbar-thumb]:rounded-full">
-                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg">
+                  <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg text-justify">
                     "{t.testimonial}"
                   </p>
                 </div>

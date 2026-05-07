@@ -13,7 +13,7 @@ const partners: Partner[] = [
   { name: "Applications in CADD", initials: "AC", logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
   { name: "Synera", initials: "SY", logo: "/partners/synera.png", url: "https://www.synera.io/", logoTone: "invert" },
   { name: "Ditt", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
-  { name: "RELEX Solutions", initials: "RX", logo: "/partners/relex.png", url: "https://relexsolutions.com/" },
+  { name: "RELEX Solutions", initials: "RX", logo: null, url: "https://relexsolutions.com/" },
   { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.ch/" },
   { name: "Wild Inc.", initials: "WI", logo: null, url: null },
 ];
@@ -36,24 +36,19 @@ function LogoMark({ partner }: { partner: Partner }) {
     );
   }
 
+  // Returns a single rectangle with the name centered inside
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
-      <span
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-xs font-semibold text-[var(--brand-accent-bright)] sm:h-12 sm:w-12 sm:text-sm"
-        aria-hidden="true"
-      >
-        {partner.initials}
-      </span>
-      <span className="text-center text-xs font-medium leading-tight text-neutral-300 sm:text-sm">
-        {partner.name}
-      </span>
+    <div className="flex h-10 items-center justify-center whitespace-nowrap rounded border border-white/20 px-4 text-sm font-medium text-neutral-300 sm:h-12 sm:text-base">
+      {partner.name}
     </div>
   );
 }
 
 function LogoTile({ partner }: { partner: Partner }) {
+  // Removed fixed width (w-16, sm:w-24) to allow the text rectangles to fit the full name. 
+  // Added px-2 for a little padding between items.
   const className =
-    "group flex h-16 w-16 shrink-0 items-center justify-center transition duration-200 hover:-translate-y-1 sm:h-24 sm:w-24";
+    "group flex h-16 shrink-0 items-center justify-center px-2 transition duration-200 hover:-translate-y-1 sm:h-24";
 
   if (partner.url) {
     return (

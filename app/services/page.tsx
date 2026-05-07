@@ -187,7 +187,7 @@ export default function Page() {
                         />
                         <PastProject
                             company="Imverse"
-                            companyWebsite="https://www.imverse.ch/"
+                            companyWebsite="https://www.imverse.com//"
                             images={[imverse1]}
                             projects={[
                                 <ProjectBullet key="imverse-1">GPGPU Consulting and Contracting to solve Computer Vision problems</ProjectBullet>,

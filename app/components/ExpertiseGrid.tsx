@@ -5,7 +5,7 @@ const items: { title: string; image: string | null; href: string }[] = [
   { title: "Path Tracing and Physically-Based Rendering",  image: "/nabla/rt_screenshot_both.jpg",       href: "#project-ditt"         },
   { title: "CAD & Scientific Visualization",               image: "/clients/apps_in_cadd/scene1_cropped.png", href: "#project-appscadd" },
   { title: "VR & Mobile GPU",                              image: "/clients/wild/wild3.jpg",      href: "#project-wild"         },
-  { title: "Computational Geometry",                       image: "/clients/apps_in_cadd/drawing3.jpg",      href: "#project-appscadd" },
+  { title: "Computational Geometry",                       image: "/clients/apps_in_cadd/offset_curve.gif",      href: "#project-appscadd" },
   { title: "High-Performance Compute & Optimization",      image: "/nabla/nsc.png",                      href: "#projects"             },
   { title: "Photogrammetry and Differentiable Rendering",  image: "/clients/baw/volume_reconstruct.png", href: "#project-buildaworld"  },
 ];

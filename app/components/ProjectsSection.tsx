@@ -304,9 +304,6 @@ export default function ProjectsSection() {
         <div className="section-head mt-7 mb-7 sm:mb-9">
           <p className="section-kicker">Commercial work</p>
           <h2 className="section-heading">Engineered Solutions for Our Partners</h2>
-          <p className="section-lede text-neutral-400">
-            Long-term rendering, GPU, compiler and visualization work delivered close to client engineering teams.
-          </p>
         </div>
 
         <div className="flex flex-col gap-8 sm:gap-9">

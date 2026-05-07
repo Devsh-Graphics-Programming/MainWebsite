@@ -128,7 +128,7 @@ function Slideshow() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2" role="tablist" aria-label="Nabla showcase slides">
+      <div className="flex items-center justify-center gap-3 pt-2" role="tablist" aria-label="Nabla showcase slides">
         {slides.map((slideItem, index) => (
           <button
             key={slideItem.caption}
@@ -136,8 +136,10 @@ function Slideshow() {
             aria-selected={index === active}
             aria-label={slideItem.caption}
             onClick={() => goTo(index)}
-            className={`h-2 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-accent)] ${
-              index === active ? "w-6 bg-[var(--brand-accent)]" : "w-2 bg-[var(--brand-accent)]/30"
+            className={` rounded-full ring-1 ring-inset ring-[var(--brand-accent)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+              index === active 
+                ? "h-2 w-4 bg-[var(--brand-accent)] " 
+                : "h-2 w-2 bg-transparent hover:bg-[var(--brand-accent)]/30"
             }`}
           />
         ))}

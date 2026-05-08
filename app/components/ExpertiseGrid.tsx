@@ -1,14 +1,51 @@
-import Image from "next/image";
+"use client";
 
-const items: { title: string; image: string | null; href: string }[] = [
-  { title: "Real-Time Graphics & Engine Optimization",     image: "/clients/baw/baw4.jpg",         href: "#projects"             },
-  { title: "Path Tracing and Physically-Based Rendering",  image: "/nabla/rt_screenshot_both.jpg",       href: "#project-ditt"         },
-  { title: "CAD & Scientific Visualization",               image: "/clients/apps_in_cadd/scene1_cropped.png", href: "#project-appscadd" },
-  { title: "VR & Mobile GPU",                              image: "/clients/wild/wild3.jpg",      href: "#project-wild"         },
-  { title: "Computational Geometry",                       image: "/clients/apps_in_cadd/offset_curve.gif",      href: "#project-appscadd" },
-  { title: "High-Performance Compute & Optimization",      image: "/nabla/nsc.png",                      href: "#projects"             },
-  { title: "Photogrammetry and Differentiable Rendering",  image: "/clients/baw/volume_reconstruct.png", href: "#project-buildaworld"  },
+import { useState, useEffect } from "react";
+import Image from "next/image"; // Assuming Next.js, adjust if needed
+
+const items: { title: string; images: string[]; href: string }[] = [
+  { 
+    title: "Real-Time Graphics & Engine Optimization", 
+    images: ["/clients/baw/baw4.jpg"], 
+    href: "#projects" 
+  },
+  { 
+    title: "Path Tracing and Physically-Based Rendering", 
+    images: [
+      "/nabla/rt_screenshot_both.jpg",
+      "/clients/ditt/ditt4.png", 
+      "/clients/ditt/ditt5.jpg",
+      "/clients/ditt/ditt2.jpg"
+    ], 
+    href: "#project-ditt" 
+  },
+  { 
+    title: "CAD & Scientific Visualization", 
+    images: ["/clients/apps_in_cadd/scene1_cropped.png"], 
+    href: "#project-appscadd" 
+  },
+  { 
+    title: "VR & Mobile GPU", 
+    images: ["/clients/wild/wild3.jpg"], 
+    href: "#project-wild" 
+  },
+  { 
+    title: "Computational Geometry", 
+    images: ["/clients/apps_in_cadd/offset_curve.gif"], 
+    href: "#project-appscadd" 
+  },
+  { 
+    title: "High-Performance Compute & Optimization", 
+    images: ["/nabla/nsc.png"], 
+    href: "#projects" 
+  },
+  { 
+    title: "Photogrammetry and Differentiable Rendering", 
+    images: ["/clients/baw/volume_reconstruct.png"], 
+    href: "#project-buildaworld" 
+  },
 ];
+
 function PlaceholderIcon() {
   return (
     <svg
@@ -29,22 +66,41 @@ function PlaceholderIcon() {
   );
 }
 
-function Card({ title, image, href }: { title: string; image: string | null; href: string }) {
+function Card({ title, images, href }: { title: string; images: string[]; href: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Handle the slow slideshow effect
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 6000); // 6 seconds per image
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   return (
     <a
       href={href}
       aria-label={`Jump to ${title}`}
       className="media-hover group relative block aspect-[4/3] max-w-[22rem] flex-[1_1_15rem] overflow-hidden rounded-lg border border-white/10 bg-[var(--surface-soft)] sm:max-w-[19rem]"
     >
-      {image ? (
-        <Image
-          src={image}
-          alt={title}
-          fill
-          sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
-          loading="eager"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+      {images.length > 0 ? (
+        // Render all images and fade between them to prevent "fade to black"
+        images.map((src, index) => (
+          <Image
+            key={src}
+            src={src}
+            alt={`${title} - image ${index + 1}`}
+            fill
+            sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
+            loading={index === 0 ? "eager" : "lazy"}
+            className={`object-cover transition-all duration-[1500ms] ease-in-out group-hover:scale-105 ${
+              index === currentIndex ? "opacity-100 blur-0" : "opacity-0 blur-md"
+            }`}
+          />
+        ))
       ) : (
         <>
           <div className="absolute inset-0 bg-[#111]" />
@@ -54,10 +110,10 @@ function Card({ title, image, href }: { title: string; image: string | null; hre
         </>
       )}
 
-      <div className="absolute inset-0 pointer-events-none rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70" />
+      <div className="absolute inset-0 pointer-events-none rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70 z-20" />
 
       {/* The Glass Text Container - Fixed Height */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 flex items-center justify-center px-4 bg-black/40 backdrop-blur-md border-t border-white/10">
+      <div className="absolute bottom-0 left-0 right-0 h-16 flex items-center justify-center px-4 bg-black/40 backdrop-blur-md border-t border-white/10 z-20">
         <p className="!m-0 text-center text-sm font-medium leading-snug text-white drop-shadow transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)] sm:text-base">
           {title}
         </p>
@@ -75,7 +131,7 @@ export default function ExpertiseGrid() {
         </div>
         <div className="flex w-full flex-wrap justify-center gap-4">
           {items.map((it) => (
-            <Card key={it.title} title={it.title} image={it.image} href={it.href} />
+            <Card key={it.title} title={it.title} images={it.images} href={it.href} />
           ))}
         </div>
       </div>

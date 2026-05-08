@@ -51,8 +51,7 @@ export default function Navbar() {
                 <Link className="flex min-w-0 flex-row items-center gap-2.5" href="/">
                     <Image src={DevshLogo} alt="Company Logo" className="h-8 w-8 flex-shrink-0"/>
                     <span className="min-w-0 truncate text-base font-semibold leading-none sm:text-xl">
-                        <span className="sm:hidden">DevSH Graphics</span>
-                        <span className="hidden sm:inline">DevSH Graphics Programming</span>
+                        <span className="">DevSH Graphics Programming</span>
                     </span>
                 </Link>
                 <ul className="hidden shrink-0 flex-row items-center gap-1 md:flex">

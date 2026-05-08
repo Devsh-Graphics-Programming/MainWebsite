@@ -38,7 +38,7 @@ const projects: Project[] = [
       { src: "/nabla_screenshot1.jpg", text: "????", fit: "cover" },
       { src: "/clients/ditt/ditt1.jpg", text: "????", fit: "cover" },
       { src: "/clients/ditt/ditt2.jpg", text: "????", fit: "cover" },
-      { src: "/clients/ditt/ditt4.png", text: "????", fit: "contain" },
+      { src: "/clients/ditt/ditt4.png", text: "Lindt Office", fit: "contain" },
     ],
   },
   {

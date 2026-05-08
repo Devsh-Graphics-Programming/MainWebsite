@@ -1,7 +1,7 @@
 type Size = "md" | "lg";
 
 export default function CTAButton({
-  href = "mailto:newclients@devsh.eu",
+  href = "#",
   label = "Talk to our experts",
   size = "lg",
 }: {

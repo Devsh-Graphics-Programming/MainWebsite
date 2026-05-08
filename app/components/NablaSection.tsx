@@ -13,11 +13,11 @@ const NABLA = {
     commits: "15,969",
   },
   highlights: [
-    "Single-source HLSL202x / C++20 Standard Template Header-Only Library",
-    "CUDA-like programming experience within the Vulkan ecosystem",
-    "Utility and Rapid Prototyping Framework for modern GPU development",
-    "Advancing Open Source ecosystems with innovative tooling",
-    "Focus on Khronos Standards compliance and compatibility",
+    "Single-source HLSL202x/C++20 Standard Template Header-Only Library",
+    "SPIR-V and Vulkan as First-Class Citizens",
+    "Utilities for Rapid Prototyping for modern GPU Workloads (raytracing, compute, raster, etc.)",
+    "Unit-Tested BxDFs for Physically Based Rendering",
+    "Intelligent GPU Object Lifecycle Tracking and Resource Management",
   ],
   slides: [
     { src: "/nabla/rt_screenshot_both.jpg", caption: "Raytracing" },
@@ -81,55 +81,92 @@ function StatBadge({ icon, value, label }: { icon: ReactNode; value: string; lab
 function Slideshow() {
   const slides = NABLA.slides;
   const [active, setActive] = useState(0);
-  const [visible, setVisible] = useState(0);
-  const [opacity, setOpacity] = useState(1);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const goTo = useCallback(
-    (idx: number) => {
-      if (idx === active) return;
-      if (timerRef.current) clearTimeout(timerRef.current);
-      setOpacity(0);
-      timerRef.current = setTimeout(() => {
-        setVisible(idx);
-        setActive(idx);
-        setOpacity(1);
-      }, FADE_MS);
-    },
-    [active],
-  );
+  // Touch state for swiping
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
+  // Minimum distance (in pixels) to trigger a swipe
+  const minSwipeDistance = 50;
+
+  const goTo = useCallback((idx: number) => {
+    setActive(idx);
+  }, []);
+
+  const nextSlide = useCallback(() => {
+    setActive((current) => (current + 1) % slides.length);
+  }, [slides.length]);
+
+  const prevSlide = useCallback(() => {
+    setActive((current) => (current - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  // Touch Event Handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null); // Reset touch end to prevent false positives from previous swipes
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  // Auto-play timer
   useEffect(() => {
-    const interval = setInterval(() => goTo((active + 1) % slides.length), AUTO_MS);
+    const interval = setInterval(nextSlide, AUTO_MS);
+    // Adding `active` to the dependency array ensures the timer resets 
+    // whenever the user manually changes the slide (via swipe or dots).
     return () => clearInterval(interval);
-  }, [active, goTo, slides.length]);
-
-  useEffect(
-    () => () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    },
-    [],
-  );
-
-  const slide = slides[visible];
+  }, [nextSlide, active]);
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black">
-        <div className="absolute inset-0 transition-opacity duration-500" style={{ opacity }}>
-          <Image
-            src={slide.src}
-            alt={slide.caption}
-            fill
-            sizes="(min-width: 64rem) 50vw, 100vw"
-            loading="eager"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.035]"
-            unoptimized={slide.src.endsWith(".gif")}
-          />
-        </div>
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-5 py-4">
-          <p className="!m-0 text-base font-medium text-white sm:text-xl">{slide.caption}</p>
-        </div>
+      <div 
+        className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black touch-pan-y"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        {/* Render all slides stacked, fading opacity/blur via CSS */}
+        {slides.map((slide, index) => {
+          const isActive = index === active;
+
+          return (
+            <div
+              key={slide.src}
+              className={`absolute inset-0 transition-all duration-[800ms] ease-in-out ${
+                isActive ? "z-10 opacity-100 blur-0" : "z-0 opacity-0 blur-xl"
+              }`}
+            >
+              <Image
+                src={slide.src}
+                alt={slide.caption}
+                fill
+                sizes="(min-width: 64rem) 50vw, 100vw"
+                loading={index === 0 ? "eager" : "lazy"} 
+                className="object-cover transition-transform duration-[800ms] group-hover:scale-[1.035] pointer-events-none"
+                unoptimized={slide.src.endsWith(".gif")}
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-5 py-4 pointer-events-none">
+                <p className="!m-0 text-base font-medium text-white sm:text-xl">{slide.caption}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       <div className="flex items-center justify-center gap-3 pt-2" role="tablist" aria-label="Nabla showcase slides">
@@ -140,9 +177,9 @@ function Slideshow() {
             aria-selected={index === active}
             aria-label={slideItem.caption}
             onClick={() => goTo(index)}
-            className={` rounded-full ring-1 ring-inset ring-[var(--brand-accent)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
-              index === active 
-                ? "h-2 w-4 bg-[var(--brand-accent)] " 
+            className={`rounded-full ring-1 ring-inset ring-[var(--brand-accent)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
+              index === active
+                ? "h-2 w-4 bg-[var(--brand-accent)]"
                 : "h-2 w-2 bg-transparent hover:bg-[var(--brand-accent)]/30"
             }`}
           />
@@ -156,7 +193,6 @@ function NablaGlyph({ className = "h-12 w-12 sm:h-14 sm:w-14" }: { className?: s
   return (
     <span className={`relative mx-auto grid select-none place-items-center ${className}`}>
       <span
-        aria-hidden="true"
         className="absolute -inset-[180%] rounded-full bg-[radial-gradient(circle,rgba(125,205,185,0.5)_0%,rgba(85,181,166,0.2)_32%,transparent_70%)] blur-2xl"
       />
       <Image
@@ -190,12 +226,6 @@ function NablaBackdrop() {
           fillOpacity="0.08"
           stroke="currentColor"
           strokeWidth="2.2"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M29 27h42L50 72 29 27Z"
-          stroke="currentColor"
-          strokeWidth="1"
           strokeLinejoin="round"
         />
       </svg>

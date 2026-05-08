@@ -25,7 +25,7 @@ const items: { title: string; images: string[]; href: string }[] = [
     href: "#project-appscadd" 
   },
   { 
-    title: "VR & Mobile GPU", 
+    title: "VR & Mobile GPU Development", 
     images: ["/clients/wild/wild3.jpg"], 
     href: "#project-wild" 
   },
@@ -112,9 +112,9 @@ function Card({ title, images, href }: { title: string; images: string[]; href: 
 
       <div className="absolute inset-0 pointer-events-none rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70 z-20" />
 
-      {/* The Glass Text Container - Fixed Height */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 flex items-center justify-center px-4 bg-black/40 backdrop-blur-md border-t border-white/10 z-20">
-        <p className="!m-0 text-center text-sm font-medium leading-snug text-white drop-shadow transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)] sm:text-base">
+      {/* The Glass Text Container - Responsive Height */}
+      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center p-2 sm:h-16 sm:px-4 sm:py-0 bg-black/40 backdrop-blur-md border-t border-white/10 z-20">
+        <p className="!m-0 text-center text-xs font-medium leading-tight text-white drop-shadow transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)] sm:text-base sm:leading-snug">
           {title}
         </p>
       </div>
@@ -129,7 +129,10 @@ export default function ExpertiseGrid() {
         <div className="section-head mb-7 sm:mb-8">
           <h2 className="section-heading">Our Expertise</h2>
         </div>
-        <div className="flex w-full flex-wrap justify-center gap-4">
+        {/* grid grid-cols-2: applies 2 columns on mobile 
+          sm:flex sm:flex-wrap sm:justify-center: brings back your original layout for desktop
+        */}
+        <div className="grid w-full grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:justify-center">
           {items.map((it) => (
             <Card key={it.title} title={it.title} images={it.images} href={it.href} />
           ))}

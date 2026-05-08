@@ -13,8 +13,8 @@ export default function HeroHeader() {
       />
       <div className="site-container relative flex flex-col items-center text-center">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="!my-0 max-w-5xl text-4xl font-bold leading-[1.02] sm:text-5xl lg:text-6xl xl:text-7xl">
-            Elite Graphics &amp; Performance
+          <h1 className="!my-0 max-w-5xl text-4xl font-bold leading-[1.02] sm:text-5xl lg:text-4xl xl:text-5xl">
+            High-Performance Graphics and Software Development
           </h1>
           <p className="!m-0 max-w-3xl text-base leading-relaxed text-neutral-300 sm:text-lg lg:text-xl">
             Accelerate your visually-demanding application with next-generation rendering solutions, high-performance compute, and relentless optimization.

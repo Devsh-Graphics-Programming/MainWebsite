@@ -27,15 +27,7 @@ const testimonials: Testimonial[] = [
     companyIcon: "/partners/ditt.png", // <-- Add this line
     testimonial:
       "The DevSH team transformed our CPU render farm for architectural visualization into a scalable GPU-based system with outstanding performance and reliability. Their expertise and commitment to achieving the best results were clear throughout the project. They maintained full backward compatibility, ensuring a smooth transition with minimal disruption to our workflows.",
-  },
-  {
-    name: "Alice Johnson",
-    role: "Product Lead",
-    profilePicture: "/testimonials/profile-3.jpg",
-    companyIcon: "/partners/synera.png", // <-- Add this line
-    testimonial:
-      "Great work on the project!",
-  },
+  }
 ];
 
 export default function TestimonialsSection() {
@@ -95,7 +87,7 @@ export default function TestimonialsSection() {
             {testimonials.map((t, idx) => (
               <div
                 key={idx}
-                className="flex flex-col bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 md:p-8 shrink-0 md:snap-center w-full md:w-[500px] lg:w-[600px] h-auto md:h-[500px]"
+                className="flex flex-col bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 md:p-8 shrink-0 md:snap-center w-full md:w-[calc(50%-8px)] lg:w-[calc(50%-10px)] max-w-[600px] h-auto md:h-[500px]"
               >
                 
                 {/* UPDATED PROFILE HEADER

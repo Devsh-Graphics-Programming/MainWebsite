@@ -2,8 +2,8 @@ import Image from "next/image";
 
 type ProjectImage = {
   src: string;
-  alt: string;
   fit?: "cover" | "contain";
+  text?: string;
 };
 
 type Project = {
@@ -35,10 +35,10 @@ const projects: Project[] = [
       "Ongoing Vulkan Real-Time Path Tracer development",
     ],
     images: [
-      { src: "/nabla_screenshot1.jpg", alt: "Path traced interior scene", fit: "cover" },
-      { src: "/clients/ditt/ditt1.jpg", alt: "Interior design rendering viewport", fit: "cover" },
-      { src: "/clients/ditt/ditt2.jpg", alt: "Rendered interior preview", fit: "cover" },
-      { src: "/clients/ditt/ditt4.png", alt: "Rendering pipeline output", fit: "contain" },
+      { src: "/nabla_screenshot1.jpg", text: "????", fit: "cover" },
+      { src: "/clients/ditt/ditt1.jpg", text: "????", fit: "cover" },
+      { src: "/clients/ditt/ditt2.jpg", text: "????", fit: "cover" },
+      { src: "/clients/ditt/ditt4.png", text: "????", fit: "contain" },
     ],
   },
   {
@@ -57,14 +57,14 @@ const projects: Project[] = [
       "Ongoing optimisation and support during the lead-up to the public BETA release",
     ],
     images: [
-      { src: "/clients/apps_in_cadd/scene1.png", alt: "n4ce point cloud rendering viewport", fit: "contain" },
-      { src: "/clients/apps_in_cadd/scene2.png", alt: "Large point cloud terrain visualization", fit: "cover" },
+      { src: "/clients/apps_in_cadd/scene1.png", text: "n4ce by Applications in CADD", fit: "contain" },
+      { src: "/clients/apps_in_cadd/scene2.png", text: "n4ce by Applications in CADD", fit: "cover" },
     ],
     visualLayout: "stacked",
   },
   {
     slug: "wild",
-    company: "Wild Inc.",
+    company: "Wild Software Inc.",
     title: "Vulkan Mobile GPU Rendering",
     summary: "Deep Vulkan work for mobile GPUs, focused on synchronization, bindless rendering and tile-based renderer constraints.",
     bullets: [
@@ -76,9 +76,9 @@ const projects: Project[] = [
       "And much more",
     ],
     images: [
-      { src: "/clients/wild/wild_gif2.gif", alt: "Mobile rendering capture", fit: "cover" },
-      { src: "/clients/wild/wild3.jpg", alt: "Wild project rendering scene", fit: "cover" },
-      { src: "/clients/wild/wild4.jpg", alt: "Wild rendering environment", fit: "cover" },
+      { src: "/clients/wild/wild_gif2.gif", text: "Factions by Wild Software Inc.", fit: "cover" },
+      { src: "/clients/wild/wild3.jpg", text: "", fit: "cover" },
+      { src: "/clients/wild/wild4.jpg", text: "", fit: "cover" },
     ],
   },
   {
@@ -92,7 +92,7 @@ const projects: Project[] = [
       "GPU Accelerated Silhouette Carving from RGB+D real-time video inputs",
     ],
     images: [
-      { src: "/clients/imverse/imverse1.webp", alt: "Imverse volumetric capture output", fit: "cover" },
+      { src: "/clients/imverse/imverse1.webp", text: "????", fit: "cover" },
     ],
   },
   {
@@ -138,10 +138,10 @@ const projects: Project[] = [
       "Physics Engine Development (high performance voxel connectivity for destruction)",
     ],
     images: [
-      { src: "/clients/baw/volume_reconstruct.png", alt: "Volume reconstruction output", fit: "cover" },
-      { src: "/clients/baw/baw3.jpg", alt: "Generated world terrain", fit: "cover" },
-      { src: "/clients/baw/baw2.jpg", alt: "Photogrammetry reconstruction scene", fit: "cover" },
-      { src: "/clients/baw/baw7.jpg", alt: "Point cloud reconstruction output", fit: "cover" },
+      { src: "/clients/baw/volume_reconstruct.png", text: "???", fit: "cover" },
+      { src: "/clients/baw/baw3.jpg", text: "???", fit: "cover" },
+      { src: "/clients/baw/baw2.jpg", text: "???", fit: "cover" },
+      { src: "/clients/baw/baw7.jpg", text: "???", fit: "cover" },
     ],
   },
 ];
@@ -151,7 +151,7 @@ function ProjectImageCard({ image, priority }: { image: ProjectImage; priority?:
     <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg bg-black ring-1 ring-inset ring-white/10">
       <Image
         src={image.src}
-        alt={image.alt}
+        alt=""
         fill
         sizes="(min-width: 64rem) 50vw, 100vw"
         priority={priority}
@@ -159,6 +159,13 @@ function ProjectImageCard({ image, priority }: { image: ProjectImage; priority?:
         unoptimized={image.src.endsWith(".gif")}
         className={`${image.fit === "contain" ? "object-contain" : "object-cover"} rounded-lg transition-transform duration-500 group-hover:scale-[1.035]`}
       />
+      {image.text && (
+        <div className="absolute bottom-0 left-0 px-1.5 py-1 bg-black/35 backdrop-blur-md rounded-tr-md">
+          <p className="m-0 text-[10px] sm:text-xs font-medium leading-none text-white/70">
+            {image.text}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

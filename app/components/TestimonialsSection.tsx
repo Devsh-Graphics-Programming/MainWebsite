@@ -21,12 +21,12 @@ const testimonials: Testimonial[] = [
       "Matt, Erfan and the rest of the Devsh team have been amazing to work with.  We presented them with a very difficult challenge which was to take a large and very old, plus some what outdated C++ codebase written for a different time, and bring it up to date so that we could make use of their Vulkan based Nabla graphics engine. They broke the challenge down into manageable chunks and then over the past few years have proceeded to inject lightening fast graphics into our application.  All agreed targets have been met on time, and on budget.  I can not thank them enough for the hard work and dedication they have shown towards achieving our goals.  Their knowledge and professionalism has been second to none!",
   },
   {
-    name: "John Doe",
-    role: "Technical Director",
-    profilePicture: "/testimonials/profile-2.jpg",
+    name: "Yoran Bosman",
+    role: "Senior Software Architect",
+    profilePicture: "/testimonials/yoran.jpg",
     companyIcon: "/partners/ditt.png", // <-- Add this line
     testimonial:
-      "They are a pretty cool team.",
+      "The DevSH team transformed our CPU render farm for architectural visualization into a scalable GPU-based system with outstanding performance and reliability. Their expertise and commitment to achieving the best results were clear throughout the project. They maintained full backward compatibility, ensuring a smooth transition with minimal disruption to our workflows.",
   },
   {
     name: "Alice Johnson",

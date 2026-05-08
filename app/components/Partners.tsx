@@ -15,7 +15,7 @@ const partners: Partner[] = [
   { name: "Ditt", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
   { name: "RELEX Solutions", initials: "RX", logo: null, url: "https://relexsolutions.com/" },
   { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.ch/" },
-  { name: "Wild Inc.", initials: "WI", logo: "/partners/factionsvr.png", url: "https://factionsvr.com/" },
+  { name: "Wild Software Inc", initials: "WI", logo: "/partners/wild.jpg", url: "https://factionsvr.com/" },
 ];
 
 function LogoMark({ partner }: { partner: Partner }) {

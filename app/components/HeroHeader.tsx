@@ -21,7 +21,7 @@ export default function HeroHeader() {
           </p>
         </div>
         <div className="mt-8 sm:mt-9">
-          <CTAButton />
+          <CTAButton href="/services" />
         </div>
         <div
           aria-hidden="true"

@@ -244,7 +244,6 @@ export default function NablaSection() {
       <div className="site-container relative z-10">
         <div className="section-head mb-7 sm:mb-8">
           <NablaGlyph />
-          <p className="section-kicker">Open source engine work</p>
           <h2 className="!m-0 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">Nabla</h2>
           <p className="!m-0 text-base leading-relaxed text-neutral-300 sm:text-lg">
             Our Open Source Rendering Framework

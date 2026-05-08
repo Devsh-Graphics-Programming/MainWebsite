@@ -41,7 +41,7 @@ export default function AboutSection() {
         </div>
 
         <div className="mt-10 flex justify-center sm:mt-12">
-          <CTAButton />
+          <CTAButton href="/services" />
         </div>
       </div>
     </section>

@@ -13,9 +13,9 @@ const partners: Partner[] = [
   { name: "Applications in CADD", initials: "AC", logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
   { name: "Synera", initials: "SY", logo: "/partners/synera.png", url: "https://www.synera.io/", logoTone: "invert" },
   { name: "Ditt", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
-  { name: "RELEX Solutions", initials: "RX", logo: null, url: "https://relexsolutions.com/" },
   { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.ch/" },
   { name: "Wild Software Inc", initials: "WI", logo: "/partners/wild.jpg", url: "https://factionsvr.com/" },
+  { name: "RELEX Solutions", initials: "RX", logo: null, url: "https://relexsolutions.com/" },
 ];
 
 function LogoMark({ partner }: { partner: Partner }) {

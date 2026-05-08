@@ -3,32 +3,68 @@
 import { useState, useEffect } from "react";
 import { Paragraph, Chapter } from "../components/TextUtils";
 
-// The interactive email revealer component
 function ContactEmail() {
     const [isShown, setIsShown] = useState<boolean>(false);
-    const [email, setEmail] = useState<string>("");
+    const [copied, setCopied] = useState<boolean>(false);
+    const email = "newclients@devsh.eu";
 
-    useEffect(() => {
-        setEmail(isShown ? "newclients@devsh.eu" : "");
-    }, [isShown]);
+    const handleCopy = async () => {
+        if (!isShown) {
+            setIsShown(true);
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText(email);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+            console.error("Failed to copy!", err);
+        }
+    };
 
     return (
-        <button
-            onClick={() => setIsShown(true)}
-            className={`inline-flex items-center justify-center px-6 py-3 text-lg font-medium border ${
-                isShown
-                    ? "border-teal-500/50 bg-teal-500/10 text-teal-400 select-all cursor-text"
-                    : "border-zinc-700 bg-zinc-900/50 text-zinc-300 hover:border-teal-500/50 hover:bg-zinc-800 cursor-pointer"
-            } rounded-full transition-all duration-300 shadow-lg`}
-        >
-            {isShown ? (
-                <a href={`mailto:${email}`} className="hover:underline">
-                    {email}
-                </a>
-            ) : (
-                "Show Email Address"
-            )}
-        </button>
+        <div className="relative group">
+            {/* Background ambient glow */}
+            <div className={`absolute -inset-1 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full blur opacity-20 transition duration-1000 ${isShown ? 'group-hover:opacity-40' : 'group-hover:opacity-60'}`}></div>
+            
+            <button
+                onClick={handleCopy}
+                className={`
+                    relative inline-flex items-center justify-center 
+                    px-10 py-5 text-xl sm:text-2xl font-bold 
+                    rounded-full transition-all duration-500 
+                    border-2 transform hover:scale-105 active:scale-95
+                    ${
+                        isShown
+                            ? "border-teal-400 bg-zinc-900 text-teal-300 cursor-copy shadow-[0_0_30px_-5px_rgba(20,184,166,0.4)]"
+                            : "border-teal-500/50 bg-zinc-900 text-white hover:border-teal-400 cursor-pointer"
+                    }
+                `}
+            >
+                {isShown ? (
+                    <div className="flex items-center gap-4">
+                        <span className="select-all font-mono tracking-tight">{email}</span>
+                        <div className={`
+                            text-xs uppercase tracking-widest px-3 py-1 rounded-full border
+                            transition-all duration-300
+                            ${copied 
+                                ? "bg-teal-500 border-teal-400 text-white" 
+                                : "bg-zinc-800 border-zinc-700 text-zinc-400 group-hover:text-teal-300"}
+                        `}>
+                            {copied ? "Copied!" : "Click to Copy"}
+                        </div>
+                    </div>
+                ) : (
+                    <span className="flex items-center gap-3">
+                        Show Email Address
+                        <svg className="w-6 h-6 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </span>
+                )}
+            </button>
+        </div>
     );
 }
 

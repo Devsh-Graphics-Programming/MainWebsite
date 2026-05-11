@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Paragraph, Chapter } from "../components/TextUtils";
+import Image from "next/image";
 
 function ContactEmail() {
     const [isShown, setIsShown] = useState<boolean>(false);
@@ -68,6 +69,8 @@ function ContactEmail() {
     );
 }
 
+
+
 export default function Page() {
     return (
         <main className="section-pad min-h-screen">
@@ -83,43 +86,70 @@ export default function Page() {
 
                 {/* Unified & Upgraded Sales Copy */}
                 <div className="flex flex-col gap-16">
-                    <Chapter title="An Unbeatable Collaborative Offering">
-                        <Paragraph>
-                            When you partner with us, you don't just get a dedicated consultant—you gain the collective expertise of our entire team. Our engineers constantly share insights and experience, ensuring that every solution we deliver is battle-tested, highly optimized, and a step above what isolated developers can achieve. 
-                            <br /><br />
-                            Furthermore, our clients enjoy massive <strong>50%+ discounts</strong> on the co-development and maintenance of core Vulkan Utilities required for their projects (comparable to CUB in the CUDA ecosystem).
-                        </Paragraph>
-                    </Chapter>
                     
+                    <Chapter title="The Power of the Collective">
+                        <Paragraph>
+                            When you partner with DevSH, you aren’t just hiring isolated consultants—you gain the collective expertise of our entire team. Our engineers constantly share insights and experience, ensuring that every solution we deliver is battle-tested and a step above what isolated developers can achieve. Whether you bring on a single dedicated developer or a specialized task force, we constantly share knowledge, research, and invent new algorithms together.
+                        </Paragraph>
+                        
+                        {/* DevSH Collective Image*/}
+                        <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg bg-black ring-1 ring-inset ring-white/10">
+                        <Image
+                            src="image.png"
+                            alt=""
+                            fill
+                            sizes="(min-width: 64rem) 50vw, 100vw"
+                        />
+                        <div className="absolute bottom-0 left-0 px-1.5 py-1 bg-black/35 backdrop-blur-md rounded-tr-md">
+                        <p className="m-0 text-[10px] sm:text-xs font-medium leading-none text-white/70">
+                            DevSH Collective
+                        </p>
+                        </div>
+                        </div>
+
+                    </Chapter>
+
                     <Chapter title="Proven Track Record">
                         <Paragraph>
-                            Our portfolio spans long-term, high-impact engagements with industry innovators including Build A World Aps., Imverse S.A., S Ditt B.V., and Applications In CADD. 
-                            <br /><br />
-                            Beyond direct development, we are trusted to conduct deep Graphics Performance Appraisals and outsourced R&amp;D for companies like RELEX Solutions and Synera GmbH. While our core specialty lies in the demanding CAD and architectural spaces, we frequently leverage our engine expertise for game development applications.
+                            We build long-term technical partnerships, stepping in to solve complex architectural challenges and rendering bottlenecks that require deep, highly specialized focus.
+                        </Paragraph>
+                        <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
+                            <li>Long-Term R&amp;D &amp; Co-Development: Trusted by industry innovators including Imverse S.A., Ditt B.V., and Applications In CADD to architect and maintain critical rendering infrastructure.</li>
+                            <li>Performance Appraisals &amp; Outsourced R&amp;D: Delivered comprehensive graphics performance diagnostics, providing actionable short-term performance wins and long-term architectural roadmaps for RELEX Solutions and Synera GmbH. </li>
+                        </ul>
+                    </Chapter>
+
+                    <Chapter title="Driving the Industry Forward">
+                        <Paragraph>
+                            We don't just use modern graphics APIs; we help shape the ecosystem. We are active contributors to the graphics programming community.
+                        </Paragraph>
+                        <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
+                            <li><strong>Open Source Contributions:</strong> You can find our GitHub profiles highly active within the Khronos-adjacent ecosystem, including direct contributions to Vulkan Validation Layers and SPIR-V Cross.</li>
+                            <li><strong>Compiler Hardening:</strong> We have submitted over 100 bug reports and test cases for the DirectX Shader Compiler.</li>
+                            <li><strong>8-Time Speakers:</strong> Vulkanised Conference (2023, 2024, 2026)</li>
+                            <li><strong>2-Time Speakers:</strong> Shading Language Symposium</li>
+                            <li><strong>Platinum Sponsors:</strong> Vulkanised 2026</li>
+                        </ul>
+                    </Chapter>
+
+                    <Chapter title="Our Technical Arsenal">
+                        <Paragraph>
+                            We utilize a bleeding-edge, highly optimized stack to deliver scalable, cross-platform results.
+                        </Paragraph>
+                        <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
+                            <li><strong>Graphics &amp; Compute APIs:</strong> Vulkan, DirectX 12, DirectX 11, CUDA, OpenCL, WebGPU, OpenGL (including ES &amp; WebGL), NVN.</li>
+                            <li><strong>Shading &amp; Architecture:</strong> SPIR-V, HLSL 202x, modern C++, Language Engineering.</li>
+                            <li><strong>Infrastructure, CI/CD &amp; Tooling:</strong> CMake, Docker, Jenkins, Python, SWIG, .NET 7, WASM, Emscripten, TypeScript, Kubernetes, Terraform, AWS, Proxmox.</li>
+                        </ul>
+                    </Chapter>
+
+                    <Chapter title="Exclusive Partnership Incentive">
+                        <Paragraph>
+                            When you partner with DevSH, you have the option to enjoy a <strong> massive 50% discount </strong> on the co-development and ongoing maintenance of common utilities and shared infrastructural components, significantly reducing your development overhead.
                         </Paragraph>
                     </Chapter>
 
-                    <Chapter title="Industry Leaders & Open Source Pioneers">
-                        <Paragraph>
-                            We don't just use the tools; we build and refine them. Our team is deeply embedded within the Khronos ecosystem, boasting major contributions to Validation Layers, SPIR-V Cross, and over 100 distinct bug reports and test cases for the DirectX Shader Compiler. 
-                            <br /><br />
-                            We are recognized thought leaders in the rendering space, having been selected as 8-time speakers at Vulkanised and 2-time speakers at the Shading Language Symposium across 2023, 2024, and 2026. For the 2026 edition, we proudly served as Platinum Sponsors.
-                        </Paragraph>
-                    </Chapter>
-
-                    <Chapter title="Uncompromising Technical Breadth">
-                        <Paragraph>
-                            Backed by advanced degrees in Mathematics, our collective technical mastery spans the entire modern compute and graphics pipeline:
-                            <br /><br />
-                            <strong>Graphics &amp; Compute APIs:</strong> Vulkan, SPIR-V, OpenGL (including ES &amp; WebGL), DirectX 11 &amp; 12, CUDA, OpenCL, WebGPU, and NVN.
-                            <br /><br />
-                            <strong>Infrastructure &amp; Tooling:</strong> CMake, Docker, Jenkins, CI/CD, Kubernetes, Terraform, AWS, and Proxmox.
-                            <br /><br />
-                            <strong>Languages &amp; Runtimes:</strong> Python, SWIG, .NET 7, WASM, Emscripten, TypeScript, and core Language Engineering.
-                        </Paragraph>
-                    </Chapter>
                 </div>
-
             </div>
         </main>
     );

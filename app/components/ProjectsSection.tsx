@@ -35,9 +35,9 @@ const projects: Project[] = [
       "Ongoing Vulkan Real-Time Path Tracer development",
     ],
     images: [
-      { src: "/nabla_screenshot1.jpg", text: "????", fit: "cover" },
-      { src: "/clients/ditt/ditt1.jpg", text: "????", fit: "cover" },
-      { src: "/clients/ditt/ditt2.jpg", text: "????", fit: "cover" },
+      { src: "/nabla_screenshot1.jpg", text: "", fit: "cover" },
+      { src: "/clients/ditt/ditt1.jpg", text: "", fit: "cover" },
+      { src: "/clients/ditt/ditt2.jpg", text: "", fit: "cover" },
       { src: "/clients/ditt/ditt4.png", text: "Lindt Office", fit: "contain" },
     ],
   },
@@ -92,7 +92,7 @@ const projects: Project[] = [
       "GPU Accelerated Silhouette Carving from RGB+D real-time video inputs",
     ],
     images: [
-      { src: "/clients/imverse/imverse1.webp", text: "????", fit: "cover" },
+      { src: "/clients/imverse/imverse1.webp", text: "", fit: "cover" },
     ],
   },
   {
@@ -138,10 +138,10 @@ const projects: Project[] = [
       "Physics Engine Development (high performance voxel connectivity for destruction)",
     ],
     images: [
-      { src: "/clients/baw/volume_reconstruct.png", text: "???", fit: "cover" },
-      { src: "/clients/baw/baw3.jpg", text: "???", fit: "cover" },
-      { src: "/clients/baw/baw2.jpg", text: "???", fit: "cover" },
-      { src: "/clients/baw/baw7.jpg", text: "???", fit: "cover" },
+      { src: "/clients/baw/volume_reconstruct.png", text: "", fit: "cover" },
+      { src: "/clients/baw/baw3.jpg", text: "", fit: "cover" },
+      { src: "/clients/baw/baw2.jpg", text: "", fit: "cover" },
+      { src: "/clients/baw/baw7.jpg", text: "", fit: "cover" },
     ],
   },
 ];

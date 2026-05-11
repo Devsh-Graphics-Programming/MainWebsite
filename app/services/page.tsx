@@ -91,22 +91,6 @@ export default function Page() {
                         <Paragraph>
                             When you partner with DevSH, you aren’t just hiring isolated consultants—you gain the collective expertise of our entire team. Our engineers constantly share insights and experience, ensuring that every solution we deliver is battle-tested and a step above what isolated developers can achieve. Whether you bring on a single dedicated developer or a specialized task force, we constantly share knowledge, research, and invent new algorithms together.
                         </Paragraph>
-                        
-                        {/* DevSH Collective Image*/}
-                        <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg bg-black ring-1 ring-inset ring-white/10">
-                        <Image
-                            src="image.png"
-                            alt=""
-                            fill
-                            sizes="(min-width: 64rem) 50vw, 100vw"
-                        />
-                        <div className="absolute bottom-0 left-0 px-1.5 py-1 bg-black/35 backdrop-blur-md rounded-tr-md">
-                        <p className="m-0 text-[10px] sm:text-xs font-medium leading-none text-white/70">
-                            DevSH Collective
-                        </p>
-                        </div>
-                        </div>
-
                     </Chapter>
 
                     <Chapter title="Proven Track Record">

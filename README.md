@@ -3,7 +3,7 @@
     <img src="https://github.com/Devsh-Graphics-Programming/MainWebsite/actions/workflows/docker-publish.yml/badge.svg?branch=master" alt="Build Status" />
   </a>
   <a href="https://github.com/Devsh-Graphics-Programming/MainWebsite">
-    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDevsh-Graphics-Programming%2FMainWebsite%2Fmaster%2F.github%2Fbadges%2Fmaster-payload-size.json" alt="Master payload size" />
+    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDevsh-Graphics-Programming%2FMainWebsite%2Fsize-badge-data%2Fmaster-payload-size.json" alt="Master payload size" />
   </a>
   <a href="https://discord.gg/krsBcABm7u">
     <img src="https://img.shields.io/discord/308323056592486420?label=discord&logo=discord&logoColor=white&color=7289DA" alt="Join our Discord" />
@@ -24,7 +24,7 @@ This repo is a Next.js app used to generate a static site. The final production 
 
 ## Repository size budget
 - CI fails if the tracked tree exceeds `10 MiB`, `public/` exceeds `8 MiB`, any tracked blob exceeds `1 MiB`, or HEAD Git blob payloads exceed `15 MiB`.
-- Run `scripts/check-size-budget.sh` locally before adding new media. If the badge changes, commit the updated `.github/badges/master-payload-size.json`.
+- Run `scripts/check-size-budget.sh` locally before adding new media. The README badge is informational and is updated outside the size gate.
 
 ## Runtime filesystem layout
 - The image is read-only, but Caddy still needs tiny writable slots for TLS cache/autosave/lock files.

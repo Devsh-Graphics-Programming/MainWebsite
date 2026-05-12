@@ -3,7 +3,7 @@ set -euo pipefail
 
 max_history_blob_bytes="${MAX_HISTORY_BLOB_BYTES:-15728640}"
 warning_history_blob_bytes="${WARNING_HISTORY_BLOB_BYTES:-12582912}"
-badge_path="${BADGE_PATH:-.github/badges/master-payload-size.json}"
+badge_path="${BADGE_PATH:-tmp/master-payload-size.json}"
 
 history_blob_bytes="$(
   git rev-list --objects HEAD |

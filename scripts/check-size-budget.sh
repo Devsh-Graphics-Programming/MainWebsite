@@ -50,8 +50,13 @@ check_limit "Tracked public/ size" "$public_tree_bytes" "$max_public_bytes"
 echo "Largest tracked files:"
 git ls-tree -r -l HEAD |
   sort -k4,4nr |
-  head -20 |
-  awk '{ printf "  %8.2f MiB  %s\n", $4 / 1048576, $5 }'
+  awk '
+    NR <= 20 {
+      path = $5
+      for (i = 6; i <= NF; i++) path = path " " $i
+      printf "  %8.2f MiB  %s\n", $4 / 1048576, path
+    }
+  '
 
 if ! git ls-tree -r -l HEAD |
   awk -v max="$max_blob_bytes" '
@@ -89,13 +94,5 @@ fi
 
 history_blob_bytes="$(sum_head_blob_bytes)"
 check_limit "HEAD Git blob payload size" "$history_blob_bytes" "$max_history_blob_bytes"
-
-if [ -x scripts/update-size-badge.sh ]; then
-  scripts/update-size-badge.sh
-  if ! git diff --exit-code -- .github/badges/master-payload-size.json >/dev/null; then
-    echo "::error file=.github/badges/master-payload-size.json::Repository size badge is stale. Run scripts/update-size-badge.sh and commit the result."
-    fail=1
-  fi
-fi
 
 exit "$fail"

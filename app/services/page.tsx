@@ -118,7 +118,7 @@ export default function Page() {
                         </Paragraph>
                         <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
                             <li><strong>Graphics &amp; Compute APIs:</strong> Vulkan, DirectX 12, DirectX 11, CUDA, OpenCL, WebGPU, OpenGL (including ES &amp; WebGL), NVN, SYCL.</li>
-                            <li><strong>Shading &amp; Architecture:</strong> SPIR-V, HLSL 202x, Slang, GLSL and WHSL.</li>
+                            <li><strong>Shading &amp; Architecture:</strong> SPIR-V, HLSL 202x, Slang, GLSL and WGSL.</li>
                             <li><strong>Build Systems:</strong> CMake, Conan, Python, SWIG, MCJIT, ORCJIT, Clang Customizations, LLVM Toolchains.</li>
                             <li><strong>Infrastructure, CI/CD &amp; Tooling:</strong> Docker, Jenkins, Kubernetes, Terraform, AWS, Proxmox, vGPUs, virGL, venus, virtIO, QEMU.</li>
                             <li><strong>Delivering Web Experiences:</strong> WASM, Emscripten, TypeScript, .NET 7, Venus-Protocol, ChromeOS native APK development.</li>

@@ -105,7 +105,7 @@ export default function Page() {
 
                     <Chapter title="Driving the Industry Forward">
                         <Paragraph>
-                            We don't just use modern graphics APIs; we help shape the ecosystem. We are active contributors to the graphics programming community.
+                            We don&apos;t just use modern graphics APIs; we help shape the ecosystem. We are active contributors to the graphics programming community.
                         </Paragraph>
                         <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
                             <li><strong>Open Source Contributions:</strong> You can find our GitHub profiles highly active within the Khronos ecosystem. Our direct contributions span the Vulkan and SPIR-V specifications, SPIR-V Tools, Vulkan Validation Layers, CMake, Mesa, and LLVM.</li>

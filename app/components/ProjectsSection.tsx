@@ -25,7 +25,7 @@ type Project = {
 const projects: Project[] = [
   {
     slug: "ditt",
-    company: "Ditt",
+    company: "Ditt Officemakers",
     url: "https://www.ditt.nl/",
     title: "Interactive GPU Path Tracer",
     summary: "Real-time and offline rendering work for interior design workflows using OpenCL, OptiX, Mitsuba and Vulkan.",
@@ -87,7 +87,7 @@ const projects: Project[] = [
   {
     slug: "imverse",
     company: "Imverse",
-    url: "https://www.imverse.ch/",
+    url: "https://www.imverse.com/",
     title: "GPGPU Computer Vision",
     summary: "Computer vision acceleration work for real-time volumetric capture and RGB+D processing.",
     bullets: [

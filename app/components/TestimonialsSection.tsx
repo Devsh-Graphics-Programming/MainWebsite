@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
   },
   {
     name: "Yoran Bosman",
-    role: "Senior Software Architect",
+    role: "Partner & Software Architect",
     profilePicture: "/testimonials/yoran.jpg",
     companyIcon: "/partners/ditt.png",
     testimonial:

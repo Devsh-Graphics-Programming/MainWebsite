@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import "@/app/components/Navbar"
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -21,6 +20,21 @@ const futuraPT = localFont({
       path: './fonts/FuturaPT/FuturaCyrillicBook.woff2',
       weight: '300',
       style: 'normal'
+    },
+    {
+      path: './fonts/FuturaPT/FuturaCyrillicDemi.woff2',
+      weight: '600',
+      style: 'normal'
+    },
+    {
+      path: './fonts/FuturaPT/FuturaCyrillicBold.woff2',
+      weight: '700',
+      style: 'normal'
+    },
+    {
+      path: './fonts/FuturaPT/FuturaCyrillicExtraBold.woff2',
+      weight: '800',
+      style: 'normal'
     }
   ]
 })
@@ -39,9 +53,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: false
+  initialScale: 1
 }
 
 export default function RootLayout({
@@ -52,10 +64,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${futuraPT.className} antialiased h-dvh`}
+        className={`${futuraPT.className} antialiased min-h-dvh bg-black text-white`}
       >
         <Navbar/>
-        <div className="p-4">
+        <div className="min-h-dvh overflow-x-clip">
           {children}
         </div>
         <Footer/>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <path
+    d="M23 21h54L50 80 23 21Z"
+    fill="#7dcdb9"
+    fill-opacity="0.12"
+    stroke="#ecfffb"
+    stroke-width="5"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M31 29h38L50 69 31 29Z"
+    stroke="#7dcdb9"
+    stroke-width="2.4"
+    stroke-linejoin="round"
+    opacity="0.95"
+  />
+</svg>

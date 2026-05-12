@@ -1,6 +1,12 @@
 <p align="center">
+  <a href="https://github.com/Devsh-Graphics-Programming/MainWebsite/actions/workflows/docker-publish.yml">
+    <img src="https://github.com/Devsh-Graphics-Programming/MainWebsite/actions/workflows/docker-publish.yml/badge.svg?branch=master" alt="Build Status" />
+  </a>
   <a href="https://github.com/Devsh-Graphics-Programming/MainWebsite">
     <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDevsh-Graphics-Programming%2FMainWebsite%2Fmaster%2F.github%2Fbadges%2Fmaster-payload-size.json" alt="Master payload size" />
+  </a>
+  <a href="https://discord.gg/krsBcABm7u">
+    <img src="https://img.shields.io/discord/308323056592486420?label=discord&logo=discord&logoColor=white&color=7289DA" alt="Join our Discord" />
   </a>
 </p>
 

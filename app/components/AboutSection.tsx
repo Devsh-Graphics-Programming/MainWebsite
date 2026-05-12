@@ -10,7 +10,7 @@ export default function AboutSection() {
 
         <div className="flex flex-col gap-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
           <p className="!m-0">
-            DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don’t build CRUD apps, and we don't do repetitive contract work. Instead, our consultants integrate directly alongside our clients&apos; engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.
+            DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don’t build CRUD apps, and we don&apos;t do repetitive contract work. Instead, our consultants integrate directly alongside our clients&apos; engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.
           </p>
           <p className="!m-0">
             We train and work with the best in the field. Our alumni have gone on to drive the industry forward at Intel, ARM, and Apple as core driver and dev-tech engineers, as well as architecting engines for AAA games.

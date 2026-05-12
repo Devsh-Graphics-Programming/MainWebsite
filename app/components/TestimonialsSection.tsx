@@ -136,7 +136,7 @@ export default function TestimonialsSection() {
                 {/* Testimonial Body */}
                 <div className="flex-1 overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-300 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-600 [&::-webkit-scrollbar-thumb]:rounded-full">
                   <p className="text-zinc-700 dark:text-zinc-300 leading-relaxed text-lg text-justify">
-                    "{t.testimonial}"
+                    &ldquo;{t.testimonial}&rdquo;
                   </p>
                 </div>
               </div>

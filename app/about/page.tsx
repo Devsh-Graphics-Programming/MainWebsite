@@ -63,7 +63,7 @@ export default function Page() {
         <main className="site-container-narrow section-pad flex flex-col gap-10 sm:gap-14">
             <Chapter title="Who We Are">
                 <Paragraph>
-                    DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don’t build CRUD apps, and we don't do repetitive contract work. Instead, our consultants integrate directly alongside our clients' engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.
+                    DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don’t build CRUD apps, and we don&apos;t do repetitive contract work. Instead, our consultants integrate directly alongside our clients&apos; engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.
                     <br /><br />
                     We train and work with the best in the field. Our alumni have gone on to drive the industry forward at Intel, ARM, and Apple as core driver and dev-tech engineers, as well as architecting engines for AAA games.
                     <br /><br />

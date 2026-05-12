@@ -3,7 +3,7 @@
     <img src="https://github.com/Devsh-Graphics-Programming/MainWebsite/actions/workflows/docker-publish.yml/badge.svg?branch=master" alt="Build Status" />
   </a>
   <a href="https://github.com/Devsh-Graphics-Programming/MainWebsite">
-    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDevsh-Graphics-Programming%2FMainWebsite%2Fsize-badge-data%2Fmaster-payload-size.json" alt="Master payload size" />
+    <img src="https://img.shields.io/endpoint?cacheSeconds=300&url=https%3A%2F%2Fraw.githubusercontent.com%2FDevsh-Graphics-Programming%2FMainWebsite%2Fsize-badge-data%2Fmaster-payload-size.json%3Fv%3Dmaster" alt="Master payload size" />
   </a>
   <a href="https://discord.gg/krsBcABm7u">
     <img src="https://img.shields.io/discord/308323056592486420?label=discord&logo=discord&logoColor=white&color=7289DA" alt="Join our Discord" />

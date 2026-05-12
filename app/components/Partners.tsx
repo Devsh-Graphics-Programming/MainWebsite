@@ -45,8 +45,6 @@ function LogoMark({ partner }: { partner: Partner }) {
 }
 
 function LogoTile({ partner }: { partner: Partner }) {
-  // Removed fixed width (w-16, sm:w-24) to allow the text rectangles to fit the full name. 
-  // Added px-2 for a little padding between items.
   const className =
     "group flex h-16 shrink-0 items-center justify-center px-2 transition duration-200 hover:-translate-y-1 sm:h-24";
 
@@ -66,19 +64,17 @@ function LogoTile({ partner }: { partner: Partner }) {
 }
 
 export default function PartnerLogos() {
-  // We strictly need duplicates for the mobile wrap-around illusion to work.
-  // But we will hide them on Desktop.
+  // Duplicate logos keep the mobile marquee continuous.
   const duplicatedPartners = [...partners, ...partners];
 
   return (
     <div className="mb-6 overflow-hidden py-3 sm:mb-7 sm:py-4 lg:mb-8">
       <style>{`
-        /* Slowed down by 50%: Changed from 35s to 70s */
         @keyframes infinite-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        /* Only apply the auto-scroll animation on screens smaller than 768px */
+        /* Auto-scroll only runs on mobile; desktop uses a centered static row. */
         @media (max-width: 768px) {
           .animate-infinite-scroll {
             animation: infinite-scroll 35s linear infinite;
@@ -97,19 +93,9 @@ export default function PartnerLogos() {
         </div>
 
         <div className="relative flex w-full max-w-[100vw] overflow-hidden">
-          {/* Edge gradients (only visible on mobile to smooth the scroll edges) */}
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-black to-transparent md:hidden"></div>
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-black to-transparent md:hidden"></div>
 
-          {/* 
-            === SPACING CONTROL HERE ===
-            Change "gap-10" to control the spacing between logos. 
-            For example:
-            - gap-6  (tighter spacing)
-            - gap-10 (medium spacing)
-            - gap-16 (wider spacing)
-            Note: Ensure `pr-10` matches your `gap-` number on mobile for a seamless loop reset!
-          */}
           <div className="animate-infinite-scroll flex w-max items-center gap-3 pr-3 md:w-full md:justify-center md:pr-0">
             {duplicatedPartners.map((p, idx) => {
               const isDuplicate = idx >= partners.length;
@@ -117,7 +103,6 @@ export default function PartnerLogos() {
               return (
                 <div
                   key={`${p.name}-${idx}`}
-                  // FIX: Removed "hidden", now it only hides on medium screens and up
                   className={isDuplicate ? "shrink-0 md:hidden" : "shrink-0"}
                 >
                   <LogoTile partner={p} />

@@ -10,5 +10,5 @@ export const aboutParagraphs = [
   
   "We invest heavily in our own R&D and Open Source middleware, most notably Nabla, our rapid prototyping framework designed to deliver a CUDA-like programming experience within the Vulkan ecosystem. By committing to open-source infrastructure, we eliminate boilerplate and ensure we never have to solve the same foundational problems twice.",
   
-  "Because we hire the absolute best wherever they live, our globally distributed team maintains regular working hours that overlap all the way from San Francisco to Sydney. We train and work with the elite; our alumni have gone on to drive the industry forward at Intel, ARM, and Apple as core driver and dev-tech engineers, as well as architecting engines for AAA games."
+  "Because we hire the absolute best wherever they live, our globally distributed team maintains regular working hours that overlap all the way from San Francisco to Sydney. We train and work with the elite. Our alumni have gone on to drive the industry forward at Intel, ARM, and Apple as core driver and dev-tech engineers, as well as architecting engines for AAA games."
 ];

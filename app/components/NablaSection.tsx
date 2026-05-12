@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const NABLA = {
   repoUrl: "https://github.com/Devsh-Graphics-Programming/Nabla",
@@ -31,7 +31,6 @@ const NABLA = {
   ],
 };
 
-const FADE_MS = 400;
 const AUTO_MS = 4500;
 
 function GitHubIcon({ className = "h-5 w-5" }: { className?: string }) {

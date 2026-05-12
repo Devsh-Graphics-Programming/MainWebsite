@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image"; // Assuming Next.js, adjust if needed
+import Image from "next/image";
 
 const items: { title: string; images: string[]; href: string }[] = [
   { 
@@ -69,13 +69,12 @@ function PlaceholderIcon() {
 function Card({ title, images, href }: { title: string; images: string[]; href: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Handle the slow slideshow effect
   useEffect(() => {
     if (images.length <= 1) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 6000); // 6 seconds per image
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -87,7 +86,7 @@ function Card({ title, images, href }: { title: string; images: string[]; href: 
       className="media-hover group relative block aspect-[4/3] max-w-[22rem] flex-[1_1_15rem] overflow-hidden rounded-lg border border-white/10 bg-[var(--surface-soft)] sm:max-w-[19rem]"
     >
       {images.length > 0 ? (
-        // Render all images and fade between them to prevent "fade to black"
+        // Keep slides stacked so opacity transitions do not flash to black.
         images.map((src, index) => (
           <Image
             key={src}
@@ -112,7 +111,6 @@ function Card({ title, images, href }: { title: string; images: string[]; href: 
 
       <div className="absolute inset-0 pointer-events-none rounded-lg ring-2 ring-inset ring-transparent transition-all duration-700 group-hover:ring-[var(--brand-accent)]/70 z-20" />
 
-      {/* The Glass Text Container - Responsive Height */}
       <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center p-2 sm:h-16 sm:px-4 sm:py-0 bg-black/40 backdrop-blur-md border-t border-white/10 z-20">
         <p className="!m-0 text-center text-xs font-medium leading-tight text-white drop-shadow transition-colors duration-500 group-hover:text-[var(--brand-accent-bright)] sm:text-base sm:leading-snug">
           {title}
@@ -129,9 +127,7 @@ export default function ExpertiseGrid() {
         <div className="section-head mb-7 sm:mb-8">
           <h2 className="section-heading">Our Expertise</h2>
         </div>
-        {/* grid grid-cols-2: applies 2 columns on mobile 
-          sm:flex sm:flex-wrap sm:justify-center: brings back your original layout for desktop
-        */}
+        {/* Two-column mobile grid, then a wrapped centered row on wider screens. */}
         <div className="grid w-full grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:justify-center">
           {items.map((it) => (
             <Card key={it.title} title={it.title} images={it.images} href={it.href} />

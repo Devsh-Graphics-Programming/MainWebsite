@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
     name: "Phil Langrishe",
     role: "Managing Director at Applications in Cadd",
     profilePicture: "/testimonials/phil.jpg",
-    companyIcon: "/partners/appscadd.png", // <-- Add this line
+    companyIcon: "/partners/appscadd.png",
     testimonial:
       "Matt, Erfan and the rest of the Devsh team have been amazing to work with.  We presented them with a very difficult challenge which was to take a large and very old, plus some what outdated C++ codebase written for a different time, and bring it up to date so that we could make use of their Vulkan based Nabla graphics engine. They broke the challenge down into manageable chunks and then over the past few years have proceeded to inject lightening fast graphics into our application.  All agreed targets have been met on time, and on budget.  I can not thank them enough for the hard work and dedication they have shown towards achieving our goals.  Their knowledge and professionalism has been second to none!",
   },
@@ -24,7 +24,7 @@ const testimonials: Testimonial[] = [
     name: "Yoran Bosman",
     role: "Senior Software Architect",
     profilePicture: "/testimonials/yoran.jpg",
-    companyIcon: "/partners/ditt.png", // <-- Add this line
+    companyIcon: "/partners/ditt.png",
     testimonial:
       "The DevSH team transformed our CPU render farm for architectural visualization into a scalable GPU-based system with outstanding performance and reliability. Their expertise and commitment to achieving the best results were clear throughout the project. They maintained full backward compatibility, ensuring a smooth transition with minimal disruption to our workflows.",
   }
@@ -90,13 +90,8 @@ export default function TestimonialsSection() {
                 className="flex flex-col bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 md:p-8 shrink-0 md:snap-center w-full md:w-[calc(50%-8px)] lg:w-[calc(50%-10px)] max-w-[600px] h-auto md:h-[500px]"
               >
                 
-                {/* UPDATED PROFILE HEADER
-                  - justify-between pushes the left-side info and right-side logo apart
-                  - items-center keeps everything vertically aligned
-                */}
                 <div className="flex items-center justify-between gap-4 mb-6 shrink-0">
                   
-                  {/* LEFT SIDE: Profile Pic & Text */}
                   <div className="flex items-center gap-4">
                     <div className="relative h-16 w-16 overflow-hidden rounded-full shrink-0 bg-zinc-100 dark:bg-zinc-800">
                       <Image
@@ -118,14 +113,13 @@ export default function TestimonialsSection() {
                     </div>
                   </div>
 
-                  {/* RIGHT SIDE: Company Icon (Only renders if you provided one in the data) */}
                   {t.companyIcon && (
                     <div className="relative h-12 w-12 shrink-0">
                       <Image
                         src={t.companyIcon}
                         alt="Company Logo"
                         fill
-                        className="object-contain opacity-70 dark:opacity-80" // object-contain ensures the logo isn't cropped
+                        className="object-contain opacity-70 dark:opacity-80"
                         sizes="48px"
                       />
                     </div>

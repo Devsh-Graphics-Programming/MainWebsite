@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/Devsh-Graphics-Programming/MainWebsite">
+    <img src="https://img.shields.io/github/repo-size/Devsh-Graphics-Programming/MainWebsite?label=repo%20size" alt="Repository size" />
+  </a>
+</p>
+
 This repo is a Next.js app used to generate a static site. The final production image contains only static assets served by Caddy on a read-only filesystem (no Node/npm runtime in the shipped image).
 
 ## Development (local only)

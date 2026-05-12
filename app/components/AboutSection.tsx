@@ -10,33 +10,19 @@ export default function AboutSection() {
 
         <div className="flex flex-col gap-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
           <p className="!m-0">
-            DevSH Graphics Programming Sp. z O.O is a company focused on
-            Graphics, GPU and High Performance Computing. Our consultants
-            develop and maintain Renderers, Simulations and Compilers for our
-            Clients, integrated into or working alongside their teams. We are
-            not a Software House &mdash; we work very closely and synergize with
-            our Clients&apos; engineers. We also conduct our own R&amp;D
-            developing our own Open Source Middleware and Libraries, the most
-            prominent being Nabla, as well as contributing to existing ones.
+            DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don’t build CRUD apps, and we don't do repetitive contract work. Instead, our consultants integrate directly alongside our clients&apos; engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.
           </p>
           <p className="!m-0">
-            The primary mission for all of our self-funded developments is to
-            advance Open Source ecosystems with innovative tooling with a
-            particular focus on Khronos Standards. We maintain a single source
-            HLSL202x/C++20 Standard Template Header Only Library and our Utility
-            and Rapid Prototyping Framework Nabla designed to give a CUDA-like
-            programming experience within the Vulkan ecosystem.
+            We train and work with the best in the field. Our alumni have gone on to drive the industry forward at Intel, ARM, and Apple as core driver and dev-tech engineers, as well as architecting engines for AAA games.
           </p>
           <p className="!m-0">
-            We have honed the culture of remote work since the company&apos;s
-            inception, and way before the 2019 paradigm shift. Subject to
-            availability and specific expertise required, our consultants&apos;
-            regular working hours overlap the normal working hours from San
-            Francisco to Sydney.
+            We invest heavily in our own R&amp;D and Open Source middleware&mdash;most notably Nabla, our rapid prototyping framework designed to deliver a CUDA-like programming experience within the Vulkan ecosystem.
           </p>
           <p className="!m-0">
-            Our alumni have since worked at Intel, Huawei, ARM and Apple as
-            driver and devtech developers, and on AAA games.
+            We operate on a simple, uncompromising principle: work exists to serve your life, not the other way around.
+          </p>
+          <p className="!m-0">
+            Because we reject the preposterous expectation that engineers should uproot their lives, spouses, and kids to move to a specific city for a job, DevSH has been a remote-first company since its inception&mdash;long before the industry paradigm shifted. We hire top-tier talent wherever they live. As a result, our team is globally distributed, with regular working hours overlapping all the way from San Francisco to Sydney.
           </p>
         </div>
 

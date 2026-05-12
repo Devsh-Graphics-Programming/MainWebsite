@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, VideoHTMLAttributes } from "react"
+import { useEffect, useRef, type VideoHTMLAttributes } from "react"
 
 export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttributes<HTMLVideoElement>) {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -12,10 +12,6 @@ export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttribut
         if (!videoRef.current)
             return;
 
-        // lil debug stuff
-        videoRef.current.onload = () => console.log("Video Loaded")
-        videoRef.current.onplay = () => console.log("Video is playing");
-
         const intersectionObserver = new IntersectionObserver((entries, _) => {
             entries.forEach(video => {
                 if (video.isIntersecting) {
@@ -26,7 +22,6 @@ export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttribut
                         }
                     }
                     
-                    console.log("Loading video");
                     (video.target as HTMLVideoElement).load();
                     video.target.classList.remove("lazy");
                     intersectionObserver.unobserve(video.target);

@@ -22,7 +22,7 @@ export default function PresentationsPage() {
         <h1 className="section-heading">Our Presentations</h1>
         <p className="section-lede text-neutral-400">
           Talks and presentations by DevSH at Vulkanised, SIGGRAPH, GDC, and
-          Khronos workshops — sharing our research with the graphics community.
+          Khronos workshops, sharing our research with the graphics community.
         </p>
       </div>
 

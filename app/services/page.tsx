@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Paragraph, Chapter } from "../components/TextUtils";
-import Image from "next/image";
 
 function ContactEmail() {
     const [isShown, setIsShown] = useState<boolean>(false);
@@ -25,7 +24,6 @@ function ContactEmail() {
 
     return (
         <div className="relative group">
-            {/* Background ambient glow */}
             <div className={`absolute -inset-1 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full blur opacity-20 transition duration-1000 ${isShown ? 'group-hover:opacity-40' : 'group-hover:opacity-60'}`}></div>
             
             <button
@@ -76,7 +74,6 @@ export default function Page() {
         <main className="section-pad min-h-screen">
             <div className="site-container max-w-4xl mx-auto flex flex-col">
                 
-                {/* Centered Hero Call-to-Action */}
                 <div className="flex flex-col items-center justify-center text-center gap-8 py-16 sm:py-24 border-b border-white/10 mb-12">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight">
                         Discuss your project with Us
@@ -84,12 +81,11 @@ export default function Page() {
                     <ContactEmail />
                 </div>
 
-                {/* Unified & Upgraded Sales Copy */}
                 <div className="flex flex-col gap-16">
                     
                     <Chapter title="The Power of the Collective">
                         <Paragraph>
-                            When you partner with DevSH, you aren’t just hiring isolated consultants—you gain the collective expertise of our entire team. Our engineers constantly share insights and experience, ensuring that every solution we deliver is battle-tested and a step above what isolated developers can achieve. Whether you bring on a single dedicated developer or a specialized task force, we constantly share knowledge, research, and invent new algorithms together.
+                            When you partner with DevSH, you aren&apos;t just hiring isolated consultants. You gain the collective expertise of our entire team. Our engineers constantly share insights and experience, ensuring that every solution we deliver is battle-tested and a step above what isolated developers can achieve. Whether you bring on a single dedicated developer or a specialized task force, we constantly share knowledge, research, and invent new algorithms together.
                         </Paragraph>
                     </Chapter>
 
@@ -105,7 +101,7 @@ export default function Page() {
 
                     <Chapter title="Driving the Industry Forward">
                         <Paragraph>
-                            We don&apos;t just use modern graphics APIs; we help shape the ecosystem. We are active contributors to the graphics programming community.
+                            We don&apos;t just use modern graphics APIs. We help shape the ecosystem. We are active contributors to the graphics programming community.
                         </Paragraph>
                         <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
                             <li><strong>Open Source Contributions:</strong> You can find our GitHub profiles highly active within the Khronos ecosystem. Our direct contributions span the Vulkan and SPIR-V specifications, SPIR-V Tools, Vulkan Validation Layers, CMake, Mesa, and LLVM.</li>

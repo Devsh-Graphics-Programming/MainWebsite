@@ -3,6 +3,8 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useState } from "react";
+import OptimizedLoopVideo from "./OptimizedLoopVideo";
+import ResponsiveImage from "./ResponsiveImage";
 
 const NABLA = {
   repoUrl: "https://github.com/Devsh-Graphics-Programming/Nabla",
@@ -21,12 +23,12 @@ const NABLA = {
   ],
   slides: [
     { src: "/nabla/rt_screenshot_both.jpg", caption: "Raytracing" },
-    { src: "/nabla/fluid_sim.gif", caption: "Fluid Simulation" },
-    { src: "/nabla/stipples.gif", caption: "GPU-Accelerated Vectorized Linework" },
+    { src: "/optimized/nabla/fluid_sim.mp4", poster: "/optimized/nabla/fluid_sim-poster.webp", type: "video", caption: "Fluid Simulation" },
+    { src: "/optimized/nabla/stipples.mp4", poster: "/optimized/nabla/stipples-poster.webp", type: "video", caption: "GPU-Accelerated Vectorized Linework" },
     { src: "/nabla/nsc.png", caption: "Nabla Shader Compiler & Godbolt docker integration" },
-    { src: "/nabla/fft_bloom_heart.gif", caption: "Fast Fourier Transform Bloom" },
+    { src: "/optimized/nabla/fft_bloom_heart.mp4", poster: "/optimized/nabla/fft_bloom_heart-poster.webp", type: "video", caption: "Fast Fourier Transform Bloom" },
     { src: "/nabla/imguiintegration.jpg", caption: "ImGui Integration" },
-    { src: "/nabla/2d_csg.gif", caption: "2D Constructive Solid Geometry" },
+    { src: "/optimized/nabla/2d_csg.mp4", poster: "/optimized/nabla/2d_csg-poster.webp", type: "video", caption: "2D Constructive Solid Geometry" },
     { src: "/nabla/Iridescence.png", caption: "Iridescent Materials" },
   ],
 };
@@ -151,15 +153,22 @@ function Slideshow() {
                 isActive ? "z-10 opacity-100 blur-0" : "z-0 opacity-0 blur-xl"
               }`}
             >
-              <Image
-                src={slide.src}
-                alt={slide.caption}
-                fill
-                sizes="(min-width: 64rem) 50vw, 100vw"
-                loading={index === 0 ? "eager" : "lazy"} 
-                className="object-cover transition-transform duration-[800ms] group-hover:scale-[1.035] pointer-events-none"
-                unoptimized={slide.src.endsWith(".gif")}
-              />
+              {slide.type === "video" ? (
+                <OptimizedLoopVideo
+                  src={slide.src}
+                  poster={slide.poster}
+                  active={isActive}
+                  aria-label={slide.caption}
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-[1.035]"
+                />
+              ) : (
+                <ResponsiveImage
+                  src={slide.src}
+                  alt={slide.caption}
+                  sizes="(min-width: 64rem) 50vw, 100vw"
+                  className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-[1.035]"
+                />
+              )}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-5 py-4 pointer-events-none">
                 <p className="!m-0 text-base font-medium text-white sm:text-xl">{slide.caption}</p>
               </div>

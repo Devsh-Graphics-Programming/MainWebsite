@@ -1,33 +1,34 @@
 'use client'
 
-import { useEffect, useRef, type VideoHTMLAttributes } from "react"
+import { useEffect, useRef, useState, type VideoHTMLAttributes } from "react"
 
-export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttributes<HTMLVideoElement>) {
+type OptimizedLoopVideoProps = Omit<VideoHTMLAttributes<HTMLVideoElement>, "src"> & {
+    src: string;
+    active?: boolean;
+}
+
+export default function OptimizedLoopVideo({ src, className, active = true, poster, ...props }: OptimizedLoopVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null)
+    const hasLoaded = useRef(false)
+    const [isNearViewport, setIsNearViewport] = useState(false)
 
     useEffect(() => {
-        if (window["IntersectionObserver"] === undefined && window["IntersectionObserver"] === null)
-            return;
-
         if (!videoRef.current)
             return;
 
+        if (!("IntersectionObserver" in window)) {
+            setIsNearViewport(true);
+            return;
+        }
+
         const intersectionObserver = new IntersectionObserver((entries, _) => {
-            entries.forEach(video => {
-                if (video.isIntersecting) {
-                    for (const source in video.target.children) {
-                        const videoSource = video.target.children[source] as HTMLVideoElement;
-                        if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-                            videoSource.src = videoSource.dataset.src as string;
-                        }
-                    }
-                    
-                    (video.target as HTMLVideoElement).load();
-                    video.target.classList.remove("lazy");
-                    intersectionObserver.unobserve(video.target);
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setIsNearViewport(true);
+                    intersectionObserver.unobserve(entry.target);
                 }
             }); 
-        });
+        }, { rootMargin: "300px 0px" });
 
         intersectionObserver.observe(videoRef.current)
 
@@ -36,14 +37,33 @@ export default function OptimizedLoopVideo({ src, className }: VideoHTMLAttribut
         }
     }, [])
 
+    useEffect(() => {
+        if (!videoRef.current || hasLoaded.current || !isNearViewport || !active) return;
+
+        videoRef.current.src = src;
+        videoRef.current.load();
+        hasLoaded.current = true;
+    }, [active, isNearViewport, src])
+
+    useEffect(() => {
+        if (!videoRef.current || !hasLoaded.current) return;
+
+        if (active) {
+            void videoRef.current.play();
+        } else {
+            videoRef.current.pause();
+        }
+    }, [active])
+
     return <video
             ref={videoRef}
             autoPlay
             muted
             playsInline
             loop
-            className={`lazy ${className}`}
-        >
-            <source data-src={src}/>
-        </video>
+            preload="none"
+            poster={poster}
+            className={className}
+            {...props}
+        />
 }

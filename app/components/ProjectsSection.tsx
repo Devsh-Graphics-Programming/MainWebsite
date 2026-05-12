@@ -1,7 +1,10 @@
-import Image from "next/image";
+import OptimizedLoopVideo from "./OptimizedLoopVideo";
+import ResponsiveImage from "./ResponsiveImage";
 
 type ProjectImage = {
   src: string;
+  poster?: string;
+  type?: "image" | "video";
   fit?: "cover" | "contain";
   text?: string;
 };
@@ -76,7 +79,7 @@ const projects: Project[] = [
       "And much more",
     ],
     images: [
-      { src: "/clients/wild/wild_gif2.gif", text: "Factions by Wild Software Inc.", fit: "cover" },
+      { src: "/optimized/clients/wild/wild_gif2.mp4", poster: "/optimized/clients/wild/wild_gif2-poster.webp", type: "video", text: "Factions by Wild Software Inc.", fit: "cover" },
       { src: "/clients/wild/wild3.jpg", text: "", fit: "cover" },
       { src: "/clients/wild/wild4.jpg", text: "", fit: "cover" },
     ],
@@ -146,19 +149,26 @@ const projects: Project[] = [
   },
 ];
 
-function ProjectImageCard({ image, priority }: { image: ProjectImage; priority?: boolean }) {
+function ProjectImageCard({ image }: { image: ProjectImage; priority?: boolean }) {
+  const mediaClassName = `absolute inset-0 h-full w-full ${image.fit === "contain" ? "object-contain" : "object-cover"} rounded-lg transition-transform duration-500 group-hover:scale-[1.035]`;
+
   return (
     <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg bg-black ring-1 ring-inset ring-white/10">
-      <Image
-        src={image.src}
-        alt=""
-        fill
-        sizes="(min-width: 64rem) 50vw, 100vw"
-        priority={priority}
-        loading={priority ? undefined : "eager"}
-        unoptimized={image.src.endsWith(".gif")}
-        className={`${image.fit === "contain" ? "object-contain" : "object-cover"} rounded-lg transition-transform duration-500 group-hover:scale-[1.035]`}
-      />
+      {image.type === "video" ? (
+        <OptimizedLoopVideo
+          src={image.src}
+          poster={image.poster}
+          aria-label={image.text || "Project video"}
+          className={mediaClassName}
+        />
+      ) : (
+        <ResponsiveImage
+          src={image.src}
+          alt=""
+          sizes="(min-width: 64rem) 50vw, 100vw"
+          className={mediaClassName}
+        />
+      )}
       {image.text && (
         <div className="absolute bottom-0 left-0 px-1.5 py-1 bg-black/35 backdrop-blur-md rounded-tr-md">
           <p className="m-0 text-[10px] sm:text-xs font-medium leading-none text-white/70">
@@ -195,14 +205,14 @@ function ImageGrid({ images, layout = "grid" }: { images: ProjectImage[]; layout
   }
 
   if (images.length === 1) {
-    return <ProjectImageCard image={images[0]} priority />;
+    return <ProjectImageCard image={images[0]} />;
   }
 
   if (layout === "stacked") {
     return (
       <div className="grid grid-cols-1 gap-4 sm:gap-5">
         {images.map((image, index) => (
-          <ProjectImageCard key={`${image.src}-${index}`} image={image} priority={index === 0} />
+          <ProjectImageCard key={`${image.src}-${index}`} image={image} />
         ))}
       </div>
     );
@@ -213,7 +223,7 @@ function ImageGrid({ images, layout = "grid" }: { images: ProjectImage[]; layout
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {images.map((image, index) => (
           <div key={`${image.src}-${index}`} className={index === 2 ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.5rem)]" : ""}>
-            <ProjectImageCard image={image} priority={index === 0} />
+            <ProjectImageCard image={image} />
           </div>
         ))}
       </div>
@@ -223,7 +233,7 @@ function ImageGrid({ images, layout = "grid" }: { images: ProjectImage[]; layout
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       {images.slice(0, 4).map((image, index) => (
-        <ProjectImageCard key={`${image.src}-${index}`} image={image} priority={index === 0} />
+        <ProjectImageCard key={`${image.src}-${index}`} image={image} />
       ))}
     </div>
   );

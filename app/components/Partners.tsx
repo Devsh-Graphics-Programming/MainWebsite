@@ -27,7 +27,7 @@ function LogoMark({ partner }: { partner: Partner }) {
           alt={partner.name}
           fill
           sizes="7rem"
-          loading="eager"
+          loading="lazy"
           className={`object-contain opacity-90 transition duration-200 group-hover:scale-105 group-hover:opacity-100 ${
             partner.logoTone === "invert" ? "invert" : ""
           }`}

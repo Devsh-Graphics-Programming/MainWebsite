@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ResponsiveImage from "./ResponsiveImage";
 
 type Photo = { caption: string; image: string | null };
 
@@ -13,13 +13,11 @@ function PhotoCard({ photo }: { photo: Photo }) {
     <div className="media-hover group relative aspect-[16/10] w-full overflow-hidden rounded-lg border border-white/10 bg-black">
       <div className="absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-[1.06]">
         {photo.image ? (
-          <Image
+          <ResponsiveImage
             src={photo.image}
             alt={photo.caption}
-            fill
             sizes="(min-width: 40rem) 50vw, 100vw"
-            loading="eager"
-            className="object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         ) : (
           <div className="w-full h-full bg-[#0e1f1f] flex items-center justify-center text-white/15">

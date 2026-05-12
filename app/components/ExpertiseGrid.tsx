@@ -1,47 +1,50 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import OptimizedLoopVideo from "./OptimizedLoopVideo";
+import ResponsiveImage from "./ResponsiveImage";
 
-const items: { title: string; images: string[]; href: string }[] = [
+type MediaItem = { src: string; poster?: string; type?: "image" | "video" };
+
+const items: { title: string; images: MediaItem[]; href: string }[] = [
   { 
     title: "Real-Time Graphics & Engine Optimization", 
-    images: ["/clients/baw/baw4.jpg"], 
+    images: [{ src: "/clients/baw/baw4.jpg" }], 
     href: "#projects" 
   },
   { 
     title: "Path Tracing and Physically-Based Rendering", 
     images: [
-      "/nabla/rt_screenshot_both.jpg",
-      "/clients/ditt/ditt4.png", 
-      "/clients/ditt/ditt5.jpg",
-      "/clients/ditt/ditt2.jpg"
+      { src: "/nabla/rt_screenshot_both.jpg" },
+      { src: "/clients/ditt/ditt4.png" }, 
+      { src: "/clients/ditt/ditt5.jpg" },
+      { src: "/clients/ditt/ditt2.jpg" }
     ], 
     href: "#project-ditt" 
   },
   { 
     title: "CAD & Scientific Visualization", 
-    images: ["/clients/apps_in_cadd/scene1_cropped.png"], 
+    images: [{ src: "/clients/apps_in_cadd/scene1_cropped.png" }], 
     href: "#project-appscadd" 
   },
   { 
     title: "VR & Mobile GPU Development", 
-    images: ["/clients/wild/wild3.jpg"], 
+    images: [{ src: "/clients/wild/wild3.jpg" }], 
     href: "#project-wild" 
   },
   { 
     title: "Computational Geometry", 
-    images: ["/clients/apps_in_cadd/offset_curve.gif"], 
+    images: [{ src: "/optimized/clients/apps_in_cadd/offset_curve.mp4", poster: "/optimized/clients/apps_in_cadd/offset_curve-poster.webp", type: "video" }], 
     href: "#project-appscadd" 
   },
   { 
     title: "High-Performance Compute & Optimization", 
-    images: ["/nabla/nsc.png"], 
+    images: [{ src: "/nabla/nsc.png" }], 
     href: "#projects" 
   },
   { 
     title: "Photogrammetry and Differentiable Rendering", 
-    images: ["/clients/baw/volume_reconstruct.png"], 
+    images: [{ src: "/clients/baw/volume_reconstruct.png" }], 
     href: "#project-buildaworld" 
   },
 ];
@@ -66,7 +69,7 @@ function PlaceholderIcon() {
   );
 }
 
-function Card({ title, images, href }: { title: string; images: string[]; href: string }) {
+function Card({ title, images, href }: { title: string; images: MediaItem[]; href: string }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -87,19 +90,34 @@ function Card({ title, images, href }: { title: string; images: string[]; href: 
     >
       {images.length > 0 ? (
         // Keep slides stacked so opacity transitions do not flash to black.
-        images.map((src, index) => (
-          <Image
-            key={src}
-            src={src}
-            alt={`${title} - image ${index + 1}`}
-            fill
-            sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
-            loading={index === 0 ? "eager" : "lazy"}
-            className={`object-cover transition-all duration-[1500ms] ease-in-out group-hover:scale-105 ${
-              index === currentIndex ? "opacity-100 blur-0" : "opacity-0 blur-md"
-            }`}
-          />
-        ))
+        images.map((media, index) => {
+          const className = `absolute inset-0 h-full w-full object-cover transition-all duration-[1500ms] ease-in-out group-hover:scale-105 ${
+            index === currentIndex ? "opacity-100 blur-0" : "opacity-0 blur-md"
+          }`;
+
+          if (media.type === "video") {
+            return (
+              <OptimizedLoopVideo
+                key={media.src}
+                src={media.src}
+                poster={media.poster}
+                active={index === currentIndex}
+                aria-label={`${title} - video ${index + 1}`}
+                className={className}
+              />
+            );
+          }
+
+          return (
+            <ResponsiveImage
+              key={media.src}
+              src={media.src}
+              alt={`${title} - image ${index + 1}`}
+              sizes="(min-width: 64rem) 25vw, (min-width: 40rem) 50vw, 100vw"
+              className={className}
+            />
+          );
+        })
       ) : (
         <>
           <div className="absolute inset-0 bg-[#111]" />

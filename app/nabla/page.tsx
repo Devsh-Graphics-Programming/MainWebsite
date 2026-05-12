@@ -1,32 +1,34 @@
-import devshLogo from "@/public/devsh_transparent_1920.png"
-import nablaScreenshot1 from "@/public/nabla_screenshot1.jpg"
-
 import Image from "next/image"
 import Slide from "./slide"
 import { Paragraph } from "../components/TextUtils"
 import Link from "next/link"
+import OptimizedLoopVideo from "../components/OptimizedLoopVideo"
+import ResponsiveImage from "../components/ResponsiveImage"
 
-import fluidGif from "@/public/nabla/fluid.gif"
-import imguiIntegrationJpg from "@/public/nabla/imguiintegration.jpg"
-import rt_screenshotJpg from "@/public/nabla/rt_screenshot.jpg"
-import rt_screenshot1Jpg from "@/public/nabla/rt_screenshot1.jpg"
-import sdf_function_manipGif from "@/public/nabla/sdf_func_manip.gif"
-import path_traced_1Png from "@/public/nabla/path_traced_1.png"
-import path_traced_2Png from "@/public/nabla/path_traced_2.png"
-import ditt6 from "@/public/clients/ditt/ditt6.png";
-import { StaticImport } from "next/dist/shared/lib/get-img-props"
+type GridMediaProps = {
+    src: string;
+    poster?: string;
+    type?: "image" | "video";
+}
 
-function GridImage({ src, unoptimized }: { src: string | StaticImport, unoptimized?: boolean }) {
+function GridMedia({ src, poster, type = "image" }: GridMediaProps) {
     return (
         <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black">
-            <Image
-                src={src}
-                fill
-                sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
-                alt="Showcase screenshot"
-                className="object-cover"
-                unoptimized={unoptimized}
-            />
+            {type === "video" ? (
+                <OptimizedLoopVideo
+                    src={src}
+                    poster={poster}
+                    aria-label="Showcase video"
+                    className="absolute inset-0 h-full w-full object-cover"
+                />
+            ) : (
+                <ResponsiveImage
+                    src={src}
+                    sizes="(min-width: 64rem) 33vw, (min-width: 40rem) 50vw, 100vw"
+                    alt="Showcase screenshot"
+                    className="absolute inset-0 h-full w-full object-cover"
+                />
+            )}
         </div>
     )
 }
@@ -35,20 +37,20 @@ export default function Page() {
     return (
         <main className="site-container section-pad flex flex-col gap-16 overflow-y-auto scroll-smooth">
             <Slide>
-                <Image src={devshLogo} alt="Nabla Logo" className="aspect-square w-40 sm:w-56 lg:w-80"/>
+                <Image src="/devsh_transparent_1920.png" alt="Nabla Logo" width={320} height={320} className="aspect-square w-40 sm:w-56 lg:w-80"/>
             </Slide>
             <Slide className="w-full">
                 <h1 className="section-heading">Showcase</h1>
                 <div className="my-2 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                    <GridImage src={nablaScreenshot1} />
-                    <GridImage src={fluidGif} unoptimized />
-                    <GridImage src={imguiIntegrationJpg} />
-                    <GridImage src={rt_screenshotJpg} />
-                    <GridImage src={rt_screenshot1Jpg} />
-                    <GridImage src={sdf_function_manipGif} unoptimized />
-                    <GridImage src={path_traced_1Png} />
-                    <GridImage src={path_traced_2Png} />
-                    <GridImage src={ditt6} />
+                    <GridMedia src="/nabla_screenshot1.jpg" />
+                    <GridMedia src="/optimized/nabla/fluid.mp4" poster="/optimized/nabla/fluid-poster.webp" type="video" />
+                    <GridMedia src="/nabla/imguiintegration.jpg" />
+                    <GridMedia src="/nabla/rt_screenshot.jpg" />
+                    <GridMedia src="/nabla/rt_screenshot1.jpg" />
+                    <GridMedia src="/optimized/nabla/sdf_func_manip.mp4" poster="/optimized/nabla/sdf_func_manip-poster.webp" type="video" />
+                    <GridMedia src="/nabla/path_traced_1.png" />
+                    <GridMedia src="/nabla/path_traced_2.png" />
+                    <GridMedia src="/clients/ditt/ditt6.png" />
                 </div>
             </Slide>
             <Slide className="mx-auto max-w-4xl">

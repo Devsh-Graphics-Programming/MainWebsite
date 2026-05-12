@@ -1,7 +1,8 @@
-import Link from "next/link"
+﻿import Link from "next/link"
 import Image, { StaticImageData } from "next/image";
 import { Paragraph, Chapter } from "../components/TextUtils"
 import ContactEmail from "./ContactEmail"
+import { aboutParagraphs } from "../data/aboutContent"
 
 import vulkanised2026_01 from "@/public/vulkanised_photos/2026/2026_01.jpg";
 import vulkanised2026_02 from "@/public/vulkanised_photos/2026/2026_02.jpg";
@@ -63,17 +64,15 @@ export default function Page() {
         <main className="site-container-narrow section-pad flex flex-col gap-10 sm:gap-14">
             <Chapter title="Who We Are">
                 <Paragraph>
-                    DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don’t build CRUD apps, and we don't do repetitive contract work. Instead, our consultants integrate directly alongside our clients' engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.
-                    <br /><br />
-                    We train and work with the best in the field. Our alumni have gone on to drive the industry forward at Intel, ARM, and Apple as core driver and dev-tech engineers, as well as architecting engines for AAA games.
-                    <br /><br />
-                    We invest heavily in our own R&D and Open Source middleware—most notably Nabla, our rapid prototyping framework designed to deliver a CUDA-like programming experience within the Vulkan ecosystem.
-                    <br /><br />
-                    We operate on a simple, uncompromising principle: work exists to serve your life, not the other way around.
-                    <br /><br />
-                    Because we reject the preposterous expectation that engineers should uproot their lives, spouses, and kids to move to a specific city for a job, DevSH has been a remote-first company since its inception—long before the industry paradigm shifted. We hire top-tier talent wherever they live. As a result, our team is globally distributed, with regular working hours overlapping all the way from San Francisco to Sydney.
+                    {aboutParagraphs.map((paragraph, index) => (
+                        <span key={index}>
+                            {paragraph}
+                            {index < aboutParagraphs.length - 1 && <><br /><br /></>}
+                        </span>
+                    ))}
                 </Paragraph>
             </Chapter>
         </main>
     );
 }
+

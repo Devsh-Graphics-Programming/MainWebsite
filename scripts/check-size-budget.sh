@@ -90,12 +90,4 @@ fi
 history_blob_bytes="$(sum_head_blob_bytes)"
 check_limit "HEAD Git blob payload size" "$history_blob_bytes" "$max_history_blob_bytes"
 
-if [ -x scripts/update-size-badge.sh ]; then
-  scripts/update-size-badge.sh
-  if ! git diff --exit-code -- .github/badges/master-payload-size.json >/dev/null; then
-    echo "::error file=.github/badges/master-payload-size.json::Repository size badge is stale. Run scripts/update-size-badge.sh and commit the result."
-    fail=1
-  fi
-fi
-
 exit "$fail"

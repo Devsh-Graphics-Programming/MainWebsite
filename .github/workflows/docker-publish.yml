@@ -167,3 +167,54 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max,ignore-error=true
+
+  update-size-badge:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: write
+
+    steps:
+      - name: Configure Git default branch
+        run: git config --global init.defaultBranch master
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Generate badge data
+        run: BADGE_PATH=tmp/master-payload-size.json bash scripts/update-size-badge.sh
+
+      - name: Publish badge data
+        run: |
+          set -euo pipefail
+          badge_branch="size-badge-data"
+          badge_file="tmp/master-payload-size.json"
+          worktree="$(mktemp -d)"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git ls-remote --exit-code --heads origin "$badge_branch" >/dev/null 2>&1; then
+            git fetch origin "$badge_branch"
+            git worktree add "$worktree" "origin/$badge_branch"
+            git -C "$worktree" switch -c "$badge_branch"
+          else
+            git worktree add --detach "$worktree"
+            git -C "$worktree" switch --orphan "$badge_branch"
+            git -C "$worktree" rm -rf . >/dev/null 2>&1 || true
+          fi
+
+          cp "$badge_file" "$worktree/master-payload-size.json"
+          git -C "$worktree" add master-payload-size.json
+
+          if git -C "$worktree" diff --cached --quiet; then
+            echo "Badge data unchanged"
+            exit 0
+          fi
+
+          git -C "$worktree" commit -m "Update master payload badge"
+          git -C "$worktree" push origin "HEAD:$badge_branch"

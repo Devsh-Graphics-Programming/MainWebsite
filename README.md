@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Devsh-Graphics-Programming/MainWebsite">
-    <img src="https://img.shields.io/github/repo-size/Devsh-Graphics-Programming/MainWebsite?label=repo%20size" alt="Repository size" />
+    <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FDevsh-Graphics-Programming%2FMainWebsite%2Fmaster%2F.github%2Fbadges%2Fmaster-payload-size.json" alt="Master payload size" />
   </a>
 </p>
 
@@ -15,6 +15,10 @@ This repo is a Next.js app used to generate a static site. The final production 
 - `docker build -t www-website .`
 - Runtime is static files only; mount/serve with RO filesystem (e.g., `docker run --read-only --tmpfs /tmp --tmpfs /config --tmpfs /data -p 3000:3000 www-website`).
 > ⚠️ The final container maps only the generated `out` directory and static assets; keep it read-only and do not run any Node/npm scripts there.
+
+## Repository size budget
+- CI fails if the tracked tree exceeds `10 MiB`, `public/` exceeds `8 MiB`, any tracked blob exceeds `1 MiB`, or HEAD Git blob payloads exceed `15 MiB`.
+- Run `scripts/check-size-budget.sh` locally before adding new media. If the badge changes, commit the updated `.github/badges/master-payload-size.json`.
 
 ## Runtime filesystem layout
 - The image is read-only, but Caddy still needs tiny writable slots for TLS cache/autosave/lock files.

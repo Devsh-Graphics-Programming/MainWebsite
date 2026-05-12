@@ -50,8 +50,13 @@ check_limit "Tracked public/ size" "$public_tree_bytes" "$max_public_bytes"
 echo "Largest tracked files:"
 git ls-tree -r -l HEAD |
   sort -k4,4nr |
-  head -20 |
-  awk '{ printf "  %8.2f MiB  %s\n", $4 / 1048576, $5 }'
+  awk '
+    NR <= 20 {
+      path = $5
+      for (i = 6; i <= NF; i++) path = path " " $i
+      printf "  %8.2f MiB  %s\n", $4 / 1048576, path
+    }
+  '
 
 if ! git ls-tree -r -l HEAD |
   awk -v max="$max_blob_bytes" '

@@ -44,6 +44,19 @@ jobs:
           echo "IMAGE=${REGISTRY}/${OWNER}/${IMAGE_NAME}" >> "$GITHUB_ENV"
           echo "Image namespace: ${REGISTRY}/${OWNER}/${IMAGE_NAME}"
 
+      - name: Compute build info
+        id: build_info
+        run: |
+          {
+            echo "created=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "source=https://github.com/${GITHUB_REPOSITORY}"
+            echo "branch=${GITHUB_REF_NAME}"
+            echo "run_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "author<<EOF"
+            git log -1 --format='%an <%ae>'
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Docker metadata
         id: meta
         uses: docker/metadata-action@v6
@@ -68,6 +81,17 @@ jobs:
             ${{ env.IMAGE }}:ci
             ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILD_DATE=${{ steps.build_info.outputs.created }}
+            VCS_REF=${{ github.sha }}
+            VCS_URL=${{ steps.build_info.outputs.source }}
+            SOURCE_BRANCH=${{ steps.build_info.outputs.branch }}
+            IMAGE_NAME=${{ env.IMAGE }}
+            GITHUB_RUN_ID=${{ github.run_id }}
+            GITHUB_RUN_ATTEMPT=${{ github.run_attempt }}
+            GITHUB_RUN_URL=${{ steps.build_info.outputs.run_url }}
+            GITHUB_ACTOR=${{ github.actor }}
+            COMMIT_AUTHOR=${{ steps.build_info.outputs.author }}
           cache-from: type=gha
           cache-to: type=gha,mode=max,ignore-error=true
 
@@ -124,6 +148,19 @@ jobs:
           echo "IMAGE=${REGISTRY}/${OWNER}/${IMAGE_NAME}" >> "$GITHUB_ENV"
           echo "Image namespace: ${REGISTRY}/${OWNER}/${IMAGE_NAME}"
 
+      - name: Compute build info
+        id: build_info
+        run: |
+          {
+            echo "created=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "source=https://github.com/${GITHUB_REPOSITORY}"
+            echo "branch=${GITHUB_REF_NAME}"
+            echo "run_url=https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "author<<EOF"
+            git log -1 --format='%an <%ae>'
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Docker metadata
         id: meta
         uses: docker/metadata-action@v6
@@ -165,6 +202,17 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            BUILD_DATE=${{ steps.build_info.outputs.created }}
+            VCS_REF=${{ github.sha }}
+            VCS_URL=${{ steps.build_info.outputs.source }}
+            SOURCE_BRANCH=${{ steps.build_info.outputs.branch }}
+            IMAGE_NAME=${{ env.IMAGE }}
+            GITHUB_RUN_ID=${{ github.run_id }}
+            GITHUB_RUN_ATTEMPT=${{ github.run_attempt }}
+            GITHUB_RUN_URL=${{ steps.build_info.outputs.run_url }}
+            GITHUB_ACTOR=${{ github.actor }}
+            COMMIT_AUTHOR=${{ steps.build_info.outputs.author }}
           cache-from: type=gha
           cache-to: type=gha,mode=max,ignore-error=true
 

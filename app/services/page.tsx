@@ -108,8 +108,8 @@ export default function Page() {
                             We don't just use modern graphics APIs; we help shape the ecosystem. We are active contributors to the graphics programming community.
                         </Paragraph>
                         <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
-                            <li><strong>Open Source Contributions:</strong> You can find our GitHub profiles highly active within the Khronos-adjacent ecosystem, including direct contributions to Vulkan Validation Layers and SPIR-V Cross.</li>
-                            <li><strong>Compiler Hardening:</strong> We have submitted over 100 bug reports and test cases for the DirectX Shader Compiler.</li>
+                            <li><strong>Open Source Contributions:</strong> You can find our GitHub profiles highly active within the Khronos ecosystem. Our direct contributions span the Vulkan and SPIR-V specifications, SPIR-V Tools, Vulkan Validation Layers, CMake, Mesa, and LLVM.</li>
+                            <li><strong>Compiler Hardening:</strong> We stress-test shader compilers to the absolute extreme, submitting hundreds of bug reports and test cases across the DirectX Shader Compiler, Slang, and the SPIR-V specification.</li>
                             <li><strong>8-Time Speakers:</strong> Vulkanised Conference (2023, 2024, 2026)</li>
                             <li><strong>2-Time Speakers:</strong> Shading Language Symposium</li>
                             <li><strong>Platinum Sponsors:</strong> Vulkanised 2026</li>
@@ -121,15 +121,19 @@ export default function Page() {
                             We utilize a bleeding-edge, highly optimized stack to deliver scalable, cross-platform results.
                         </Paragraph>
                         <ul className="list-disc pl-5 mt-4 flex flex-col gap-2">
-                            <li><strong>Graphics &amp; Compute APIs:</strong> Vulkan, DirectX 12, DirectX 11, CUDA, OpenCL, WebGPU, OpenGL (including ES &amp; WebGL), NVN.</li>
-                            <li><strong>Shading &amp; Architecture:</strong> SPIR-V, HLSL 202x, modern C++, Language Engineering.</li>
-                            <li><strong>Infrastructure, CI/CD &amp; Tooling:</strong> CMake, Docker, Jenkins, Python, SWIG, .NET 7, WASM, Emscripten, TypeScript, Kubernetes, Terraform, AWS, Proxmox.</li>
+                            <li><strong>Graphics &amp; Compute APIs:</strong> Vulkan, DirectX 12, DirectX 11, CUDA, OpenCL, WebGPU, OpenGL (including ES &amp; WebGL), NVN, SYCL.</li>
+                            <li><strong>Shading &amp; Architecture:</strong> SPIR-V, HLSL 202x, Slang, GLSL and WHSL.</li>
+                            <li><strong>Build Systems:</strong> CMake, Conan, Python, SWIG, MCJIT, ORCJIT, Clang Customizations, LLVM Toolchains.</li>
+                            <li><strong>Infrastructure, CI/CD &amp; Tooling:</strong> Docker, Jenkins, Kubernetes, Terraform, AWS, Proxmox, vGPUs, virGL, venus, virtIO, QEMU.</li>
+                            <li><strong>Delivering Web Experiences:</strong> WASM, Emscripten, TypeScript, .NET 7, Venus-Protocol, ChromeOS native APK development.</li>
+                            <li><strong>Delivering AR/XR/VR Experiences:</strong> OpenXR, HorizonOS development.</li>
+                            <li><strong>GPU Driver &amp; Layer Development:</strong> Turnip, llvmpipe, virtIO, Venus, virGL, Zink, MoltenVK, KosmicKrisp.</li>
                         </ul>
                     </Chapter>
 
-                    <Chapter title="Exclusive Partnership Incentive">
+                    <Chapter title="Shared Boilerplate Incentive">
                         <Paragraph>
-                            When you partner with DevSH, you have the option to enjoy a <strong> massive 50% discount </strong> on the co-development and ongoing maintenance of common utilities and shared infrastructural components, significantly reducing your development overhead.
+                            When two or more of our clients use the same FOSS project and wish to extend it with the same features (e.g., SPIR-V Tools or the Nabla HLSL Standard Template Library), we facilitate cost-sharing. This results in massive <strong>30-75% discounts</strong> on our billed hourly rates, significantly reducing your development overhead while advancing the core tools your project relies on.
                         </Paragraph>
                     </Chapter>
 

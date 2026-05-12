@@ -22,7 +22,7 @@ const NABLA = {
   slides: [
     { src: "/nabla/rt_screenshot_both.jpg", caption: "Raytracing" },
     { src: "/nabla/fluid_sim.gif", caption: "Fluid Simulation" },
-    { src: "/nabla/stipples.gif", caption: "Vectorized Linework and Graphics" },
+    { src: "/nabla/stipples.gif", caption: "GPU-Accelerated Vectorized Linework" },
     { src: "/nabla/nsc.png", caption: "Nabla Shader Compiler & Godbolt docker integration" },
     { src: "/nabla/fft_bloom_heart.gif", caption: "Fast Fourier Transform Bloom" },
     { src: "/nabla/imguiintegration.jpg", caption: "ImGui Integration" },

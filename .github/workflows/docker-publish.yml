@@ -21,6 +21,9 @@ jobs:
       contents: read
 
     steps:
+      - name: Configure Git default branch
+        run: git config --global init.defaultBranch master
+
       - name: Checkout
         uses: actions/checkout@v6
 
@@ -98,6 +101,9 @@ jobs:
       packages: write
 
     steps:
+      - name: Configure Git default branch
+        run: git config --global init.defaultBranch master
+
       - name: Checkout
         uses: actions/checkout@v6
 

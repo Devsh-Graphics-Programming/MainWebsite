@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 24631 -H 0.0.0.0",
+    "generate:pricing-pdf": "node scripts/generate-pricing-pdf.mjs",
+    "prebuild": "npm run generate:pricing-pdf",
     "build": "next build",
     "start": "next start -p 24631 -H 0.0.0.0",
     "lint": "eslint ."
@@ -13,6 +15,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "motion": "^12.23.1",
     "next": "^15.5.7",
+    "pdfkit": "^0.19.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

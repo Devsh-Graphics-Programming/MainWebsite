@@ -1,0 +1,30 @@
+{
+  "currency": "EUR",
+  "unit": "hour",
+  "rates": [
+    {
+      "role": "Junior",
+      "rate": 45
+    },
+    {
+      "role": "Mid",
+      "rate": 75
+    },
+    {
+      "role": "Senior",
+      "rate": 99
+    },
+    {
+      "role": "Project lead",
+      "rate": 130
+    },
+    {
+      "role": "Subject Matter Expert",
+      "rate": 169
+    },
+    {
+      "role": "CEO & Principal Engineer",
+      "rate": 220
+    }
+  ]
+}

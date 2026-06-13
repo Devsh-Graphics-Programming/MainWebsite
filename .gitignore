@@ -46,3 +46,6 @@ next-env.d.ts
 # Transient cleanup
 .old_nm_trash*
 tmp/
+
+# Generated static documents
+/public/pricing.pdf

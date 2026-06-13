@@ -16,6 +16,7 @@ const links: Link[] = [
     { name: "Home", url: "/" },
     { name: "About", url: "/about" },
     { name: "Services", url: "/services" },
+    { name: "Pricing", url: "/pricing.pdf" },
     { name: "Nabla", url: "/nabla" },
     { name: "Research", url: "/presentations" },
     { name: "Blog", url: "/blog" },

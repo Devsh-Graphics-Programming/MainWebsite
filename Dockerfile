@@ -61,5 +61,8 @@ RUN set -eu; \
   } > /srv/build-info.json
 
 EXPOSE 3000
+RUN mkdir -p /config/caddy /data/caddy \
+  && chown -R caddy:caddy /config /data \
+  && setcap -r /usr/bin/caddy
 USER caddy
 ENTRYPOINT ["caddy", "run", "--config=/etc/caddy/Caddyfile"]

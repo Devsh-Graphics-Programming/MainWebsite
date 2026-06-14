@@ -64,10 +64,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${futuraPT.className} antialiased min-h-dvh bg-black text-white`}
+        className={`${futuraPT.className} flex min-h-dvh flex-col bg-black text-white antialiased`}
       >
         <Navbar/>
-        <div className="min-h-dvh overflow-x-clip">
+        <div className="overflow-x-clip">
           {children}
         </div>
         <Footer/>

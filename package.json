@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 24631 -H 0.0.0.0",
     "generate:pricing-pdf": "node scripts/generate-pricing-pdf.mjs",
+    "sync:linkedin-feed": "node scripts/sync-linkedin-feed.mjs",
     "prebuild": "npm run generate:pricing-pdf",
     "build": "next build",
     "start": "next start -p 24631 -H 0.0.0.0",

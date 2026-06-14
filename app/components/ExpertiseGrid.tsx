@@ -140,9 +140,9 @@ function Card({ title, images, href }: { title: string; images: MediaItem[]; hre
 
 export default function ExpertiseGrid() {
   return (
-    <section className="w-full pb-9 pt-3 sm:pb-11 sm:pt-4 lg:pb-12">
+    <section className="w-full pb-9 pt-10 sm:pb-11 sm:pt-12 lg:pb-12 lg:pt-14">
       <div className="site-container">
-        <div className="section-head mb-7 sm:mb-8">
+        <div className="section-head mb-10 sm:mb-12 lg:mb-14">
           <h2 className="section-heading">Our Expertise</h2>
         </div>
         {/* Two-column mobile grid, then a wrapped centered row on wider screens. */}

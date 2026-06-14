@@ -17,11 +17,10 @@ export default function CTAButton({
   return (
     <a
       href={href}
-      className={`brand-button group relative inline-flex items-center justify-center gap-3 ${sizing} rounded-md border border-[var(--brand-accent)]/70 bg-black/45 font-semibold text-[var(--brand-accent-bright)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--brand-accent-bright)] active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-[var(--brand-accent-bright)] focus:ring-offset-2 focus:ring-offset-black`}
-      style={{ background: "linear-gradient(180deg, rgba(125, 205, 185, 0.16), rgba(85, 181, 166, 0.08))" }}
+      className={`premium-cta brand-button group relative inline-flex items-center justify-center gap-3 ${sizing} rounded-lg border font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-[var(--brand-accent-bright)] focus:ring-offset-2 focus:ring-offset-black`}
     >
       <span>{label}</span>
-      <span className="flex h-7 w-7 items-center justify-center rounded border border-[var(--brand-accent)]/70 bg-[var(--brand-accent)] text-[#031111] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:bg-[var(--brand-accent-bright)]">
+      <span className="premium-cta-icon flex h-7 w-7 items-center justify-center rounded border transition-all duration-200 group-hover:translate-x-0.5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

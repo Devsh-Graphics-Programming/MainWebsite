@@ -153,7 +153,7 @@ function ProjectImageCard({ image }: { image: ProjectImage; priority?: boolean }
   const mediaClassName = `absolute inset-0 h-full w-full ${image.fit === "contain" ? "object-contain" : "object-cover"} rounded-lg transition-transform duration-500 group-hover:scale-[1.035]`;
 
   return (
-    <div className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg bg-black ring-1 ring-inset ring-white/10">
+    <div className="project-media-card group relative aspect-video w-full overflow-hidden rounded-lg bg-black">
       {image.type === "video" ? (
         <OptimizedLoopVideo
           src={image.src}
@@ -170,7 +170,7 @@ function ProjectImageCard({ image }: { image: ProjectImage; priority?: boolean }
         />
       )}
       {image.text && (
-        <div className="absolute bottom-0 left-0 px-1.5 py-1 bg-black/35 backdrop-blur-md rounded-tr-md">
+        <div className="project-media-label absolute bottom-0 left-0 px-1.5 py-1 backdrop-blur-md rounded-tr-md">
           <p className="m-0 text-[10px] sm:text-xs font-medium leading-none text-white/70">
             {image.text}
           </p>
@@ -184,10 +184,12 @@ function ConsultingScope({ project }: { project: Project }) {
   const scope = project.scope ?? ["Analysis", "Design", "Review"];
 
   return (
-    <div className="surface-panel brand-hover flex h-full flex-col justify-center p-5 sm:p-7 lg:p-8">
-      <p className="section-kicker">{project.accent ?? "Consulting scope"}</p>
-      <h3 className="!mb-3 !mt-3 text-2xl font-semibold leading-tight sm:!mt-4 sm:text-3xl">{project.title}</h3>
-      <p className="!m-0 text-base leading-relaxed text-neutral-300">{project.summary}</p>
+    <div className="project-scope-panel flex h-full flex-col justify-center p-5 sm:p-7 lg:p-8">
+      <div className="kicker-title-stack">
+        <p className="section-kicker">{project.accent ?? "Consulting scope"}</p>
+        <h3 className="project-copy-title text-2xl font-semibold leading-tight sm:text-3xl">{project.title}</h3>
+      </div>
+      <p className="!m-0 !mt-3 text-base leading-relaxed text-neutral-300">{project.summary}</p>
       <div className="mt-5 flex flex-wrap gap-2 sm:mt-6">
         {scope.map((item) => (
           <span key={item} className="rounded border border-white/10 bg-white/[0.03] px-3 py-1.5 text-sm text-neutral-300">
@@ -210,7 +212,7 @@ function ImageGrid({ images, layout = "grid" }: { images: ProjectImage[]; layout
 
   if (layout === "stacked") {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:gap-5">
+      <div className="project-media-stack grid grid-cols-1 gap-4 sm:gap-5">
         {images.map((image, index) => (
           <ProjectImageCard key={`${image.src}-${index}`} image={image} />
         ))}
@@ -220,7 +222,7 @@ function ImageGrid({ images, layout = "grid" }: { images: ProjectImage[]; layout
 
   if (images.length === 3) {
     return (
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="project-media-grid grid grid-cols-1 gap-4 sm:grid-cols-2">
         {images.map((image, index) => (
           <div key={`${image.src}-${index}`} className={index === 2 ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.5rem)]" : ""}>
             <ProjectImageCard image={image} />
@@ -231,7 +233,7 @@ function ImageGrid({ images, layout = "grid" }: { images: ProjectImage[]; layout
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div className="project-media-grid grid grid-cols-1 gap-4 sm:grid-cols-2">
       {images.slice(0, 4).map((image, index) => (
         <ProjectImageCard key={`${image.src}-${index}`} image={image} />
       ))}
@@ -263,18 +265,20 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
   if (!hasImages) {
     return (
-      <article id={`project-${project.slug}`} className="scroll-mt-24 border-t border-white/10 pt-8 sm:pt-9 lg:pt-10">
-        <div className="grid grid-cols-1 items-stretch gap-5 sm:gap-6 lg:grid-cols-2 lg:gap-10">
-          <div className={`order-2 ${reverse ? "lg:order-1" : "lg:order-2"}`}>
+      <article id={`project-${project.slug}`} className="project-story scroll-mt-24">
+        <div className="contents">
+          <div className={`project-media-cluster order-2 ${reverse ? "lg:order-1" : "lg:order-2"}`}>
             <ConsultingScope project={project} />
           </div>
-          <div className={`order-1 flex flex-col justify-center py-1 lg:py-2 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
-            <p className="section-kicker mb-3">{project.accent ?? project.title}</p>
-            <h3 className="!mb-3 !mt-0 text-2xl font-semibold leading-tight sm:text-3xl">{heading}</h3>
-            <ul className="!m-0 flex list-none flex-col gap-3 p-0 sm:gap-3.5">
+          <div className={`project-copy order-1 flex flex-col justify-center py-1 lg:py-2 ${reverse ? "lg:order-2" : "lg:order-1"}`}>
+            <div className="kicker-title-stack mb-4">
+              <p className="section-kicker">{project.accent ?? project.title}</p>
+              <h3 className="project-copy-title text-2xl font-semibold leading-tight sm:text-3xl">{heading}</h3>
+            </div>
+            <ul className="project-bullet-list !m-0 flex list-none flex-col gap-3 p-0 sm:gap-3.5">
               {project.bullets.map((bullet) => (
-                <li key={bullet} className="flex items-start gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
-                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-accent)]" aria-hidden="true" />
+                <li key={bullet} className="project-bullet text-sm leading-relaxed text-neutral-300 sm:text-base">
+                  <span className="project-bullet-dot" aria-hidden="true" />
                   <span>{bullet}</span>
                 </li>
               ))}
@@ -288,26 +292,28 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   return (
     <article
       id={`project-${project.slug}`}
-      className="grid scroll-mt-24 grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:gap-7 sm:pt-9 lg:grid-cols-2 lg:gap-10 lg:pt-10"
+      className="project-story scroll-mt-24"
     >
-      <div className={`flex flex-col justify-center ${reverse ? "lg:order-2" : ""}`}>
+      <div className={`project-copy flex flex-col justify-center ${reverse ? "lg:order-2" : ""}`}>
         <div className="mb-4 flex flex-col gap-3">
-          <p className="section-kicker">{project.accent ?? project.title}</p>
-          <h3 className="!m-0 text-2xl font-semibold leading-tight sm:text-3xl">{heading}</h3>
+          <div className="kicker-title-stack">
+            <p className="section-kicker">{project.accent ?? project.title}</p>
+            <h3 className="project-copy-title text-2xl font-semibold leading-tight sm:text-3xl">{heading}</h3>
+          </div>
           <p className="!m-0 text-base leading-relaxed text-neutral-300 sm:text-lg">{project.summary}</p>
         </div>
 
-        <ul className="!m-0 flex list-none flex-col gap-3 p-0 sm:gap-3.5">
+        <ul className="project-bullet-list !m-0 flex list-none flex-col gap-3 p-0 sm:gap-3.5">
           {project.bullets.map((bullet) => (
-            <li key={bullet} className="flex items-start gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
-              <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-accent)]" aria-hidden="true" />
+            <li key={bullet} className="project-bullet text-sm leading-relaxed text-neutral-300 sm:text-base">
+              <span className="project-bullet-dot" aria-hidden="true" />
               <span>{bullet}</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className={`self-center ${reverse ? "lg:order-1" : ""}`}>
+      <div className={`project-media-cluster self-center ${reverse ? "lg:order-1" : ""}`}>
         <ImageGrid images={project.images} layout={project.visualLayout} />
       </div>
     </article>
@@ -316,14 +322,14 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="scroll-mt-24 pb-12 pt-0 sm:pb-16 lg:pb-20">
+    <section id="projects" className="projects-section scroll-mt-24 pb-12 pt-0 sm:pb-16 lg:pb-20">
       <div className="site-container">
-        <div className="section-head mt-7 mb-7 sm:mb-9">
+        <div className="section-head my-9">
           <p className="section-kicker">Commercial work</p>
           <h2 className="section-heading">Engineered Solutions for Our Partners</h2>
         </div>
 
-        <div className="flex flex-col gap-8 sm:gap-9">
+        <div className="projects-editorial">
           {projects.map((project, index) => (
             <ProjectRow key={project.slug} project={project} index={index} />
           ))}

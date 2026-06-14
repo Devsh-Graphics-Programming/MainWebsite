@@ -1,22 +1,20 @@
+import NablaShaderBackdrop from "../nabla/NablaShaderBackdrop";
 import CTAButton from "./CTAButton";
 
 export default function HeroHeader() {
   return (
-    <section className="relative isolate w-full overflow-hidden pb-1 pt-10 sm:pt-14 lg:pt-16">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full bg-[radial-gradient(ellipse_at_50%_0%,rgba(125,205,185,0.13),transparent_42%),radial-gradient(ellipse_at_50%_48%,rgba(85,181,166,0.07),transparent_58%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[12%] -z-10 h-[min(54vw,34rem)] w-[min(84vw,56rem)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(125,205,185,0.12)_0%,rgba(85,181,166,0.05)_36%,transparent_70%)] blur-3xl"
-      />
-      <div className="site-container relative flex flex-col items-center text-center">
+    <section className="home-hero-cloud relative isolate flex w-full items-center overflow-hidden py-12 sm:py-14 lg:py-16">
+      <div aria-hidden="true" className="home-hero-cloud-field">
+        <div className="home-hero-cloud-base" />
+        <NablaShaderBackdrop />
+        <div className="home-hero-cloud-vignette" />
+      </div>
+      <div className="site-container relative z-10 flex flex-col items-center text-center">
         <div className="flex flex-col items-center gap-4">
-          <h1 className="!my-0 max-w-5xl text-4xl font-bold leading-[1.02] sm:text-5xl lg:text-4xl xl:text-5xl">
+          <h1 className="!my-0 max-w-5xl bg-[linear-gradient(135deg,#fff_18%,#f5fffb_62%,var(--brand-accent-bright)_100%)] bg-clip-text text-4xl font-bold leading-[1.02] text-transparent drop-shadow-[0_0_1.4rem_rgba(0,0,0,0.45)] sm:text-5xl lg:text-4xl xl:text-5xl">
             High-Performance Graphics Software Development
           </h1>
-          <p className="!m-0 max-w-3xl text-base leading-relaxed text-neutral-300 sm:text-lg lg:text-xl">
+          <p className="cloud-lead max-w-3xl">
             Supercharge your visually-demanding applications with next-generation rendering solutions, high-performance compute, and relentless optimization.
           </p>
         </div>

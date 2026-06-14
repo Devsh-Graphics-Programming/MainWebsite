@@ -1,39 +1,33 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
-import { useCallback, useEffect, useState } from "react";
+import NablaHeroFrame from "../nabla/NablaHeroFrame";
+import NablaShaderBackdrop from "../nabla/NablaShaderBackdrop";
 import OptimizedLoopVideo from "./OptimizedLoopVideo";
 import ResponsiveImage from "./ResponsiveImage";
 
 const NABLA = {
   repoUrl: "https://github.com/Devsh-Graphics-Programming/Nabla",
-  stats: {
-    stars: "685",
-    forks: "73",
-    openPRs: "40",
-    commits: "15,969",
-  },
-  highlights: [
-    "Single-source HLSL202x/C++20 Standard Template Header-Only Library",
-    "SPIR-V and Vulkan as First-Class Citizens",
-    "Utilities for Rapid Prototyping for modern GPU Workloads (raytracing, compute, raster, etc.)",
-    "Unit-Tested BxDFs for Physically Based Rendering",
-    "Intelligent GPU Object Lifecycle Tracking and Resource Management",
+  stats: [
+    { value: "685", label: "Stars" },
+    { value: "73", label: "Forks" },
+    { value: "15,969", label: "Commits" },
   ],
-  slides: [
-    { src: "/nabla/rt_screenshot_both.jpg", caption: "Raytracing" },
-    { src: "/optimized/nabla/fluid_sim.mp4", poster: "/optimized/nabla/fluid_sim-poster.webp", type: "video", caption: "Fluid Simulation" },
-    { src: "/optimized/nabla/stipples.mp4", poster: "/optimized/nabla/stipples-poster.webp", type: "video", caption: "GPU-Accelerated Vectorized Linework" },
-    { src: "/nabla/nsc.png", caption: "Nabla Shader Compiler & Godbolt docker integration" },
-    { src: "/optimized/nabla/fft_bloom_heart.mp4", poster: "/optimized/nabla/fft_bloom_heart-poster.webp", type: "video", caption: "Fast Fourier Transform Bloom" },
-    { src: "/nabla/imguiintegration.jpg", caption: "ImGui Integration" },
-    { src: "/optimized/nabla/2d_csg.mp4", poster: "/optimized/nabla/2d_csg-poster.webp", type: "video", caption: "2D Constructive Solid Geometry" },
-    { src: "/nabla/Iridescence.png", caption: "Iridescent Materials" },
+  highlights: [
+    "Vulkan-only and thread-agnostic",
+    "Single-source C++ and HLSL workflow",
+    "Built for demanding rendering middleware",
   ],
 };
 
-const AUTO_MS = 4500;
+type PreviewItem = {
+  src: string;
+  title: string;
+  poster?: string;
+  type?: "image" | "video";
+  crop?: "materials";
+};
 
 function GitHubIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -43,253 +37,160 @@ function GitHubIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function StarIcon() {
+function ArrowIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4" aria-hidden="true">
-      <path d="m10 1.5 2.47 5 5.53.8-4 3.9.94 5.5L10 14.1 5.06 16.7l.94-5.5-4-3.9 5.53-.8L10 1.5Z" />
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className} aria-hidden="true">
+      <path fillRule="evenodd" d="M5 4.75A.75.75 0 0 1 5.75 4h8.5a.75.75 0 0 1 .75.75v8.5a.75.75 0 0 1-1.5 0V6.56l-8.22 8.22a.75.75 0 0 1-1.06-1.06l8.22-8.22H5.75A.75.75 0 0 1 5 4.75Z" clipRule="evenodd" />
     </svg>
   );
 }
 
-function ForkIcon() {
+function StatPill({ value, label }: { value: string; label: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4" aria-hidden="true">
-      <path d="M5 2.5a2.5 2.5 0 0 0-1 4.79v5.42a2.5 2.5 0 1 0 1.5 0V8h3.75A3.75 3.75 0 0 0 13 4.25v-.96a2.5 2.5 0 1 0-1.5 0v.96A2.25 2.25 0 0 1 9.25 6.5H5.5A2.5 2.5 0 0 0 5 2.5Z" />
-    </svg>
-  );
-}
-
-function DotIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4" aria-hidden="true">
-      <circle cx="10" cy="10" r="4" />
-    </svg>
-  );
-}
-
-function StatBadge({ icon, value, label }: { icon: ReactNode; value: string; label: string }) {
-  return (
-    <div className="rounded border border-white/10 bg-black/20 p-3">
-      <div className="flex items-center gap-2 text-[var(--brand-accent-bright)]">
-        {icon}
-        <span className="text-lg font-semibold leading-none sm:text-xl">{value}</span>
-      </div>
-      <p className="!m-0 mt-1 text-xs uppercase tracking-widest text-neutral-500">{label}</p>
+    <div className="rounded-lg border border-white/10 bg-black/22 px-4 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+      <p className="!m-0 text-xl font-semibold leading-none text-[var(--brand-accent-bright)]">{value}</p>
+      <p className="!m-0 mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-neutral-500">{label}</p>
     </div>
   );
 }
 
-function Slideshow() {
-  const slides = NABLA.slides;
-  const [active, setActive] = useState(0);
+function NablaHomeBackdrop() {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="nabla-backdrop-base" />
+      <NablaShaderBackdrop />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_26%_46%,rgba(0,0,0,0.62),rgba(0,0,0,0.18)_44%,transparent_72%),linear-gradient(180deg,rgba(0,0,0,0.82),transparent_24%,rgba(0,0,0,0.72)_100%)]" />
+      <div className="nabla-dot-field" />
+    </div>
+  );
+}
 
-  // Touch state for swiping
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-
-  // Minimum distance (in pixels) to trigger a swipe
-  const minSwipeDistance = 50;
-
-  const goTo = useCallback((idx: number) => {
-    setActive(idx);
-  }, []);
-
-  const nextSlide = useCallback(() => {
-    setActive((current) => (current + 1) % slides.length);
-  }, [slides.length]);
-
-  const prevSlide = useCallback(() => {
-    setActive((current) => (current - 1 + slides.length) % slides.length);
-  }, [slides.length]);
-
-  // Touch Event Handlers
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null); // Reset touch end to prevent false positives from previous swipes
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      nextSlide();
-    } else if (isRightSwipe) {
-      prevSlide();
-    }
-  };
-
-  // Auto-play timer
-  useEffect(() => {
-    const interval = setInterval(nextSlide, AUTO_MS);
-    // Adding `active` to the dependency array ensures the timer resets 
-    // whenever the user manually changes the slide (via swipe or dots).
-    return () => clearInterval(interval);
-  }, [nextSlide, active]);
+function PreviewTile({ item }: { item: PreviewItem }) {
+  const cropClass = item.crop === "materials" ? "nabla-media-object--materials" : "";
+  const mediaClass = `nabla-media-object absolute inset-0 h-full w-full object-cover ${cropClass}`;
 
   return (
-    <div className="flex flex-col gap-3">
-      <div 
-        className="media-hover group relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-black touch-pan-y"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
-      >
-        {/* Render all slides stacked, fading opacity/blur via CSS */}
-        {slides.map((slide, index) => {
-          const isActive = index === active;
+    <div className="group relative aspect-[4/3] overflow-hidden rounded-md border border-white/10 bg-black/70 transition duration-300 hover:border-[var(--brand-accent-bright)]/55">
+      {item.type === "video" ? (
+        <OptimizedLoopVideo src={item.src} poster={item.poster} aria-label={item.title} className={mediaClass} />
+      ) : (
+        <ResponsiveImage src={item.src} alt={item.title} sizes="(min-width: 64rem) 12vw, 30vw" className={mediaClass} />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+      <p className="absolute inset-x-0 bottom-0 !m-0 p-3 text-xs font-semibold leading-tight text-white sm:text-sm">{item.title}</p>
+    </div>
+  );
+}
 
-          return (
-            <div
-              key={slide.src}
-              className={`absolute inset-0 transition-all duration-[800ms] ease-in-out ${
-                isActive ? "z-10 opacity-100 blur-0" : "z-0 opacity-0 blur-xl"
-              }`}
-            >
-              {slide.type === "video" ? (
-                <OptimizedLoopVideo
-                  src={slide.src}
-                  poster={slide.poster}
-                  active={isActive}
-                  aria-label={slide.caption}
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-[1.035]"
-                />
-              ) : (
-                <ResponsiveImage
-                  src={slide.src}
-                  alt={slide.caption}
-                  sizes="(min-width: 64rem) 50vw, 100vw"
-                  className="pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] group-hover:scale-[1.035]"
-                />
-              )}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-5 py-4 pointer-events-none">
-                <p className="!m-0 text-base font-medium text-white sm:text-xl">{slide.caption}</p>
-              </div>
+function NablaShowcaseFrame() {
+  const tiles: PreviewItem[] = [
+    { src: "/nabla/nsc.png", title: "Shader Compiler" },
+    { src: "/optimized/nabla/fluid_sim.mp4", poster: "/optimized/nabla/fluid_sim-poster.webp", type: "video", title: "Fluid Simulation" },
+    { src: "/nabla/Iridescence.png", title: "Materials", crop: "materials" },
+  ];
+
+  return (
+    <div className="relative mx-auto w-full max-w-3xl lg:max-w-none">
+      <div className="absolute -inset-8 rounded-[2rem] bg-[radial-gradient(ellipse_at_50%_46%,rgba(125,205,185,0.22),rgba(85,181,166,0.08)_42%,transparent_72%)] blur-3xl" aria-hidden="true" />
+      <NablaHeroFrame>
+        <div className="flex items-center justify-between border-b border-white/10 px-3 py-2">
+          <div className="flex items-center gap-1.5" aria-hidden="true">
+            <span className="h-2 w-2 rounded-full bg-red-400/70" />
+            <span className="h-2 w-2 rounded-full bg-yellow-300/70" />
+            <span className="h-2 w-2 rounded-full bg-[var(--brand-accent-bright)]/80" />
+          </div>
+          <p className="!m-0 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-neutral-500">Nabla preview</p>
+        </div>
+
+        <div className="p-2 sm:p-3">
+          <div className="group relative aspect-[16/10] overflow-hidden rounded-lg border border-white/10 bg-black shadow-[0_1rem_3rem_rgba(0,0,0,0.35)]">
+            <ResponsiveImage
+              src="/nabla/rt_screenshot_both.jpg"
+              alt="Raytracing pipeline"
+              loading="eager"
+              sizes="(min-width: 64rem) 44vw, 100vw"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_105%,rgba(125,205,185,0.22),transparent_44%),linear-gradient(180deg,transparent_44%,rgba(0,0,0,0.84)_100%)]" />
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+              <p className="!m-0 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--brand-accent-bright)]">Featured render</p>
+              <h3 className="!mb-0 !mt-1 text-2xl font-semibold leading-tight text-white sm:text-3xl">Raytracing pipeline</h3>
             </div>
-          );
-        })}
-      </div>
+          </div>
 
-      <div className="flex items-center justify-center gap-3 pt-2" role="tablist" aria-label="Nabla showcase slides">
-        {slides.map((slideItem, index) => (
-          <button
-            key={slideItem.caption}
-            role="tab"
-            aria-selected={index === active}
-            aria-label={slideItem.caption}
-            onClick={() => goTo(index)}
-            className={`rounded-full ring-1 ring-inset ring-[var(--brand-accent)] transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
-              index === active
-                ? "h-2 w-4 bg-[var(--brand-accent)]"
-                : "h-2 w-2 bg-transparent hover:bg-[var(--brand-accent)]/30"
-            }`}
-          />
-        ))}
-      </div>
+          <div className="mt-3 grid grid-cols-3 gap-3">
+            {tiles.map((item) => (
+              <PreviewTile key={item.title} item={item} />
+            ))}
+          </div>
+        </div>
+      </NablaHeroFrame>
     </div>
   );
 }
 
-function NablaGlyph({ className = "h-12 w-12 sm:h-14 sm:w-14" }: { className?: string }) {
-  return (
-    <span className={`relative mx-auto grid select-none place-items-center ${className}`}>
-      <span
-        className="absolute -inset-[180%] rounded-full bg-[radial-gradient(circle,rgba(125,205,185,0.5)_0%,rgba(85,181,166,0.2)_32%,transparent_70%)] blur-2xl"
-      />
-      <Image
-        src="/nabla-glow.svg"
-        alt="Nabla"
-        fill
-        sizes="3.5rem"
-        loading="eager"
-        draggable={false}
-        className="relative z-10 object-contain drop-shadow-[0_0_0.9rem_rgba(125,205,185,0.9)]"
-      />
-    </span>
-  );
-}
+function ActionLink({ children, href, external = false, primary = false }: { children: ReactNode; href: string; external?: boolean; primary?: boolean }) {
+  const className = primary
+    ? "premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
+    : "inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]";
 
-function NablaBackdrop() {
+  if (external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <>
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_10%,rgba(85,181,166,0.13),transparent_48%),linear-gradient(180deg,rgba(0,0,0,0.96),rgba(3,13,13,0.98)_45%,rgba(0,0,0,0.98))]"
-      />
-      <svg
-        aria-hidden="true"
-        viewBox="0 0 100 100"
-        className="pointer-events-none absolute left-1/2 top-[4%] h-[min(72vw,48rem)] w-[min(72vw,48rem)] -translate-x-1/2 text-[var(--brand-accent)] opacity-[0.075] blur-[0.02rem]"
-      >
-        <path
-          d="M18 16h64L50 86 18 16Z"
-          fill="currentColor"
-          fillOpacity="0.08"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-[12%] h-[min(58vw,38rem)] w-[min(58vw,38rem)] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(125,205,185,0.16)_0%,rgba(85,181,166,0.08)_30%,transparent_68%)] blur-3xl"
-      />
-    </>
+    <Link href={href} className={className}>
+      {children}
+    </Link>
   );
 }
 
 export default function NablaSection() {
   return (
-    <section id="nabla" className="relative scroll-mt-24 overflow-hidden border-y border-white/10 py-12 sm:py-14 lg:py-16">
-      <NablaBackdrop />
-      <div className="site-container relative z-10">
-        <div className="section-head mb-7 sm:mb-8">
-          <NablaGlyph />
-          <h2 className="!m-0 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">Nabla</h2>
-          <p className="!m-0 text-base leading-relaxed text-neutral-300 sm:text-lg">
-            Our Open Source Rendering Framework
+    <section id="nabla" className="relative scroll-mt-24 overflow-hidden border-y border-white/10 py-16 sm:py-20 lg:py-24">
+      <NablaHomeBackdrop />
+      <div className="site-container relative z-10 grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
+        <div className="relative isolate max-w-2xl">
+          <div className="pointer-events-none absolute -inset-x-8 -inset-y-10 -z-10 rounded-[3rem] bg-[radial-gradient(ellipse_at_34%_48%,rgba(0,0,0,0.64),rgba(0,0,0,0.32)_42%,transparent_72%)] blur-2xl" aria-hidden="true" />
+          <p className="section-kicker drop-shadow-[0_0.1rem_0.55rem_rgba(0,0,0,0.75)]">Open Source Rendering Framework</p>
+          <h2 className="!mb-5 !mt-2 bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text text-balance text-5xl font-semibold leading-[0.96] text-transparent drop-shadow-[0_0_1.6rem_rgba(0,0,0,0.45)] sm:text-6xl lg:text-7xl">Nabla</h2>
+          <p className="cloud-lead max-w-xl">
+            A Vulkan-only, thread-agnostic C++ and HLSL framework for demanding rendering middleware.
           </p>
-        </div>
 
-        <div className="grid grid-cols-1 items-start gap-7 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-10">
-          <div className="flex flex-col gap-4">
-            <a
-              href={NABLA.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="surface-panel brand-hover block p-5 sm:p-6"
-            >
-              <div className="flex items-center gap-3 text-[var(--brand-accent-bright)]">
-                <GitHubIcon />
-                <span className="text-sm font-semibold sm:text-base">Devsh-Graphics-Programming / Nabla</span>
-              </div>
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                <StatBadge icon={<StarIcon />} value={NABLA.stats.stars} label="Stars" />
-                <StatBadge icon={<ForkIcon />} value={NABLA.stats.forks} label="Forks" />
-                <StatBadge icon={<DotIcon />} value={NABLA.stats.openPRs} label="Open PRs" />
-                <StatBadge icon={<DotIcon />} value={NABLA.stats.commits} label="Commits" />
-              </div>
-            </a>
-
-            <ul className="!m-0 flex list-none flex-col gap-2.5 border-l border-white/10 pl-4">
-              {NABLA.highlights.map((highlight) => (
-                <li key={highlight} className="flex items-start gap-3 text-base leading-relaxed text-neutral-300">
-                  <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-accent)]" aria-hidden="true" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 sm:mt-8">
+            {NABLA.stats.map((stat) => (
+              <StatPill key={stat.label} value={stat.value} label={stat.label} />
+            ))}
           </div>
 
-          <Slideshow />
+          <ul className="!m-0 !mt-7 flex list-none flex-col gap-3 p-0 sm:!mt-8">
+            {NABLA.highlights.map((highlight) => (
+              <li key={highlight} className="grid grid-cols-[0.5rem_1fr] gap-3 text-base font-medium leading-relaxed text-neutral-200">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--brand-accent)] shadow-[0_0_0.9rem_rgba(125,205,185,0.7)]" aria-hidden="true" />
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <ActionLink href="/nabla" primary>
+              Explore Nabla
+              <ArrowIcon />
+            </ActionLink>
+            <ActionLink href={NABLA.repoUrl} external>
+              <GitHubIcon />
+              GitHub
+              <ArrowIcon />
+            </ActionLink>
+          </div>
         </div>
+
+        <NablaShowcaseFrame />
       </div>
     </section>
   );

@@ -57,7 +57,7 @@ export default function EcosystemSection() {
         className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(125,205,185,0.13),transparent_44%),linear-gradient(180deg,rgba(0,0,0,0.96),rgba(0,0,0,1)_58%)]"
       />
       <div className="site-container relative z-10">
-        <div className="section-head mb-9 sm:mb-10">
+        <div className="section-head mb-14 sm:mb-16 lg:mb-20">
           <p className="section-kicker">Community and standards</p>
           <h2 className="section-heading">
             Advancing the Ecosystem
@@ -67,30 +67,32 @@ export default function EcosystemSection() {
             our technical blog and presentations at major conferences like
             Vulkanised and the Shading Languages Symposium.
           </p>
-          <div className="mt-3 flex flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="mt-4 flex flex-wrap justify-center gap-3 sm:gap-4">
             <a
               href="/presentations"
-              className="group inline-flex items-center gap-2.5 rounded-md border bg-black/25 px-5 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:bg-black/40 hover:shadow-[0_0_1.5rem_rgba(85,181,166,0.18)] sm:px-6 sm:text-base"
-              style={{ borderColor: "rgba(125, 205, 185, 0.7)", color: "var(--brand-accent-bright)" }}
+              className="ecosystem-action group"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 flex-shrink-0" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-              </svg>
+              <span className="ecosystem-action-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+                </svg>
+              </span>
               Watch our Presentations
             </a>
             <a
               href="/blog"
-              className="group inline-flex items-center gap-2.5 rounded-md border bg-black/25 px-5 py-3 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:bg-black/40 hover:shadow-[0_0_1.5rem_rgba(85,181,166,0.18)] sm:px-6 sm:text-base"
-              style={{ borderColor: "rgba(125, 205, 185, 0.7)", color: "var(--brand-accent-bright)" }}
+              className="ecosystem-action group"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 flex-shrink-0" aria-hidden="true">
-                <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
-                <line x1="8" y1="7" x2="16" y2="7" />
-                <line x1="8" y1="11" x2="16" y2="11" />
-                <line x1="8" y1="15" x2="12" y2="15" />
-              </svg>
-              Technical Blog
+              <span className="ecosystem-action-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+                  <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                  <line x1="8" y1="7" x2="16" y2="7" />
+                  <line x1="8" y1="11" x2="16" y2="11" />
+                  <line x1="8" y1="15" x2="12" y2="15" />
+                </svg>
+              </span>
+              See Technical Blog
             </a>
           </div>
         </div>

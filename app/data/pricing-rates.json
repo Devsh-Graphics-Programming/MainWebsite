@@ -25,6 +25,14 @@
     {
       "role": "CEO & Principal Engineer",
       "rate": 220
+    },
+    {
+      "role": "Corporate training",
+      "rate": 669,
+      "note": [
+        "Includes preparation for up to 4 participants.",
+        "Travel and accommodation are billed separately for on-site sessions."
+      ]
     }
   ]
 }

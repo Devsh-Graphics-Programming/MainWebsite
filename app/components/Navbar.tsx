@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import DevshLogo from "@/public/devsh_transparent_1920.png"
+import DevshLogo from "@/public/brand/devsh-logo-glow.png"
 import { ReactNode, useEffect, useState } from "react"
 import { motion } from "framer-motion"
 
@@ -30,10 +30,25 @@ function DropdownIcon() {
     )
 }
 
-function NavbarLink({children, href, onClick}: {children: ReactNode, href: string, onClick?: () => void}) {
+function NavbarLink({children, href, active, onClick}: {children: ReactNode, href: string, active?: boolean, onClick?: () => void}) {
     return (
-        <li className="text-sm text-neutral-400 transition-colors duration-200 hover:text-white">
-            <Link className="block rounded px-2 py-1" href={href} onClick={onClick}>{children}</Link>
+        <li>
+            <Link
+                className={`group relative block rounded-md px-2.5 py-1.5 text-sm transition-colors duration-200 ${
+                    active ? "text-white" : "text-neutral-400 hover:text-white"
+                }`}
+                href={href}
+                aria-current={active ? "page" : undefined}
+                onClick={onClick}
+            >
+                {children}
+                <span
+                    aria-hidden="true"
+                    className={`absolute inset-x-2 bottom-0 h-px origin-center bg-[var(--brand-accent-bright)] transition-transform duration-200 ${
+                        active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                />
+            </Link>
         </li>
     )
 }
@@ -46,20 +61,24 @@ export default function Navbar() {
         setIsDropdownEnabled(false)
     }, [pathname])
 
+    const isActive = (href: string) => (
+        href === "/" ? pathname === "/" : pathname === href
+    )
+
     return (
-        <nav className="sticky top-0 z-40 border-b border-white/10 bg-black/90 backdrop-blur">
+        <nav className="sticky top-0 z-40 border-b border-[rgba(125,205,185,0.18)] bg-black/90 shadow-[0_1rem_3rem_rgba(0,0,0,0.35)] backdrop-blur-xl">
             <div className="site-container flex min-h-16 flex-row items-center justify-between gap-4 py-3">
-                <Link className="flex min-w-0 flex-row items-center gap-2.5" href="/">
-                    <Image src={DevshLogo} alt="Company Logo" className="h-8 w-8 flex-shrink-0"/>
-                    <span className="min-w-0 truncate text-base font-semibold leading-none sm:text-xl">
-                        <span className="">DevSH Graphics Programming</span>
+                <Link className="group flex min-w-0 flex-row items-center gap-3" href="/">
+                    <Image src={DevshLogo} alt="Company Logo" className="h-9 w-9 flex-shrink-0 object-contain"/>
+                    <span className="min-w-0 truncate bg-[linear-gradient(135deg,#fff_20%,#f4fffb_72%,var(--brand-accent-bright)_100%)] bg-clip-text text-base font-semibold leading-none text-transparent transition-opacity duration-200 group-hover:opacity-95 sm:text-xl">
+                        DevSH Graphics Programming
                     </span>
                 </Link>
-                <ul className="hidden shrink-0 flex-row items-center gap-1 md:flex">
-                    {links.map((link, index) => <NavbarLink href={link.url} key={index}>{link.name}</NavbarLink>)}
+                <ul className="hidden shrink-0 flex-row items-center gap-1.5 md:flex">
+                    {links.map((link, index) => <NavbarLink href={link.url} active={isActive(link.url)} key={index}>{link.name}</NavbarLink>)}
                 </ul>
                 <button
-                    className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded border border-white/10 text-neutral-200 transition-transform duration-300 md:hidden ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`}
+                    className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-[rgba(125,205,185,0.25)] bg-white/[0.02] text-neutral-200 transition duration-300 hover:border-[rgba(125,205,185,0.5)] hover:text-white md:hidden ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`}
                     aria-label="Toggle navigation"
                     aria-expanded={isDropdownEnabled}
                     onClick={() => setIsDropdownEnabled(!isDropdownEnabled)}
@@ -73,9 +92,9 @@ export default function Navbar() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0  }}
                     transition={{ duration: 0.5 }}
-                    className="flex w-full flex-col gap-1 border-b border-white/10 bg-black px-5 py-4 text-center md:hidden"
+                    className="flex w-full flex-col gap-1 border-b border-[rgba(125,205,185,0.18)] bg-black/95 px-5 py-4 text-center backdrop-blur-xl md:hidden"
                 >
-                    {links.map((link, index) => <NavbarLink href={link.url} key={index}>{link.name}</NavbarLink>)}
+                    {links.map((link, index) => <NavbarLink href={link.url} active={isActive(link.url)} key={index}>{link.name}</NavbarLink>)}
                 </motion.ul>
             )}
         </nav>

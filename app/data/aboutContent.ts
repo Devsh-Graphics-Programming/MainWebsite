@@ -4,7 +4,9 @@
  */
 
 export const aboutParagraphs = [
-  "DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house. We don't build CRUD apps, and we don't do repetitive contract work. Instead, our consultants integrate directly alongside our clients' engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.",
+  "DevSH Graphics Programming Sp. z O.O is a specialized collective of graphics engineers and mathematicians focused entirely on GPU architecture, rendering, and High-Performance Computing. We are not a traditional software house.",
+
+  "We don't build CRUD apps, and we don't do repetitive contract work. Instead, our consultants integrate directly alongside our clients' engineering teams to architect renderers, simulations, and compilers at the frontier of what hardware can do.",
   
   "DevSH has been a remote-first company since its inception, while building unparalleled credibility amongst GPU engineers thanks to how we innovate on every project, resulting in a constant backlog of applications to our company even when it involves a pay cut. We capture top-tier engineering talent, including PhDs, ex-IHV driver developers, and AAA rendering architects, who wouldn't even consider applying for a FAANG/MANGO job posting if it required relocation. Becoming our client lets you tap this pool of otherwise unreachable talent, sending a signal to everyone else that real engineering gets done at your company.",
   

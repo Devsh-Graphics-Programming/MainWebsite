@@ -957,6 +957,241 @@ body {
     transform: translateY(-0.15rem);
   }
 
+  .community-support-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 6vw, 5.5rem) clamp(3.75rem, 7vw, 6.5rem);
+    border-top: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(85, 181, 166, 0.11), transparent 36rem),
+      radial-gradient(ellipse at 15% 50%, rgba(125, 205, 185, 0.055), transparent 31rem),
+      #000;
+  }
+
+  .community-support-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, transparent, rgba(125, 205, 185, 0.035) 50%, transparent),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.017) 0 1px, transparent 1px 6.5rem);
+    opacity: 0.34;
+    mask-image: linear-gradient(to bottom, black 0%, black 74%, transparent 100%);
+  }
+
+  .community-support-head {
+    margin-bottom: clamp(2.6rem, 5vw, 4.4rem);
+  }
+
+  .community-events {
+    display: grid;
+    gap: clamp(1.15rem, 2vw, 1.5rem);
+  }
+
+  .community-event {
+    position: relative;
+    display: grid;
+    min-height: clamp(21rem, 33vw, 30rem);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 0.9rem;
+    color: inherit;
+    text-decoration: none;
+    background: #020707;
+    box-shadow:
+      0 1.5rem 4rem rgba(0, 0, 0, 0.36),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition:
+      border-color 260ms ease,
+      box-shadow 260ms ease,
+      transform 260ms ease;
+  }
+
+  .community-event:hover,
+  .community-event:focus-visible {
+    border-color: rgba(125, 205, 185, 0.48);
+    box-shadow:
+      0 1.75rem 4.8rem rgba(0, 0, 0, 0.46),
+      0 0 2rem rgba(85, 181, 166, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transform: translateY(-0.16rem);
+  }
+
+  .community-event:focus-visible {
+    outline: 2px solid rgba(125, 205, 185, 0.78);
+    outline-offset: 0.25rem;
+  }
+
+  .community-event-visual {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .community-event-visual-image {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    filter: saturate(0.86) contrast(1.04) brightness(0.74);
+    transform: scale(1.015);
+    transition:
+      filter 500ms ease,
+      opacity 500ms ease,
+      transform 650ms ease;
+  }
+
+  .community-event:hover .community-event-visual-image,
+  .community-event:focus-visible .community-event-visual-image {
+    opacity: 0.82;
+    filter: saturate(0.98) contrast(1.08) brightness(0.82);
+    transform: scale(1.05);
+  }
+
+  .community-event-visual-shade {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 76% 20%, rgba(125, 205, 185, 0.18), transparent 34%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.94) 0%, rgba(0, 0, 0, 0.78) 40%, rgba(0, 0, 0, 0.38) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.82));
+  }
+
+  .community-event-copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: inherit;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(3rem, 8vw, 7rem);
+    padding: clamp(1.35rem, 3vw, 2.4rem);
+  }
+
+  .community-event-status {
+    margin: 0 0 0.55rem !important;
+    color: var(--brand-accent-bright);
+    font-size: clamp(0.68rem, 0.18vw + 0.64rem, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .community-event h3 {
+    margin: 0 !important;
+    max-width: 28rem;
+    color: #fff;
+    font-size: clamp(2.45rem, 5.2vw, 5.8rem);
+    font-weight: 700;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  .community-event-name {
+    margin: 0.9rem 0 0 !important;
+    max-width: 30rem;
+    color: rgb(225 232 232);
+    font-size: clamp(1rem, 0.58vw + 0.9rem, 1.25rem);
+    font-weight: 520;
+    line-height: 1.35;
+  }
+
+  .community-event-bottom {
+    display: grid;
+    gap: 1rem;
+    max-width: 35rem;
+  }
+
+  .community-event-bottom p {
+    margin: 0 !important;
+    color: rgb(220 226 226);
+    font-size: clamp(1rem, 0.45vw + 0.9rem, 1.16rem);
+    font-weight: 500;
+    line-height: 1.56;
+  }
+
+  .community-event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    color: rgb(178 190 190);
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+
+  .community-event-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--brand-accent-bright);
+    transition: color 220ms ease;
+  }
+
+  .community-event:hover .community-event-link,
+  .community-event:focus-visible .community-event-link {
+    color: #fff;
+  }
+
+  .community-collaboration {
+    position: relative;
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: center;
+    margin-top: clamp(1.6rem, 3vw, 2.25rem);
+    padding-block: clamp(2.2rem, 4.5vw, 3.8rem);
+    border-top: 1px solid rgba(255, 255, 255, 0.11);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.11);
+  }
+
+  .community-collaboration::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(125, 205, 185, 0.52), transparent 42%);
+  }
+
+  .community-collaboration h3 {
+    margin: 0.45rem 0 0 !important;
+    max-width: 36rem;
+    color: #fff;
+    font-size: clamp(2rem, 2.4vw + 1.1rem, 4rem);
+    font-weight: 700;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .community-collaboration p:not(.section-kicker) {
+    margin: 1rem 0 0 !important;
+    max-width: 50rem;
+    color: rgb(210 218 218);
+    font-size: clamp(1rem, 0.42vw + 0.9rem, 1.18rem);
+    font-weight: 500;
+    line-height: 1.66;
+  }
+
+  @media (min-width: 48rem) {
+    .community-events {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .community-collaboration {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+  }
+
   .testimonials-section {
     --testimonial-heading-gap: clamp(2.75rem, 4.45vw, 4rem);
     position: relative;

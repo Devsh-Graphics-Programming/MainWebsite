@@ -7,6 +7,7 @@ type Event = {
   status: string;
   href: string;
   image: string;
+  imageClassName: string;
   description: string;
 };
 
@@ -18,6 +19,7 @@ const events: Event[] = [
     status: "Sponsor",
     href: "https://graphicsprogrammingconference.com/",
     image: "https://graphicsprogrammingconference.com/images/gpc-og.jpg",
+    imageClassName: "community-event-visual-image--gpc",
     description:
       "Supporting one of the most focused gatherings for real-time and interactive graphics programming.",
   },
@@ -28,6 +30,7 @@ const events: Event[] = [
     status: "Software Award Sponsor",
     href: "https://sgp26.org/",
     image: "https://sgp26.org/images/banner.jpg",
+    imageClassName: "community-event-visual-image--sgp",
     description:
       "Supporting research and engineering around geometry processing, modeling, and computational design.",
   },
@@ -52,7 +55,7 @@ function EventPanel({ event }: { event: Event }) {
     >
       <div className="community-event-visual" aria-hidden="true">
         <div
-          className="community-event-visual-image"
+          className={`community-event-visual-image ${event.imageClassName}`}
           style={{ backgroundImage: `url(${event.image})` }}
         />
         <div className="community-event-visual-shade" />
@@ -82,7 +85,7 @@ function EventPanel({ event }: { event: Event }) {
 
 export default function CommunitySupportSection() {
   return (
-    <section id="community-support" className="community-support-section scroll-mt-24">
+    <section id="sponsorship" className="community-support-section scroll-mt-24">
       <div className="site-container">
         <div className="section-head community-support-head">
           <p className="section-kicker">Community support</p>

@@ -16,6 +16,8 @@ const links: Link[] = [
     { name: "Home", url: "/" },
     { name: "About", url: "/about" },
     { name: "Services", url: "/services" },
+    { name: "When to Call", url: "/when-to-call-devsh" },
+    { name: "Sponsorship", url: "/#sponsorship" },
     { name: "Pricing", url: "/pricing.pdf" },
     { name: "Nabla", url: "/nabla" },
     { name: "Research", url: "/presentations" },
@@ -74,11 +76,11 @@ export default function Navbar() {
                         DevSH Graphics Programming
                     </span>
                 </Link>
-                <ul className="hidden shrink-0 flex-row items-center gap-1.5 md:flex">
+                <ul className="desktop-nav shrink-0 flex-row items-center gap-1.5">
                     {links.map((link, index) => <NavbarLink href={link.url} active={isActive(link.url)} key={index}>{link.name}</NavbarLink>)}
                 </ul>
                 <button
-                    className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-[rgba(125,205,185,0.25)] bg-white/[0.02] text-neutral-200 transition duration-300 hover:border-[rgba(125,205,185,0.5)] hover:text-white md:hidden ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`}
+                    className={`desktop-nav-toggle h-10 w-10 flex-shrink-0 items-center justify-center rounded-md border border-[rgba(125,205,185,0.25)] bg-white/[0.02] text-neutral-200 transition duration-300 hover:border-[rgba(125,205,185,0.5)] hover:text-white ${isDropdownEnabled ? "rotate-180" : "rotate-0"}`}
                     aria-label="Toggle navigation"
                     aria-expanded={isDropdownEnabled}
                     onClick={() => setIsDropdownEnabled(!isDropdownEnabled)}
@@ -92,9 +94,18 @@ export default function Navbar() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0  }}
                     transition={{ duration: 0.5 }}
-                    className="flex w-full flex-col gap-1 border-b border-[rgba(125,205,185,0.18)] bg-black/95 px-5 py-4 text-center backdrop-blur-xl md:hidden"
+                    className="desktop-mobile-menu w-full flex-col gap-1 border-b border-[rgba(125,205,185,0.18)] bg-black/95 px-5 py-4 text-center backdrop-blur-xl"
                 >
-                    {links.map((link, index) => <NavbarLink href={link.url} active={isActive(link.url)} key={index}>{link.name}</NavbarLink>)}
+                    {links.map((link, index) => (
+                        <NavbarLink
+                            href={link.url}
+                            active={isActive(link.url)}
+                            key={index}
+                            onClick={() => setIsDropdownEnabled(false)}
+                        >
+                            {link.name}
+                        </NavbarLink>
+                    ))}
                 </motion.ul>
             )}
         </nav>

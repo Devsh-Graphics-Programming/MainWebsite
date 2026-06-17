@@ -6,6 +6,7 @@ import TestimonialsSection from "./components/TestimonialsSection";
 import LinkedInUpdatesSection from "./components/LinkedInUpdatesSection";
 import NablaSection from "./components/NablaSection";
 import EcosystemSection from "./components/EcosystemSection";
+import CommunitySupportSection from "./components/CommunitySupportSection";
 import AboutSection from "./components/AboutSection";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <ProjectsSection />
       <NablaSection />
       <EcosystemSection />
+      <CommunitySupportSection />
       <AboutSection />
     </main>
   );

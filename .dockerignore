@@ -5,6 +5,8 @@ dist
 tmp
 npm-debug.log
 .npmrc
+.env*
+public/social/
 .git
 .gitignore
 Dockerfile

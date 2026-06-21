@@ -13,6 +13,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: "www-website"
+  LINKEDIN_SYNC_IMAGE_NAME: "www-website-linkedin-sync"
 
 jobs:
   build:
@@ -41,8 +42,11 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           IMAGE_NAME="${IMAGE_NAME:-$REPO_NAME}"
           IMAGE_NAME="$(echo "${IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')"
+          LINKEDIN_SYNC_IMAGE_NAME="$(echo "${LINKEDIN_SYNC_IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')"
           echo "IMAGE=${REGISTRY}/${OWNER}/${IMAGE_NAME}" >> "$GITHUB_ENV"
+          echo "LINKEDIN_SYNC_IMAGE=${REGISTRY}/${OWNER}/${LINKEDIN_SYNC_IMAGE_NAME}" >> "$GITHUB_ENV"
           echo "Image namespace: ${REGISTRY}/${OWNER}/${IMAGE_NAME}"
+          echo "LinkedIn sync image namespace: ${REGISTRY}/${OWNER}/${LINKEDIN_SYNC_IMAGE_NAME}"
 
       - name: Compute build info
         id: build_info
@@ -62,6 +66,16 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: ${{ env.IMAGE }}
+          tags: |
+            type=sha
+            type=ref,event=branch,enable=${{ github.ref == 'refs/heads/master' }}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
+
+      - name: Docker metadata for LinkedIn sync
+        id: meta_linkedin_sync
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.LINKEDIN_SYNC_IMAGE }}
           tags: |
             type=sha
             type=ref,event=branch,enable=${{ github.ref == 'refs/heads/master' }}
@@ -92,6 +106,20 @@ jobs:
             GITHUB_RUN_URL=${{ steps.build_info.outputs.run_url }}
             GITHUB_ACTOR=${{ github.actor }}
             COMMIT_AUTHOR=${{ steps.build_info.outputs.author }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max,ignore-error=true
+
+      - name: Build LinkedIn sync image for tests
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./Dockerfile.linkedin-sync
+          push: false
+          load: true
+          tags: |
+            ${{ env.LINKEDIN_SYNC_IMAGE }}:ci
+            ${{ steps.meta_linkedin_sync.outputs.tags }}
+          labels: ${{ steps.meta_linkedin_sync.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max,ignore-error=true
 
@@ -145,8 +173,11 @@ jobs:
           REPO_NAME="${GITHUB_REPOSITORY##*/}"
           IMAGE_NAME="${IMAGE_NAME:-$REPO_NAME}"
           IMAGE_NAME="$(echo "${IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')"
+          LINKEDIN_SYNC_IMAGE_NAME="$(echo "${LINKEDIN_SYNC_IMAGE_NAME}" | tr '[:upper:]' '[:lower:]')"
           echo "IMAGE=${REGISTRY}/${OWNER}/${IMAGE_NAME}" >> "$GITHUB_ENV"
+          echo "LINKEDIN_SYNC_IMAGE=${REGISTRY}/${OWNER}/${LINKEDIN_SYNC_IMAGE_NAME}" >> "$GITHUB_ENV"
           echo "Image namespace: ${REGISTRY}/${OWNER}/${IMAGE_NAME}"
+          echo "LinkedIn sync image namespace: ${REGISTRY}/${OWNER}/${LINKEDIN_SYNC_IMAGE_NAME}"
 
       - name: Compute build info
         id: build_info
@@ -166,6 +197,16 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: ${{ env.IMAGE }}
+          tags: |
+            type=sha
+            type=ref,event=branch
+            type=raw,value=latest
+
+      - name: Docker metadata for LinkedIn sync
+        id: meta_linkedin_sync
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ env.LINKEDIN_SYNC_IMAGE }}
           tags: |
             type=sha
             type=ref,event=branch
@@ -213,6 +254,17 @@ jobs:
             GITHUB_RUN_URL=${{ steps.build_info.outputs.run_url }}
             GITHUB_ACTOR=${{ github.actor }}
             COMMIT_AUTHOR=${{ steps.build_info.outputs.author }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max,ignore-error=true
+
+      - name: Build and push LinkedIn sync
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./Dockerfile.linkedin-sync
+          push: true
+          tags: ${{ steps.meta_linkedin_sync.outputs.tags }}
+          labels: ${{ steps.meta_linkedin_sync.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max,ignore-error=true
 

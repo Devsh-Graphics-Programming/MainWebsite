@@ -49,3 +49,6 @@ tmp/
 
 # Generated static documents
 /public/pricing.pdf
+
+# Runtime-generated social feed
+/public/social/

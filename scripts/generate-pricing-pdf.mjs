@@ -185,7 +185,13 @@ function drawPricingTable(document) {
     color: colors.muted,
   });
 
-  return noteY + mm(9);
+  drawCenteredText(document, "Rates apply under DevSH standard contract terms. Otherwise, rates are multiplied by 1.33.", noteY + mm(4.8), {
+    font: "FuturaBook",
+    size: 7.6,
+    color: colors.muted,
+  });
+
+  return noteY + mm(14);
 }
 
 function drawFooter(document, topY) {

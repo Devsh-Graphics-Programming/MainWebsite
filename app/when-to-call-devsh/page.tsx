@@ -203,86 +203,118 @@ function ProofCard({ point }: { point: (typeof proofPoints)[number] }) {
 export default function Page() {
   return (
     <main className="services-shell min-h-screen overflow-hidden">
-      
-      {/* 1. HERO SECTION */}
-      <section className="service-hero relative flex flex-col justify-center py-16 sm:py-20 lg:py-24">
-        <div aria-hidden="true" className="service-hero-cloud absolute inset-0 z-0">
-          <div className="service-hero-cloud-base" />
-          <NablaShaderBackdrop />
-          <div className="service-hero-cloud-vignette" />
-        </div>
 
-        <div className="site-container relative z-10">
-          <div className="max-w-4xl">
-            <p className="section-kicker">Specialist Graphics Engineering</p>
-            <h1 className="!mb-0 !mt-4 bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text pb-1 text-4xl font-semibold leading-[1.06] text-balance text-transparent drop-shadow-[0_0_1.8rem_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl">
-              We unblock rendering pipelines and rescue failing graphics architectures.
-            </h1>
-            <p className="cloud-lead !mt-6 max-w-2xl text-lg sm:text-xl">
-              Expert GPU programming and data-oriented optimization for teams hitting the absolute limits of their hardware.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="mailto:newclients@devsh.eu" className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
-                Schedule a Consultation
-                <ArrowIcon />
-              </a>
-              <a href="#intro-kit" className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]">
-                Make an Introduction
-                <ArrowIcon />
-              </a>
-            </div>
+    {/* 1. HERO SECTION */}
+    <section className="service-hero service-hero-compact relative flex flex-col justify-center py-6 sm:py-8 lg:py-10">
+      <div aria-hidden="true" className="service-hero-cloud absolute inset-0 z-0">
+        <div className="service-hero-cloud-base" />
+        <NablaShaderBackdrop />
+        <div className="service-hero-cloud-vignette" />
+      </div>
+
+      <div className="site-container relative z-10">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="mx-auto !mb-0 !mt-0 max-w-3xl bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text pb-1 text-3xl font-semibold leading-[1.15] tracking-tight text-transparent drop-shadow-[0_0_1.8rem_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
+            Give your software the ultimate visual and computational advantage.
+          </h1>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              href="mailto:newclients@devsh.eu"
+              className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
+            >
+              Book a Technical Discovery Call
+              <ArrowIcon />
+            </a>
+
+            <a
+              href="#intro-kit"
+              className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]"
+            >
+              Make an Introduction
+              <ArrowIcon />
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* 2. WHEN TO CALL US - 3 Compact Cards */}
-      <section className="site-container py-10 sm:py-10 lg:py-10">
+      {/* 2. WHEN TO CALL US & WHEN NOT TO */}
+      <section className="site-container py-10 sm:py-16 lg:py-20">
         <div className="section-head mx-auto mb-10 max-w-5xl sm:mb-14">
-          <h2 className="section-heading">When it's time to bring us in.</h2>
+          <h2 className="section-heading">When to Bring in the Big Guns</h2>
+          <p className="mt-3 text-lg opacity-80 sm:text-xl">
+            Call us if any of the following is you.
+          </p>
         </div>
+        
+        {/* All cards share this single flex container with a uniform gap */}
         <div className="mx-auto flex max-w-5xl flex-col gap-4 sm:gap-4">
-          <CategoryCard title="The Competitive Gap" items={competitiveGapAndTeamStrategy} />
-          <CategoryCard title="Modernization & Tech Debt" items={customSolutionsAndTechDebt} />
+          
+          <CategoryCard title="Core Architecture & Custom Engineering" items={customSolutionsAndTechDebt} />
           <CategoryCard title="Performance & Stability Walls" items={performanceStabilityWalls} />
-        </div>
-      </section>
+          <CategoryCard title="The Competitive Gap & Team Strategy" items={competitiveGapAndTeamStrategy} />
 
-      {/* 3. WHEN NOT TO CALL US */}
-      <section className="site-container pb-14 sm:pb-16 lg:pb-20">
-        <div className="mx-auto max-w-5xl relative overflow-hidden rounded-lg border border-red-900/30 bg-red-950/20 p-6 sm:p-8 lg:p-10">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" aria-hidden="true" />
-          <h3 className="mb-4 text-2xl font-semibold leading-tight text-white sm:mb-4 sm:text-3xl">Who this is not for</h3>
-          <ul className="grid gap-6 p-0 list-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
-            {notFitPoints.map((item, index) => (
-              <li key={index} className="flex gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
-                <XIcon />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
+          {/* 3. WHEN NOT TO CALL US (Red Card) */}
+          <div className="relative mt-2 overflow-hidden rounded-lg border border-red-900/30 bg-red-950/20 px-6 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-6">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" aria-hidden="true" />
+            
+            {/* Added mt-0 to kill any stray margins, and changed mb-4 to mb-6 to match the green cards */}
+            <h3 className="mt-0 mb-6 text-2xl font-semibold leading-tight text-white sm:mb-6 sm:text-3xl">
+              Who this is not for
+            </h3>
+            
+            <ul className="m-0 grid gap-6 p-0 list-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
+              {notFitPoints.map((item, index) => (
+                <li key={index} className="flex gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
+                  <XIcon />
+                  <span className="mt-0.5">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
       </section>
 
       {/* 4. ENGAGEMENT MODEL */}
-      <section className="border-y border-white/10 bg-black/45 py-14 sm:py-16 lg:py-20">
-        <div className="site-container grid gap-10 lg:grid-cols-[0.72fr_1fr] lg:items-start">
-          <div className="max-w-xl">
-            <p className="section-kicker">How we integrate with your team</p>
-            <h2 className="section-heading !mt-3">Our Engineering Process</h2>
+      <section className="site-container py-14 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-6xl">
+          
+          {/* Centered Header Section */}
+          <div className="mb-12 text-center sm:mb-16">
+            <p className="section-kicker mx-auto">How we integrate with your team</p>
+            <h2 className="section-heading !mt-3 mx-auto">Our Engineering Process</h2>
           </div>
-          <div className="grid gap-4">
+          
+          {/* 4-Column Grid: Stacks on mobile, 2x2 on tablet, 1x4 horizontal on desktop */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {engagementModels.map((model, index) => (
-              <article key={model.name} className="grid gap-4 rounded-lg border border-white/10 bg-black/35 p-5 sm:grid-cols-[4rem_1fr] sm:p-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-md border border-[var(--brand-accent-bright)]/30 bg-[var(--brand-accent)]/10 text-lg font-semibold text-[var(--brand-accent-bright)]">
+              <article 
+                key={model.name} 
+                className="group relative flex flex-col items-center rounded-2xl border border-emerald-900/30 bg-emerald-950/20 p-6 pt-8 text-center shadow-[0_1rem_3rem_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-emerald-700/50 hover:bg-emerald-900/20 sm:p-8 sm:pt-10"
+              >
+                {/* Top Gradient Accent */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent transition-opacity duration-300 group-hover:via-emerald-400/60" aria-hidden="true" />
+                
+                {/* Step Number Box */}
+                <div className="relative mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[var(--brand-accent-bright)]/30 bg-[var(--brand-accent)]/10 text-xl font-bold text-[var(--brand-accent-bright)] shadow-[0_0_20px_rgba(0,255,128,0.15)] transition-transform duration-300 group-hover:scale-110 group-hover:border-[var(--brand-accent-bright)]/50">
                   {String(index + 1).padStart(2, "0")}
                 </div>
-                <div>
-                  <h3 className="!m-0 text-xl font-semibold leading-tight text-white sm:text-2xl">{model.name}</h3>
-                  <p className="!mb-0 !mt-3 text-sm leading-relaxed text-neutral-300 sm:text-base">{model.detail}</p>
+                
+                {/* Content */}
+                <div className="flex flex-1 flex-col">
+                  <h3 className="!m-0 text-lg font-semibold leading-tight text-white sm:text-xl">
+                    {model.name}
+                  </h3>
+                  <p className="!mb-0 !mt-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
+                    {model.detail}
+                  </p>
                 </div>
               </article>
             ))}
           </div>
+          
         </div>
       </section>
 

@@ -8,18 +8,36 @@ export const metadata: Metadata = {
 };
 
 // --- DATA ---
+export const customSolutionsAndTechDebt = [
+  {
+    title: "You are trapped by expensive middleware.",
+    description: "You are paying massive licensing fees for closed-source, aging renderers like HOOPS Visualize, lack source code access, and are left to fix critical issues yourself."
+  },
+  {
+    title: "Your legacy codebase is a liability.",
+    description: "You are stuck on outdated graphics or compute APIs and need to port to modern standards like Vulkan to stay relevant. You need a team that can modernize the engine while maintaining full backward compatibility so business continues as usual."
+  },
+  {
+    title: "Your MVP is buckling under real-world usage.",
+    description: "The prototype code that got you funded or through the early startup phase cannot handle production scale. You need to transition from a duct-taped proof-of-concept to an enterprise-grade foundation."
+  },
+  {
+    title: "Graphics or GPU programming is distracting from your core business.",
+    description: "You need a high-performance engine to power your startup's actual product, but trying to build and manage a specialized in-house gpu team is burning cash and focus."
+  }
+];
 
-const performanceWalls = [
+export const performanceStabilityWalls = [
   {
-    title: "Your performance has flatlined.",
-    description: "You’ve optimized everything you can think of, but your renderer still halts to a crawl when processing larger, more detailed scenes or datasets."
+    title: "Your software chokes on large datasets.",
+    description: "You’ve optimized everything you can, but your application still halts to a crawl when clients try to load complex, real-world scenes. This performance plateau is now blocking sales or user adoption."
   },
   {
-    title: "The hardware is crashing under load.",
-    description: "Your software is triggering GPU timeouts (TDRs) or crashes, and duct-tape fixes to stability aren't holding up anymore."
+    title: "Stability issues are damaging your reputation.",
+    description: "Your software is constantly crashing under load or triggering GPU timeouts (TDRs) for your users. You are exhausted from applying hotfixes that don't address the root cause of the instability."
   },
   {
-    title: "Your architecture assumes infinite compute.",
+    title: "Your architecture assumes infinite compute power.",
     description: "You built around traditional Object-Oriented patterns and now need to pivot to Data-Oriented design to unchoke the CPU."
   },
   {
@@ -28,29 +46,10 @@ const performanceWalls = [
   }
 ];
 
-const modernizationDebt = [
+export const competitiveGapAndTeamStrategy = [
   {
-    title: "You are trapped by expensive middleware.",
-    description: "You are paying massive licensing fees for closed-source, aging renderers like HOOPS Visualize, lack source code access, and are left to fix critical issues yourself."
-  },
-  {
-    title: "You need to move off legacy APIs.",
-    description: "You need to port from aging APIs (like older DirectX or OpenGL) to Vulkan, but don't have the internal expertise to architect it correctly from day one."
-  },
-  {
-    title: "Rendering isn't your startup's USP.",
-    description: "You need a high-performance engine to power your actual product, but building and maintaining a specialized graphics team in-house is a distraction from your core business."
-  },
-  {
-    title: "The prototype won't scale.",
-    description: "Your \"vibe-coded\" software got you through the startup phase, but you need an enterprise-grade foundation to actually ship."
-  }
-];
-
-const competitiveGap = [
-  {
-    title: "Your team needs a permanent skill upgrade.",
-    description: "You don't just want a temporary fix; your internal team needs direct, hands-on training in GPU programming and CPU optimization to maintain your competitive edge."
+    title: "Your core technology isn't scaling with modern hardware.",
+    description: "Your core algorithms, based on decades-old research, aren't scaling on modern GPUs, or your workloads desperately need to be parallelized. When standard methods hit a wall, we invent and engineer novel, hardware-aware solutions tailored exactly to solve your unique bottlenecks."
   },
   {
     title: "Competitors are out-rendering you.",
@@ -58,12 +57,16 @@ const competitiveGap = [
   },
   {
     title: "You have cutting-edge research, but no product.",
-    description: "You have a brilliant computational geometry algorithm, but need to bridge the gap from academic research to a highly performant, shippable product."
+    description: "You’ve developed cutting-edge research, algorithms, or geometry processing techniques, but you lack the engineering roadmap to turn that academic success into a robust, shippable software product."
+  },
+  {
+    title: "Your team needs a permanent skill upgrade.",
+    description: "You don't just want a temporary fix; your internal team needs direct, hands-on training in GPU programming and CPU optimization to maintain your competitive edge."
   }
 ];
 
 const notFitPoints = [
-  "You need general application or basic web development where GPU systems are not material.",
+  "You need general application or basic web development where GPU or rendering systems are not material.",
   "You have isolated, small tasks with no clear business context or product relevance.",
   "You are unwilling to refactor legacy code or address core architectural debt.",
 ];
@@ -238,9 +241,9 @@ export default function Page() {
           <h2 className="section-heading">When it's time to bring us in.</h2>
         </div>
         <div className="mx-auto flex max-w-5xl flex-col gap-4 sm:gap-4">
-          <CategoryCard title="Modernization & Tech Debt" items={modernizationDebt} />
-          <CategoryCard title="Performance & Stability Walls" items={performanceWalls} />
-          <CategoryCard title="The Competitive Gap" items={competitiveGap} />
+          <CategoryCard title="The Competitive Gap" items={competitiveGapAndTeamStrategy} />
+          <CategoryCard title="Modernization & Tech Debt" items={customSolutionsAndTechDebt} />
+          <CategoryCard title="Performance & Stability Walls" items={performanceStabilityWalls} />
         </div>
       </section>
 

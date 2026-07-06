@@ -7,6 +7,19 @@ export const metadata: Metadata = {
   title: "When to Call DevSH",
 };
 
+const pitchText = `Hey [Name],
+
+I’ve been looking into external help and found a highly specialized team in graphics and GPGPU compute called DevSH (devsh.eu).
+
+They aren't general contractors; they integrate directly with internal teams to architect custom renderers, path tracers, and simulations, as well as modernize graphics stacks and optimize both graphics and compute pipelines. They're known mostly for optimizing a CAD renderer by a factor of 100x after porting it to Vulkan, but you might also recognize them from their talks at Vulkanised and the Shading Languages Symposium, or their activity in the Graphics Programming Discord.
+
+They capture top-tier talent (PhDs, ex-IHV driver developers, AAA rendering architects) that is typically very hard to hire.
+
+You can see their past projects here: devsh.eu
+They also publish their rates openly here: https://www.devsh.eu/pricing.pdf
+
+I think it's worth booking a technical discovery call with them to see if they can help us out. Thoughts?`;
+
 // --- DATA ---
 export const customSolutionsAndTechDebt = [
   {
@@ -52,17 +65,17 @@ export const competitiveGapAndTeamStrategy = [
     description: "Your core algorithms, based on decades-old research, aren't scaling on modern GPUs, or your workloads desperately need to be parallelized. When standard methods hit a wall, we invent and engineer novel, hardware-aware solutions tailored exactly to solve your unique bottlenecks."
   },
   {
-    title: "Competitors are out-rendering you.",
-    description: "Your clients are migrating to rival tools because they offer faster rendering times, superior visual quality, and better interactivity."
-  },
-  {
     title: "You have cutting-edge research, but no product.",
     description: "You’ve developed cutting-edge research, algorithms, or geometry processing techniques, but you lack the engineering roadmap to turn that academic success into a robust, shippable software product."
   },
   {
     title: "Your team needs a permanent skill upgrade.",
     description: "You don't just want a temporary fix; your internal team needs direct, hands-on training in GPU programming and CPU optimization to maintain your competitive edge."
-  }
+  },
+  {
+    title: "Competitors are out-rendering you.",
+    description: "Your clients are migrating to rival tools because they offer faster rendering times, superior visual quality, and better interactivity."
+  },
 ];
 
 const notFitPoints = [
@@ -150,6 +163,12 @@ function CopyIcon() {
   );
 }
 
+const MailIcon = () => (
+  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+
 // --- COMPONENTS ---
 
 function CategoryCard({ title, items }: { title: string; items: { title: string; description: string }[] }) {
@@ -204,40 +223,40 @@ export default function Page() {
   return (
     <main className="services-shell min-h-screen overflow-hidden">
 
-    {/* 1. HERO SECTION */}
-    <section className="service-hero service-hero-compact relative flex flex-col justify-center py-6 sm:py-8 lg:py-10">
-      <div aria-hidden="true" className="service-hero-cloud absolute inset-0 z-0">
-        <div className="service-hero-cloud-base" />
-        <NablaShaderBackdrop />
-        <div className="service-hero-cloud-vignette" />
-      </div>
+      {/* 1. HERO SECTION */}
+      <section className="service-hero service-hero-compact relative flex flex-col justify-center py-6 sm:py-8 lg:py-10">
+        <div aria-hidden="true" className="service-hero-cloud absolute inset-0 z-0">
+          <div className="service-hero-cloud-base" />
+          <NablaShaderBackdrop />
+          <div className="service-hero-cloud-vignette" />
+        </div>
 
-      <div className="site-container relative z-10">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="mx-auto !mb-0 !mt-0 max-w-3xl bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text pb-1 text-3xl font-semibold leading-[1.15] tracking-tight text-transparent drop-shadow-[0_0_1.8rem_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
-            Give your software the ultimate visual and computational advantage.
-          </h1>
+        <div className="site-container relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mx-auto !mb-0 !mt-0 max-w-3xl bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text pb-1 text-3xl font-semibold leading-[1.15] tracking-tight text-transparent drop-shadow-[0_0_1.8rem_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
+              Give your software the ultimate visual and computational advantage.
+            </h1>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
-              href="mailto:newclients@devsh.eu"
-              className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
-            >
-              Book a Technical Discovery Call
-              <ArrowIcon />
-            </a>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href="mailto:newclients@devsh.eu"
+                className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
+              >
+                Book a Technical Discovery Call
+                <ArrowIcon />
+              </a>
 
-            <a
-              href="#intro-kit"
-              className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]"
-            >
-              Make an Introduction
-              <ArrowIcon />
-            </a>
+              <a
+                href="#intro-kit"
+                className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]"
+              >
+                Make an Introduction
+                <ArrowIcon />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* 2. WHEN TO CALL US & WHEN NOT TO */}
       <section className="site-container py-10 sm:py-16 lg:py-20">
@@ -251,9 +270,9 @@ export default function Page() {
         {/* All cards share this single flex container with a uniform gap */}
         <div className="mx-auto flex max-w-5xl flex-col gap-4 sm:gap-4">
           
-          <CategoryCard title="Core Architecture & Custom Engineering" items={customSolutionsAndTechDebt} />
+          <CategoryCard title="The Competitive Gap" items={competitiveGapAndTeamStrategy} />
+          <CategoryCard title="Modernization and Tech Debt" items={customSolutionsAndTechDebt} />
           <CategoryCard title="Performance & Stability Walls" items={performanceStabilityWalls} />
-          <CategoryCard title="The Competitive Gap & Team Strategy" items={competitiveGapAndTeamStrategy} />
 
           {/* 3. WHEN NOT TO CALL US (Red Card) */}
           <div className="relative mt-2 overflow-hidden rounded-lg border border-red-900/30 bg-red-950/20 px-6 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-6">
@@ -332,64 +351,107 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 6. FORWARDABLE INTRODUCTION */}
-      <section id="intro-kit" className="site-container py-14 sm:py-16 lg:py-20">
-        <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[linear-gradient(180deg,rgba(12,31,30,0.72),rgba(4,14,14,0.92))] p-6 sm:p-8 lg:p-10 shadow-[0_1.5rem_5rem_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.08)]">
-           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-accent-bright)]/55 to-transparent" aria-hidden="true" />
-           <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <p className="!m-0 text-base leading-relaxed text-neutral-300 sm:text-lg max-w-2xl">
-                Need to get budget approval or share this with your CTO? Send them this brief summary of our value proposition.
-              </p>
-              
-              <button 
-                id="copy-intro-btn"
-                data-copy-text={introText}
-                className="inline-flex shrink-0 items-center gap-2 rounded-md border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
-              >
-                <CopyIcon />
-                <span id="copy-btn-label">Copy to Clipboard</span>
-              </button>
+      {/* 5. THE INTERNAL PITCH (Shareable Summary) */}
+      <section id="intro-kit" className="site-container py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center lg:gap-12">
+          
+          {/* Left Column: Context & Header */}
+          <div className="text-left">
+            <h2 className="mb-4 text-2xl font-semibold leading-tight text-white sm:text-3xl lg:text-4xl">
+              Need to share this with your CTO or get budget approval?
+            </h2>
+            <p className="text-base leading-relaxed text-neutral-400 sm:text-lg">
+              Send them this brief summary of our value proposition, track record, and pricing.
+            </p>
+          </div>
 
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    document.getElementById('copy-intro-btn').addEventListener('click', async function() {
-                      try {
-                        await navigator.clipboard.writeText(this.getAttribute('data-copy-text'));
-                        const label = document.getElementById('copy-btn-label');
-                        label.textContent = 'Copied!';
-                        setTimeout(() => { label.textContent = 'Copy to Clipboard'; }, 2000);
-                      } catch (err) {
-                        console.error('Failed to copy', err);
-                      }
-                    });
-                  `,
-                }}
-              />
-           </div>
-          <div className="min-w-0 rounded-md border border-white/10 bg-black/55 p-5">
-            <pre className="!m-0 whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-neutral-200 sm:text-base">{introText}</pre>
+          {/* Right Column: The Interactive Box */}
+          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black/40 text-left shadow-[0_2rem_4rem_rgba(0,0,0,0.4)]">
+            
+            {/* Toolbar Area */}
+            <div className="flex flex-col items-center justify-between gap-4 border-b border-white/10 bg-white/5 px-4 py-3 sm:flex-row sm:px-5">
+              <span className="text-xs font-medium uppercase tracking-wider text-neutral-400">Internal Pitch Draft</span>
+              <div className="flex w-full gap-2 sm:w-auto">
+                <button
+                  id="copy-intro-btn"
+                  data-copy-text={pitchText}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-white/20 sm:flex-none"
+                >
+                  <CopyIcon />
+                  <span id="copy-btn-label">Copy text</span>
+                </button>
+                <a
+                  href={`mailto:?subject=${encodeURIComponent("Engineering partner for graphics/compute bottlenecks")}&body=${encodeURIComponent(pitchText)}`}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-[var(--brand-accent)]/20 px-3 py-1.5 text-xs font-semibold text-[var(--brand-accent-bright)] transition hover:bg-[var(--brand-accent)]/30 sm:flex-none"
+                >
+                  <MailIcon />
+                  Email draft
+                </a>
+              </div>
+            </div>
+            
+            {/* Text Area (Injects the variable directly, handles \n natively via whitespace-pre-wrap) */}
+            <div className="whitespace-pre-wrap p-5 font-mono text-sm leading-relaxed text-neutral-300">
+              {pitchText}
+            </div>
+
+            {/* Inline Vanilla JS for the Copy Button */}
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  document.getElementById('copy-intro-btn').addEventListener('click', async function() {
+                    try {
+                      await navigator.clipboard.writeText(this.getAttribute('data-copy-text'));
+                      const label = document.getElementById('copy-btn-label');
+                      label.textContent = 'Copied!';
+                      setTimeout(() => { label.textContent = 'Copy text'; }, 2000);
+                    } catch (err) {
+                      console.error('Failed to copy', err);
+                    }
+                  });
+                `,
+              }}
+            />
           </div>
         </div>
       </section>
 
-      {/* 7. NEXT STEPS */}
-      <section className="site-container pb-16 sm:pb-20 lg:pb-24">
-        <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black/45 p-8 text-center sm:p-10 lg:p-14">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-accent-bright)]/70 to-transparent" aria-hidden="true" />
-          <h2 className="!mb-0 text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">Ready to unblock your pipeline?</h2>
-          <p className="!mx-auto !mb-0 !mt-5 max-w-2xl text-base leading-relaxed text-neutral-300 sm:text-lg">
-            Let's discuss your specific technical constraints, review your current architecture, and determine if our engineering expertise aligns with your roadmap.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a href="mailto:newclients@devsh.eu" className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
-              Book a Consultation
-              <ArrowIcon />
-            </a>
-            <Link href="/pricing.pdf" className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-6 py-3 text-sm font-semibold text-white transition hover:border-white/32 hover:bg-white/[0.08]">
-              Check public rates
-              <ArrowIcon />
-            </Link>
+      {/* 6. FINAL CTA */}
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="site-container relative z-10">
+          
+          {/* The Mildly Colored Premium Card */}
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-emerald-900/30 bg-emerald-950/20 p-10 text-center shadow-[0_2rem_5rem_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-14 lg:p-16">
+            
+            {/* Premium Gradient Top Border on the Card */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" aria-hidden="true" />
+            
+            {/* Sophisticated Ambient Glow contained inside the card */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[30rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-900/20 blur-[100px]" aria-hidden="true" />
+            
+            <h2 className="mb-12 text-balance text-2xl font-semibold leading-relaxed tracking-tight bg-gradient-to-b from-white to-neutral-300 bg-clip-text text-transparent sm:text-3xl lg:text-4xl">
+              Tap into an expert team of graphics engineers and GPU programmers to solve your hardest challenges.
+            </h2>
+            
+            {/* Bigger Buttons: px-10, py-5, text-lg, rounded-xl */}
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+              <a
+                href="mailto:newclients@devsh.eu"
+                className="premium-cta brand-button inline-flex items-center gap-3 rounded-xl border px-10 py-5 text-lg font-semibold shadow-[0_0_24px_rgba(0,255,128,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(0,255,128,0.25)]"
+              >
+                Book a Technical Discovery Call
+                <ArrowIcon />
+              </a>
+              
+              <Link 
+                href="/pricing.pdf" 
+                className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-10 py-5 text-lg font-semibold text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
+              >
+                Check public rates
+                <ArrowIcon />
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>

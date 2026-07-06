@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const pitchText = `Hey [Name],
 
-I’ve been looking into external help and found a highly specialized team in graphics and GPGPU compute called DevSH (devsh.eu).
+I’ve been looking into external help and found a highly specialized team in graphics and GPGPU programming called DevSH (devsh.eu).
 
 They aren't general contractors; they integrate directly with internal teams to architect custom renderers, path tracers, and simulations, as well as modernize graphics stacks and optimize both graphics and compute pipelines. They're known mostly for optimizing a CAD renderer by a factor of 100x after porting it to Vulkan, but you might also recognize them from their talks at Vulkanised and the Shading Languages Symposium, or their activity in the Graphics Programming Discord.
 

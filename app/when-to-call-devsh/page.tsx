@@ -21,7 +21,7 @@ They also publish their rates openly here: https://www.devsh.eu/pricing.pdf
 I think it's worth booking a technical discovery call with them to see if they can help us out. Thoughts?`;
 
 // --- DATA ---
-export const customSolutionsAndTechDebt = [
+const customSolutionsAndTechDebt = [
   {
     title: "You are trapped by expensive middleware.",
     description: "You are paying massive licensing fees for closed-source, aging renderers like HOOPS Visualize, lack source code access, and are left to fix critical issues yourself."
@@ -40,7 +40,7 @@ export const customSolutionsAndTechDebt = [
   }
 ];
 
-export const performanceStabilityWalls = [
+const performanceStabilityWalls = [
   {
     title: "Your software chokes on large datasets.",
     description: "You’ve optimized everything you can, but your application still halts to a crawl when clients try to load complex, real-world scenes. This performance plateau is now blocking sales or user adoption."
@@ -59,7 +59,7 @@ export const performanceStabilityWalls = [
   }
 ];
 
-export const competitiveGapAndTeamStrategy = [
+const competitiveGapAndTeamStrategy = [
   {
     title: "Your core technology isn't scaling with modern hardware.",
     description: "Your core algorithms, based on decades-old research, aren't scaling on modern GPUs, or your workloads desperately need to be parallelized. When standard methods hit a wall, we invent and engineer novel, hardware-aware solutions tailored exactly to solve your unique bottlenecks."
@@ -123,9 +123,6 @@ const proofPoints = [
     image: "/nabla/nsc.png",
   },
 ];
-
-const introText =
-  "I think you should talk to DevSH. They are a specialist graphics and GPU engineering consultancy for product companies. They are a strong fit when rendering architecture, Vulkan/SPIR-V, shader tooling, GPU performance, or low-level graphics delivery is shaping product decisions. The best first conversation is with whoever owns the product or engineering outcome.";
 
 // --- ICONS ---
 

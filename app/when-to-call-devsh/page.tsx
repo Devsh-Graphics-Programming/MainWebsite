@@ -4,99 +4,102 @@ import NablaShaderBackdrop from "../nabla/NablaShaderBackdrop";
 import ResponsiveImage from "../components/ResponsiveImage";
 
 export const metadata: Metadata = {
-  title: "When to Call DevSH | Graphics and GPU Engineering Consultancy",
-  description:
-    "When to call DevSH for business-critical graphics, rendering, Vulkan, SPIR-V, shader tooling, and GPU performance decisions.",
+  title: "When to Call DevSH",
 };
 
-const introductionEmailBody = [
-  "Hi DevSH,",
-  "",
-  "I would like to introduce a team facing a graphics engineering decision where DevSH may be a strong fit.",
-  "",
-  "Context:",
-  "- Who I am introducing:",
-  "- What they are working on:",
-  "- Why I think DevSH could help:",
-  "- Current graphics / GPU stack, if useful:",
-  "- Is this exploratory, active, or urgent?",
-  "",
-].join("\n");
+const pitchText = `Hey [Name],
 
-const contactHref = `mailto:newclients@devsh.eu?subject=${encodeURIComponent("DevSH introduction")}&body=${encodeURIComponent(introductionEmailBody)}`;
+I’ve been looking into external help and found a highly specialized team in graphics and GPGPU programming called DevSH (devsh.eu).
 
-const callSignals = [
+They aren't general contractors; they integrate directly with internal teams to architect custom renderers, path tracers, and simulations, as well as modernize graphics stacks and optimize both graphics and compute pipelines. They're known mostly for optimizing a CAD renderer by a factor of 100x after porting it to Vulkan, but you might also recognize them from their talks at Vulkanised and the Shading Languages Symposium, or their activity in the Graphics Programming Discord.
+
+They capture top-tier talent (PhDs, ex-IHV driver developers, AAA rendering architects) that is typically very hard to hire.
+
+You can see their past projects here: devsh.eu
+They also publish their rates openly here: https://www.devsh.eu/pricing.pdf
+
+I think it's worth booking a technical discovery call with them to see if they can help us out. Thoughts?`;
+
+// --- DATA ---
+const customSolutionsAndTechDebt = [
   {
-    title: "Rendering architecture will shape what ships",
-    text: "Platform support, performance envelope, visual quality, or data scale now affects product scope, delivery confidence, or customer value.",
+    title: "You are trapped by expensive middleware.",
+    description: "You are paying massive licensing fees for closed-source, aging renderers like HOOPS Visualize, lack source code access, and are left to fix critical issues yourself."
   },
   {
-    title: "Performance is visible beyond engineering",
-    text: "Frame time, latency, memory pressure, shader cost, or GPU throughput is tied to demos, deployments, contracts, or roadmap confidence.",
+    title: "Your legacy codebase is a liability.",
+    description: "You are stuck on outdated graphics or compute APIs and need to port to modern standards like Vulkan to stay relevant. You need a team that can modernize the engine while maintaining full backward compatibility so business continues as usual."
   },
   {
-    title: "The issue sits below application-level debugging",
-    text: "Vulkan synchronization, shaders, compiler behavior, cross-vendor behavior, or graphics tooling needs specialist ownership.",
+    title: "Your MVP is buckling under real-world usage.",
+    description: "The prototype code that got you funded or through the early startup phase cannot handle production scale. You need to transition from a duct-taped proof-of-concept to an enterprise-grade foundation."
   },
   {
-    title: "Hiring signals a deeper graphics constraint",
-    text: "An open graphics role can mean the company knows the problem is durable but needs senior direction before expanding the team.",
+    title: "Graphics or GPU programming is distracting from your core business.",
+    description: "You need a high-performance engine to power your startup's actual product, but trying to build and manage a specialized in-house gpu team is burning cash and focus."
+  }
+];
+
+const performanceStabilityWalls = [
+  {
+    title: "Your software chokes on large datasets.",
+    description: "You’ve optimized everything you can, but your application still halts to a crawl when clients try to load complex, real-world scenes. This performance plateau is now blocking sales or user adoption."
   },
   {
-    title: "A graphics-heavy product needs senior external review",
-    text: "Rendering quality, large data, geometry, simulation, or GPU compute is close enough to the product promise that a second senior view matters.",
+    title: "Stability issues are damaging your reputation.",
+    description: "Your software is constantly crashing under load or triggering GPU timeouts (TDRs) for your users. You are exhausted from applying hotfixes that don't address the root cause of the instability."
   },
   {
-    title: "Shader tooling is slowing senior engineers down",
-    text: "SPIR-V, HLSL, DXC, Slang, validation, build systems, and toolchain behavior need ownership instead of recurring escalations.",
+    title: "Your architecture assumes infinite compute power.",
+    description: "You built around traditional Object-Oriented patterns and now need to pivot to Data-Oriented design to unchoke the CPU."
+  },
+  {
+    title: "You need to hit strict framerates.",
+    description: "Your application or game is dropping frames, and you need deep hardware-level optimization to maintain a seamless experience."
+  }
+];
+
+const competitiveGapAndTeamStrategy = [
+  {
+    title: "Your core technology isn't scaling with modern hardware.",
+    description: "Your core algorithms, based on decades-old research, aren't scaling on modern GPUs, or your workloads desperately need to be parallelized. When standard methods hit a wall, we invent and engineer novel, hardware-aware solutions tailored exactly to solve your unique bottlenecks."
+  },
+  {
+    title: "You have cutting-edge research, but no product.",
+    description: "You’ve developed cutting-edge research, algorithms, or geometry processing techniques, but you lack the engineering roadmap to turn that academic success into a robust, shippable software product."
+  },
+  {
+    title: "Your team needs a permanent skill upgrade.",
+    description: "You don't just want a temporary fix; your internal team needs direct, hands-on training in GPU programming and CPU optimization to maintain your competitive edge."
+  },
+  {
+    title: "Competitors are out-rendering you.",
+    description: "Your clients are migrating to rival tools because they offer faster rendering times, superior visual quality, and better interactivity."
   },
 ];
 
-const goodFit = [
-  "Product companies where graphics, visualization, simulation, or GPU compute is close to customer value.",
-  "Product or engineering leaders accountable for architecture, performance, tooling, delivery, or customer outcomes.",
-  "Internal engineering teams that want senior external judgment alongside their own product knowledge.",
-  "Problems where correctness, cross-platform behavior, low-level API detail, and performance all matter at once.",
-];
-
-const notFit = [
-  "General application work where graphics, rendering, GPU systems, or low-level tooling are not material to the product.",
-  "Requests where the main need is broad implementation support rather than specialist graphics judgment.",
-  "Procurement processes built only around individual roles rather than specialist consultancy.",
-  "Small isolated tasks with no clear owner, business context, or meaningful product relevance.",
-];
-
-const connectorRoles = [
-  "Senior engineers who hear that another team is blocked by rendering, GPU performance, or shader tooling.",
-  "Standards, conference, open-source, and vendor contacts who see graphics-heavy product teams up close.",
-  "Founders, advisors, operators, and investors who see a company struggling with visualization, performance, or GPU delivery.",
-  "Past clients and partners who recognize a problem similar to one DevSH has already helped solve.",
-];
-
-const decisionRoles = [
-  "CTO or VP Engineering",
-  "Founder or technical co-founder",
-  "Head of Graphics or Rendering",
-  "Technical Director",
-  "Product engineering leader responsible for a graphics-heavy roadmap",
+const notFitPoints = [
+  "You need general application or basic web development where GPU or rendering systems are not material.",
+  "You have isolated, small tasks with no clear business context or product relevance.",
+  "You are unwilling to refactor legacy code or address core architectural debt.",
 ];
 
 const engagementModels = [
   {
-    name: "Technical fit call",
-    detail: "A focused call with the decision-maker and technical lead to understand product context, current constraints, and fit.",
+    name: "Technical Fit Call",
+    detail: "A simple conversation to understand your needs.",
   },
   {
-    name: "Diagnostic engagement",
-    detail: "A bounded review of architecture, performance, shaders, API usage, or toolchain constraints with evidence-backed next steps.",
+    name: "Deep-Dive Diagnostic",
+    detail: "We audit your codebase, profile the performance bottlenecks, and map the technical debt.",
   },
   {
-    name: "Specialist engineering sprint",
-    detail: "Senior engineers work inside the codebase to remove a blocking graphics constraint or deliver a high-leverage subsystem.",
+    name: "The Architecture Plan",
+    detail: "We deliver a concrete roadmap and assign our specialized subject matter experts to tackle specific layers of your stack.",
   },
   {
-    name: "Long-term R&D partnership",
-    detail: "Ongoing work for products where rendering, GPU systems, or low-level graphics infrastructure are part of the competitive advantage.",
+    name: "Execution & Knowledge Transfer",
+    detail: "We don't just patch the code; we implement the solution, hit the performance targets, and upskill your internal team.",
   },
 ];
 
@@ -121,8 +124,7 @@ const proofPoints = [
   },
 ];
 
-const introText =
-  "I think you should talk to DevSH. They are a specialist graphics and GPU engineering consultancy for product companies. They are a strong fit when rendering architecture, Vulkan/SPIR-V, shader tooling, GPU performance, or low-level graphics delivery is shaping product decisions. The best first conversation is with whoever owns the product or engineering outcome.";
+// --- ICONS ---
 
 function ArrowIcon() {
   return (
@@ -133,51 +135,63 @@ function ArrowIcon() {
   );
 }
 
-function SignalCard({ title, text }: { title: string; text: string }) {
+function CheckIcon() {
   return (
-    <article className="brand-hover surface-panel flex min-h-[15rem] flex-col justify-between p-5 sm:p-6">
-      <div>
-        <div className="mb-5 h-px w-20 bg-gradient-to-r from-[var(--brand-accent-bright)] to-transparent" aria-hidden="true" />
-        <h3 className="!m-0 text-xl font-semibold leading-tight text-white sm:text-2xl">{title}</h3>
-      </div>
-      <p className="!mb-0 !mt-5 text-sm leading-relaxed text-neutral-300 sm:text-base">{text}</p>
-    </article>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[0.15rem] h-5 w-5 shrink-0 text-[var(--brand-accent-bright)]" aria-hidden="true">
+      <path d="M4 10l4 4 8-8" />
+    </svg>
   );
 }
 
-function FitList({ title, items, tone }: { title: string; items: string[]; tone: "good" | "bad" }) {
+function XIcon() {
   return (
-    <section className="relative overflow-hidden rounded-lg border border-white/10 bg-black/35 p-5 sm:p-7">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-accent-bright)]/55 to-transparent" aria-hidden="true" />
-      <p className="section-kicker">{tone === "good" ? "Strong fit" : "Better served elsewhere"}</p>
-      <h2 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight text-white sm:text-3xl">{title}</h2>
-      <ul className="!m-0 !mt-6 flex list-none flex-col gap-4 p-0">
-        {items.map((item) => (
-          <li key={item} className="grid grid-cols-[0.75rem_1fr] gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
-            <span className={`mt-[0.48rem] h-2 w-2 justify-self-start rounded-full sm:mt-[0.56rem] ${tone === "good" ? "bg-[var(--brand-accent-bright)]" : "bg-white/35"}`} aria-hidden="true" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-[0.15rem] h-5 w-5 shrink-0 text-red-400" aria-hidden="true">
+      <path d="M15 5L5 15M5 5l10 10" />
+    </svg>
   );
 }
 
-function ReferralList({ title, kicker, items }: { title: string; kicker: string; items: string[] }) {
+function CopyIcon() {
   return (
-    <section className="relative overflow-hidden rounded-lg border border-white/10 bg-black/35 p-5 sm:p-7">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-accent-bright)]/55 to-transparent" aria-hidden="true" />
-      <p className="section-kicker">{kicker}</p>
-      <h2 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight text-white sm:text-3xl">{title}</h2>
-      <ul className="!m-0 !mt-6 flex list-none flex-col gap-4 p-0">
-        {items.map((item) => (
-          <li key={item} className="grid grid-cols-[0.75rem_1fr] gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
-            <span className="mt-[0.48rem] h-2 w-2 justify-self-start rounded-full bg-[var(--brand-accent-bright)] shadow-[0_0_0.8rem_rgba(125,205,185,0.7)] sm:mt-[0.56rem]" aria-hidden="true" />
-            <span>{item}</span>
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4" aria-hidden="true">
+      <rect x="5" y="5" width="10" height="10" rx="1" />
+      <path d="M9 5V3a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-2" />
+    </svg>
+  );
+}
+
+const MailIcon = () => (
+  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+  </svg>
+);
+
+// --- COMPONENTS ---
+
+function CategoryCard({ title, items }: { title: string; items: { title: string; description: string }[] }) {
+  return (
+    // Changed bg-black/45 to bg-emerald-950/20 and border-white/10 to border-emerald-900/30
+    <div className="relative overflow-hidden rounded-lg border border-emerald-900/30 bg-emerald-950/20 p-6 shadow-[0_1rem_3rem_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-8 lg:p-10">
+      
+      {/* Updated gradient to fade into emerald instead of brand-accent to match the card */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" aria-hidden="true" />
+      
+      <h3 className="mt-0 mb-6 text-2xl font-semibold leading-tight text-white sm:mb-6 sm:text-3xl">
+        {title}
+      </h3>
+      
+      <ul className="m-0 grid list-none gap-6 p-0 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-8">
+        {items.map((item, i) => (
+          <li key={i} className="flex gap-4">
+            <CheckIcon />
+            <div>
+              <h4 className="mt-0 mb-0 text-base font-semibold text-white sm:text-lg">{item.title}</h4>
+              <p className="mb-0 mt-2 text-sm leading-relaxed text-neutral-300 sm:text-base">{item.description}</p>
+            </div>
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 }
 
@@ -205,112 +219,126 @@ function ProofCard({ point }: { point: (typeof proofPoints)[number] }) {
 export default function Page() {
   return (
     <main className="services-shell min-h-screen overflow-hidden">
-      <section className="service-hero flex min-h-[calc(100svh-4rem)] flex-col justify-center py-20 sm:py-24 lg:py-28">
-        <div aria-hidden="true" className="service-hero-cloud">
+
+      {/* 1. HERO SECTION */}
+      <section className="service-hero service-hero-compact relative flex flex-col justify-center py-6 sm:py-8 lg:py-10">
+        <div aria-hidden="true" className="service-hero-cloud absolute inset-0 z-0">
           <div className="service-hero-cloud-base" />
           <NablaShaderBackdrop />
           <div className="service-hero-cloud-vignette" />
         </div>
 
-        <div className="site-container relative z-10 grid items-center gap-10 lg:grid-cols-[0.95fr_0.75fr] lg:gap-14">
-          <div className="max-w-5xl">
-            <p className="section-kicker">When to call DevSH</p>
-            <h1 className="!mb-0 !mt-4 max-w-5xl bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text pb-1 text-4xl font-semibold leading-[1.06] text-balance text-transparent drop-shadow-[0_0_1.8rem_rgba(0,0,0,0.55)] sm:text-5xl lg:text-6xl xl:text-7xl">
-              Specialist graphics engineering for the problems your best engineers escalate.
+        <div className="site-container relative z-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="mx-auto !mb-0 !mt-0 max-w-3xl bg-[linear-gradient(135deg,#fff_18%,#f4fffb_58%,var(--brand-accent-bright)_100%)] bg-clip-text pb-1 text-3xl font-semibold leading-[1.15] tracking-tight text-transparent drop-shadow-[0_0_1.8rem_rgba(0,0,0,0.55)] sm:text-4xl lg:text-5xl">
+              Give your software the ultimate visual and computational advantage.
             </h1>
-            <p className="cloud-lead !mt-6 max-w-3xl">
-              DevSH works with product companies when rendering architecture, GPU performance, shader tooling, or low-level graphics decisions are too consequential for routine implementation work.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={contactHref} className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
-                Make an introduction
+
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href="mailto:newclients@devsh.eu"
+                className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
+              >
+                Book a Technical Discovery Call
                 <ArrowIcon />
               </a>
-              <Link href="/pricing.pdf" className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-5 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]">
-                Check public rates
+
+              <a
+                href="#intro-kit"
+                className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_1.2rem_rgba(0,0,0,0.28)] transition hover:border-white/32 hover:bg-white/[0.08]"
+              >
+                Make an Introduction
                 <ArrowIcon />
-              </Link>
+              </a>
             </div>
           </div>
+        </div>
+      </section>
 
-          <aside className="relative rounded-lg border border-white/10 bg-black/45 p-5 shadow-[0_1.5rem_5rem_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.1)] sm:p-6">
-            <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-accent-bright)]/70 to-transparent" aria-hidden="true" />
-            <p className="section-kicker">Best first conversation</p>
-            <h2 className="!mb-0 !mt-3 text-2xl font-semibold leading-tight text-white sm:text-3xl">A rendering or GPU decision has become a product decision.</h2>
-            <div className="mt-7 grid gap-3">
-              {["Roadmap impact", "Leadership involved", "GPU-level expertise"].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.035] px-3 py-2.5 text-sm font-semibold text-neutral-200">
-                  <span className="h-2 w-2 rounded-full bg-[var(--brand-accent-bright)] shadow-[0_0_0.8rem_rgba(125,205,185,0.7)]" aria-hidden="true" />
-                  {item}
-                </div>
+      {/* 2. WHEN TO CALL US & WHEN NOT TO */}
+      <section className="site-container py-10 sm:py-16 lg:py-20">
+        <div className="section-head mx-auto mb-10 max-w-5xl sm:mb-14">
+          <h2 className="section-heading">When to Bring in the Big Guns</h2>
+          <p className="mt-3 text-lg opacity-80 sm:text-xl">
+            Call us if any of the following is you.
+          </p>
+        </div>
+        
+        {/* All cards share this single flex container with a uniform gap */}
+        <div className="mx-auto flex max-w-5xl flex-col gap-4 sm:gap-4">
+          
+          <CategoryCard title="The Competitive Gap" items={competitiveGapAndTeamStrategy} />
+          <CategoryCard title="Modernization and Tech Debt" items={customSolutionsAndTechDebt} />
+          <CategoryCard title="Performance & Stability Walls" items={performanceStabilityWalls} />
+
+          {/* 3. WHEN NOT TO CALL US (Red Card) */}
+          <div className="relative mt-2 overflow-hidden rounded-lg border border-red-900/30 bg-red-950/20 px-6 py-5 sm:px-8 sm:py-6 lg:px-10 lg:py-6">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-red-500/30 to-transparent" aria-hidden="true" />
+            
+            {/* Added mt-0 to kill any stray margins, and changed mb-4 to mb-6 to match the green cards */}
+            <h3 className="mt-0 mb-6 text-2xl font-semibold leading-tight text-white sm:mb-6 sm:text-3xl">
+              Who this is not for
+            </h3>
+            
+            <ul className="m-0 grid gap-6 p-0 list-none sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6">
+              {notFitPoints.map((item, index) => (
+                <li key={index} className="flex gap-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
+                  <XIcon />
+                  <span className="mt-0.5">{item}</span>
+                </li>
               ))}
-            </div>
-          </aside>
+            </ul>
+          </div>
+
         </div>
       </section>
 
+      {/* 4. ENGAGEMENT MODEL */}
       <section className="site-container py-14 sm:py-16 lg:py-20">
-        <div className="section-head mb-10 sm:mb-12">
-          <p className="section-kicker">Call DevSH when</p>
-          <h2 className="section-heading">The outcome depends on specialist graphics judgment.</h2>
-        </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {callSignals.map((signal) => (
-            <SignalCard key={signal.title} {...signal} />
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-black/45 py-14 sm:py-16 lg:py-20">
-        <div className="site-container">
-          <div className="section-head mb-10 sm:mb-12">
-            <p className="section-kicker">Who can spot the fit</p>
-            <h2 className="section-heading">Strong introductions come from people close to the problem.</h2>
+        <div className="mx-auto max-w-6xl">
+          
+          {/* Centered Header Section */}
+          <div className="mb-12 text-center sm:mb-16">
+            <p className="section-kicker mx-auto">How we integrate with your team</p>
+            <h2 className="section-heading !mt-3 mx-auto">Our Engineering Process</h2>
           </div>
-          <div className="grid gap-5 lg:grid-cols-2">
-            <ReferralList title="People who often recognize the problem first." kicker="Connector profile" items={connectorRoles} />
-            <ReferralList title="The first call should include someone accountable for the product outcome." kicker="Accountable owner" items={decisionRoles} />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-black/45 py-14 sm:py-16 lg:py-20">
-        <div className="site-container grid gap-5 lg:grid-cols-2">
-          <FitList title="DevSH is strongest when graphics is close to product value." items={goodFit} tone="good" />
-          <FitList title="These requests are usually better handled elsewhere." items={notFit} tone="bad" />
-        </div>
-      </section>
-
-      <section className="site-container py-14 sm:py-16 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.72fr_1fr] lg:items-start">
-          <div className="max-w-xl">
-            <p className="section-kicker">How an engagement starts</p>
-            <h2 className="section-heading !mt-3">Start with the product decision, then scope the engineering work.</h2>
-            <p className="!mb-0 !mt-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
-              We look at product context, technical constraint, clear ownership, and business context. If there is a fit, the next step is scoped around a concrete technical outcome.
-            </p>
-          </div>
-          <div className="grid gap-4">
+          
+          {/* 4-Column Grid: Stacks on mobile, 2x2 on tablet, 1x4 horizontal on desktop */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {engagementModels.map((model, index) => (
-              <article key={model.name} className="grid gap-4 rounded-lg border border-white/10 bg-black/35 p-5 sm:grid-cols-[4rem_1fr] sm:p-6">
-                <div className="flex h-14 w-14 items-center justify-center rounded-md border border-[var(--brand-accent-bright)]/30 bg-[var(--brand-accent)]/10 text-lg font-semibold text-[var(--brand-accent-bright)]">
+              <article 
+                key={model.name} 
+                className="group relative flex flex-col items-center rounded-2xl border border-emerald-900/30 bg-emerald-950/20 p-6 pt-8 text-center shadow-[0_1rem_3rem_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-emerald-700/50 hover:bg-emerald-900/20 sm:p-8 sm:pt-10"
+              >
+                {/* Top Gradient Accent */}
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent transition-opacity duration-300 group-hover:via-emerald-400/60" aria-hidden="true" />
+                
+                {/* Step Number Box */}
+                <div className="relative mb-6 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[var(--brand-accent-bright)]/30 bg-[var(--brand-accent)]/10 text-xl font-bold text-[var(--brand-accent-bright)] shadow-[0_0_20px_rgba(0,255,128,0.15)] transition-transform duration-300 group-hover:scale-110 group-hover:border-[var(--brand-accent-bright)]/50">
                   {String(index + 1).padStart(2, "0")}
                 </div>
-                <div>
-                  <h3 className="!m-0 text-xl font-semibold leading-tight text-white sm:text-2xl">{model.name}</h3>
-                  <p className="!mb-0 !mt-3 text-sm leading-relaxed text-neutral-300 sm:text-base">{model.detail}</p>
+                
+                {/* Content */}
+                <div className="flex flex-1 flex-col">
+                  <h3 className="!m-0 text-lg font-semibold leading-tight text-white sm:text-xl">
+                    {model.name}
+                  </h3>
+                  <p className="!mb-0 !mt-3 text-sm leading-relaxed text-neutral-300 sm:text-base">
+                    {model.detail}
+                  </p>
                 </div>
               </article>
             ))}
           </div>
+          
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black py-14 sm:py-16 lg:py-20">
+      {/* 5. EVIDENCE */}
+      <section className="border-b border-white/10 bg-black py-14 sm:py-16 lg:py-20">
         <div className="site-container">
           <div className="section-head mb-10 sm:mb-12">
-            <p className="section-kicker">Evidence</p>
-            <h2 className="section-heading">Evidence of deep graphics engineering.</h2>
+            <h2 className="section-heading">Proven Results</h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
             {proofPoints.map((point) => (
@@ -320,38 +348,107 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="site-container py-14 sm:py-16 lg:py-20">
-        <div className="grid gap-8 rounded-lg border border-white/10 bg-[linear-gradient(180deg,rgba(12,31,30,0.72),rgba(4,14,14,0.92))] p-5 shadow-[0_1.5rem_5rem_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.08)] sm:p-8 lg:grid-cols-[0.72fr_1fr] lg:p-10">
-          <div>
-            <p className="section-kicker">Forwardable introduction</p>
-            <h2 className="!mb-0 !mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">A short introduction you can forward.</h2>
-            <p className="!mb-0 !mt-5 text-base leading-relaxed text-neutral-300 sm:text-lg">
-              Use this when someone asks who can help with a hard rendering, graphics, or GPU systems problem.
+      {/* 5. THE INTERNAL PITCH (Shareable Summary) */}
+      <section id="intro-kit" className="site-container py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1.3fr] lg:items-center lg:gap-12">
+          
+          {/* Left Column: Context & Header */}
+          <div className="text-left">
+            <h2 className="mb-4 text-2xl font-semibold leading-tight text-white sm:text-3xl lg:text-4xl">
+              Need to share this with your CTO or get budget approval?
+            </h2>
+            <p className="text-base leading-relaxed text-neutral-400 sm:text-lg">
+              Send them this brief summary of our value proposition, track record, and pricing.
             </p>
           </div>
-          <div className="min-w-0 rounded-md border border-white/10 bg-black/55 p-4 sm:p-5">
-            <pre className="!m-0 whitespace-pre-wrap break-words font-sans text-sm leading-relaxed text-neutral-200 sm:text-base">{introText}</pre>
+
+          {/* Right Column: The Interactive Box */}
+          <div className="relative overflow-hidden rounded-xl border border-white/10 bg-black/40 text-left shadow-[0_2rem_4rem_rgba(0,0,0,0.4)]">
+            
+            {/* Toolbar Area */}
+            <div className="flex flex-col items-center justify-between gap-4 border-b border-white/10 bg-white/5 px-4 py-3 sm:flex-row sm:px-5">
+              <span className="text-xs font-medium uppercase tracking-wider text-neutral-400">Internal Pitch Draft</span>
+              <div className="flex w-full gap-2 sm:w-auto">
+                <button
+                  id="copy-intro-btn"
+                  data-copy-text={pitchText}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-white/20 sm:flex-none"
+                >
+                  <CopyIcon />
+                  <span id="copy-btn-label">Copy text</span>
+                </button>
+                <a
+                  href={`mailto:?subject=${encodeURIComponent("Engineering partner for graphics/compute bottlenecks")}&body=${encodeURIComponent(pitchText)}`}
+                  className="inline-flex flex-1 items-center justify-center gap-2 rounded-md bg-[var(--brand-accent)]/20 px-3 py-1.5 text-xs font-semibold text-[var(--brand-accent-bright)] transition hover:bg-[var(--brand-accent)]/30 sm:flex-none"
+                >
+                  <MailIcon />
+                  Email draft
+                </a>
+              </div>
+            </div>
+            
+            {/* Text Area (Injects the variable directly, handles \n natively via whitespace-pre-wrap) */}
+            <div className="whitespace-pre-wrap p-5 font-mono text-sm leading-relaxed text-neutral-300">
+              {pitchText}
+            </div>
+
+            {/* Inline Vanilla JS for the Copy Button */}
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  document.getElementById('copy-intro-btn').addEventListener('click', async function() {
+                    try {
+                      await navigator.clipboard.writeText(this.getAttribute('data-copy-text'));
+                      const label = document.getElementById('copy-btn-label');
+                      label.textContent = 'Copied!';
+                      setTimeout(() => { label.textContent = 'Copy text'; }, 2000);
+                    } catch (err) {
+                      console.error('Failed to copy', err);
+                    }
+                  });
+                `,
+              }}
+            />
           </div>
         </div>
       </section>
 
-      <section className="site-container pb-16 sm:pb-20 lg:pb-24">
-        <div className="relative overflow-hidden rounded-lg border border-white/10 bg-black/45 p-6 text-center sm:p-8 lg:p-10">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-accent-bright)]/70 to-transparent" aria-hidden="true" />
-          <p className="section-kicker">Next step</p>
-          <h2 className="!mb-0 !mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">Make the introduction when the graphics decision matters.</h2>
-          <p className="!mx-auto !mb-0 !mt-5 max-w-3xl text-base leading-relaxed text-neutral-300 sm:text-lg">
-            DevSH is most useful when product or engineering leadership already knows that rendering architecture, GPU performance, or shader tooling can shape delivery.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href={contactHref} className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5">
-              Send an introduction
-              <ArrowIcon />
-            </a>
-            <Link href="/services" className="inline-flex items-center gap-3 rounded-lg border border-white/18 bg-black/28 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/32 hover:bg-white/[0.08]">
-              See services
-              <ArrowIcon />
-            </Link>
+      {/* 6. FINAL CTA */}
+      <section className="py-16 sm:py-20 lg:py-24">
+        <div className="site-container relative z-10">
+          
+          {/* The Mildly Colored Premium Card */}
+          <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl border border-emerald-900/30 bg-emerald-950/20 p-10 text-center shadow-[0_2rem_5rem_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.05)] sm:p-14 lg:p-16">
+            
+            {/* Premium Gradient Top Border on the Card */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" aria-hidden="true" />
+            
+            {/* Sophisticated Ambient Glow contained inside the card */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[30rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-900/20 blur-[100px]" aria-hidden="true" />
+            
+            <h2 className="mb-12 text-balance text-2xl font-semibold leading-relaxed tracking-tight bg-gradient-to-b from-white to-neutral-300 bg-clip-text text-transparent sm:text-3xl lg:text-4xl">
+              Tap into an expert team of graphics engineers and GPU programmers to solve your hardest challenges.
+            </h2>
+            
+            {/* Bigger Buttons: px-10, py-5, text-lg, rounded-xl */}
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+              <a
+                href="mailto:newclients@devsh.eu"
+                className="premium-cta brand-button inline-flex items-center gap-3 rounded-xl border px-10 py-5 text-lg font-semibold shadow-[0_0_24px_rgba(0,255,128,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(0,255,128,0.25)]"
+              >
+                Book a Technical Discovery Call
+                <ArrowIcon />
+              </a>
+              
+              <Link 
+                href="/pricing.pdf" 
+                className="inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-10 py-5 text-lg font-semibold text-white shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
+              >
+                Check public rates
+                <ArrowIcon />
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>

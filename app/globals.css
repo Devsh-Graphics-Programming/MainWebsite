@@ -750,6 +750,15 @@ body {
       linear-gradient(180deg, rgba(0, 0, 0, 0.69), transparent 24%, transparent 58%, rgba(0, 0, 0, 0.78));
   }
 
+  .service-hero-compact {
+    min-height: clamp(18rem, 36svh, 28rem);
+  }
+
+  .service-hero-compact::before {
+    inset: 22% 10% 12%;
+  }
+
+
   .about-shell {
     position: relative;
     isolation: isolate;

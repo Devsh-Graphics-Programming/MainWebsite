@@ -24,7 +24,7 @@ I think it's worth booking a technical discovery call with them to see if they c
 const customSolutionsAndTechDebt = [
   {
     title: "You are trapped by expensive middleware.",
-    description: "You are paying massive licensing fees for closed-source, aging renderers like HOOPS Visualize, lack source code access, and are left to fix critical issues yourself."
+    description: "You are paying massive licensing fees for closed-source, aging renderers like HOOPS Visualize, and can't even fix critical issues yourself due to lack of source code access."
   },
   {
     title: "Your legacy codebase is a liability.",

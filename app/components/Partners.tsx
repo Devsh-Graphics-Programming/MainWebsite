@@ -11,7 +11,7 @@ export type Partner = {
 
 const partners: Partner[] = [
   { name: "Applications in CADD", initials: "AC", logo: "/partners/appscadd.png", url: "https://appsincadd.co.uk/" },
-  { name: "Synera", initials: "SY", logo: "/partners/synera.png", url: "https://www.synera.io/", logoTone: "invert" },
+  { name: "Synera", initials: "SY", logo: "/partners/synera.png", url: "https://www.synera.ai/", logoTone: "invert" },
   { name: "Ditt Officemakers", initials: "DT", logo: "/partners/ditt.png", url: "https://www.ditt.nl/" },
   { name: "Imverse", initials: "IM", logo: "/partners/imverse.png", url: "https://www.imverse.com/" },
   { name: "Wild Software Inc", initials: "WI", logo: "/partners/wild.jpg", url: "https://factionsvr.com/" },

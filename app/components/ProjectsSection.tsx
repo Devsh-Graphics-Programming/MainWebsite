@@ -115,7 +115,7 @@ const projects: Project[] = [
   {
     slug: "synera",
     company: "Synera",
-    url: "https://www.synera.io/",
+    url: "https://www.synera.ai/",
     title: "Renderer Performance Analysis & Design",
     summary: "Performance diagnosis and renderer architecture planning for complex engineering scenes.",
     bullets: [

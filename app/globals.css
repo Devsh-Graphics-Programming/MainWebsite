@@ -1687,10 +1687,22 @@ body {
     position: relative;
   }
 
-  .testimonial-quotes {
-    display: grid;
-    align-items: start;
+  .testimonial-carousel {
+    position: relative;
+  }
+
+  .testimonial-viewport {
+    overflow: hidden;
+  }
+
+  .testimonial-track {
+    display: flex;
+    flex-direction: column;
     gap: clamp(1.25rem, 2.4vw, 2rem);
+  }
+
+  .testimonial-controls {
+    display: none;
   }
 
   .testimonial-quote {
@@ -1833,13 +1845,77 @@ body {
   }
 
   @media (min-width: 64rem) {
-    .testimonial-quotes {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Fade the edges so cards enter and leave the loop instead of being cut. */
+    .testimonial-viewport {
+      --testimonial-fade: clamp(2rem, 5vw, 5rem);
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        #000 var(--testimonial-fade),
+        #000 calc(100% - var(--testimonial-fade)),
+        transparent 100%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        #000 var(--testimonial-fade),
+        #000 calc(100% - var(--testimonial-fade)),
+        transparent 100%
+      );
+    }
+
+    .testimonial-track {
+      flex-direction: row;
+      align-items: stretch;
       gap: clamp(2.75rem, 5vw, 4.5rem);
+      will-change: transform;
     }
 
     .testimonial-quote {
+      width: clamp(26rem, 33vw, 34rem);
+      flex: 0 0 auto;
       padding-inline: clamp(0.75rem, 1.6vw, 1.35rem);
+    }
+
+    .testimonial-controls {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-top: clamp(1.75rem, 3vw, 2.75rem);
+    }
+
+    .testimonial-arrow {
+      display: grid;
+      place-items: center;
+      width: 2.9rem;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: rgb(210 218 218);
+      cursor: pointer;
+      transition:
+        background-color 220ms ease,
+        border-color 220ms ease,
+        color 220ms ease,
+        transform 220ms ease;
+    }
+
+    .testimonial-arrow svg {
+      width: 1.15rem;
+      height: 1.15rem;
+    }
+
+    .testimonial-arrow:hover {
+      border-color: rgba(125, 205, 185, 0.6);
+      background: rgba(125, 205, 185, 0.14);
+      color: #fff;
+      transform: translateY(-0.08rem);
+    }
+
+    .testimonial-arrow:focus-visible {
+      outline: 2px solid rgba(125, 205, 185, 0.68);
+      outline-offset: 0.24rem;
     }
   }
 

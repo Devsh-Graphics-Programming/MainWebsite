@@ -6,6 +6,7 @@ type Testimonial = {
   profileUrl: string;
   profilePicture: string;
   companyIcon: string;
+  companyIconTone?: "normal" | "invert";
   testimonial: string;
 };
 
@@ -27,6 +28,16 @@ const testimonials: Testimonial[] = [
     companyIcon: "/partners/ditt.png",
     testimonial:
       "The DevSH team transformed our CPU render farm for architectural visualization into a scalable GPU-based system with outstanding performance and reliability. Their expertise and commitment to achieving the best results were clear throughout the project. They maintained full backward compatibility, ensuring a smooth transition with minimal disruption to our workflows.",
+  },
+  {
+    name: "Sven Seele",
+    role: "Techlead at Synera",
+    profileUrl: "https://www.linkedin.com/in/sven-seele-09433a41/",
+    profilePicture: "/testimonials/sven.jpg",
+    companyIcon: "/partners/synera.png",
+    companyIconTone: "invert",
+    testimonial:
+      "We were looking for performance improvements for our integrated viewer technology and DevSH brought exactly the expertise we needed. They worked independently, asked the right questions, and delivered a report that was thorough and easy to follow, with the required performance analysis and concrete improvement strategies. They also gave us sound technical guidance on rendering strategy that helped align our team internally. We'd definitely work with them again.",
   },
 ];
 
@@ -80,7 +91,9 @@ export default function TestimonialsSection() {
                     src={testimonial.companyIcon}
                     alt=""
                     fill
-                    className="object-contain"
+                    className={`object-contain ${
+                      testimonial.companyIconTone === "invert" ? "invert" : ""
+                    }`}
                     sizes="(min-width: 64rem) 4.5rem, 3.25rem"
                   />
                 </div>

@@ -51,7 +51,7 @@ const NUDGE_DAMPING = 6;
 // Halt the drift while the pointer is anywhere over the carousel, so a quote
 // can be read without it sliding away. The arrow controls pause regardless of
 // this flag; see the note on them below.
-const PAUSE_ON_HOVER = false;
+const PAUSE_ON_HOVER = true;
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);

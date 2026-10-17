@@ -4,14 +4,42 @@ type Event = {
   name: string;
   fullName: string;
   location: string;
+  dates?: string;
   status: string;
   href: string;
   image: string;
   imageClassName: string;
   description: string;
+  featured?: boolean;
 };
 
 const events: Event[] = [
+  {
+    name: "Vulkanised 2027",
+    fullName: "The Vulkan Developer Conference",
+    location: "Kortrijk, Belgium",
+    dates: "8-10 February 2027",
+    status: "Sponsor",
+    href: "https://vulkan.org/events/vulkanised-2027",
+    image: "/events/vulkanised-2027.webp",
+    imageClassName: "community-event-visual-image--vulkanised",
+    description:
+      "Supporting the Vulkan community as developers and implementers share practical insights into GPU programming and the Vulkan ecosystem.",
+    featured: true,
+  },
+  {
+    name: "Real-Time Shading 2027",
+    fullName: "Real-Time Shading Symposium",
+    location: "Kortrijk, Belgium",
+    dates: "11-12 February 2027",
+    status: "Sponsor",
+    href: "https://www.khronos.org/events/real-time-shading-symposium-2027",
+    image: "/events/real-time-shading-2027.webp",
+    imageClassName: "community-event-visual-image--shading",
+    description:
+      "Supporting the shader community as it explores shading languages, production workflows, and the future of real-time rendering.",
+    featured: true,
+  },
   {
     name: "GPC 2026",
     fullName: "Graphics Programming Conference",
@@ -51,7 +79,7 @@ function EventPanel({ event }: { event: Event }) {
       href={event.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="community-event group"
+      className={`community-event group${event.featured ? " community-event--featured" : ""}`}
     >
       <div className="community-event-visual" aria-hidden="true">
         <div
@@ -71,7 +99,10 @@ function EventPanel({ event }: { event: Event }) {
         <div className="community-event-bottom">
           <p>{event.description}</p>
           <div className="community-event-meta">
-            <span>{event.location}</span>
+            <span className="community-event-details">
+              {event.dates && <span className="community-event-date">{event.dates}</span>}
+              <span>{event.location}</span>
+            </span>
             <span className="community-event-link">
               Event site
               <ExternalArrow />

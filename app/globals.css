@@ -1514,6 +1514,14 @@ body {
     transform: scale(1);
   }
 
+  .community-event-visual-image--vulkanised {
+    background-position: 25% center;
+  }
+
+  .community-event-visual-image--shading {
+    background-position: right center;
+  }
+
   .community-event:hover .community-event-visual-image--gpc,
   .community-event:focus-visible .community-event-visual-image--gpc,
   .community-event:hover .community-event-visual-image--sgp,
@@ -1570,6 +1578,16 @@ body {
     line-height: 1.35;
   }
 
+  .community-event--featured h3 {
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 4.2vw, 4.5rem);
+    line-height: 1.02;
+  }
+
+  .community-event--featured .community-event-copy {
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+
   .community-event-bottom {
     display: grid;
     gap: 1rem;
@@ -1598,8 +1616,18 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
+    margin-left: auto;
     color: var(--brand-accent-bright);
     transition: color 220ms ease;
+  }
+
+  .community-event-details {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .community-event-date {
+    color: rgb(225 232 232);
   }
 
   .community-event:hover .community-event-link,

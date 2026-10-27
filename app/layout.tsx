@@ -108,12 +108,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="8a30c91f-edec-4ced-879c-14b17ef15a68"
-          data-domains="www.devsh.eu"
-        />
       </head>
       <body
         className={`${futuraPT.className} flex min-h-dvh flex-col bg-black text-white antialiased`}

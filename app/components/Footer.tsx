@@ -72,12 +72,7 @@ export default function Footer() {
           </nav>
 
           <div className="flex flex-col gap-3 text-xs text-neutral-500 lg:min-w-56 lg:items-end lg:text-right">
-            <a
-              className="transition-colors hover:text-[var(--brand-accent-bright)]"
-              href="mailto:devsh@devsh.eu"
-              data-umami-event="contact-email"
-              data-umami-event-location="footer"
-            >
+            <a className="transition-colors hover:text-[var(--brand-accent-bright)]" href="mailto:devsh@devsh.eu">
               mail: devsh@devsh.eu
             </a>
 

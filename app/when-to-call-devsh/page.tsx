@@ -237,6 +237,8 @@ export default function Page() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
                 href="mailto:newclients@devsh.eu"
+                data-umami-event="contact-email"
+                data-umami-event-location="when-to-call-top"
                 className="premium-cta brand-button inline-flex items-center gap-3 rounded-lg border px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5"
               >
                 Book a Technical Discovery Call
@@ -434,6 +436,8 @@ export default function Page() {
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
               <a
                 href="mailto:newclients@devsh.eu"
+                data-umami-event="contact-email"
+                data-umami-event-location="when-to-call-bottom"
                 className="premium-cta brand-button inline-flex items-center gap-3 rounded-xl border px-10 py-5 text-lg font-semibold shadow-[0_0_24px_rgba(0,255,128,0.15)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_32px_rgba(0,255,128,0.25)]"
               >
                 Book a Technical Discovery Call

@@ -4,9 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 24631 -H 0.0.0.0",
+    "predev": "npm run generate:pdfs",
     "generate:pricing-pdf": "node scripts/generate-pricing-pdf.mjs",
+    "generate:partner-pdf": "node scripts/generate-partner-pdf.mjs",
+    "generate:pdfs": "npm run generate:pricing-pdf && npm run generate:partner-pdf",
     "sync:linkedin-feed": "node scripts/sync-linkedin-feed.mjs",
-    "prebuild": "npm run generate:pricing-pdf",
+    "prebuild": "npm run generate:pdfs",
     "build": "next build",
     "start": "next start -p 24631 -H 0.0.0.0",
     "lint": "eslint ."

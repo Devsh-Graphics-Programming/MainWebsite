@@ -15,12 +15,12 @@ This repo is a Next.js app used to generate a static site. The final production 
 ## Development (local only)
 - Install deps: `npm install`
 - Run dev server: `npm run dev` then open http://localhost:3000
-> ⚠️ These steps are purely for local development; the production image ships only static assets and never contains a Node/npm runtime.
+> ⚠️ These steps are for local development. The production image serves static files and does not include Node or npm.
 
 ## Build (production image)
 - `docker build -t www-website .`
-- Runtime is static files only; mount/serve with RO filesystem (e.g., `docker run --read-only --tmpfs /tmp --tmpfs /config --tmpfs /data -p 3000:3000 www-website`).
-> ⚠️ The final container maps only the generated `out` directory and static assets; keep it read-only and do not run any Node/npm scripts there.
+- The runtime serves static files. Use a read-only filesystem (e.g., `docker run --read-only --tmpfs /tmp --tmpfs /config --tmpfs /data -p 3000:3000 www-website`).
+> ⚠️ The final container serves the generated `out` directory. Keep it read-only. Run Node/npm scripts in the build stage or locally.
 
 ## Repository size budget
 - CI fails if the tracked tree exceeds `10 MiB`, `public/` exceeds `8 MiB`, any tracked blob exceeds `1 MiB`, or HEAD Git blob payloads exceed `15 MiB`.
@@ -33,6 +33,13 @@ This repo is a Next.js app used to generate a static site. The final production 
 
 ## Deployment notes
 - Published image: `ghcr.io/devsh-graphics-programming/www-website` (tags: `latest`, `master`, `sha-*`).
-- Blog content is proxied separately; the main image does not include Node/npm or blog runtime.
+- Blog content is proxied separately. The main image does not include Node/npm or the blog runtime.
 - Security
 - Enable GitHub's push protection/secret scanning (see https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection) so that any accidental secret leaks are flagged before a push finishes.
+
+## Generated PDFs
+
+Run `npm run generate:pdfs` to rebuild `public/pricing.pdf` and `public/partner.pdf`.
+This also runs with `npm run dev` and `npm run build`. Both PDFs stay out of Git.
+Edit prices in `app/data/pricing-rates.json` and partner text in `app/data/partner-content.json`.
+Both generators share the fonts, colors and footer in `scripts/lib/pdf-brand.mjs`.

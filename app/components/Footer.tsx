@@ -5,6 +5,7 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Pricing", href: "/pricing.pdf" },
+  { label: "Referral Partners", href: "/partner.pdf" },
   { label: "Nabla", href: "/nabla" },
   { label: "Research", href: "/research" },
   { label: "Blog", href: "/blog" },

@@ -1,0 +1,102 @@
+{
+  "blocks": [
+    {
+      "type": "title",
+      "text": "DevSH referral partner"
+    },
+    {
+      "type": "reward",
+      "text": "10% success reward"
+    },
+    {
+      "type": "subtitle",
+      "text": "We handle the execution, you earn the commission."
+    },
+    {
+      "type": "bullet",
+      "text": "\"Our renderer drops frames on large client datasets.\""
+    },
+    {
+      "type": "bullet",
+      "text": "\"We’re stuck on legacy code and can’t leverage modern GPUs.\""
+    },
+    {
+      "type": "bullet",
+      "text": "\"We can't find low-level Vulkan / C++ engineers to save our lives.\""
+    },
+    {
+      "type": "bullet",
+      "text": "\"Our FTEs vibecoded the codebase and now every change requires exponentially more tokens\""
+    },
+    {
+      "type": "paragraph",
+      "text": "If you sit in those conversations, you’re the partner we’re looking for."
+    },
+    {
+      "type": "heading",
+      "text": "How it works"
+    },
+    {
+      "type": "subheading",
+      "text": "Point us to a project"
+    },
+    {
+      "type": "paragraph",
+      "text": "Connect us with teams in CAD, gaming, simulation, visualization, or automotive requiring graphics dev, GPU computing, code audits, or corporate training."
+    },
+    {
+      "type": "subheading",
+      "text": "We run the deal"
+    },
+    {
+      "type": "paragraph",
+      "text": "DevSH leads the technical discussions, defines the scope of work, and finalizes the service contract. You may choose to stay involved or step back completely."
+    },
+    {
+      "type": "subheading",
+      "text": "Earn your fee"
+    },
+    {
+      "type": "paragraph",
+      "text": "Earn 10% on all payments we receive across a new client’s projects for 12 months after introduction. No minimum project value or commission cap. For corporate training, earn 10% for its full duration. We pay once client payments are received and no longer subject to offsets, contractual penalties or refunds. When referring your employer or client, tell them immediately about your 10% commission."
+    },
+    {
+      "type": "heading",
+      "text": "Who is our ideal partner?"
+    },
+    {
+      "type": "bullet",
+      "text": "Industry networks: Existing contacts among CTOs, VPs of engineering, product directors, and R&D leads in gaming, CAD, simulation, automotive, or graphics technology."
+    },
+    {
+      "type": "bullet",
+      "text": "Technical familiarity: Ability to recognize high-level technical pain points (such as GPU bottlenecks, rendering issues, or low-level performance needs) in casual or professional conversations."
+    },
+    {
+      "type": "bullet",
+      "text": "Professional trust: Established credibility with decision-makers to facilitate warm, effective introductions."
+    },
+    {
+      "type": "heading",
+      "text": "How we support you"
+    },
+    {
+      "type": "bullet",
+      "text": "Competitive 10% commission: Earn commission on payments we receive from clients you introduce."
+    },
+    {
+      "type": "bullet",
+      "text": "Zero operational burden: No cold calling, sales targets, quotas, CRM entry, or required travel."
+    },
+    {
+      "type": "bullet",
+      "text": "Complete flexibility: Work on your own schedule from anywhere, simply leveraging your existing network."
+    },
+    {
+      "type": "contact",
+      "text": "Ready to turn your network into revenue?",
+      "prompt": "Contact our team at",
+      "email": "partner@devsh.eu"
+    }
+  ]
+}

@@ -19,6 +19,7 @@ const links: Link[] = [
     { name: "When to Call", url: "/when-to-call-devsh" },
     { name: "Sponsorship", url: "/#sponsorship" },
     { name: "Pricing", url: "/pricing.pdf" },
+    { name: "Referral Partners", url: "/partner.pdf" },
     { name: "Nabla", url: "/nabla" },
     { name: "Research", url: "/presentations" },
     { name: "Blog", url: "/blog" },

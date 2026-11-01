@@ -1,71 +1,15 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-import PDFDocument from "pdfkit";
+import { rootDir, logoPath, mm, colors, finishDocument, drawLine, drawCenteredText, drawFooter, createDocument } from "./lib/pdf-brand.mjs";
 
-const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sourcePath = path.join(rootDir, "app", "data", "pricing-rates.json");
 const outputPath = path.join(rootDir, "public", "pricing.pdf");
-const logoPath = path.join(rootDir, "public", "brand", "devsh-logo-glow.png");
-const fontDir = path.join(rootDir, "app", "fonts", "FuturaPT", "pdf");
-
 const pricing = JSON.parse(await readFile(sourcePath, "utf8"));
-
-const mm = (value) => value * 72 / 25.4;
-
-const colors = {
-  background: "#020403",
-  white: "#f8fffd",
-  muted: "#9fa9a7",
-  line: "#bafff6",
-  accent: "#8ceedd",
-};
-
-function finishDocument(document) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    document.on("data", (chunk) => chunks.push(chunk));
-    document.on("end", () => resolve(Buffer.concat(chunks)));
-    document.on("error", reject);
-    document.end();
-  });
-}
-
-function withOpacity(document, opacity, draw) {
-  document.save();
-  document.opacity(opacity);
-  draw();
-  document.restore();
-}
-
-function drawLine(document, x1, y1, x2, y2, opacity = 0.4, width = 0.55) {
-  withOpacity(document, opacity, () => {
-    document
-      .lineWidth(width)
-      .strokeColor(colors.line)
-      .moveTo(x1, y1)
-      .lineTo(x2, y2)
-      .stroke();
-  });
-}
-
-function drawCenteredText(document, text, y, options) {
-  document
-    .font(options.font)
-    .fontSize(options.size)
-    .fillColor(options.color ?? colors.white)
-    .text(text, 0, y, {
-      width: document.page.width,
-      height: options.height ?? options.size * 1.5,
-      align: "center",
-      lineGap: options.lineGap ?? 0,
-    });
-}
 
 function drawBrand(document) {
   const logoSize = mm(24);
   const logoX = (document.page.width - logoSize) / 2;
-  const logoY = mm(29);
+  const logoY = mm(24);
 
   document.image(logoPath, logoX, logoY, {
     fit: [logoSize, logoSize],
@@ -73,19 +17,13 @@ function drawBrand(document) {
     valign: "center",
   });
 
-  drawCenteredText(document, "DEVSH GRAPHICS PROGRAMMING SP. Z O.O.", logoY + logoSize + mm(1.15), {
-    font: "FuturaMedium",
-    size: 5.6,
-    color: colors.white,
-  });
-
-  drawCenteredText(document, "DevSH 2026", mm(57.8), {
+  drawCenteredText(document, "DevSH 2026", mm(46), {
     font: "FuturaDemi",
     size: 30,
     color: colors.white,
   });
 
-  drawCenteredText(document, "Professional Engineering Rates", mm(75.3), {
+  drawCenteredText(document, "Professional Engineering Rates", mm(62), {
     font: "FuturaBook",
     size: 12.4,
     color: colors.accent,
@@ -194,85 +132,7 @@ function drawPricingTable(document) {
   return noteY + mm(14);
 }
 
-function drawFooter(document, topY) {
-  const left = mm(22);
-  const width = document.page.width - left * 2;
-  const right = left + width;
-  const blockTop = topY + mm(2.2);
-  const legalLineY = topY + mm(23.4);
-
-  drawLine(document, left, topY, right, topY, 0.5, 0.55);
-
-  document
-    .font("FuturaDemi")
-    .fontSize(8.2)
-    .fillColor(colors.white)
-    .text("DevSH Graphics Programming Sp. z o.o.", left, blockTop + mm(1.2), {
-      width: mm(96),
-      height: 10,
-      lineBreak: false,
-    });
-
-  document
-    .font("FuturaBook")
-    .fontSize(7.4)
-    .fillColor(colors.muted)
-    .text("ul. Lipuska 36\n80-178 Gdansk\nPoland", left, blockTop + mm(6.6), {
-      width: mm(64),
-      height: mm(13),
-      lineGap: 1.15,
-    });
-
-  document
-    .font("FuturaBook")
-    .fontSize(7.4)
-    .fillColor(colors.muted)
-    .text("Contact", right - mm(45), blockTop + mm(5.8), {
-      width: mm(45),
-      height: 10,
-      align: "right",
-      lineBreak: false,
-    });
-
-  document
-    .font("FuturaBook")
-    .fontSize(7.4)
-    .fillColor(colors.accent)
-    .text("devsh@devsh.eu", right - mm(45), blockTop + mm(10.8), {
-      width: mm(45),
-      height: 10,
-      align: "right",
-      lineBreak: false,
-    });
-
-  drawLine(document, left, legalLineY, right, legalLineY, 0.36, 0.5);
-
-  drawCenteredText(document, "NIP 5833334868 | REGON 382168019 | KRS 0000764661", legalLineY + mm(5), {
-    font: "FuturaBook",
-    size: 7.2,
-    color: colors.muted,
-  });
-  drawCenteredText(document, "Share capital: 15 000 PLN paid in full", legalLineY + mm(9.6), {
-    font: "FuturaBook",
-    size: 7.2,
-    color: colors.muted,
-  });
-}
-
-const document = new PDFDocument({
-  size: "A4",
-  margin: 0,
-  info: {
-    Title: "DevSH 2026 Professional Engineering Rates",
-    Author: "DevSH Graphics Programming Sp. z o.o.",
-  },
-});
-
-document.registerFont("FuturaBook", path.join(fontDir, "FuturaCyrillicBook.ttf"));
-document.registerFont("FuturaMedium", path.join(fontDir, "FuturaCyrillicMedium.ttf"));
-document.registerFont("FuturaDemi", path.join(fontDir, "FuturaCyrillicDemi.ttf"));
-
-document.rect(0, 0, document.page.width, document.page.height).fill(colors.background);
+const document = createDocument("DevSH 2026 Professional Engineering Rates");
 drawBrand(document);
 const footerTop = drawPricingTable(document);
 drawFooter(document, footerTop);

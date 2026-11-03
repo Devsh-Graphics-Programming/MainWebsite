@@ -6,7 +6,7 @@
     },
     {
       "type": "reward",
-      "text": "10% success reward"
+      "text": "10% closing reward"
     },
     {
       "type": "subtitle",
@@ -42,7 +42,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Connect us with teams in CAD, gaming, simulation, visualization, or automotive requiring graphics dev, GPU computing, code audits, or corporate training."
+      "text": "Connect us with teams in gaming, CAD/CAE, simulation, digital twins, automotive, robotics, medical imaging, geospatial, VFX/animation, or scientific/HPC visualization requiring graphics dev, GPU computing, code audits, or corporate training."
     },
     {
       "type": "subheading",
@@ -58,7 +58,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Earn 10% on all payments we receive across a new client’s projects for 12 months after introduction. No minimum project value or commission cap. For corporate training, earn 10% for its full duration. We pay once client payments are received and no longer subject to offsets, contractual penalties or refunds. When referring your employer or client, tell them immediately about your 10% commission."
+      "text": "Earn 10% on all payments we receive across a new client’s projects for 12 months after introduction. No minimum project value or commission cap.*"
     },
     {
       "type": "heading",
@@ -66,7 +66,7 @@
     },
     {
       "type": "bullet",
-      "text": "Industry networks: Existing contacts among CTOs, VPs of engineering, product directors, and R&D leads in gaming, CAD, simulation, automotive, or graphics technology."
+      "text": "Industry networks: Existing contacts among CTOs, VPs of engineering, product directors, and R&D leads in gaming, CAD/CAE, simulation, digital twins, automotive, robotics, medical imaging, geospatial, VFX/animation, or scientific/HPC visualization."
     },
     {
       "type": "bullet",
@@ -97,6 +97,10 @@
       "text": "Ready to turn your network into revenue?",
       "prompt": "Contact our team at",
       "email": "partner@devsh.eu"
+    },
+    {
+      "type": "footnote",
+      "text": "* For corporate training, earn 10% for its full duration. We pay once client payments are received and no longer subject to offsets, contractual penalties or refunds. When referring your employer or client, tell them immediately about your 10% commission."
     }
   ]
 }

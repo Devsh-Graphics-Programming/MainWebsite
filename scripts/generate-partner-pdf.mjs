@@ -24,9 +24,10 @@ const space = {
   stepToBody: 2,
   titleToReward: 3,
   rewardToSubtitle: 6.5,
-  intro: sectionGap * 2,
+  intro: sectionGap,
   quote: 3.5,
   quoteEnd: 1.5,
+  footnote: 1.5,
 };
 const bodyColor = "#e5eae7";
 const rewardColor = "#92dfd2";
@@ -98,7 +99,15 @@ for (const [index, block] of content.blocks.entries()) {
     drawSectionHeading(block.text);
   } else if (block.type === "subheading") {
     if (content.blocks[index - 1]?.type !== "heading") y += space.step;
-    drawText(block.text, { font: "FuturaDemi", size: 10.2, color: colors.white, after: space.stepToBody });
+    const sectionStart = content.blocks.findLastIndex((other, otherIndex) => otherIndex < index && other.type === "heading");
+    const number = content.blocks.slice(sectionStart + 1, index + 1).filter((other) => other.type === "subheading").length;
+    checkBounds(block.text);
+    const options = { width, lineGap: 1.2 };
+    document.font("FuturaDemi").fontSize(10.2).fillColor(colors.accent)
+      .text(`${number}. `, left, y, { ...options, continued: true });
+    document.fillColor(colors.white).text(block.text, { ...options, continued: false });
+    y = document.y + space.stepToBody;
+    checkBounds(block.text);
   } else if (block.type === "contact") {
     drawSectionHeading(block.text);
     const baseline = y + 10.5;
@@ -115,6 +124,9 @@ for (const [index, block] of content.blocks.entries()) {
     drawBullet(block.text, content.blocks[index + 1]);
   } else if (block.type === "paragraph") {
     drawText(block.text);
+  } else if (block.type === "footnote") {
+    y += space.footnote;
+    drawText(block.text, { size: 7.4, color: "#889692", after: 0 });
   } else {
     throw new Error(`Unknown partner content block type: ${block.type}`);
   }

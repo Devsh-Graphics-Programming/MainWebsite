@@ -75,6 +75,7 @@ export default function Analytics() {
       window.goatcounter.get_data = (hit) => ({
         p: hit.path, t: hit.title || hit.path, r: hit.referrer || "",
         e: !!hit.event, b: navigator.webdriver ? 153 : 0,
+        s: window.screen.width,
       });
       setReady(true);
     }} />;

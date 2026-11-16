@@ -2,6 +2,7 @@
 
 import { type ReactNode, useState } from "react";
 import NablaShaderBackdrop from "../nabla/NablaShaderBackdrop";
+import { trackAnalyticsEvent } from "../components/Analytics";
 
 function ContactEmail() {
   const [isShown, setIsShown] = useState<boolean>(false);
@@ -16,6 +17,7 @@ function ContactEmail() {
 
     try {
       await navigator.clipboard.writeText(email);
+      trackAnalyticsEvent("contact-email-copied");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -27,6 +29,7 @@ function ContactEmail() {
     <button
       type="button"
       onClick={handleCopy}
+      data-analytics-event={isShown ? undefined : "contact-email-revealed"}
       className={`premium-cta brand-button group inline-flex w-full max-w-full items-center justify-center gap-3 rounded-lg border px-5 py-3 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 sm:w-auto sm:px-6 sm:py-3.5 sm:text-base ${
         isShown
           ? "premium-cta--revealed text-white"

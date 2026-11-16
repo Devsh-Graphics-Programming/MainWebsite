@@ -32,6 +32,7 @@ This repo is a Next.js app used to generate a static site. The final production 
 - These small tmpfs allocations keep RAM usage predictable while allowing the static server to update its metadata safely.
 
 ## Deployment notes
+- Self-hosted GoatCounter records page views and clicks.
 - Published image: `ghcr.io/devsh-graphics-programming/www-website` (tags: `latest`, `master`, `sha-*`).
 - Blog content is proxied separately. The main image does not include Node/npm or the blog runtime.
 - Security

@@ -13,6 +13,7 @@ export default function ContactEmail() {
     return (
         <span
             onClick={() => setIsShown(true)}
+            data-analytics-event={isShown ? undefined : "contact-email-revealed"}
             className={`inline-block px-2 border ${isShown ? "border-teal-900" : "border-[#181818]"} rounded-md hover:border-teal-900 transition-colors duration-300`}>
                 {isShown ? email : "Click to show"}
         </span>

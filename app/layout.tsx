@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Analytics from "./components/Analytics";
 
 const siteDescription =
   "DevSH is a specialized graphics engineering consultancy for GPU architecture, rendering, Vulkan, and high-performance compute.";
@@ -112,6 +113,7 @@ export default function RootLayout({
       <body
         className={`${futuraPT.className} flex min-h-dvh flex-col bg-black text-white antialiased`}
       >
+        <Analytics />
         <Navbar/>
         <div className="overflow-x-clip">
           {children}
